@@ -1,0 +1,29 @@
+PROGRAM T_LINK;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    { LINK with 1 operand }
+    LINK RDA0;
+
+    { LINK with literal }
+    LINK 'PROGRAM';
+
+    { LINK with multiple operands }
+    LINK RDA0, RDA1, RDA2;
+
+    { LINK with P register }
+    MOVE 'TESTPGM', P0;
+    LINK P0;
+
+    { LINK with GEV }
+    LINK SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

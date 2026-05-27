@@ -1,0 +1,27 @@
+{ Program 'ALLCMP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file all_cmp_ops.cod }
+{ md5sum 06fad4ddf661a95c251dac31420b91de }
+
+PROGRAM ALLCMP;
+
+PROC main =
+    CJNE RDA0, '1', label_12;
+    MOVE '1', RDA1;
+  label_12:
+    CJEQ RDA0, '1', label_24;
+    MOVE '2', RDA1;
+  label_24:
+    CJGE RDA0, '1', label_36;
+    MOVE '3', RDA1;
+  label_36:
+    CJLE RDA0, '1', label_48;
+    MOVE '4', RDA1;
+  label_48:
+    CJGT RDA0, '1', label_60;
+    MOVE '5', RDA1;
+  label_60:
+    CJLT RDA0, '1', label_72;
+    MOVE '6', RDA1;
+  label_72:
+END_PROC

@@ -1,0 +1,6 @@
+PROGRAM EIDXEX;
+DATA dt = PAD(156), A(5);
+PROC main =
+    MOVE '0', I1;
+    MOVE 'val', A(I1);
+END_PROC

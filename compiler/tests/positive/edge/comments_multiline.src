@@ -1,0 +1,8 @@
+PROGRAM CMTMLN;
+{ This comment
+  spans multiple
+  lines }
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+END_PROC

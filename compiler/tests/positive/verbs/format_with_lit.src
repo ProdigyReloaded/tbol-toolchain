@@ -1,0 +1,5 @@
+PROGRAM FMTLIT;
+DATA dt = A, B;
+PROC main =
+    FORMAT '###', A, B;
+END_PROC

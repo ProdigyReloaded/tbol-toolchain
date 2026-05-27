@@ -1,0 +1,11 @@
+{ Program 'WSTABS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file whitespace_tabs.cod }
+{ md5sum 2f177a79a7054c64879b06b227f9a631 }
+
+PROGRAM WSTABS;
+
+PROC main =
+    MOVE '1', RDA0;
+    ADD 1, RDA0;
+END_PROC

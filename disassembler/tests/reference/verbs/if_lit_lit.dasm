@@ -1,0 +1,12 @@
+{ Program 'IFLITLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_lit_lit.cod }
+{ md5sum eb3a0bca60117fca420fb041117ce970 }
+
+PROGRAM IFLITLT;
+
+PROC main =
+    CJNE '1', '1', label_14;
+    MOVE 0, I1;
+  label_14:
+END_PROC

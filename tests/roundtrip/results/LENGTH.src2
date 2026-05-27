@@ -1,0 +1,21 @@
+PROGRAM T_LENGTH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;                               { array, bounds unknown }
+
+PROC main =
+    LENGTH RDA0, I1;
+    MOVE 'hello', P0;
+    LENGTH P0, I1;
+    LENGTH RDA1, I1;
+    MOVE 3, I2;
+    LENGTH RDA1(I2), I1;
+    LENGTH &1, I1;
+    LENGTH SYS_RETURN_CODE, I1;
+    LENGTH RDA0, D1;
+    RETURN;
+END_PROC

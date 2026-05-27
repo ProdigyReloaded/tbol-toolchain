@@ -1,0 +1,35 @@
+PROGRAM T_LENGTH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1(10);
+
+PROC main =
+    { Basic LENGTH }
+    LENGTH RDA0, I1;
+
+    { LENGTH with P register }
+    MOVE 'hello', P0;
+    LENGTH P0, I1;
+
+    { LENGTH with indexed RDA }
+    LENGTH RDA1(1), I1;
+
+    { LENGTH with variable index }
+    MOVE 3, I2;
+    LENGTH RDA1(I2), I1;
+
+    { LENGTH with PEV }
+    LENGTH &1, I1;
+
+    { LENGTH with GEV }
+    LENGTH SYS_RETURN_CODE, I1;
+
+    { LENGTH result to D register }
+    LENGTH RDA0, D1;
+
+    RETURN;
+END_PROC

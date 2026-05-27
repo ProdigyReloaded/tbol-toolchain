@@ -1,0 +1,5 @@
+PROGRAM BWHNOC;
+DATA dt = A;
+PROC main =
+    WHILE THEN MOVE '1', A;
+END_PROC

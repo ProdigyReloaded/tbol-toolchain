@@ -1,0 +1,10 @@
+{ Program 'MULGEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_gev.cod }
+{ md5sum 429b8a32ce67f8ef7f070040657d314b }
+
+PROGRAM MULGEV;
+
+PROC main =
+    MULTIPLY #1, RDA0;
+END_PROC

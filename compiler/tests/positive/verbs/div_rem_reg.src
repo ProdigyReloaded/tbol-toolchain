@@ -1,0 +1,5 @@
+PROGRAM DIVRM3;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE I1, I2, I3;
+END_PROC

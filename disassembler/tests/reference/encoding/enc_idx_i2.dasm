@@ -1,0 +1,11 @@
+{ Program 'EIDXI2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_idx_i2.cod }
+{ md5sum 6b19b958381ba506ffd8943e4290636d }
+
+PROGRAM EIDXI2;
+
+PROC main =
+    MOVE 0, I2;
+    MOVE 'val', RDA0(I2);
+END_PROC

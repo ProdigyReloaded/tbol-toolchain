@@ -1,0 +1,12 @@
+{ Program 'IFCMPLE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_cmp_le.cod }
+{ md5sum 42b1be46e40a95d1ce75e78321371ea0 }
+
+PROGRAM IFCMPLE;
+
+PROC main =
+    CJGT RDA0, '1', label_12;
+    MOVE '2', RDA1;
+  label_12:
+END_PROC

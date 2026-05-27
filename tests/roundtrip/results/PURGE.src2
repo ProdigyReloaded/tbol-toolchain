@@ -1,0 +1,6 @@
+PROGRAM T_PURGE;
+
+PROC main =
+    PURGE_CACHE;
+    RETURN;
+END_PROC

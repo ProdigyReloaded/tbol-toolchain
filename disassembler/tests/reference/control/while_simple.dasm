@@ -1,0 +1,13 @@
+{ Program 'WHSIMP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_simple.cod }
+{ md5sum 6678477d6dbf47e0f28c3407a3650034 }
+
+PROGRAM WHSIMP;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '2', RDA1;
+    JUMP main;
+  label_15:
+END_PROC

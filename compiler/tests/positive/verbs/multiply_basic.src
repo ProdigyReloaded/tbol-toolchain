@@ -1,0 +1,5 @@
+PROGRAM TSTMUL;
+DATA dt = A;
+PROC main =
+    MULTIPLY '2', A;
+END_PROC

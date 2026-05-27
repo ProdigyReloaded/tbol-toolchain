@@ -1,0 +1,10 @@
+PROGRAM DEFMULT;
+DEFINE FOO, '1';
+DEFINE BAR, '2';
+DEFINE BAZ, '3';
+DATA dt = A, B, C;
+PROC main =
+    MOVE FOO, A;
+    MOVE BAR, B;
+    MOVE BAZ, C;
+END_PROC

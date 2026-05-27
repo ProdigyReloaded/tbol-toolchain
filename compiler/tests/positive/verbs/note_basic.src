@@ -1,0 +1,5 @@
+PROGRAM TSTNOT;
+DATA dt = A;
+PROC main =
+    NOTE '1', A;
+END_PROC

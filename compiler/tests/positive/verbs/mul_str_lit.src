@@ -1,0 +1,5 @@
+PROGRAM MULSL;
+DATA dt = A, B, C;
+PROC main =
+    MULTIPLY '5', A;
+END_PROC

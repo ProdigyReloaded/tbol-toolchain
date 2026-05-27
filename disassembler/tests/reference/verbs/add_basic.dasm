@@ -1,0 +1,10 @@
+{ Program 'TSTADD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_basic.cod }
+{ md5sum c87a9710b17434b47885237a10f529c6 }
+
+PROGRAM TSTADD;
+
+PROC main =
+    ADD 1, RDA0;
+END_PROC

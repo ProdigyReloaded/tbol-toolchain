@@ -1,0 +1,12 @@
+{ Program 'TDMAXV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_max_vars.cod }
+{ md5sum 714a3d90a6ecb465846be5b1360ca08b }
+
+PROGRAM TDMAXV;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '2', RDA14;
+    MOVE '3', RDA29;
+END_PROC

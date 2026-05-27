@@ -1,0 +1,10 @@
+{ Program 'TSTEXR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file exit_rc.cod }
+{ md5sum 9031cb588d4c7325c2f66f801f7a25ec }
+
+PROGRAM TSTEXR;
+
+PROC main =
+    EXIT RDA0;
+END_PROC

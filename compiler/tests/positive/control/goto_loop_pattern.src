@@ -1,0 +1,9 @@
+PROGRAM GOLOOP;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+LOOP:
+    ADD '1', I1;
+    MOVE I1, A;
+    IF I1 < '10' THEN GOTO LOOP;
+END_PROC

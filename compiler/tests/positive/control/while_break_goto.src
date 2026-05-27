@@ -1,0 +1,10 @@
+PROGRAM WHBRK;
+DATA dt = A, B;
+PROC main =
+    WHILE A = '1' THEN DO
+        IF B = '2' THEN GOTO DONE;
+        MOVE '0', A;
+    END;
+DONE:
+    MOVE '3', B;
+END_PROC

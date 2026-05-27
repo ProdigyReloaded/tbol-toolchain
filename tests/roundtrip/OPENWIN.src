@@ -1,0 +1,24 @@
+PROGRAM T_OPENWIN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { OPEN_WINDOW with RDA }
+    OPEN_WINDOW RDA0;
+
+    { OPEN_WINDOW with literal }
+    OPEN_WINDOW 'WINDOW1';
+
+    { OPEN_WINDOW with P register }
+    MOVE 'TESTWIN', P0;
+    OPEN_WINDOW P0;
+
+    { OPEN_WINDOW with GEV }
+    OPEN_WINDOW SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

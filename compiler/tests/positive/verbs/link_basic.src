@@ -1,0 +1,5 @@
+PROGRAM TSTLNK;
+DATA dt = A;
+PROC main =
+    LINK '12345678';
+END_PROC

@@ -1,0 +1,21 @@
+PROGRAM T_GOTODEP;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    MOVE 1, I1;
+    GOTO_DEPENDING_ON I1, label_1, label_2, label_3;
+label_1:
+    MOVE 'ONE', RDA0;
+    GOTO label_4;
+label_2:
+    MOVE 'TWO', RDA0;
+    GOTO label_4;
+label_3:
+    MOVE 'THREE', RDA0;
+    GOTO label_4;
+label_4:
+    RETURN;
+END_PROC

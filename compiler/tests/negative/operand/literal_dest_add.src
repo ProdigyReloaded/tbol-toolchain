@@ -1,0 +1,5 @@
+PROGRAM LITADD;
+DATA dt = A;
+PROC main =
+    ADD '1', '2';
+END_PROC

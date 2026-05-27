@@ -1,0 +1,13 @@
+{ Program 'LBLCLOSE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_keyword_close.cod }
+{ md5sum 313d165bfdfd153a3bf5e4e95b62e5d2 }
+
+PROGRAM LBLCLOSE;
+
+PROC main =
+    JUMP label_8;
+    MOVE '1', RDA0;
+  label_8:
+    MOVE '2', RDA1;
+END_PROC

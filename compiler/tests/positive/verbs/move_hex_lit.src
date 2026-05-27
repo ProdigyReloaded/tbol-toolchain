@@ -1,0 +1,5 @@
+PROGRAM MVHEXLT;
+DATA dt = A, B;
+PROC main =
+    MOVE 0x1F, A;
+END_PROC

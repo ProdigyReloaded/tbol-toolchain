@@ -1,0 +1,17 @@
+{ Program 'GOTODP2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_dep_2.cod }
+{ md5sum 3b14e10dfded100d642854417eba3cfe }
+
+PROGRAM GOTODP2;
+
+PROC main =
+    GOTO_DEPENDING_ON RDA0, label_7, label_15;
+  label_7:
+    MOVE '1', RDA1;
+    JUMP label_20;
+  label_15:
+    MOVE '2', RDA1;
+  label_20:
+    MOVE '0', RDA0;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'PUSH3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file push_reg.cod }
+{ md5sum f1aa37234f23884a8be7e05c087cfa3a }
+
+PROGRAM PUSH3;
+
+PROC main =
+    PUSH I1;
+END_PROC

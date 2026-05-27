@@ -1,0 +1,10 @@
+{ Program 'TSTEXT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file exit_bare.cod }
+{ md5sum 6bae50b0aaab216e1c56bab147549000 }
+
+PROGRAM TSTEXT;
+
+PROC main =
+    EXIT;
+END_PROC

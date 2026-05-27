@@ -1,0 +1,5 @@
+PROGRAM TSTDELF;
+DATA dt = A;
+PROC main =
+    DELETE A;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TSTSWP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file swap_basic.cod }
+{ md5sum bc428d00089211dae3ac2c9e1c1043c3 }
+
+PROGRAM TSTSWP;
+
+PROC main =
+    SWAP RDA0, RDA1;
+END_PROC

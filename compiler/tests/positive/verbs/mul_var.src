@@ -1,0 +1,5 @@
+PROGRAM MULVAR;
+DATA dt = A, B, C;
+PROC main =
+    MULTIPLY B, A;
+END_PROC

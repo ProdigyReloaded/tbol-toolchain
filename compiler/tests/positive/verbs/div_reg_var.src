@@ -1,0 +1,5 @@
+PROGRAM DIVRV;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE I1, A;
+END_PROC

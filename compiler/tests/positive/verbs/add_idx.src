@@ -1,0 +1,5 @@
+PROGRAM ADIDX;
+DATA dt = A(5), B;
+PROC main =
+    ADD '1', A(I1);
+END_PROC

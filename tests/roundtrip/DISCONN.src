@@ -1,0 +1,14 @@
+PROGRAM T_DISCONN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { DISCONNECT - no operands }
+    DISCONNECT;
+
+    RETURN;
+END_PROC

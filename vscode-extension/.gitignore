@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+bin/
+
+# Package artifacts
+*.vsix
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/

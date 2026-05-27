@@ -1,0 +1,13 @@
+{ Program 'IFNEST2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_nested_2.cod }
+{ md5sum 191c560ed4d3d58f9def733b71a8c054 }
+
+PROGRAM IFNEST2;
+
+PROC main =
+    CJNE RDA0, '1', label_19;
+    CJNE RDA1, '2', label_19;
+    MOVE '3', RDA2;
+  label_19:
+END_PROC

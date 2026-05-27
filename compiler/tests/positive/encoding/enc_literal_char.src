@@ -1,0 +1,5 @@
+PROGRAM TELITCH;
+DATA dt = A;
+PROC main =
+    MOVE 'A', A;
+END_PROC

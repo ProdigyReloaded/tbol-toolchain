@@ -1,0 +1,10 @@
+{ Program 'TSTAND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file and_basic.cod }
+{ md5sum a3c18367249a3e8cb635beaeaa93a854 }
+
+PROGRAM TSTAND;
+
+PROC main =
+    AND '255', RDA0;
+END_PROC

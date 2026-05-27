@@ -1,0 +1,12 @@
+PROGRAM CALL2PR;
+DATA dt = A, B;
+PROC main =
+    helpa;
+    helpb;
+END_PROC
+PROC helpa =
+    MOVE '1', A;
+END_PROC
+PROC helpb =
+    MOVE '2', B;
+END_PROC

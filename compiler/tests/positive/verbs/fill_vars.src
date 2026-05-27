@@ -1,0 +1,5 @@
+PROGRAM FILL1;
+DATA dt = A, B, C;
+PROC main =
+    FILL A, B, C;
+END_PROC

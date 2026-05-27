@@ -1,0 +1,6 @@
+PROGRAM TEIDXVR;
+DATA dt = A(10), B;
+PROC main =
+    MOVE '3', B;
+    MOVE 'val', A(B);
+END_PROC

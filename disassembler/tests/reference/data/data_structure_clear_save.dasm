@@ -1,0 +1,15 @@
+{ Program 'TDSTCSR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_structure_clear_save.cod }
+{ md5sum 2d86077f7b051640bc7f796ccfe8cc4c }
+
+PROGRAM TDSTCSR;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '2', RDA1;
+    MOVE '3', RDA2;
+    CLEAR RDA0;
+    SAVE RDA0, RDA1, RDA2;
+    RESTORE RDA0, RDA1;
+END_PROC

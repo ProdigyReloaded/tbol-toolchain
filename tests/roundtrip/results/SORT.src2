@@ -1,0 +1,22 @@
+PROGRAM T_SORT;
+
+DATA
+  vars =
+    RDA0,                               { array, bounds unknown }
+    RDA1,                               { unused }
+    RDA2,                               { unused }
+    RDA3,                               { unused }
+    RDA4,                               { unused }
+    RDA5,                               { unused }
+    RDA6,                               { unused }
+    RDA7,                               { unused }
+    RDA8,                               { unused }
+    RDA9;
+
+PROC main =
+    SORT RDA0, RDA9, '18';
+    MOVE 1, I1;
+    MOVE 5, I2;
+    SORT RDA0(I1), RDA0(I2), '18';
+    RETURN;
+END_PROC

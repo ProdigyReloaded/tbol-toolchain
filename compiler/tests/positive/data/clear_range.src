@@ -1,0 +1,7 @@
+PROGRAM TDCLRRG;
+DATA dt = A, B, C;
+PROC main =
+    MOVE '1', A;
+    MOVE '2', B;
+    CLEAR A, B;
+END_PROC

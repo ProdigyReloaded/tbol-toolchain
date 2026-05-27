@@ -1,0 +1,5 @@
+PROGRAM UNDEFL;
+DATA dt = A;
+PROC main =
+    GOTO NOLABEL;
+END_PROC

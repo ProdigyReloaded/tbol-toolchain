@@ -1,0 +1,10 @@
+{ Program 'EGEV500' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_500.cod }
+{ md5sum 9b89e957083d08070179c9ee4773dffc }
+
+PROGRAM EGEV500;
+
+PROC main =
+    MOVE #500, RDA0;
+END_PROC

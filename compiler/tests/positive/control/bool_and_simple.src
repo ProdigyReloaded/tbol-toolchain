@@ -1,0 +1,5 @@
+PROGRAM BOOLANDS;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' AND B = '2' THEN MOVE '3', C;
+END_PROC

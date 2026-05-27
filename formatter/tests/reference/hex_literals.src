@@ -1,0 +1,17 @@
+{ Hex literal conversion: \xNN escapes become 0x notation }
+PROGRAM HEXLIT;
+
+DATA
+    vars =
+        A;
+
+PROC main =
+    { Pure hex string }
+    MOVE 0x000102, A;
+    { Mixed: short printable prefix + hex }
+    MOVE 0x002200, A;
+    { Long printable prefix (8+ chars) should NOT convert }
+    MOVE 'LONGNAME\x00\x0c', A;
+    { No hex escapes — unchanged }
+    MOVE 'hello', A;
+END_PROC

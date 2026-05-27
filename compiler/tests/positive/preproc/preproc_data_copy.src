@@ -1,0 +1,5 @@
+PROGRAM PPDC;
+COPY COPYDATA;
+PROC main =
+    MOVE 'hello', CPVAL1;
+END_PROC

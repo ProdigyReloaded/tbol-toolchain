@@ -1,0 +1,10 @@
+{ Program 'SAVVAR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file save_with_var.cod }
+{ md5sum e4cbdee270e4d309d6a1e30ad85c8dbb }
+
+PROGRAM SAVVAR;
+
+PROC main =
+    SAVE RDA0, RDA1, RDA2;
+END_PROC

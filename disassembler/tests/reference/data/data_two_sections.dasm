@@ -1,0 +1,11 @@
+{ Program 'TDTWOSEC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_two_sections.cod }
+{ md5sum 70ffdc70a5c4dcd7d8c6d35cf3d0397f }
+
+PROGRAM TDTWOSEC;
+
+PROC main =
+    MOVE RDA0, RDA2;
+    MOVE RDA1, RDA3;
+END_PROC

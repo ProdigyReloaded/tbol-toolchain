@@ -1,0 +1,22 @@
+{ Deeply nested indentation: IF inside WHILE inside IF }
+PROGRAM INDENT2;
+
+DATA
+    vars =
+        A,
+        B,
+        C;
+
+PROC main =
+    IF A = '1' THEN DO
+        WHILE B <> '0' THEN DO
+            IF C = '3' THEN DO
+                MOVE '0', B;
+            END;
+
+            SUBTRACT '1', B;
+        END;
+
+        MOVE '0', A;
+    END;
+END_PROC

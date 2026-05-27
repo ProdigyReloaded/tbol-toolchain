@@ -1,0 +1,5 @@
+PROGRAM EDIT3;
+DATA dt = A, B;
+PROC main =
+    EDIT A, '1', '2';
+END_PROC

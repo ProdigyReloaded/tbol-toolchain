@@ -1,0 +1,12 @@
+{ Program 'DEFCOND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_in_condition.cod }
+{ md5sum 4af59a18f3eb5a426ca157c4b419fadb }
+
+PROGRAM DEFCOND;
+
+PROC main =
+    CJNE RDA0, '50', label_13;
+    MOVE '1', RDA0;
+  label_13:
+END_PROC

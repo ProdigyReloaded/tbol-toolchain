@@ -1,0 +1,16 @@
+PROGRAM KWLBLS;
+DATA dt = A;
+PROC main =
+    GOTO WRITE;
+    MOVE '0', I1;
+WRITE:
+    MOVE '1', A;
+    GOTO READ;
+    MOVE '0', I1;
+READ:
+    MOVE '2', A;
+    GOTO OPEN;
+    MOVE '0', I1;
+OPEN:
+    MOVE '0', I1;
+END_PROC

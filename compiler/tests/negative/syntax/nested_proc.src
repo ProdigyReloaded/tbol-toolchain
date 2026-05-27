@@ -1,0 +1,7 @@
+PROGRAM NESTP;
+DATA dt = A;
+PROC main =
+    PROC inner =
+        MOVE '0', I1;
+    END_PROC
+END_PROC

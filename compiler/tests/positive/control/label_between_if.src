@@ -1,0 +1,7 @@
+PROGRAM LABIF;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN MOVE '2', B;
+MID:
+    IF B = '2' THEN MOVE '3', C;
+END_PROC

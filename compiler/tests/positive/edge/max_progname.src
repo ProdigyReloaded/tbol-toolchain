@@ -1,0 +1,5 @@
+PROGRAM ABCDEFGH;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+END_PROC

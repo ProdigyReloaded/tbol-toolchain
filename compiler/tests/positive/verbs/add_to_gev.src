@@ -1,0 +1,5 @@
+PROGRAM ADTOGEV;
+DATA dt = A, B;
+PROC main =
+    ADD '1', #1;
+END_PROC

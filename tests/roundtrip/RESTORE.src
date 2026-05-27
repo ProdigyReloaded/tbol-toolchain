@@ -1,0 +1,20 @@
+PROGRAM T_RESTORE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { RESTORE with buffer name and destination }
+    RESTORE 'BUFFER1', RDA0;
+
+    { RESTORE with P register destination }
+    RESTORE 'P_REGS', P1;
+
+    { RESTORE with PEV destination }
+    RESTORE 'KEYS', &20;
+
+    RETURN;
+END_PROC

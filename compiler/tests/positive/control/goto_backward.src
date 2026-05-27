@@ -1,0 +1,8 @@
+PROGRAM GOTOBAK;
+DATA dt = A, B;
+PROC main =
+LOOP:
+    MOVE '1', A;
+    IF A = '1' THEN GOTO LOOP;
+    MOVE '2', B;
+END_PROC

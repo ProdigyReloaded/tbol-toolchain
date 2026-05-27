@@ -1,0 +1,25 @@
+PROGRAM T_POINT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { POINT with 2 operands }
+    POINT RDA0, RDA1;
+
+    { POINT with literals }
+    POINT 'FILE', RDA1;
+
+    { POINT with P register }
+    MOVE 'TESTFILE', P0;
+    POINT P0, RDA1;
+
+    { POINT with GEV }
+    POINT SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

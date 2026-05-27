@@ -1,0 +1,5 @@
+PROGRAM STRHEX;
+DATA dt = A, B, C;
+PROC main =
+    STRING A, 0x41, 0x42;
+END_PROC

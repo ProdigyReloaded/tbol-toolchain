@@ -1,0 +1,10 @@
+{ Program 'TSTOPN' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file open_basic.cod }
+{ md5sum ac510b176c32a2de8558adc9ace4ac85 }
+
+PROGRAM TSTOPN;
+
+PROC main =
+    OPEN '1', '2';
+END_PROC

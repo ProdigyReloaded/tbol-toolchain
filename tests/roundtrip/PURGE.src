@@ -1,0 +1,14 @@
+PROGRAM T_PURGE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { PURGE_CACHE - no operands }
+    PURGE_CACHE;
+
+    RETURN;
+END_PROC

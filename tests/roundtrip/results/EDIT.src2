@@ -1,0 +1,14 @@
+PROGRAM T_EDIT;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    EDIT RDA0, '%-20s%s', RDA1, RDA2;
+    EDIT P0, '%s %s', P1, P2;
+    EDIT RDA0, '%2s%-18s%s', RDA1, RDA2, RDA0;
+    RETURN;
+END_PROC

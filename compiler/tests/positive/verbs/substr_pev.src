@@ -1,0 +1,5 @@
+PROGRAM SUBSR4;
+DATA dt = A, B, C;
+PROC main =
+    SUBSTR &1, A, '1', '5';
+END_PROC

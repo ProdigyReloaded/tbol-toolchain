@@ -1,0 +1,5 @@
+PROGRAM TDALRG;
+DATA dt = A(50);
+PROC main =
+    MOVE '1', A(I1);
+END_PROC

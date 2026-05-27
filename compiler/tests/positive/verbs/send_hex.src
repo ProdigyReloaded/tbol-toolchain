@@ -1,0 +1,5 @@
+PROGRAM SNDHEX;
+DATA dt = A;
+PROC main =
+    SEND 0x0d0f, PRIORITY;
+END_PROC

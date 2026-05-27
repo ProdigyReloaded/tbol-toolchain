@@ -1,0 +1,8 @@
+PROGRAM LBLCLOSE;
+DATA dt = A, B;
+PROC main =
+    GOTO CLOSE;
+    MOVE '1', A;
+CLOSE:
+    MOVE '2', B;
+END_PROC

@@ -1,0 +1,8 @@
+PROGRAM LKWEXIT;
+DATA dt = A;
+PROC main =
+    GOTO EXIT;
+    MOVE '0', I1;
+EXIT:
+    EXIT A;
+END_PROC

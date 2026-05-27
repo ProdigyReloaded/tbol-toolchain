@@ -1,0 +1,5 @@
+PROGRAM BOOLANC5;
+DATA dt = A, B, C, D, E;
+PROC main =
+    IF A = '1' AND B = '2' AND C = '3' AND D = '4' AND E = '5' THEN MOVE '6', A;
+END_PROC

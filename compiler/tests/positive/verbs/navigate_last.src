@@ -1,0 +1,5 @@
+PROGRAM TSTNVL;
+DATA dt = A;
+PROC main =
+    NAVIGATE LAST;
+END_PROC

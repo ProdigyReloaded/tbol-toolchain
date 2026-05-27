@@ -1,0 +1,10 @@
+{ Program 'EGEV10' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_10.cod }
+{ md5sum a24859edc1631c9fba9f6d665e4b8ece }
+
+PROGRAM EGEV10;
+
+PROC main =
+    MOVE #10, RDA0;
+END_PROC

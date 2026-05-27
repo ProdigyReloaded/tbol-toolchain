@@ -1,0 +1,6 @@
+PROGRAM TDSAVAR;
+DATA dt = A(5), B;
+PROC main =
+    MOVE '1', A(I1);
+    SAVE 'blk', A, B;
+END_PROC

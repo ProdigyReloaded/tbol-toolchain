@@ -1,0 +1,17 @@
+{ Program 'CL2ARG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_with_2args.cod }
+{ md5sum c820a622bf052b22079e416dca5d6d57 }
+
+PROGRAM CL2ARG;
+
+PROC main =
+    MOVE '10', RDA0;
+    MOVE '5', RDA1;
+    proc_1 RDA0, RDA1;
+END_PROC
+
+PROC proc_1 =
+    ADD P1, P2;
+    MOVE P2, RDA2;
+END_PROC

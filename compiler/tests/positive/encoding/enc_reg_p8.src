@@ -1,0 +1,5 @@
+PROGRAM TEREGP8;
+DATA dt = A;
+PROC main =
+    MOVE P8, A;
+END_PROC

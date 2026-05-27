@@ -1,0 +1,5 @@
+PROGRAM SUBVAR;
+DATA dt = A, B, C;
+PROC main =
+    SUBTRACT B, A;
+END_PROC

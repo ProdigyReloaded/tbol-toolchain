@@ -1,0 +1,10 @@
+{ Program 'XORPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file xor_pev.cod }
+{ md5sum 8801d4fa2789dcf6002ba48ab5d98331 }
+
+PROGRAM XORPEV;
+
+PROC main =
+    XOR &1, RDA0;
+END_PROC

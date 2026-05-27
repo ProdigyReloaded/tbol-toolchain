@@ -1,0 +1,6 @@
+PROGRAM TEIDXRG;
+DATA dt = A(10);
+PROC main =
+    MOVE '1', I1;
+    MOVE 'val', A(I1);
+END_PROC

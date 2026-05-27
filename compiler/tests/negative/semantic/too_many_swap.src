@@ -1,0 +1,5 @@
+PROGRAM MNYSWP;
+DATA dt = A, B, C;
+PROC main =
+    SWAP A, B, C;
+END_PROC

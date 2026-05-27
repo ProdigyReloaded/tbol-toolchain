@@ -1,0 +1,14 @@
+PROGRAM PSVRST;
+DATA
+    dt = STATE, VALUE, TEMP;
+PROC main =
+    MOVE '1', STATE;
+    MOVE '2', VALUE;
+    SAVE 'ORIG', STATE, VALUE;
+    worker;
+    RESTORE 'ORIG', STATE;
+END_PROC
+PROC worker =
+    MOVE '99', STATE;
+    MOVE '99', VALUE;
+END_PROC

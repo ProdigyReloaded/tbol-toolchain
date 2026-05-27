@@ -1,0 +1,15 @@
+{ Program 'GOTOFIF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_from_if.cod }
+{ md5sum a3ccf43fb2ec7e49883e660c2fe06458 }
+
+PROGRAM GOTOFIF;
+
+PROC main =
+    CJNE RDA0, '1', label_10;
+    JUMP label_15;
+  label_10:
+    MOVE '2', RDA1;
+  label_15:
+    MOVE '3', RDA0;
+END_PROC

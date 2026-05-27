@@ -1,0 +1,5 @@
+PROGRAM LITFIL;
+DATA dt = A;
+PROC main =
+    FILL '1', '0', '10';
+END_PROC

@@ -1,0 +1,9 @@
+PROGRAM CALLRETC;
+DATA dt = A;
+PROC main =
+    helper;
+END_PROC
+PROC helper =
+    MOVE '1', A;
+    RETURN '0';
+END_PROC

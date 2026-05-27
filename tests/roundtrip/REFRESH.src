@@ -1,0 +1,14 @@
+PROGRAM T_REFRESH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { REFRESH (no operands) }
+    REFRESH;
+
+    RETURN;
+END_PROC

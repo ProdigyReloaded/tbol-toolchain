@@ -1,0 +1,10 @@
+{ Program 'FILL2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file fill_lits.cod }
+{ md5sum 9814918dde8290bfaf1bd8d76792977f }
+
+PROGRAM FILL2;
+
+PROC main =
+    FILL RDA0, 0, 10;
+END_PROC

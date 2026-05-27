@@ -1,0 +1,10 @@
+{ Program 'FILL1' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file fill_vars.cod }
+{ md5sum 0e035aec50fdaeb904ccf3ce7cb1813c }
+
+PROGRAM FILL1;
+
+PROC main =
+    FILL RDA0, RDA1, RDA2;
+END_PROC

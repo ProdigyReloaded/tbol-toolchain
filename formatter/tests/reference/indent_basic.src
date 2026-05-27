@@ -1,0 +1,21 @@
+{ Basic indentation: PROC body and nested IF/WHILE/DO blocks }
+PROGRAM INDENT1;
+
+DATA
+    vars =
+        A,
+        B;
+
+PROC main =
+    MOVE '1', A;
+
+    IF A = '1' THEN DO
+        MOVE '2', B;
+        ADD '1', A;
+    END;
+
+    WHILE A <> '5' THEN DO
+        SUBTRACT '1', A;
+        MOVE A, B;
+    END;
+END_PROC

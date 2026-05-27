@@ -1,0 +1,28 @@
+{ Program 'PMPROC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_multi_proc.cod }
+{ md5sum 6afa68060a0c82efbe80179fcdd8058c }
+
+PROGRAM PMPROC;
+
+PROC main =
+    MOVE 'hello', RDA0;
+    proc_1 RDA0;
+    EXIT RDA3;
+END_PROC
+
+PROC proc_1 =
+    MOVE P1, RDA0;
+    proc_2 RDA0;
+    CJNE RDA2, '0', label_37;
+    MOVE '1', RDA3;
+  label_37:
+END_PROC
+
+PROC proc_2 =
+    CJNE P1, '', label_50;
+    MOVE '1', RDA2;
+    RETURN;
+  label_50:
+    MOVE '0', RDA2;
+END_PROC

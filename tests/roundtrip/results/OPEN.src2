@@ -1,0 +1,13 @@
+PROGRAM T_OPEN;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    OPEN RDA0, RDA1;
+    OPEN 'FILENAME', 'R';
+    OPEN P0, P1;
+    RETURN;
+END_PROC

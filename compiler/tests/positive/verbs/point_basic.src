@@ -1,0 +1,5 @@
+PROGRAM TSTPNT;
+DATA dt = A;
+PROC main =
+    POINT '1', '0';
+END_PROC

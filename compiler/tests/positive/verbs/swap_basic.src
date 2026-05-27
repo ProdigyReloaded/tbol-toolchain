@@ -1,0 +1,5 @@
+PROGRAM TSTSWP;
+DATA dt = A, B;
+PROC main =
+    SWAP A, B;
+END_PROC

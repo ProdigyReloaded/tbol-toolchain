@@ -1,0 +1,26 @@
+PROGRAM T_RELEASE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { Basic RELEASE }
+    RELEASE RDA0;
+
+    { RELEASE P register }
+    RELEASE P0;
+
+    { RELEASE I register }
+    RELEASE I1;
+
+    { RELEASE PEV }
+    RELEASE &1;
+
+    { RELEASE GEV }
+    RELEASE SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

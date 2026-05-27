@@ -1,0 +1,5 @@
+PROGRAM EGV10K;
+DATA dt = A;
+PROC main =
+    MOVE #10000, A;
+END_PROC

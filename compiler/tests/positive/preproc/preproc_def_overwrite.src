@@ -1,0 +1,7 @@
+PROGRAM PPDO;
+DEFINE FOO, '1';
+DEFINE FOO, '2';
+DATA dt = A;
+PROC main =
+    MOVE FOO, A;
+END_PROC

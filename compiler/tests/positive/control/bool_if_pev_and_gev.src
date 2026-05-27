@@ -1,0 +1,6 @@
+PROGRAM BIFPG;
+DATA dt = A;
+PROC main =
+    IF &1 = '1' AND #1 = '0' THEN
+        MOVE '1', A;
+END_PROC

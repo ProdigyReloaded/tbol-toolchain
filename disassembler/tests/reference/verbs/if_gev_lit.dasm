@@ -1,0 +1,12 @@
+{ Program 'IFGEVLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_gev_lit.cod }
+{ md5sum 196231b4afcd51205d799875f530a19a }
+
+PROGRAM IFGEVLT;
+
+PROC main =
+    CJNE #1, '1', label_14;
+    MOVE 0, I1;
+  label_14:
+END_PROC

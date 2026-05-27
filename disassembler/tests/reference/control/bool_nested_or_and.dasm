@@ -1,0 +1,21 @@
+{ Program 'BOOLNOA' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_nested_or_and.cod }
+{ md5sum f3ce40a29bb5ef0b5c0792d08fa1aae3 }
+
+PROGRAM BOOLNOA;
+
+PROC main =
+    CJNE RDA0, '1', label_10;
+    JUMP label_24;
+  label_10:
+    CJNE RDA1, '2', label_27;
+    CJNE RDA2, '3', label_27;
+  label_24:
+    JUMP label_34;
+  label_27:
+    CJNE RDA3, '4', label_39;
+  label_34:
+    MOVE '5', RDA4;
+  label_39:
+END_PROC

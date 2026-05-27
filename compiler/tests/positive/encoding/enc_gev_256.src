@@ -1,0 +1,5 @@
+PROGRAM EGEV256;
+DATA dt = A;
+PROC main =
+    MOVE #256, A;
+END_PROC

@@ -1,0 +1,24 @@
+PROGRAM T_CLOSE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { CLOSE with RDA }
+    CLOSE RDA0;
+
+    { CLOSE with literal }
+    CLOSE 'FILE';
+
+    { CLOSE with P register }
+    MOVE 'TESTFILE', P0;
+    CLOSE P0;
+
+    { CLOSE with GEV }
+    CLOSE SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

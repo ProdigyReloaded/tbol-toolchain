@@ -1,0 +1,13 @@
+{ Program 'LBLREAD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_keyword_read.cod }
+{ md5sum c3053449e52b5782c50829ce03967ee7 }
+
+PROGRAM LBLREAD;
+
+PROC main =
+    JUMP label_8;
+    MOVE '1', RDA0;
+  label_8:
+    MOVE '2', RDA1;
+END_PROC

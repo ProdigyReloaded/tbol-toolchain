@@ -1,0 +1,5 @@
+PROGRAM MVTOD;
+DATA dt = A, B;
+PROC main =
+    MOVE '1', D1;
+END_PROC

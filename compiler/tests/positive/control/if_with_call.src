@@ -1,0 +1,8 @@
+PROGRAM IFWCL;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN helper;
+END_PROC
+PROC helper =
+    MOVE '2', B;
+END_PROC

@@ -1,0 +1,17 @@
+PROGRAM T_TEST;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    TEST RDA0, RDA1;
+    TEST 'PATTERN', RDA1;
+    MOVE 'DATA', P0;
+    TEST P0, RDA1;
+    TEST SYS_RETURN_CODE, RDA1;
+    RETURN;
+END_PROC

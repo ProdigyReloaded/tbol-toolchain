@@ -1,0 +1,5 @@
+PROGRAM TSTLEN;
+DATA dt = A, B;
+PROC main =
+    LENGTH A, B;
+END_PROC

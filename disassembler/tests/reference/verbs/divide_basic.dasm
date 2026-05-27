@@ -1,0 +1,10 @@
+{ Program 'TSTDIV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file divide_basic.cod }
+{ md5sum 261ea3d55328479bafd5e585a5810929 }
+
+PROGRAM TSTDIV;
+
+PROC main =
+    DIVIDE RDA0, RDA1;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'MVTOI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_to_reg_i.cod }
+{ md5sum f1f87f2726dd0e79f2ae015a71c7a24a }
+
+PROGRAM MVTOI;
+
+PROC main =
+    MOVE 1, I1;
+END_PROC

@@ -1,0 +1,8 @@
+PROGRAM MKFMTE;
+DATA dt = RESULT, FLD1, FLD2, FLD3;
+PROC main =
+    MAKE_FORMAT RESULT,
+        FLD1::1,
+        FLD2::1,
+        FLD3::1;
+END_PROC

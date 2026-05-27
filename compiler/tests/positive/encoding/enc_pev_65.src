@@ -1,0 +1,5 @@
+PROGRAM TEPEV65;
+DATA dt = A;
+PROC main =
+    MOVE &65, A;
+END_PROC

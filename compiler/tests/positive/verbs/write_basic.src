@@ -1,0 +1,5 @@
+PROGRAM TSTWR;
+DATA dt = A;
+PROC main =
+    WRITE '1', A;
+END_PROC

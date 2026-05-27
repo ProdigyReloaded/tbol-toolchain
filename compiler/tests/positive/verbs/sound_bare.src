@@ -1,0 +1,5 @@
+PROGRAM TSTSDB;
+DATA dt = A;
+PROC main =
+    SOUND;
+END_PROC

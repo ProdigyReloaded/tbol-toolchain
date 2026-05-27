@@ -1,0 +1,5 @@
+PROGRAM TEREGP0;
+DATA dt = A;
+PROC main =
+    MOVE P0, A;
+END_PROC

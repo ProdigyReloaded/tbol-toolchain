@@ -1,0 +1,5 @@
+PROGRAM ADTOI;
+DATA dt = A, B;
+PROC main =
+    ADD '1', I1;
+END_PROC

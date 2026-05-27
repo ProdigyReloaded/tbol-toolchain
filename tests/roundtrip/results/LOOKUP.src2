@@ -1,0 +1,18 @@
+PROGRAM T_LOOKUP;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4;
+
+PROC main =
+    LOOKUP RDA0, RDA1, RDA2, RDA3, RDA4;
+    LOOKUP 'KEY', RDA1, '1', '10', RDA4;
+    MOVE 1, I1;
+    MOVE 5, I2;
+    LOOKUP RDA0, RDA1, I1, I2, RDA4;
+    RETURN;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM LITFTC;
+DATA dt = A;
+PROC main =
+    FETCH '1', '2';
+END_PROC

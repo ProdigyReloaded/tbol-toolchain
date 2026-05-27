@@ -1,0 +1,13 @@
+{ Program 'IFPEV2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_pev_cond.cod }
+{ md5sum e8aaa330dd006a2ba7c7ccbc7dfeda25 }
+
+PROGRAM IFPEV2;
+
+PROC main =
+    CJNE &1, '1', label_19;
+    CJNE &2, '2', label_19;
+    MOVE '3', RDA0;
+  label_19:
+END_PROC

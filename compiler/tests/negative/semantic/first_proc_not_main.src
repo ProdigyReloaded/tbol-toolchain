@@ -1,0 +1,8 @@
+PROGRAM FPNM;
+DATA dt = A;
+PROC helper =
+    MOVE '1', A;
+END_PROC
+PROC main =
+    helper;
+END_PROC

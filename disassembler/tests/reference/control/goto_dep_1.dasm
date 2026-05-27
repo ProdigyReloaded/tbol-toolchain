@@ -1,0 +1,12 @@
+{ Program 'GDO1' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_dep_1.cod }
+{ md5sum f807c62d968182fc4a7afc0f4c580e79 }
+
+PROGRAM GDO1;
+
+PROC main =
+    GOTO_DEPENDING_ON RDA0, label_5;
+  label_5:
+    MOVE '1', RDA1;
+END_PROC

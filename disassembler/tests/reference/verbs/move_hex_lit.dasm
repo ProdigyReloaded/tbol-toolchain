@@ -1,0 +1,10 @@
+{ Program 'MVHEXLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_hex_lit.cod }
+{ md5sum 89ae722e4f292fa23e4e57bfcaefdaf4 }
+
+PROGRAM MVHEXLT;
+
+PROC main =
+    MOVE 0x1f, RDA0;
+END_PROC

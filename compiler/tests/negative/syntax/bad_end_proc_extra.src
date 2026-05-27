@@ -1,0 +1,6 @@
+PROGRAM BEPEXT;
+DATA dt = A;
+PROC main =
+    MOVE '1', A;
+END_PROC
+END_PROC

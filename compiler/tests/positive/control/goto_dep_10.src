@@ -1,0 +1,36 @@
+PROGRAM GOTDP10;
+DATA dt = A, B;
+PROC main =
+    GOTO_DEPENDING_ON A, L1, L2, L3, L4, L5, L6, L7, L8, L9, L10;
+L1:
+    MOVE '1', B;
+    GOTO DONE;
+L2:
+    MOVE '2', B;
+    GOTO DONE;
+L3:
+    MOVE '3', B;
+    GOTO DONE;
+L4:
+    MOVE '4', B;
+    GOTO DONE;
+L5:
+    MOVE '5', B;
+    GOTO DONE;
+L6:
+    MOVE '6', B;
+    GOTO DONE;
+L7:
+    MOVE '7', B;
+    GOTO DONE;
+L8:
+    MOVE '8', B;
+    GOTO DONE;
+L9:
+    MOVE '9', B;
+    GOTO DONE;
+L10:
+    MOVE '10', B;
+DONE:
+    MOVE '0', A;
+END_PROC

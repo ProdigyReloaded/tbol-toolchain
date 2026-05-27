@@ -1,0 +1,5 @@
+PROGRAM XORPEV;
+DATA dt = A, B, C;
+PROC main =
+    XOR &1, A;
+END_PROC

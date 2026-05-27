@@ -1,0 +1,25 @@
+PROGRAM T_READ;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { READ with 2 operands }
+    READ RDA0, RDA1;
+
+    { READ with literals }
+    READ 'FILE', RDA1;
+
+    { READ with P register }
+    MOVE 'TESTFILE', P0;
+    READ P0, RDA1;
+
+    { READ with GEV }
+    READ SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

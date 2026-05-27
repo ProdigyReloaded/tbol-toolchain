@@ -1,0 +1,5 @@
+PROGRAM BIFNOC;
+DATA dt = A;
+PROC main =
+    IF THEN MOVE '1', A;
+END_PROC

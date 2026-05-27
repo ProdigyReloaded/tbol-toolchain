@@ -1,0 +1,8 @@
+PROGRAM LKWADD;
+DATA dt = A;
+PROC main =
+    GOTO ADD;
+    MOVE '0', I1;
+ADD:
+    ADD '1', A;
+END_PROC

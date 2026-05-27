@@ -1,0 +1,11 @@
+{ Program 'PFMTSD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_format_send.cod }
+{ md5sum a4ffeaa6800f145f8bee09b06d02f421 }
+
+PROGRAM PFMTSD;
+
+PROC main =
+    FORMAT RDA1, RDA0, I8;
+    SEND RDA0, RDA3, PRIORITY;
+END_PROC

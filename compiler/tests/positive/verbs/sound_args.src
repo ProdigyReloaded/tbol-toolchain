@@ -1,0 +1,5 @@
+PROGRAM TSTSDA;
+DATA dt = A;
+PROC main =
+    SOUND '1', '2';
+END_PROC

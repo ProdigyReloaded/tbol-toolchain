@@ -1,0 +1,5 @@
+PROGRAM FEWIN;
+DATA dt = A, B;
+PROC main =
+    INSTR A, B;
+END_PROC

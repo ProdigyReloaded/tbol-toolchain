@@ -1,0 +1,7 @@
+PROGRAM GDO1;
+DATA dt = A, B;
+PROC main =
+    GOTO_DEPENDING_ON A, LBL1;
+LBL1:
+    MOVE '1', B;
+END_PROC

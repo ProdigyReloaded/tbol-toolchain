@@ -1,0 +1,5 @@
+PROGRAM SFPROG;
+DATA dt = A, B;
+PROC main =
+    SET_FUNCTION '10', '1', A, B;
+END_PROC

@@ -1,0 +1,13 @@
+PROGRAM CALLCHN;
+DATA dt = A, B, C;
+PROC main =
+    MOVE '1', A;
+    procb;
+END_PROC
+PROC procb =
+    MOVE '2', B;
+    procc;
+END_PROC
+PROC procc =
+    MOVE '3', C;
+END_PROC

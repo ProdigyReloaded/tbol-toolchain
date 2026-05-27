@@ -1,0 +1,5 @@
+PROGRAM EIDX10;
+DATA dt = A(15);
+PROC main =
+    MOVE 'val', A(10);
+END_PROC

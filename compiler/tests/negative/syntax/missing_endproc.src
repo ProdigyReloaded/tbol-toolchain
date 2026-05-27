@@ -1,0 +1,4 @@
+PROGRAM NOENDPR;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;

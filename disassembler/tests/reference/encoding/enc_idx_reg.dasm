@@ -1,0 +1,11 @@
+{ Program 'TEIDXRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_idx_reg.cod }
+{ md5sum 536d1964d6f5aaf636dd5d6531dbc5de }
+
+PROGRAM TEIDXRG;
+
+PROC main =
+    MOVE 1, I1;
+    MOVE 'val', RDA0(I1);
+END_PROC

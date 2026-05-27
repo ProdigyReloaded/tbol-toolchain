@@ -1,0 +1,6 @@
+PROGRAM TDDEFSM;
+DEFINE FOO, '123';
+DATA dt = A;
+PROC main =
+    MOVE FOO, A;
+END_PROC

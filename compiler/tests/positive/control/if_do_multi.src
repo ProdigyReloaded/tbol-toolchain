@@ -1,0 +1,14 @@
+PROGRAM IFDM;
+DATA dt = A, B, C, D;
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '1', B;
+        MOVE '2', C;
+        ADD '1', D;
+        SUBTRACT '1', A;
+        MULTIPLY '2', B;
+        MOVE A, C;
+        ADD B, D;
+        MOVE '0', I1;
+    END;
+END_PROC

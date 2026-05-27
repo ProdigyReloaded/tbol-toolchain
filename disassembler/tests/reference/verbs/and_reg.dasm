@@ -1,0 +1,10 @@
+{ Program 'ANDREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file and_reg.cod }
+{ md5sum e17a511302ce74e4b0296bd2ce4886d4 }
+
+PROGRAM ANDREG;
+
+PROC main =
+    AND I1, RDA0;
+END_PROC

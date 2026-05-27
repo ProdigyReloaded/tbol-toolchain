@@ -1,0 +1,16 @@
+PROGRAM T_NOP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { NOP (no operation) }
+    NOP;
+    NOP;
+    NOP;
+
+    RETURN;
+END_PROC

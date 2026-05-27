@@ -1,0 +1,10 @@
+{ Program 'TDALRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_array_large.cod }
+{ md5sum b4906c30babeb501eacd61edd8f092f5 }
+
+PROGRAM TDALRG;
+
+PROC main =
+    MOVE '1', RDA0(I1);
+END_PROC

@@ -1,0 +1,32 @@
+{ Program 'GDO7' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_dep_7.cod }
+{ md5sum 8c75de8da9fbafee6fb07287daa3050e }
+
+PROGRAM GDO7;
+
+PROC main =
+    GOTO_DEPENDING_ON RDA0, label_17, label_25, label_33, label_41, label_49, label_57, label_65;
+  label_17:
+    MOVE '1', RDA1;
+    JUMP label_70;
+  label_25:
+    MOVE '2', RDA1;
+    JUMP label_70;
+  label_33:
+    MOVE '3', RDA1;
+    JUMP label_70;
+  label_41:
+    MOVE '4', RDA1;
+    JUMP label_70;
+  label_49:
+    MOVE '5', RDA1;
+    JUMP label_70;
+  label_57:
+    MOVE '6', RDA1;
+    JUMP label_70;
+  label_65:
+    MOVE '7', RDA1;
+  label_70:
+    MOVE '0', RDA0;
+END_PROC

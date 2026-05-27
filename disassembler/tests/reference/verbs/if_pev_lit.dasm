@@ -1,0 +1,12 @@
+{ Program 'IFPEVLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_pev_lit.cod }
+{ md5sum c425b38e4a372c26e9d1749c279a4b50 }
+
+PROGRAM IFPEVLT;
+
+PROC main =
+    CJNE &1, '1', label_12;
+    MOVE 0, I1;
+  label_12:
+END_PROC

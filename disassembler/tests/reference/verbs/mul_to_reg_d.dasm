@@ -1,0 +1,10 @@
+{ Program 'MULTRD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_to_reg_d.cod }
+{ md5sum c3ae53bad21e37f275aa3f450b546a80 }
+
+PROGRAM MULTRD;
+
+PROC main =
+    MULTIPLY 2, D1;
+END_PROC

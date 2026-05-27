@@ -1,0 +1,28 @@
+{ Program 'BOOLORC5' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_or_chain5.cod }
+{ md5sum 290b2e73e6071aaec0289cfd211337f6 }
+
+PROGRAM BOOLORC5;
+
+PROC main =
+    CJNE RDA0, '1', label_10;
+    JUMP label_17;
+  label_10:
+    CJNE RDA1, '2', label_20;
+  label_17:
+    JUMP label_27;
+  label_20:
+    CJNE RDA2, '3', label_30;
+  label_27:
+    JUMP label_37;
+  label_30:
+    CJNE RDA3, '4', label_40;
+  label_37:
+    JUMP label_47;
+  label_40:
+    CJNE RDA4, '5', label_52;
+  label_47:
+    MOVE '6', RDA0;
+  label_52:
+END_PROC

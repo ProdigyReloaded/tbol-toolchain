@@ -1,0 +1,5 @@
+PROGRAM TSTFTC;
+DATA dt = A;
+PROC main =
+    FETCH '12345678';
+END_PROC

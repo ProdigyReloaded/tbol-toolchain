@@ -1,0 +1,10 @@
+{ Program 'TSTSDB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sound_bare.cod }
+{ md5sum 3d10c0dba8fa2f457043dcfe527f7dff }
+
+PROGRAM TSTSDB;
+
+PROC main =
+    SOUND;
+END_PROC

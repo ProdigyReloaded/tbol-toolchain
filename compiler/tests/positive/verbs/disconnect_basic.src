@@ -1,0 +1,5 @@
+PROGRAM TSTDSC;
+DATA dt = A;
+PROC main =
+    DISCONNECT;
+END_PROC

@@ -1,0 +1,16 @@
+{ Program 'BOOLANC5' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_and_chain5.cod }
+{ md5sum 7f76cefb35fac4a922dbe663b466d778 }
+
+PROGRAM BOOLANC5;
+
+PROC main =
+    CJNE RDA0, '1', label_40;
+    CJNE RDA1, '2', label_40;
+    CJNE RDA2, '3', label_40;
+    CJNE RDA3, '4', label_40;
+    CJNE RDA4, '5', label_40;
+    MOVE '6', RDA0;
+  label_40:
+END_PROC

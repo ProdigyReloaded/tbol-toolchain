@@ -1,0 +1,12 @@
+{ Program 'IFVARVR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_var_var.cod }
+{ md5sum a95e86fed88aac3e668b585e5c67f345 }
+
+PROGRAM IFVARVR;
+
+PROC main =
+    CJNE RDA0, RDA1, label_10;
+    MOVE 0, I1;
+  label_10:
+END_PROC

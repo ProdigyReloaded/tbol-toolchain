@@ -1,0 +1,5 @@
+PROGRAM ADSTRLT;
+DATA dt = A, B;
+PROC main =
+    ADD '5', A;
+END_PROC

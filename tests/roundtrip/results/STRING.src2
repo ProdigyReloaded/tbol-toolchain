@@ -1,0 +1,26 @@
+PROGRAM T_STRING;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4,
+    RDA5;
+
+PROC main =
+    STRING RDA0, RDA1, RDA2;
+    STRING RDA0, RDA1, RDA2, RDA3;
+    STRING RDA0, 'hello', ' ', 'world';
+    MOVE 'test', P0;
+    STRING RDA0, P0, RDA1;
+    STRING RDA0, RDA4, RDA5;
+    MOVE 3, I1;
+    STRING RDA0, RDA4(I1), RDA1;
+    STRING RDA0, &1, RDA1;
+    STRING RDA0, SYS_RETURN_CODE, RDA1;
+    RETURN;
+END_PROC

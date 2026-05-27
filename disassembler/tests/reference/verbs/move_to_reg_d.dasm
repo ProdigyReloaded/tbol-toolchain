@@ -1,0 +1,10 @@
+{ Program 'MVTOD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_to_reg_d.cod }
+{ md5sum c93c1059b765b6239711444302db6528 }
+
+PROGRAM MVTOD;
+
+PROC main =
+    MOVE 1, D1;
+END_PROC

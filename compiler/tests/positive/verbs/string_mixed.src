@@ -1,0 +1,5 @@
+PROGRAM STRMIX;
+DATA dt = A, B, C;
+PROC main =
+    STRING A, I1, &1, #1, 'x';
+END_PROC

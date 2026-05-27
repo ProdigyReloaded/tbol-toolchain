@@ -1,0 +1,5 @@
+PROGRAM BOOLNAO;
+DATA dt = A, B, C, D, E;
+PROC main =
+    IF A = '1' AND B = '2' OR C = '3' AND D = '4' THEN MOVE '5', E;
+END_PROC

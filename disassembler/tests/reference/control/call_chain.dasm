@@ -1,0 +1,20 @@
+{ Program 'CALLCHN' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_chain.cod }
+{ md5sum f816b4a627f4a6ed572b5ab9c3a3f584 }
+
+PROGRAM CALLCHN;
+
+PROC main =
+    MOVE '1', RDA0;
+    proc_1;
+END_PROC
+
+PROC proc_1 =
+    MOVE '2', RDA1;
+    proc_2;
+END_PROC
+
+PROC proc_2 =
+    MOVE '3', RDA2;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TDDEFPV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_pev.cod }
+{ md5sum 743b323b55cf5c4d0a222cbb3db452f7 }
+
+PROGRAM TDDEFPV;
+
+PROC main =
+    MOVE &5, RDA0;
+END_PROC

@@ -1,0 +1,11 @@
+{ Program 'EPEV6465' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_pev_64_65.cod }
+{ md5sum 5a277143f25252cdf5cdb48188faa897 }
+
+PROGRAM EPEV6465;
+
+PROC main =
+    MOVE &64, RDA0;
+    MOVE &65, RDA1;
+END_PROC

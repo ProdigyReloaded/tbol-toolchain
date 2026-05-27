@@ -1,0 +1,21 @@
+PROGRAM T_SETKEY;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4;
+
+PROC main =
+    { SET_KEY with 5 operands: logical-key, process-id, display-id, prgm-id, state }
+    SET_KEY RDA0, RDA1, RDA2, RDA3, RDA4;
+
+    { SET_KEY with literal values }
+    SET_KEY 1, 'PROC', 'DISP', 'PROG', 'STATE';
+
+    RETURN;
+END_PROC

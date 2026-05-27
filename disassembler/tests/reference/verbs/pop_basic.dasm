@@ -1,0 +1,10 @@
+{ Program 'TSTPOP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file pop_basic.cod }
+{ md5sum 250b6d48db14d47291669afec378e776 }
+
+PROGRAM TSTPOP;
+
+PROC main =
+    POP RDA0;
+END_PROC

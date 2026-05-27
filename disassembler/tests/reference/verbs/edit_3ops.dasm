@@ -1,0 +1,10 @@
+{ Program 'EDIT3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file edit_3ops.cod }
+{ md5sum 62e47754110fae9c72c559d06b137892 }
+
+PROGRAM EDIT3;
+
+PROC main =
+    EDIT RDA0, '1', '2';
+END_PROC

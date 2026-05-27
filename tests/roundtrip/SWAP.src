@@ -1,0 +1,38 @@
+PROGRAM T_SWAP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic SWAP }
+    SWAP RDA0, RDA1;
+
+    { SWAP with P registers }
+    SWAP P0, P1;
+
+    { SWAP with I registers }
+    SWAP I1, I2;
+
+    { SWAP RDA with P register }
+    SWAP RDA0, P0;
+
+    { SWAP indexed RDA }
+    SWAP RDA2(1), RDA2(2);
+
+    { SWAP with variable index }
+    MOVE 3, I3;
+    SWAP RDA2(I3), RDA0;
+
+    { SWAP with PEV }
+    SWAP &1, RDA0;
+
+    { SWAP with GEV }
+    SWAP SYS_RETURN_CODE, RDA0;
+
+    RETURN;
+END_PROC

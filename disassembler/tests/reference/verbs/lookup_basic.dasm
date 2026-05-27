@@ -1,0 +1,10 @@
+{ Program 'TSTLKP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file lookup_basic.cod }
+{ md5sum 179b3a7509d2de443feabadea2e8e16f }
+
+PROGRAM TSTLKP;
+
+PROC main =
+    LOOKUP RDA0, RDA1, RDA2, RDA3, RDA4;
+END_PROC

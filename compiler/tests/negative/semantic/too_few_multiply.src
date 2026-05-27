@@ -1,0 +1,5 @@
+PROGRAM FEWMUL;
+DATA dt = A;
+PROC main =
+    MULTIPLY A;
+END_PROC

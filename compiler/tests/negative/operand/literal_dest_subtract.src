@@ -1,0 +1,5 @@
+PROGRAM LITSUB;
+DATA dt = A;
+PROC main =
+    SUBTRACT '1', '2';
+END_PROC

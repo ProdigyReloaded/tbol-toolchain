@@ -1,0 +1,10 @@
+{ Program 'TSTSDA' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sound_args.cod }
+{ md5sum 5995da4ff8c337d9a255a311aed42f19 }
+
+PROGRAM TSTSDA;
+
+PROC main =
+    SOUND '1', '2';
+END_PROC

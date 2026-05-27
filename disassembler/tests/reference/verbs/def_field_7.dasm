@@ -1,0 +1,10 @@
+{ Program 'DFFLD7' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file def_field_7.cod }
+{ md5sum 8f68a7d59d8af8f3b9f3ee35b847e5da }
+
+PROGRAM DFFLD7;
+
+PROC main =
+    DEFINE_FIELD RDA0, '2', '3', '4', '5', '6';
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TSTFIL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file fill_basic.cod }
+{ md5sum 498ba045a19cd050308ed084bf4ac0db }
+
+PROGRAM TSTFIL;
+
+PROC main =
+    FILL RDA0, 0, 10;
+END_PROC

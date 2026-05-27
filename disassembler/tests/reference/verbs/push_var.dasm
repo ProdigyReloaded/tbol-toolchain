@@ -1,0 +1,10 @@
+{ Program 'PUSH1' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file push_var.cod }
+{ md5sum 8bb1700ef72f4ef5f884b821f043d3da }
+
+PROGRAM PUSH1;
+
+PROC main =
+    PUSH RDA0;
+END_PROC

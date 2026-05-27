@@ -1,0 +1,10 @@
+{ Program 'TEPEV65' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_pev_65.cod }
+{ md5sum 81ca1e09a7809156907a0372086cafc3 }
+
+PROGRAM TEPEV65;
+
+PROC main =
+    MOVE &65, RDA0;
+END_PROC

@@ -1,0 +1,24 @@
+PROGRAM T_SETFUNC;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { SET_FUNCTION with 2 operands }
+    SET_FUNCTION RDA0, RDA1;
+
+    { SET_FUNCTION with 3 operands (key assignment) }
+    SET_FUNCTION RDA0, RDA1, 'PROGRAM';
+
+    { SET_FUNCTION with 4 operands }
+    SET_FUNCTION RDA0, RDA1, 'PROGRAM', RDA0;
+
+    { SET_FUNCTION with GEV }
+    SET_FUNCTION #1, RDA1;
+
+    RETURN;
+END_PROC

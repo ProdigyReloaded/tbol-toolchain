@@ -1,0 +1,18 @@
+PROGRAM T_TRIGFUNC;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { TRIGGER_FUNCTION with function name }
+    TRIGGER_FUNCTION PREVIOUS_MENU;
+
+    { TRIGGER_FUNCTION with other functions }
+    TRIGGER_FUNCTION NEXT;
+    TRIGGER_FUNCTION BACK;
+
+    RETURN;
+END_PROC

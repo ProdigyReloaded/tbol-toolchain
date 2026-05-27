@@ -1,0 +1,12 @@
+{ Program 'IFIDX2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_idx_cond.cod }
+{ md5sum f6db02cd4459a0b69f13ed604608a284 }
+
+PROGRAM IFIDX2;
+
+PROC main =
+    CJNE RDA0(I1), RDA5(I2), label_18;
+    MOVE '1', RDA0(I1);
+  label_18:
+END_PROC

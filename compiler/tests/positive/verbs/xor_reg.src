@@ -1,0 +1,5 @@
+PROGRAM XORREG;
+DATA dt = A, B, C;
+PROC main =
+    XOR I1, A;
+END_PROC

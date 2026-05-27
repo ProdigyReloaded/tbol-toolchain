@@ -1,0 +1,42 @@
+PROGRAM T_SUBSTR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic SUBSTR }
+    SUBSTR RDA0, RDA1, 1, 5;
+
+    { SUBSTR with literal start and length }
+    SUBSTR RDA0, RDA1, 1, 10;
+
+    { SUBSTR with I register for position }
+    MOVE 3, I1;
+    MOVE 5, I2;
+    SUBSTR RDA0, RDA1, I1, I2;
+
+    { SUBSTR with P register source }
+    MOVE 'hello world', P0;
+    SUBSTR P0, RDA1, 1, 5;
+
+    { SUBSTR with indexed RDA }
+    SUBSTR RDA2(1), RDA1, 1, 5;
+    SUBSTR RDA0, RDA2(2), 1, 5;
+
+    { SUBSTR with variable index }
+    MOVE 3, I3;
+    SUBSTR RDA2(I3), RDA1, 1, 5;
+
+    { SUBSTR with PEV }
+    SUBSTR &1, RDA1, 1, 5;
+
+    { SUBSTR with GEV }
+    SUBSTR SYS_RETURN_CODE, RDA1, 1, 5;
+
+    RETURN;
+END_PROC

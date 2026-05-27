@@ -1,0 +1,8 @@
+PROGRAM MKFMTX;
+DATA dt = RESULT, NAME, STATE, ZIP;
+PROC main =
+    MAKE_FORMAT RESULT,
+        NAME:20,
+        STATE:2,
+        ZIP:5;
+END_PROC

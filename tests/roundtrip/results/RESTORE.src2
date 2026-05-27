@@ -1,0 +1,12 @@
+PROGRAM T_RESTORE;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    RESTORE 'BUFFER1', RDA0;
+    RESTORE 'P_REGS', P1;
+    RESTORE 'KEYS', &20;
+    RETURN;
+END_PROC

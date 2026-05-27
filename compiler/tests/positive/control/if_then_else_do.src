@@ -1,0 +1,12 @@
+PROGRAM IFTEDO;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '2', B;
+        MOVE '3', C;
+    END;
+    ELSE DO
+        MOVE '4', B;
+        MOVE '5', C;
+    END;
+END_PROC

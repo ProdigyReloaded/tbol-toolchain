@@ -1,0 +1,10 @@
+{ Program 'SFNORM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file setfn_nav_normal.cod }
+{ md5sum d5983b9312bb45188c13576b8f2b54f9 }
+
+PROGRAM SFNORM;
+
+PROC main =
+    SET_FUNCTION NAVIGATION, '1';
+END_PROC

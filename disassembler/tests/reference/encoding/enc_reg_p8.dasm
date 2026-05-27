@@ -1,0 +1,10 @@
+{ Program 'TEREGP8' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_reg_p8.cod }
+{ md5sum 07f72a9c1e5412dc6ad1df36db84bc21 }
+
+PROGRAM TEREGP8;
+
+PROC main =
+    MOVE P8, RDA0;
+END_PROC

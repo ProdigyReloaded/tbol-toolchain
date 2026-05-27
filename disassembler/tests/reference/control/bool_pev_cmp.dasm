@@ -1,0 +1,12 @@
+{ Program 'BOOLPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_pev_cmp.cod }
+{ md5sum 23982d5e1cda70cf78c9eea05efd9daf }
+
+PROGRAM BOOLPEV;
+
+PROC main =
+    CJNE &1, '1', label_12;
+    MOVE '2', RDA0;
+  label_12:
+END_PROC

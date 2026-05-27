@@ -1,0 +1,4 @@
+PROGRAM EMTPROC;
+DATA dt = A;
+PROC main =
+END_PROC

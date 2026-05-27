@@ -1,0 +1,10 @@
+{ Program 'DIVGV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file div_gev_var.cod }
+{ md5sum 8fe19b7d788f1e255f8566709808637b }
+
+PROGRAM DIVGV;
+
+PROC main =
+    DIVIDE #1, RDA0;
+END_PROC

@@ -1,0 +1,16 @@
+PROGRAM T_STOP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    STOP RDA0;
+    STOP 'PROCESS';
+    MOVE 'TESTPROC', P0;
+    STOP P0;
+    STOP SYS_RETURN_CODE;
+    RETURN;
+END_PROC

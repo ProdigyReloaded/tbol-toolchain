@@ -1,0 +1,14 @@
+{ Program 'TDMULTI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_multi_var.cod }
+{ md5sum a48c7eac8946b1c1acf3097823b1fb92 }
+
+PROGRAM TDMULTI;
+
+PROC main =
+    MOVE 'one', RDA0;
+    MOVE 'two', RDA1;
+    MOVE 'three', RDA2;
+    MOVE 'four', RDA3;
+    MOVE 'five', RDA4;
+END_PROC

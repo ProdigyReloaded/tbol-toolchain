@@ -1,0 +1,5 @@
+PROGRAM EGV32K;
+DATA dt = A;
+PROC main =
+    MOVE #31999, A;
+END_PROC

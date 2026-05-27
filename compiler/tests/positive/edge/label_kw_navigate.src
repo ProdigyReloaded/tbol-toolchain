@@ -1,0 +1,8 @@
+PROGRAM LKWNAV;
+DATA dt = A;
+PROC main =
+    GOTO NAVIGATE;
+    MOVE '0', I1;
+NAVIGATE:
+    MOVE '1', A;
+END_PROC

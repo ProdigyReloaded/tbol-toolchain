@@ -1,0 +1,10 @@
+{ Program 'TEREGP0' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_reg_p0.cod }
+{ md5sum 4bce7e881c808f7fa26ba9aa9992daaf }
+
+PROGRAM TEREGP0;
+
+PROC main =
+    MOVE P0, RDA0;
+END_PROC

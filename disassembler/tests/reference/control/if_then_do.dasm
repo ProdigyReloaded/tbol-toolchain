@@ -1,0 +1,13 @@
+{ Program 'IFTDO' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_then_do.cod }
+{ md5sum 4c39fd9cba121eedd50aac4819e95500 }
+
+PROGRAM IFTDO;
+
+PROC main =
+    CJNE RDA0, '1', label_17;
+    MOVE '2', RDA1;
+    MOVE '3', RDA2;
+  label_17:
+END_PROC

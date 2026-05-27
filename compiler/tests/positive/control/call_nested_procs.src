@@ -1,0 +1,13 @@
+PROGRAM CLNEST;
+DATA dt = A, B;
+PROC main =
+    outer;
+END_PROC
+PROC outer =
+    MOVE '10', A;
+    inner A;
+END_PROC
+PROC inner =
+    ADD '1', P1;
+    MOVE P1, B;
+END_PROC

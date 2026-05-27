@@ -1,0 +1,7 @@
+PROGRAM BDOSA;
+DATA dt = A;
+PROC main =
+    DO
+        MOVE '1', A;
+    END;
+END_PROC

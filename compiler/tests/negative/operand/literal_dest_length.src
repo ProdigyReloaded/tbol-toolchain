@@ -1,0 +1,5 @@
+PROGRAM LITLEN;
+DATA dt = A;
+PROC main =
+    LENGTH A, '1';
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM ORPEV;
+DATA dt = A, B, C;
+PROC main =
+    OR &1, A;
+END_PROC

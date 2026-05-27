@@ -1,0 +1,8 @@
+PROGRAM LBLDEL;
+DATA dt = A, B;
+PROC main =
+    GOTO DELETE;
+    MOVE '1', A;
+DELETE:
+    MOVE '2', B;
+END_PROC

@@ -1,0 +1,11 @@
+{ Program 'TDCLRSC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file clear_scalar.cod }
+{ md5sum ab3d98349587dfcc42dbf81398ff9697 }
+
+PROGRAM TDCLRSC;
+
+PROC main =
+    MOVE 'hello', RDA0;
+    CLEAR RDA0;
+END_PROC

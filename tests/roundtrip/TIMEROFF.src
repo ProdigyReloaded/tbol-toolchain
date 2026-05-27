@@ -1,0 +1,17 @@
+PROGRAM T_TIMOFF;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { TIMER_OFF - 1 operand: timer ID }
+    TIMER_OFF RDA0;
+
+    { TIMER_OFF with literal }
+    TIMER_OFF 1;
+
+    RETURN;
+END_PROC

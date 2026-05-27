@@ -1,0 +1,20 @@
+PROGRAM T_RETURN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    RETURN;
+    RETURN;
+    RETURN RDA0;
+    RETURN;
+    RETURN '0';
+    RETURN;
+    MOVE 1, I1;
+    RETURN I1;
+    RETURN;
+    RETURN SYS_RETURN_CODE;
+END_PROC

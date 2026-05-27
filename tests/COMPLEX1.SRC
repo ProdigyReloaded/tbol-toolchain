@@ -1,0 +1,10 @@
+PROGRAM COMPLEX1;
+
+DATA vars = A, B, C, D, E, R;
+
+PROC main =
+    MOVE '0', R;
+    { (A OR B) OR (C AND D) }
+    IF (A = '1' OR B = '2') OR (C = '3' AND D = '4') THEN MOVE '1', R;
+    EXIT R;
+END_PROC

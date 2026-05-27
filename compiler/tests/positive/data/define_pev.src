@@ -1,0 +1,6 @@
+PROGRAM TDDEFPV;
+DEFINE MY_PEV, &5;
+DATA dt = A;
+PROC main =
+    MOVE MY_PEV, A;
+END_PROC

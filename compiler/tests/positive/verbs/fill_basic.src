@@ -1,0 +1,5 @@
+PROGRAM TSTFIL;
+DATA dt = A;
+PROC main =
+    FILL A, '0', '10';
+END_PROC

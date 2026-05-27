@@ -1,0 +1,10 @@
+{ Program 'SAVLIT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file save_with_lit.cod }
+{ md5sum 08551f9bef651e6a52f47f8917cb64ff }
+
+PROGRAM SAVLIT;
+
+PROC main =
+    SAVE 'blk', RDA0, RDA1;
+END_PROC

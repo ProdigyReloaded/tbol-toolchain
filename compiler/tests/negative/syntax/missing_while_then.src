@@ -1,0 +1,7 @@
+PROGRAM MWTHEN;
+DATA dt = A;
+PROC main =
+    WHILE A = '1' DO
+        MOVE '0', I1;
+    END;
+END_PROC

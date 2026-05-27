@@ -1,0 +1,5 @@
+PROGRAM MVTOI;
+DATA dt = A, B;
+PROC main =
+    MOVE '1', I1;
+END_PROC

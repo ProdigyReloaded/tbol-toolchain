@@ -1,0 +1,10 @@
+{ Program 'TSTFTC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file fetch_basic.cod }
+{ md5sum d582f99a43dbe55fd409c7af17522015 }
+
+PROGRAM TSTFTC;
+
+PROC main =
+    FETCH '12345678';
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TSTSUB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file subtract_basic.cod }
+{ md5sum 38941108416d5aaa18b2684fc0aab306 }
+
+PROGRAM TSTSUB;
+
+PROC main =
+    SUBTRACT 1, RDA0;
+END_PROC

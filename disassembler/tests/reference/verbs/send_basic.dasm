@@ -1,0 +1,10 @@
+{ Program 'TSTSND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file send_basic.cod }
+{ md5sum 4929b2c067461e1ebce5ea1268607643 }
+
+PROGRAM TSTSND;
+
+PROC main =
+    SEND RDA0;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM STR5A;
+DATA dt = A, B, C;
+PROC main =
+    STRING A, B, C, 'x', '!';
+END_PROC

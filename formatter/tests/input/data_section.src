@@ -1,0 +1,13 @@
+{ DATA section formatting: group headers and variable lists }
+PROGRAM DATASEC;
+DATA
+vars =
+A,
+B,
+C;
+st_1 =
+X,
+Y;
+PROC main =
+MOVE A, B;
+END_PROC

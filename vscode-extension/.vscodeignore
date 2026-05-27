@@ -1,0 +1,25 @@
+# Development files
+.vscode/**
+src/**
+node_modules/**/test/**
+node_modules/**/*.ts
+node_modules/**/*.map
+node_modules/@types/**
+node_modules/@vscode/vsce/**
+node_modules/typescript/**
+.gitignore
+tsconfig.json
+Makefile
+
+# Build artifacts
+*.vsix
+
+# Documentation (include README and CHANGELOG, exclude others)
+CONTRIBUTING.md
+
+# Source maps
+**/*.map
+
+# Test files
+**/*.test.ts
+**/test/**

@@ -1,0 +1,10 @@
+{ Program 'TEGV100' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_100.cod }
+{ md5sum 3aa86f9e6c5731008b14b04d2d0c37b4 }
+
+PROGRAM TEGV100;
+
+PROC main =
+    MOVE #100, RDA0;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'EGEV256' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_256.cod }
+{ md5sum d545b0087bc7eec36bcfbae144e9c7ab }
+
+PROGRAM EGEV256;
+
+PROC main =
+    MOVE #256, RDA0;
+END_PROC

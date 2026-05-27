@@ -1,0 +1,18 @@
+{ Program 'BCMPLX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_complex_nested.cod }
+{ md5sum bfee0512166f1b514f4ac63274b98714 }
+
+PROGRAM BCMPLX;
+
+PROC main =
+    CJNE RDA0, '1', label_17;
+    CJNE RDA1, '2', label_17;
+    JUMP label_31;
+  label_17:
+    CJNE RDA2, '3', label_36;
+    CJNE RDA3, '4', label_36;
+  label_31:
+    MOVE 1, I1;
+  label_36:
+END_PROC

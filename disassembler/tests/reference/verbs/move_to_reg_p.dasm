@@ -1,0 +1,10 @@
+{ Program 'MVTOP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_to_reg_p.cod }
+{ md5sum e93c30a13c4d7dac98eb3e3fab25c094 }
+
+PROGRAM MVTOP;
+
+PROC main =
+    MOVE '1', P1;
+END_PROC

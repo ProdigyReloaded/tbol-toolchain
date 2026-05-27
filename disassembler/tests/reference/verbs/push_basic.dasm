@@ -1,0 +1,10 @@
+{ Program 'TSTPSH' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file push_basic.cod }
+{ md5sum 70237f8043ed6108f9164f81a833a138 }
+
+PROGRAM TSTPSH;
+
+PROC main =
+    PUSH RDA0;
+END_PROC

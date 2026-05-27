@@ -1,0 +1,11 @@
+PROGRAM BWDCALL;
+DATA dt = A;
+PROC main =
+    procb;
+END_PROC
+PROC procc =
+    MOVE '1', A;
+END_PROC
+PROC procb =
+    procc;
+END_PROC

@@ -1,0 +1,6 @@
+PROGRAM TEREGD8;
+DATA dt = A;
+PROC main =
+    MOVE '1.5', D8;
+    MOVE D8, A;
+END_PROC

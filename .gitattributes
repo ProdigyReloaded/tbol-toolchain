@@ -1,0 +1,47 @@
+# Default: auto-detect text files and normalize line endings to LF on
+# checkout.  Without this, Windows clones with core.autocrlf=true would
+# rewrite all source files to CRLF, changing byte offsets the compiler
+# bakes into its output (.cod files) and breaking the test suite.
+* text=auto eol=lf
+
+# TBOL sources and includes: always LF, regardless of detection.
+*.src text eol=lf
+*.SRC text eol=lf
+*.tbol text eol=lf
+*.TBOL text eol=lf
+*.inc text eol=lf
+*.INC text eol=lf
+
+# Build / scripting / docs: always LF.
+*.sh text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.y text eol=lf
+*.l text eol=lf
+CMakeLists.txt text eol=lf
+*.cmake text eol=lf
+Dockerfile* text eol=lf
+Makefile text eol=lf
+
+# Binary reference files used by the test suite — never translate.
+*.cod binary
+*.COD binary
+*.pgm binary
+*.PGM binary
+*.gev binary
+*.GEV binary
+*.bin binary
+
+# Other binary asset types.
+*.png binary
+*.jpg binary
+*.pdf binary
+*.vsix binary
+*.zip binary
+*.tar.gz binary
+*.tgz binary
+*.ico binary

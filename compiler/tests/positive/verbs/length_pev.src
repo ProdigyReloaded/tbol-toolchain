@@ -1,0 +1,5 @@
+PROGRAM LEN3;
+DATA dt = A, B, C;
+PROC main =
+    LENGTH &1, A;
+END_PROC

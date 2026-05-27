@@ -1,0 +1,21 @@
+PROGRAM T_OPEN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { OPEN - 2 operands: file, mode }
+    OPEN RDA0, RDA1;
+
+    { OPEN with literals }
+    OPEN 'FILENAME', 'R';
+
+    { OPEN with P register }
+    OPEN P0, P1;
+
+    RETURN;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM STRSNGL;
+DATA dt = A, B, C;
+PROC main =
+    STRING A, B;
+END_PROC

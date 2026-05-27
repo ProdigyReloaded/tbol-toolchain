@@ -1,0 +1,10 @@
+{ Program 'STRIDX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_idx.cod }
+{ md5sum 40279ec1f4e56d3d6a0d475c97c6ab92 }
+
+PROGRAM STRIDX;
+
+PROC main =
+    STRING RDA0(I1), RDA5;
+END_PROC

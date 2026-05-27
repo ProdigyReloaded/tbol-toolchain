@@ -1,0 +1,5 @@
+PROGRAM TELITEM;
+DATA dt = A;
+PROC main =
+    MOVE '', A;
+END_PROC

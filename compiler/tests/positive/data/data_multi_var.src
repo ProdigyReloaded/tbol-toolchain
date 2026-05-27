@@ -1,0 +1,9 @@
+PROGRAM TDMULTI;
+DATA dt = A, B, C, D, E;
+PROC main =
+    MOVE 'one', A;
+    MOVE 'two', B;
+    MOVE 'three', C;
+    MOVE 'four', D;
+    MOVE 'five', E;
+END_PROC

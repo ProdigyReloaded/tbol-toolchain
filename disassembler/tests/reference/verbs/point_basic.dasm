@@ -1,0 +1,10 @@
+{ Program 'TSTPNT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file point_basic.cod }
+{ md5sum 8ecdd69313d9fc106fec6e8344b79940 }
+
+PROGRAM TSTPNT;
+
+PROC main =
+    POINT '1', '0';
+END_PROC

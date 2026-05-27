@@ -1,0 +1,5 @@
+PROGRAM SND2OP;
+DATA dt = A, B;
+PROC main =
+    SEND A, B;
+END_PROC

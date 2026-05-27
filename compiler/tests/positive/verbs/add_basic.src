@@ -1,0 +1,5 @@
+PROGRAM TSTADD;
+DATA dt = A;
+PROC main =
+    ADD '1', A;
+END_PROC

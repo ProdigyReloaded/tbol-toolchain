@@ -1,0 +1,12 @@
+{ Program 'IFREGLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_reg_lit.cod }
+{ md5sum 0e13d341eed21e4850080719061bb461 }
+
+PROGRAM IFREGLT;
+
+PROC main =
+    CJNE I1, 0, label_12;
+    MOVE 0, I1;
+  label_12:
+END_PROC

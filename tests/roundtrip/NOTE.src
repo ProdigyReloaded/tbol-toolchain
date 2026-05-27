@@ -1,0 +1,25 @@
+PROGRAM T_NOTE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { NOTE with 2 operands }
+    NOTE RDA0, RDA1;
+
+    { NOTE with literals }
+    NOTE 'FILE', RDA1;
+
+    { NOTE with P register }
+    MOVE 'TESTFILE', P0;
+    NOTE P0, RDA1;
+
+    { NOTE with GEV }
+    NOTE SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

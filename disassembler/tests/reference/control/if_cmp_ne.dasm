@@ -1,0 +1,12 @@
+{ Program 'IFCMPNE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_cmp_ne.cod }
+{ md5sum 8c0b1d074465e59d53389fe375b518ac }
+
+PROGRAM IFCMPNE;
+
+PROC main =
+    CJEQ RDA0, '1', label_12;
+    MOVE '2', RDA1;
+  label_12:
+END_PROC

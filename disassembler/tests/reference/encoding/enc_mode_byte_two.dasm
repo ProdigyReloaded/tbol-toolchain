@@ -1,0 +1,10 @@
+{ Program 'TEMODE2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_mode_byte_two.cod }
+{ md5sum 95e1de766b3704047081231d766bab31 }
+
+PROGRAM TEMODE2;
+
+PROC main =
+    MOVE RDA160, RDA161;
+END_PROC

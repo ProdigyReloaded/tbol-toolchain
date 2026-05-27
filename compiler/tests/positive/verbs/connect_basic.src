@@ -1,0 +1,5 @@
+PROGRAM TSTCON;
+DATA dt = A;
+PROC main =
+    CONNECT '1';
+END_PROC

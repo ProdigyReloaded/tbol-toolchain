@@ -1,0 +1,5 @@
+PROGRAM TSTREL;
+DATA dt = A;
+PROC main =
+    RELEASE A;
+END_PROC

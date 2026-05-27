@@ -1,0 +1,5 @@
+PROGRAM BOOLOAM;
+DATA dt = A, B, C, D;
+PROC main =
+    IF A = '1' OR B = '2' AND C = '3' THEN MOVE '4', D;
+END_PROC

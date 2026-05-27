@@ -1,0 +1,12 @@
+{ Program 'MKFMTI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mkfmt_idx_dest.cod }
+{ md5sum e2fba8857f0f75750bd25413e2c8346c }
+
+PROGRAM MKFMTI;
+
+PROC main =
+    MAKE_FORMAT RDA0(I1),
+        RDA3:10,
+        RDA4:5;
+END_PROC

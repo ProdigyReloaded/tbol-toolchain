@@ -1,0 +1,41 @@
+PROGRAM T_DIVIDE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3(10);
+
+PROC main =
+    { Basic DIVIDE (2 operands) }
+    DIVIDE RDA0, RDA1;
+
+    { DIVIDE with I register as divisor }
+    MOVE 2, I1;
+    DIVIDE RDA0, I1;
+
+    { DIVIDE with D register }
+    MOVE '2.0', D1;
+    DIVIDE RDA0, D1;
+
+    { DIVIDE with indexed RDA }
+    DIVIDE RDA0, RDA3(1);
+
+    { DIVIDE with variable index }
+    MOVE 3, I2;
+    DIVIDE RDA0, RDA3(I2);
+
+    { DIVIDE with remainder (3 operands) }
+    DIVIDE RDA0, RDA1, RDA2;
+
+    { DIVIDE with PEV as divisor }
+    DIVIDE RDA0, &1;
+
+    { DIVIDE with GEV as divisor }
+    DIVIDE RDA0, SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

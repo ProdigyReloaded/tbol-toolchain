@@ -1,0 +1,15 @@
+PROGRAM IFEDM;
+DATA dt = A, B, C, D;
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '1', B;
+        MOVE '2', C;
+        ADD '1', D;
+    END; ELSE DO
+        MOVE '3', B;
+        MOVE '4', C;
+        SUBTRACT '1', D;
+        MOVE A, B;
+        ADD '1', A;
+    END;
+END_PROC

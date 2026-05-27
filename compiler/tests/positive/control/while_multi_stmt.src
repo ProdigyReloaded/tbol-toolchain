@@ -1,0 +1,12 @@
+PROGRAM WHMULT;
+DATA dt = A, B, C, D;
+PROC main =
+    MOVE '0', I1;
+    WHILE I1 < '5' THEN DO
+        ADD '1', I1;
+        MOVE I1, A;
+        ADD '1', B;
+        MULTIPLY '2', C;
+        MOVE A, D;
+    END;
+END_PROC

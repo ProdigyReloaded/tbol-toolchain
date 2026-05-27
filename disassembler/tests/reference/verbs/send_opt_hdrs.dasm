@@ -1,0 +1,10 @@
+{ Program 'SNDOHDR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file send_opt_hdrs.cod }
+{ md5sum 28486c3f35f8606fccf8857b7e357456 }
+
+PROGRAM SNDOHDR;
+
+PROC main =
+    SEND RDA0, OPT_HDRS;
+END_PROC

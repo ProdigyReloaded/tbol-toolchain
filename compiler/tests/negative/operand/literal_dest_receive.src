@@ -1,0 +1,5 @@
+PROGRAM LITRCV;
+DATA dt = A;
+PROC main =
+    RECEIVE '1', '2';
+END_PROC

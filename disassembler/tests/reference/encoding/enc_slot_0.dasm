@@ -1,0 +1,10 @@
+{ Program 'TESLOT0' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_slot_0.cod }
+{ md5sum febbb2ec709dfb31007b44af9ee63bb4 }
+
+PROGRAM TESLOT0;
+
+PROC main =
+    MOVE '1', RDA0;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM ANDREG;
+DATA dt = A, B, C;
+PROC main =
+    AND I1, A;
+END_PROC

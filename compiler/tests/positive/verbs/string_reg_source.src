@@ -1,0 +1,5 @@
+PROGRAM STRREG;
+DATA dt = A, B;
+PROC main =
+    STRING A, I1;
+END_PROC

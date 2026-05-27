@@ -1,0 +1,8 @@
+PROGRAM T_NOP;
+
+PROC main =
+    NOP;
+    NOP;
+    NOP;
+    RETURN;
+END_PROC

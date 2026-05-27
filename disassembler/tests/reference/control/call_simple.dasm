@@ -1,0 +1,14 @@
+{ Program 'CALLSIMP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_simple.cod }
+{ md5sum 3c4e4cbe88672cd8d709ab5c60c0e18a }
+
+PROGRAM CALLSIMP;
+
+PROC main =
+    proc_1;
+END_PROC
+
+PROC proc_1 =
+    MOVE '1', RDA0;
+END_PROC

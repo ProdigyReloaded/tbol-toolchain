@@ -1,0 +1,23 @@
+{ Program 'IFEIFCH' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_else_if_chain.cod }
+{ md5sum 1ef76e051aa9fa3c03333491c8b75e47 }
+
+PROGRAM IFEIFCH;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '1', RDA1;
+    JUMP label_50;
+  label_15:
+    CJNE RDA0, '2', label_30;
+    MOVE '2', RDA1;
+    JUMP label_50;
+  label_30:
+    CJNE RDA0, '3', label_45;
+    MOVE '3', RDA1;
+    JUMP label_50;
+  label_45:
+    MOVE '4', RDA1;
+  label_50:
+END_PROC

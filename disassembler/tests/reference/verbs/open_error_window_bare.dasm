@@ -1,0 +1,10 @@
+{ Program 'TSTOEB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file open_error_window_bare.cod }
+{ md5sum 95a773f66438874fc5f7ac76458b6503 }
+
+PROGRAM TSTOEB;
+
+PROC main =
+    OPEN_ERROR_WINDOW RDA0;
+END_PROC

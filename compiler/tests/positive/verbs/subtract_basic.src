@@ -1,0 +1,5 @@
+PROGRAM TSTSUB;
+DATA dt = A;
+PROC main =
+    SUBTRACT '1', A;
+END_PROC

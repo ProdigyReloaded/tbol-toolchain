@@ -1,0 +1,9 @@
+PROGRAM GOTOAIF;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN MOVE '2', B;
+    GOTO DONE;
+    MOVE '3', B;
+DONE:
+    MOVE '4', A;
+END_PROC

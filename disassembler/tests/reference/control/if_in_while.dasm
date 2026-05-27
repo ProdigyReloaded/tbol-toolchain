@@ -1,0 +1,15 @@
+{ Program 'IFINWH' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_in_while.cod }
+{ md5sum 99e02b3a463e49ce63039208d6fb97e7 }
+
+PROGRAM IFINWH;
+
+PROC main =
+    CJNE RDA0, '1', label_22;
+    CJNE RDA1, '2', label_19;
+    MOVE '3', RDA2;
+  label_19:
+    JUMP main;
+  label_22:
+END_PROC

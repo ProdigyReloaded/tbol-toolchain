@@ -1,0 +1,5 @@
+PROGRAM BADELSE;
+DATA dt = A;
+PROC main =
+    ELSE MOVE '1', A;
+END_PROC

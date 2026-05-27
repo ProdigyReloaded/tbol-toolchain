@@ -1,0 +1,11 @@
+{ Program 'PPAD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 04/06/26 13:120 }
+{ Original file preproc_arith_def.cod }
+{ md5sum c9c89bfd1aab755d766f14e95102cf87 }
+
+PROGRAM PPAD;
+
+PROC main =
+    ADD 10, RDA0;
+    SUBTRACT 5, RDA0;
+END_PROC

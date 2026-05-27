@@ -1,0 +1,15 @@
+{ Program 'NESTDP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file nested_deep.cod }
+{ md5sum fa9854f8f91758de1e775440e57172b1 }
+
+PROGRAM NESTDP;
+
+PROC main =
+    CJNE RDA0, '1', label_33;
+    CJNE RDA1, '2', label_33;
+    CJNE RDA2, '3', label_33;
+    CJNE RDA3, '4', label_33;
+    MOVE '1', RDA0;
+  label_33:
+END_PROC

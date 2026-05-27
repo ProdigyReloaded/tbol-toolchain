@@ -1,0 +1,283 @@
+{* vim: set noai ts=4 sw=4 et:                                              *}
+{****************************************************************************}
+{*      PROGRAM NAME:   MSZX010X                                            *}
+{*             TITLE:   Not really sure yet                                 *}
+{*      Reconstructed from original compiled on 08/25/88 15:430 v 4.210     *}
+{*      As distributed with RS 6.03.17                                      *}
+{* bytecode identical to file with md5 ba50a203924b75f6725bb6f6d33b7994     *}
+{****************************************************************************}
+PROGRAM MSZX010X;
+
+COPY XXCGTSYS;
+COPY MSZXCOPY;
+COPY MSZBCOPY;
+
+PROC main =
+    IF P0 = one THEN DO                 
+        LENGTH P1, I1;
+
+        IF I1 > two THEN DO              
+            SUBSTR P1, P2, three, I1;    
+            SUBSTR P1, P1, one, two;     
+        END; ELSE
+            CLEAR P2;
+    END;
+
+    GOTO_DEPENDING_ON P1,
+            alter_fields,
+            b,
+            change_function_filters,
+            d,
+            e,
+            update_pagination,
+            e,
+            g,
+            process_dispose,
+            read_message;
+
+  e:
+    IF SYS_WINDOW_ID <> nothing THEN
+        EXIT;
+
+    SUBTRACT six, P1;
+    ADD P1, current_page;
+
+    IF current_page > total_pages THEN DO
+        MOVE current_page, total_pages;
+        MOVE total_pages, &99;
+    END;
+
+    MOVE current_page, &98;
+
+    IF app_mode <> MODE_REVIEW THEN DO
+        SUBSTR P2, P4, one, two;
+
+        IF SYS_CURRENT_CURSOR_POS > 0 AND SYS_CURRENT_CURSOR_POS <= P4 THEN DO
+            SUBSTR P2, P2, three, obj_id_len;
+            TRANSFER P2, RDA46, P1;
+        END;
+    END;
+
+    TRANSFER RDA46, P1;
+
+  alter_fields:
+    MOVE one, I1;
+    MOVE P2, I2;
+    LENGTH P3, I3;
+
+    WHILE I1 <= I3 THEN DO
+        SUBSTR P3, P5, I1, one;
+        ADD one, I1;
+
+        IF P5 = 'A' THEN
+            SET_ATTRIBUTE I2, 'ACTION COLOR(0,4)';
+        ELSE IF P5 = 'K' OR P5 = 'k' THEN
+            SET_ATTRIBUTE I2, 'DISPLAY COLOR(0,4)';
+        ELSE IF P5 = 'D' OR P5 = 'd' THEN
+            SET_ATTRIBUTE I2, 'DISPLAY COLOR(7,2)';
+        ELSE IF P5 = 'I' OR P5 = 'i' THEN
+            SET_ATTRIBUTE I2, 'INPUT COLOR(7,0)';
+
+        IF P5 = 'N' THEN
+            SET_ATTRIBUTE I2, 'DISPLAY';
+        ELSE IF P5 = 'R' THEN
+            REFRESH;
+        ELSE IF P5 < 'a' THEN DO
+            SUBSTR P3, P6, I1, two;
+            ADD two, I1;
+
+            IF P6 <> zero THEN DO
+                IF P5 <> 'F' THEN DO
+                    SUBSTR P3, &1(I2), I1, P6;
+                    ADD P6, I1;
+                END; ELSE DO
+                    MOVE P6, I2;
+                    SUBTRACT one, I2;
+                END;
+            END;
+        END; ELSE
+            CLEAR &1(I2);
+
+        IF P5 <> 'R' THEN
+            ADD one, I2;
+
+    END;
+    RETURN;
+
+  read_message:
+    LENGTH page_title, I5;
+    MOVE I5, P5, ABS;
+    MOVE current_page, I6;
+    MOVE I6, P6, ABS;
+    MOVE total_pages, I7;
+    MOVE I7, P7, ABS;
+    MOVE SYS_CURRENT_CURSOR_POS, I8;
+    MOVE I8, P8, ABS;
+    STRING RDA43, SYS_BASE_OBJ_ID, P5, page_title, P6, P7, P8, RDA43;
+    
+    IF P0 = one THEN
+        RETURN;
+
+    IF P0 >= three THEN
+        MOVE P3, page_title;
+
+    MOVE one, current_page;
+    SET_FUNCTION NAVIGATION, NORMAL;
+    NAVIGATE P2;
+
+  b:
+    IF RDA56 = one THEN
+        EXIT '99';
+
+    SUBSTR RDA43, SYS_NAVIGATE_OBJ_ID, one, obj_id_len;
+
+    IF RDA55 < one THEN DO
+        IF app_mode <> MODE_REVIEW AND mszx0xit_pgm <> nothing AND do_dispose = one THEN
+            LINK mszx0xit_pgm, zero;
+
+        SET_FUNCTION NAVIGATION, NORMAL;
+
+        IF nav_filter_pgm <> nothing THEN
+            LINK nav_filter_pgm, zero;
+
+        IF RDA55 < zero THEN
+            RELEASE ms_zx;
+
+    END; ELSE
+        SET_FUNCTION NAVIGATION, NORMAL;
+
+
+    LENGTH RDA43, I1;
+    SUBSTR RDA43, RDA43, '14', I1;
+
+    IF P2 = one THEN DO
+        CLEAR P7;
+        MAKE_FORMAT P8,
+            P7::2,
+            current_page:2,
+            total_pages:2,
+            RDA50:2;
+        FORMAT RDA43, P8, I8;
+        MOVE current_page, I3, ABS;
+        MOVE I3, current_page;
+        MOVE total_pages, I3, ABS;
+        MOVE I3, total_pages;
+        MOVE RDA50, I3, ABS;
+        MOVE I3, RDA50;
+        
+        IF P7 <> nothing THEN
+            MOVE P7, page_title;
+
+        LENGTH P7, I3;
+        ADD 9, I3;
+        SUBSTR RDA43, RDA43, I3, I1;
+    END;
+
+    IF ms_zx <> nothing THEN DO
+        SUBSTR SYS_NAVIGATE_OBJ_ID, P7, one, two;
+        SUBSTR SYS_BASE_OBJ_ID, P8, one, two;
+        
+        IF P7 <> P8 THEN
+            RELEASE ms_zx;
+    END;
+
+    NAVIGATE SYS_NAVIGATE_OBJ_ID;
+
+  change_function_filters:
+    MOVE one, I1;
+    MOVE '243315431431262236', P8;
+
+    {
+        this sets or clears a filter on a number of functions identified by
+        24, 33 , 15, 43, 14, 31, 26, 22, 36
+
+        I think these are:
+        guide, index, jump, logoff, path, tools, undo, viewpath, zip
+    }
+
+    WHILE I1 <= 19 THEN DO              { TODO maybe a bug, should be < 19 ? }
+        SUBSTR P8, P1, I1, two;
+
+        IF P3 = one THEN
+            SET_FUNCTION P1, FILTER, mszx0xit_pgm, one;
+        ELSE
+            SET_FUNCTION P1, NORMAL;
+
+        ADD two, I1;
+    END;
+
+    IF P2 = one THEN
+        SET_FUNCTION PREVIOUS_MENU, FILTER, mszx010x_pgm, '0201';
+
+    IF P4 = one THEN
+        SET_FUNCTION NAVIGATION, FILTER, nav_filter_pgm, one;
+
+    SET_FUNCTION LEAVE, FILTER, lookzip_pgm;
+    RETURN;
+
+  d:
+    IF SYS_CURRENT_CURSOR_POS <> 98 THEN
+        EXIT;
+
+    IF &98 <> current_page THEN DO
+        IF &98 = nothing THEN
+            MOVE current_page, &98;
+        ELSE DO
+            MOVE &98, I1;
+
+            IF I1 <> &98 OR I1 < one OR I1 > total_pages THEN DO
+                MOVE current_page, &98;
+                TRANSFER msgs_pgm, two, 0x18a7, '98';
+            END;
+
+            MOVE I1, current_page;
+            MOVE '11', SYS_API_EVENT;
+            TRANSFER RDA46;
+        END;
+    END;
+
+    EXIT ninetynine;
+
+  update_pagination:
+    IF total_pages < one THEN
+        MOVE one, total_pages;
+
+    IF P0 < four THEN
+        MOVE total_pages, P4;
+
+    MOVE current_page, &98;
+    MOVE total_pages, &99;
+
+    IF total_pages = one THEN
+        SET_ATTRIBUTE 98, 'DISPLAY COLOR(7,2)';
+    ELSE
+        SET_ATTRIBUTE 98, 'INPUT COLOR(7,0)';
+
+    IF P0 < three THEN
+        CLEAR P2, P3;
+
+    IF current_page > one THEN DO
+        STRING P1, zero, five, P2, P3;
+        SET_FUNCTION BACK, FILTER_ON, mszx010x_pgm, P1;
+    END; ELSE
+        SET_FUNCTION BACK, DISABLE;
+
+    IF current_page < P4 THEN DO
+        STRING P1, zero, seven, P2, P3;
+        SET_FUNCTION NEXT, FILTER_ON, mszx010x_pgm, P1;
+    END; ELSE
+        SET_FUNCTION NEXT, DISABLE;
+
+    RETURN;
+
+  g:
+    MOVE zero, RDA51;
+    RETURN;
+
+  process_dispose:
+    IF SYS_CURRENT_CURSOR_POS <> 97 THEN
+        MOVE SYS_CURRENT_CURSOR_POS, RDA51;
+
+    CLOSE_WINDOW;
+    RETURN;
+END_PROC

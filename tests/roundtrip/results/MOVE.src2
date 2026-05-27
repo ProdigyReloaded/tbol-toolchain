@@ -1,0 +1,35 @@
+PROGRAM T_MOVE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,                               { array, bounds unknown }
+    RDA3,                               { unused }
+    RDA4,                               { unused }
+    RDA5,                               { unused }
+    RDA6;
+
+PROC main =
+    MOVE RDA0, RDA1;
+    MOVE 'hello', RDA0;
+    MOVE '42', RDA0;
+    MOVE 1, I1;
+    MOVE I1, RDA0;
+    MOVE 3.14, D1;
+    MOVE D1, RDA0;
+    MOVE 'test', P0;
+    MOVE P0, RDA0;
+    MOVE RDA2, RDA0;
+    MOVE RDA0, RDA6;
+    MOVE 3, I1;
+    MOVE RDA2(I1), RDA0;
+    MOVE RDA0, RDA2(I1);
+    MOVE &1, RDA0;
+    MOVE RDA0, &2;
+    MOVE SYS_RETURN_CODE, RDA0;
+    MOVE RDA0, SYS_RETURN_CODE;
+    RETURN;
+END_PROC

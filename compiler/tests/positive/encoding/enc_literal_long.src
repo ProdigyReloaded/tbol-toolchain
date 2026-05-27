@@ -1,0 +1,5 @@
+PROGRAM TELITLG;
+DATA dt = A;
+PROC main =
+    MOVE 'This is a long string literal for testing how the compiler handles encoding longer values ok ok', A;
+END_PROC

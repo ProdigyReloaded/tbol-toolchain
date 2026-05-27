@@ -1,0 +1,5 @@
+PROGRAM TEMODE2;
+DATA dt = PAD(160), X, Y;
+PROC main =
+    MOVE X, Y;
+END_PROC

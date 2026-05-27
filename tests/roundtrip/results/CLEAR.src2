@@ -1,0 +1,32 @@
+PROGRAM T_CLEAR;
+
+DATA
+  vars =
+    RDA0,                               { array, bounds unknown }
+    RDA1,                               { unused }
+    RDA2,                               { unused }
+    RDA3,                               { unused }
+    RDA4,                               { unused }
+    RDA5,
+    RDA6,                               { unused }
+    RDA7,                               { unused }
+    RDA8,                               { unused }
+    RDA9;
+  struct1 =
+    RDA10,
+    RDA11,                              { unused }
+    RDA12,                              { unused }
+    RDA13,                              { unused }
+    RDA14;                              { unused }
+
+PROC main =
+    CLEAR RDA0;
+    CLEAR P0;
+    CLEAR struct1;
+    CLEAR RDA0, RDA5;
+    CLEAR RDA0, RDA9;
+    CLEAR &1;
+    MOVE 3, I1;
+    CLEAR RDA0(I1);
+    RETURN;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM STRIDX;
+DATA dt = A(5), B;
+PROC main =
+    STRING A(I1), B;
+END_PROC

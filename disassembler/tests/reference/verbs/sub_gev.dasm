@@ -1,0 +1,10 @@
+{ Program 'SUBGEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sub_gev.cod }
+{ md5sum 9e50c830bcc9eeeaf6940d35d0bcfdc7 }
+
+PROGRAM SUBGEV;
+
+PROC main =
+    SUBTRACT #1, RDA0;
+END_PROC

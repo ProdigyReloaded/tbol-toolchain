@@ -1,0 +1,10 @@
+{ Program 'DEFGEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_gev.cod }
+{ md5sum dedff4f581d2c7c9cf4db134ba66ad8a }
+
+PROGRAM DEFGEV;
+
+PROC main =
+    MOVE #100, RDA0;
+END_PROC

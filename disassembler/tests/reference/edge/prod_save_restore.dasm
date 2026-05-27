@@ -1,0 +1,19 @@
+{ Program 'PSVRST' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_save_restore.cod }
+{ md5sum a5a629f58dadc1085577278c48860146 }
+
+PROGRAM PSVRST;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '2', RDA1;
+    SAVE 'ORIG', RDA0, RDA1;
+    proc_1;
+    RESTORE 'ORIG', RDA0;
+END_PROC
+
+PROC proc_1 =
+    MOVE '99', RDA0;
+    MOVE '99', RDA1;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM TEMODEL;
+DATA dt = A;
+PROC main =
+    MOVE 'test string', A;
+END_PROC

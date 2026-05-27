@@ -1,0 +1,10 @@
+{ Program 'SABASIC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file set_attr_basic.cod }
+{ md5sum 03d68c33af2c24b19c05006beccbd2b8 }
+
+PROGRAM SABASIC;
+
+PROC main =
+    SET_ATTRIBUTE '1', '';
+END_PROC

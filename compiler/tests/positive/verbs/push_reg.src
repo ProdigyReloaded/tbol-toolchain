@@ -1,0 +1,5 @@
+PROGRAM PUSH3;
+DATA dt = A, B, C;
+PROC main =
+    PUSH I1;
+END_PROC

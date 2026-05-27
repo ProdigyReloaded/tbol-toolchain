@@ -1,0 +1,5 @@
+PROGRAM TSTREG;
+DATA dt = A, B, C;
+PROC main =
+    TEST I1, A;
+END_PROC

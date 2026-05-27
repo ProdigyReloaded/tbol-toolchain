@@ -1,0 +1,27 @@
+PROGRAM T_SAVE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4;
+
+PROC main =
+    { SAVE with buffer name and slot range }
+    SAVE 'BUFFER1', RDA0, RDA4;
+
+    { SAVE with buffer name and single slot }
+    SAVE 'BUFFER2', RDA0;
+
+    { SAVE with P register range }
+    SAVE 'P_REGS', P1, P8;
+
+    { SAVE with PEV range }
+    SAVE 'KEYS', &1, &10;
+
+    RETURN;
+END_PROC

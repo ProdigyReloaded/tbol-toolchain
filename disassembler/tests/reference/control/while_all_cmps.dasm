@@ -1,0 +1,33 @@
+{ Program 'WHACMPS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_all_cmps.cod }
+{ md5sum 03a4756b0c4f56722d4060831da328d1 }
+
+PROGRAM WHACMPS;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '1', RDA1;
+    JUMP main;
+  label_15:
+    CJEQ RDA0, '1', label_30;
+    MOVE '2', RDA1;
+    JUMP label_15;
+  label_30:
+    CJGE RDA0, '1', label_45;
+    MOVE '3', RDA1;
+    JUMP label_30;
+  label_45:
+    CJLE RDA0, '1', label_60;
+    MOVE '4', RDA1;
+    JUMP label_45;
+  label_60:
+    CJGT RDA0, '1', label_75;
+    MOVE '5', RDA1;
+    JUMP label_60;
+  label_75:
+    CJLT RDA0, '1', label_90;
+    MOVE '6', RDA1;
+    JUMP label_75;
+  label_90:
+END_PROC

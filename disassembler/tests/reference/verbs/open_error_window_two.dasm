@@ -1,0 +1,10 @@
+{ Program 'TSTOET' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file open_error_window_two.cod }
+{ md5sum 888da1fd22e4dcc5ed58ce614defe159 }
+
+PROGRAM TSTOET;
+
+PROC main =
+    OPEN_ERROR_WINDOW '1', '2';
+END_PROC

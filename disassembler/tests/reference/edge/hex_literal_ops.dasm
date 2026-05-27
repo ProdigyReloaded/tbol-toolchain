@@ -1,0 +1,14 @@
+{ Program 'HEXOPS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file hex_literal_ops.cod }
+{ md5sum 922a3119142675f03f599a00d0df8040 }
+
+PROGRAM HEXOPS;
+
+PROC main =
+    MOVE 'A', RDA0;
+    ADD 0x01, RDA0;
+    AND 0xff, RDA0;
+    OR 0x0f, RDA0;
+    XOR 0xaa, RDA0;
+END_PROC

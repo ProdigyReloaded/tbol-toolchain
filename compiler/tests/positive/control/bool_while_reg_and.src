@@ -1,0 +1,9 @@
+PROGRAM BWRA;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+    MOVE '10', I2;
+    WHILE I1 < I2 AND I1 < '100' THEN DO
+        ADD '1', I1;
+    END;
+END_PROC

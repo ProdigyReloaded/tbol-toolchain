@@ -1,0 +1,20 @@
+{ ELSE cuddling: END; followed by ELSE should merge onto one line }
+PROGRAM CUDDLE;
+
+DATA
+    vars =
+        A,
+        B;
+
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '2', B;
+    END; ELSE DO
+        MOVE '3', B;
+    END;
+
+    IF A = '2' THEN DO
+        MOVE '4', B;
+    END; ELSE
+        MOVE '5', B;
+END_PROC

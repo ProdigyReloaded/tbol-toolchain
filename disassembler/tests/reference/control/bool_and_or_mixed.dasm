@@ -1,0 +1,17 @@
+{ Program 'BOOLAOM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_and_or_mixed.cod }
+{ md5sum 8bd7be0c56b0a8eb03a130670ed7f29d }
+
+PROGRAM BOOLAOM;
+
+PROC main =
+    CJNE RDA0, '1', label_17;
+    CJNE RDA1, '2', label_17;
+    JUMP label_24;
+  label_17:
+    CJNE RDA2, '3', label_29;
+  label_24:
+    MOVE '4', RDA3;
+  label_29:
+END_PROC

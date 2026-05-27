@@ -1,0 +1,5 @@
+PROGRAM TSTEXT;
+DATA dt = A;
+PROC main =
+    EXIT;
+END_PROC

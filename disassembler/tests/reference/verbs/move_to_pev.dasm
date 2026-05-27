@@ -1,0 +1,10 @@
+{ Program 'MVTOPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_to_pev.cod }
+{ md5sum d916c4f860d90928218e9e4872e13627 }
+
+PROGRAM MVTOPEV;
+
+PROC main =
+    MOVE '1', &1;
+END_PROC

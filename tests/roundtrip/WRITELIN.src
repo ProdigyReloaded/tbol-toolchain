@@ -1,0 +1,26 @@
+PROGRAM T_WRITELIN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { WRITE_LINE with 2 operands }
+    WRITE_LINE RDA0, RDA1;
+
+    { WRITE_LINE with literals }
+    WRITE_LINE 'FILE', 'data line';
+
+    { WRITE_LINE with P register }
+    MOVE 'TESTFILE', P0;
+    MOVE 'content', P1;
+    WRITE_LINE P0, P1;
+
+    { WRITE_LINE with GEV }
+    WRITE_LINE SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

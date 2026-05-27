@@ -1,0 +1,10 @@
+{ Program 'TEG1000' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_1000.cod }
+{ md5sum 1ed64d51c6031d82b9e0513d03e01fef }
+
+PROGRAM TEG1000;
+
+PROC main =
+    MOVE #1000, RDA0;
+END_PROC

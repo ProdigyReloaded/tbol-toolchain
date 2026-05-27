@@ -1,0 +1,10 @@
+{ Program 'ADPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_pev.cod }
+{ md5sum 0c37c5c43a0127b6f8cfa815ed4bf6c7 }
+
+PROGRAM ADPEV;
+
+PROC main =
+    ADD &1, RDA0;
+END_PROC

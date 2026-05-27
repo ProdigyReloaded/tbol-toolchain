@@ -1,0 +1,5 @@
+PROGRAM TSTCLS;
+DATA dt = A;
+PROC main =
+    CLOSE '1';
+END_PROC

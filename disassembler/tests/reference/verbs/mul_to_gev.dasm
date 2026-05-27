@@ -1,0 +1,10 @@
+{ Program 'MULTG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_to_gev.cod }
+{ md5sum d9a1dab6515a6fae5e8a5b2383710b1c }
+
+PROGRAM MULTG;
+
+PROC main =
+    MULTIPLY 2, #1;
+END_PROC

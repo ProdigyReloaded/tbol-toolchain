@@ -1,0 +1,33 @@
+PROGRAM T_EXIT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { Basic EXIT (no operand) }
+    EXIT;
+END_PROC
+
+PROC test1 =
+    { EXIT with return code }
+    EXIT RDA0;
+END_PROC
+
+PROC test2 =
+    { EXIT with literal }
+    EXIT '0';
+END_PROC
+
+PROC test3 =
+    { EXIT with I register }
+    MOVE 1, I1;
+    EXIT I1;
+END_PROC
+
+PROC test4 =
+    { EXIT with GEV }
+    EXIT SYS_RETURN_CODE;
+END_PROC

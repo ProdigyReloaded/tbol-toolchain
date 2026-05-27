@@ -1,0 +1,10 @@
+{ Program 'TESL157' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_slot_157.cod }
+{ md5sum 6ca5a56cb69c1c0879156b6647e8b1b7 }
+
+PROGRAM TESL157;
+
+PROC main =
+    MOVE '1', RDA157;
+END_PROC

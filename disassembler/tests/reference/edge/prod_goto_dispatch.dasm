@@ -1,0 +1,22 @@
+{ Program 'PGDISP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_goto_dispatch.cod }
+{ md5sum ca1f48b247e7e5f1d2375aca7ee0bf96 }
+
+PROGRAM PGDISP;
+
+PROC main =
+    GOTO_DEPENDING_ON RDA0, label_17, label_26, label_35;
+    MOVE '0', RDA1;
+    JUMP label_40;
+  label_17:
+    ADD 10, RDA1;
+    JUMP label_40;
+  label_26:
+    SUBTRACT 10, RDA1;
+    JUMP label_40;
+  label_35:
+    MULTIPLY 2, RDA1;
+  label_40:
+    EXIT RDA1;
+END_PROC

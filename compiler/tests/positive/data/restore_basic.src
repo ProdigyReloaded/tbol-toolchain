@@ -1,0 +1,7 @@
+PROGRAM TDRESTR;
+DATA dt = A, B;
+PROC main =
+    SAVE A, B;
+    CLEAR A;
+    RESTORE A, B;
+END_PROC

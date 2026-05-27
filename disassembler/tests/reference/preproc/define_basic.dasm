@@ -1,0 +1,10 @@
+{ Program 'DEFBAS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_basic.cod }
+{ md5sum 7cd32f956af3669be61f0fc995c5e922 }
+
+PROGRAM DEFBAS;
+
+PROC main =
+    MOVE '100', RDA0;
+END_PROC

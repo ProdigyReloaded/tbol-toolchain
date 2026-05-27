@@ -1,0 +1,20 @@
+PROGRAM T_OPENERR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { OPEN_ERROR_WINDOW - 1 operand }
+    OPEN_ERROR_WINDOW RDA0;
+
+    { OPEN_ERROR_WINDOW with literal }
+    OPEN_ERROR_WINDOW 'Error message';
+
+    { OPEN_ERROR_WINDOW with P register }
+    OPEN_ERROR_WINDOW P0;
+
+    RETURN;
+END_PROC

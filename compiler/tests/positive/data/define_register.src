@@ -1,0 +1,7 @@
+PROGRAM TDDEFRG;
+DEFINE MY_REG, I1;
+DATA dt = A;
+PROC main =
+    MOVE '5', MY_REG;
+    MOVE MY_REG, A;
+END_PROC

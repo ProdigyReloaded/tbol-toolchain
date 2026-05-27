@@ -1,0 +1,5 @@
+PROGRAM LITINS;
+DATA dt = A, B;
+PROC main =
+    INSTR A, B, '1';
+END_PROC

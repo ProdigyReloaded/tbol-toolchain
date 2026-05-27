@@ -1,0 +1,23 @@
+PROGRAM T_PUSH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;                               { array, bounds unknown }
+
+PROC main =
+    PUSH RDA0;
+    MOVE 'test', P0;
+    PUSH P0;
+    MOVE 5, I1;
+    PUSH I1;
+    PUSH RDA1;
+    MOVE 3, I2;
+    PUSH RDA1(I2);
+    PUSH &1;
+    PUSH SYS_RETURN_CODE;
+    PUSH 'literal';
+    RETURN;
+END_PROC

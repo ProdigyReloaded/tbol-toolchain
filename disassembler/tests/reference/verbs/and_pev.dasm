@@ -1,0 +1,10 @@
+{ Program 'ANDPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file and_pev.cod }
+{ md5sum 8a9c7da6732a08ffe57bca68a65ceea6 }
+
+PROGRAM ANDPEV;
+
+PROC main =
+    AND &1, RDA0;
+END_PROC

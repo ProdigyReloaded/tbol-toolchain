@@ -1,0 +1,14 @@
+{ Program 'BWANE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_while_and_ne.cod }
+{ md5sum f4301581f55fd4ff7a46ab5bce6ad328 }
+
+PROGRAM BWANE;
+
+PROC main =
+    CJEQ RDA0, '0', label_22;
+    CJEQ RDA1, '1', label_22;
+    SUBTRACT 1, RDA0;
+    JUMP main;
+  label_22:
+END_PROC

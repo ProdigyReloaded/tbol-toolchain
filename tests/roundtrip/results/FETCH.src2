@@ -1,0 +1,16 @@
+PROGRAM T_FETCH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    FETCH RDA0;
+    FETCH 'OBJECT';
+    MOVE 'TESTOBJ', P0;
+    FETCH P0;
+    FETCH SYS_RETURN_CODE;
+    RETURN;
+END_PROC

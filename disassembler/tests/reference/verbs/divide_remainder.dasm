@@ -1,0 +1,10 @@
+{ Program 'TSTDIVR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file divide_remainder.cod }
+{ md5sum f84b74c7fe617ab14f49d62bb0c31501 }
+
+PROGRAM TSTDIVR;
+
+PROC main =
+    DIVIDE RDA0, RDA1, RDA2;
+END_PROC

@@ -1,0 +1,24 @@
+PROGRAM T_SETCURSR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { SET_CURSOR with RDA }
+    SET_CURSOR RDA0;
+
+    { SET_CURSOR with literal }
+    SET_CURSOR 10;
+
+    { SET_CURSOR with I register }
+    MOVE 5, I1;
+    SET_CURSOR I1;
+
+    { SET_CURSOR with GEV }
+    SET_CURSOR SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

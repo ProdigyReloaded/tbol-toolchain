@@ -1,0 +1,14 @@
+{ Program 'BIFANR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_if_and_range.cod }
+{ md5sum be23c112233e199a08b2213fdd0b16bc }
+
+PROGRAM BIFANR;
+
+PROC main =
+    MOVE '10', RDA1;
+    CJLE RDA0, '0', label_23;
+    CJGT RDA0, RDA1, label_23;
+    MOVE 1, I1;
+  label_23:
+END_PROC

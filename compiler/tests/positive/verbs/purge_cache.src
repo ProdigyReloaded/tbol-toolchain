@@ -1,0 +1,5 @@
+PROGRAM TSTPRG;
+DATA dt = A;
+PROC main =
+    PURGE_CACHE;
+END_PROC

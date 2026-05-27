@@ -1,0 +1,11 @@
+{ Program 'TDSAVAR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file save_array.cod }
+{ md5sum a9fc070c4f477e9e55e7d63109257c2b }
+
+PROGRAM TDSAVAR;
+
+PROC main =
+    MOVE '1', RDA0(I1);
+    SAVE 'blk', RDA0, RDA5;
+END_PROC

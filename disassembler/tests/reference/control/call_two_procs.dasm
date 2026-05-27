@@ -1,0 +1,19 @@
+{ Program 'CALL2PR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_two_procs.cod }
+{ md5sum df8e24ee32de8b56a6d96d7260c536a3 }
+
+PROGRAM CALL2PR;
+
+PROC main =
+    proc_1;
+    proc_2;
+END_PROC
+
+PROC proc_1 =
+    MOVE '1', RDA0;
+END_PROC
+
+PROC proc_2 =
+    MOVE '2', RDA1;
+END_PROC

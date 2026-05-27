@@ -1,0 +1,13 @@
+{ Program 'LKWRET' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_kw_return.cod }
+{ md5sum 9abbe185ad9db9d2d308eb3c3aa1e818 }
+
+PROGRAM LKWRET;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    RETURN;
+END_PROC

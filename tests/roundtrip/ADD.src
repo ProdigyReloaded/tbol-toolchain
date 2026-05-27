@@ -1,0 +1,43 @@
+PROGRAM T_ADD;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic ADD }
+    ADD RDA0, RDA1;
+
+    { ADD with numeric literal }
+    ADD 10, RDA0;
+
+    { ADD with I register }
+    MOVE 5, I1;
+    ADD I1, RDA0;
+    ADD RDA0, I1;
+
+    { ADD with D register }
+    MOVE '2.5', D1;
+    ADD D1, RDA0;
+    ADD RDA0, D1;
+
+    { ADD with indexed RDA }
+    ADD RDA2(1), RDA0;
+    ADD RDA0, RDA2(5);
+
+    { ADD with variable index }
+    MOVE 3, I2;
+    ADD RDA2(I2), RDA0;
+
+    { ADD with PEV }
+    ADD &1, RDA0;
+
+    { ADD with GEV }
+    ADD SYS_RETURN_CODE, RDA0;
+
+    RETURN;
+END_PROC

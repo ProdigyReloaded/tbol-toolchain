@@ -1,0 +1,5 @@
+PROGRAM SVPREG;
+DATA dt = A;
+PROC main =
+    SAVE 'MY_REGS', P1, P8;
+END_PROC

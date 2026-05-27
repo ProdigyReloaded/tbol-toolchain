@@ -1,0 +1,14 @@
+PROGRAM T_WAIT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { WAIT - no operands }
+    WAIT;
+
+    RETURN;
+END_PROC

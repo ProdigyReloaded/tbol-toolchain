@@ -1,0 +1,6 @@
+PROGRAM TDDEFIF;
+DEFINE YES, '1';
+DATA dt = A;
+PROC main =
+    IF A = YES THEN MOVE '0', A;
+END_PROC

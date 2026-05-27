@@ -1,0 +1,5 @@
+PROGRAM TSTMABS;
+DATA dt = A, B;
+PROC main =
+    MOVE A, B, ABS;
+END_PROC

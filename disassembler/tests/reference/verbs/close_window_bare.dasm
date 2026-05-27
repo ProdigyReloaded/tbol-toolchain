@@ -1,0 +1,10 @@
+{ Program 'TSTCWB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file close_window_bare.cod }
+{ md5sum e0a8038a5bdc459e293f48893c0e0936 }
+
+PROGRAM TSTCWB;
+
+PROC main =
+    CLOSE_WINDOW;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM TSTNV2;
+DATA dt = A;
+PROC main =
+    NAVIGATE A;
+END_PROC

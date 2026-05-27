@@ -1,0 +1,5 @@
+PROGRAM ADREGI;
+DATA dt = A, B;
+PROC main =
+    ADD I1, A;
+END_PROC

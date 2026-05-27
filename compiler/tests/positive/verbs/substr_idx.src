@@ -1,0 +1,5 @@
+PROGRAM SBIDX;
+DATA dt = A(5), B;
+PROC main =
+    SUBSTR A(I1), B, '1', '5';
+END_PROC

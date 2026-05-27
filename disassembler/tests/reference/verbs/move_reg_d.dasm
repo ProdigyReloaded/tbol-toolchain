@@ -1,0 +1,10 @@
+{ Program 'MVREGD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_reg_d.cod }
+{ md5sum 94f2fa76268663a57c119e07e3e08b74 }
+
+PROGRAM MVREGD;
+
+PROC main =
+    MOVE D1, RDA0;
+END_PROC

@@ -1,0 +1,45 @@
+PROGRAM T_SEND;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic SEND (1 operand) }
+    SEND RDA0;
+
+    { SEND with PRIORITY (1 operand) }
+    SEND RDA0, PRIORITY;
+
+    { SEND with ID (2 operands) }
+    SEND RDA0, RDA1;
+
+    { SEND with ID and PRIORITY }
+    SEND RDA0, RDA1, PRIORITY;
+
+    { SEND with P register }
+    MOVE 'message', P0;
+    SEND P0;
+
+    { SEND with string literal }
+    SEND 'test message';
+
+    { SEND with indexed RDA }
+    SEND RDA2(1);
+
+    { SEND with variable index }
+    MOVE 3, I1;
+    SEND RDA2(I1);
+
+    { SEND with PEV }
+    SEND &1;
+
+    { SEND with GEV }
+    SEND SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

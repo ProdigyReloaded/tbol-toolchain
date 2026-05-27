@@ -1,0 +1,8 @@
+PROGRAM CALLLARG;
+DATA dt = A;
+PROC main =
+    helper '1', '2';
+END_PROC
+PROC helper =
+    MOVE A, A;
+END_PROC

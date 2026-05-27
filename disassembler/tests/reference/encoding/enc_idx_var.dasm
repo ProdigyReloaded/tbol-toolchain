@@ -1,0 +1,11 @@
+{ Program 'TEIDXVR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_idx_var.cod }
+{ md5sum a46f21b0900b158cdeb3b96d16724f05 }
+
+PROGRAM TEIDXVR;
+
+PROC main =
+    MOVE '3', RDA10;
+    MOVE 'val', RDA0(RDA10);
+END_PROC

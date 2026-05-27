@@ -1,0 +1,16 @@
+{ Program 'GOLOOP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_loop_pattern.cod }
+{ md5sum 855185f11a5e374a1f53d941fd8fc956 }
+
+PROGRAM GOLOOP;
+
+PROC main =
+    MOVE 0, I1;
+  label_5:
+    ADD 1, I1;
+    MOVE I1, RDA0;
+    CJGE I1, 10, label_24;
+    JUMP label_5;
+  label_24:
+END_PROC

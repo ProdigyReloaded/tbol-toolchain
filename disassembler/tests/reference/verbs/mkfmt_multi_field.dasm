@@ -1,0 +1,13 @@
+{ Program 'MKFMTM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mkfmt_multi_field.cod }
+{ md5sum cbb81daa056d35c187532e384cd162a9 }
+
+PROGRAM MKFMTM;
+
+PROC main =
+    MAKE_FORMAT RDA0,
+        RDA1:20,
+        RDA2:15,
+        RDA3:18;
+END_PROC

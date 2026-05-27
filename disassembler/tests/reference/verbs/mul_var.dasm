@@ -1,0 +1,10 @@
+{ Program 'MULVAR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_var.cod }
+{ md5sum 1ab64f38d50eed3924dc2f7b287b437c }
+
+PROGRAM MULVAR;
+
+PROC main =
+    MULTIPLY RDA1, RDA0;
+END_PROC

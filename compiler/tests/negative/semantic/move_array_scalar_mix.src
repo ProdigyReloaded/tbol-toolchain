@@ -1,0 +1,5 @@
+PROGRAM MVASCMX;
+DATA dt = A(5), B;
+PROC main =
+    MOVE A, B;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'ADNUMLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_num_lit.cod }
+{ md5sum 37bf3e7f00ba1b56fc0906f00292d22a }
+
+PROGRAM ADNUMLT;
+
+PROC main =
+    ADD 100, RDA0;
+END_PROC

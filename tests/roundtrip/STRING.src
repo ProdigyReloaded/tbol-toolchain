@@ -1,0 +1,41 @@
+PROGRAM T_STRING;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4(10);
+
+PROC main =
+    { Basic STRING concatenation (2 sources) }
+    STRING RDA0, RDA1, RDA2;
+
+    { STRING with 3 sources }
+    STRING RDA0, RDA1, RDA2, RDA3;
+
+    { STRING with string literals }
+    STRING RDA0, 'hello', ' ', 'world';
+
+    { STRING with P register }
+    MOVE 'test', P0;
+    STRING RDA0, P0, RDA1;
+
+    { STRING with indexed RDA }
+    STRING RDA0, RDA4(1), RDA4(2);
+
+    { STRING with variable index }
+    MOVE 3, I1;
+    STRING RDA0, RDA4(I1), RDA1;
+
+    { STRING with PEV }
+    STRING RDA0, &1, RDA1;
+
+    { STRING with GEV }
+    STRING RDA0, SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

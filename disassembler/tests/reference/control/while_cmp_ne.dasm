@@ -1,0 +1,14 @@
+{ Program 'WHNE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_cmp_ne.cod }
+{ md5sum fb4f9ce528a9663bcbfa9cfb04f99efe }
+
+PROGRAM WHNE;
+
+PROC main =
+    CJEQ RDA0, '0', label_20;
+    MOVE '1', RDA1;
+    MOVE '0', RDA0;
+    JUMP main;
+  label_20:
+END_PROC

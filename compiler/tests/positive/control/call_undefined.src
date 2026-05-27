@@ -1,0 +1,6 @@
+PROGRAM CALLUDEF;
+DATA dt = A;
+PROC main =
+    MOVE '1', A;
+    mystery;
+END_PROC

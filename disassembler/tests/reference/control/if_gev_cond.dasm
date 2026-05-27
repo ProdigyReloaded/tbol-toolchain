@@ -1,0 +1,16 @@
+{ Program 'IFGEV2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_gev_cond.cod }
+{ md5sum 7f5b3c8d44957e9524d7f3151e9fddfb }
+
+PROGRAM IFGEV2;
+
+PROC main =
+    CJNE #1, '1', label_12;
+    JUMP label_21;
+  label_12:
+    CJNE #2, '2', label_26;
+  label_21:
+    MOVE '3', RDA0;
+  label_26:
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM TELITNM;
+DATA dt = A;
+PROC main =
+    ADD '12345', A;
+END_PROC

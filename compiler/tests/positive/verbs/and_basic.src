@@ -1,0 +1,5 @@
+PROGRAM TSTAND;
+DATA dt = A;
+PROC main =
+    AND '255', A;
+END_PROC

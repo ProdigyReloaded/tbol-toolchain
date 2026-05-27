@@ -1,0 +1,5 @@
+PROGRAM STRLITS;
+DATA dt = A, B;
+PROC main =
+    STRING A, 'hello', ' ', 'world';
+END_PROC

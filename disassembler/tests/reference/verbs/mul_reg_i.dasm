@@ -1,0 +1,10 @@
+{ Program 'MULRI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_reg_i.cod }
+{ md5sum a5d4ac17fbe372d73cad28f2bb022786 }
+
+PROGRAM MULRI;
+
+PROC main =
+    MULTIPLY I1, RDA0;
+END_PROC

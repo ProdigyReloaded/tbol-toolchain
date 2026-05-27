@@ -1,0 +1,26 @@
+PROGRAM T_LOOKUP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4;
+
+PROC main =
+    { LOOKUP with 5 operands }
+    LOOKUP RDA0, RDA1, RDA2, RDA3, RDA4;
+
+    { LOOKUP with literals and RDA }
+    LOOKUP 'KEY', RDA1, 1, 10, RDA4;
+
+    { LOOKUP with I registers }
+    MOVE 1, I1;
+    MOVE 5, I2;
+    LOOKUP RDA0, RDA1, I1, I2, RDA4;
+
+    RETURN;
+END_PROC

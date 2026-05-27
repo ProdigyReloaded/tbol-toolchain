@@ -1,0 +1,5 @@
+PROGRAM TSTSRT;
+DATA dt = A, B, C;
+PROC main =
+    SORT A, B, C;
+END_PROC

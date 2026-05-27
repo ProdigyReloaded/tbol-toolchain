@@ -1,0 +1,5 @@
+PROGRAM TSTATR;
+DATA dt = A;
+PROC main =
+    SET_ATTRIBUTE '1', '2';
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM IFIDX2;
+DATA dt = A(5), B(5);
+PROC main =
+    IF A(I1) = B(I2) THEN MOVE '1', A(I1);
+END_PROC

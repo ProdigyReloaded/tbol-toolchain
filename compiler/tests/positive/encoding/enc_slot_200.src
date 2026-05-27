@@ -1,0 +1,5 @@
+PROGRAM TESL200;
+DATA dt = PAD(198), A, B, C;
+PROC main =
+    MOVE '1', C;
+END_PROC

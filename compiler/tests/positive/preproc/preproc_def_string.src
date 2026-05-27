@@ -1,0 +1,6 @@
+PROGRAM PPDS;
+DEFINE GREETING, 'hello world';
+DATA dt = A;
+PROC main =
+    MOVE GREETING, A;
+END_PROC

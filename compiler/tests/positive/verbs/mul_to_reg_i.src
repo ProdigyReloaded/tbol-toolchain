@@ -1,0 +1,5 @@
+PROGRAM MULTRI;
+DATA dt = A, B, C;
+PROC main =
+    MULTIPLY '2', I1;
+END_PROC

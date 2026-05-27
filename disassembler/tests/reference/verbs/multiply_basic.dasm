@@ -1,0 +1,10 @@
+{ Program 'TSTMUL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file multiply_basic.cod }
+{ md5sum b0a99abe548f085b965b73ae82915c8f }
+
+PROGRAM TSTMUL;
+
+PROC main =
+    MULTIPLY 2, RDA0;
+END_PROC

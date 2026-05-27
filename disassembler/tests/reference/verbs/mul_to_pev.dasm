@@ -1,0 +1,10 @@
+{ Program 'MULTP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_to_pev.cod }
+{ md5sum 394875778aeb279d8255f1b7759271d0 }
+
+PROGRAM MULTP;
+
+PROC main =
+    MULTIPLY 2, &1;
+END_PROC

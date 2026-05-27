@@ -1,0 +1,5 @@
+PROGRAM FMTBS2;
+DATA dt = A, B, C;
+PROC main =
+    FORMAT A, B, C;
+END_PROC

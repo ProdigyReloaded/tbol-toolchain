@@ -1,0 +1,14 @@
+{ Program 'CALLLARG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_literal_args.cod }
+{ md5sum 86b4971be614362728452d69cb33fdd0 }
+
+PROGRAM CALLLARG;
+
+PROC main =
+    proc_1 '1', '2';
+END_PROC
+
+PROC proc_1 =
+    MOVE RDA0, RDA0;
+END_PROC

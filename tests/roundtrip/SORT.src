@@ -1,0 +1,19 @@
+PROGRAM T_SORT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0(20);
+
+PROC main =
+    { SORT with 3 operands: start, end, key_length }
+    SORT RDA0(1), RDA0(10), 18;
+
+    { SORT with I register indices }
+    MOVE 1, I1;
+    MOVE 5, I2;
+    SORT RDA0(I1), RDA0(I2), 18;
+
+    RETURN;
+END_PROC

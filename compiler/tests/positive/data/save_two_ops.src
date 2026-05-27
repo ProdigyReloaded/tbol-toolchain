@@ -1,0 +1,6 @@
+PROGRAM TDSAV2;
+DATA dt = A, B;
+PROC main =
+    MOVE '1', A;
+    SAVE A, B;
+END_PROC

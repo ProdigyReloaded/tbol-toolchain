@@ -1,0 +1,10 @@
+{ Program 'SFFILT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file setfn_nav_filter.cod }
+{ md5sum d59b0881b7f52343270362064be00bc8 }
+
+PROGRAM SFFILT;
+
+PROC main =
+    SET_FUNCTION NAVIGATION, '3', RDA0;
+END_PROC

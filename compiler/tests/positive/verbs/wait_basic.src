@@ -1,0 +1,5 @@
+PROGRAM TSTWAT;
+DATA dt = A;
+PROC main =
+    WAIT;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM BSTRD;
+DATA dt = '1', '2';
+PROC main =
+    MOVE '0', I1;
+END_PROC

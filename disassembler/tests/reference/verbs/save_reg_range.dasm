@@ -1,0 +1,10 @@
+{ Program 'SVPREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file save_reg_range.cod }
+{ md5sum 36370436c90b34a89e686574a69462ef }
+
+PROGRAM SVPREG;
+
+PROC main =
+    SAVE 'MY_REGS', P1, P8;
+END_PROC

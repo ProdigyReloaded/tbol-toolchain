@@ -1,0 +1,10 @@
+PROGRAM GEVTEST;
+
+DATA vars = A, B, RESULT;
+
+PROC main =
+    MOVE #1, A;
+    MOVE #11, B;
+    IF A = '0' THEN MOVE '1', RESULT;
+    EXIT RESULT;
+END_PROC

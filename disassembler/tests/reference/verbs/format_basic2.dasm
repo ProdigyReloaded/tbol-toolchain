@@ -1,0 +1,10 @@
+{ Program 'FMTBS2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file format_basic2.cod }
+{ md5sum 38947d1cb08cb699fb748fd33ee2e52a }
+
+PROGRAM FMTBS2;
+
+PROC main =
+    FORMAT RDA0, RDA1, RDA2;
+END_PROC

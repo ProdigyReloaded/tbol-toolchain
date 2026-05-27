@@ -1,0 +1,5 @@
+PROGRAM TSTOPW;
+DATA dt = A;
+PROC main =
+    OPEN_WINDOW '1';
+END_PROC

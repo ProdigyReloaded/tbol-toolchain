@@ -1,0 +1,10 @@
+{ Program 'SUBSL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sub_str_lit.cod }
+{ md5sum e7253c7bfc7385691f01afbb79b38c89 }
+
+PROGRAM SUBSL;
+
+PROC main =
+    SUBTRACT 5, RDA0;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TELITCH' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_literal_char.cod }
+{ md5sum a0e68db70f3aa519e8575029c9f6ca7d }
+
+PROGRAM TELITCH;
+
+PROC main =
+    MOVE 'A', RDA0;
+END_PROC

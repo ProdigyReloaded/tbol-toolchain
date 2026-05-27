@@ -1,0 +1,9 @@
+PROGRAM HEXOPS;
+DATA dt = A;
+PROC main =
+    MOVE 0x41, A;
+    ADD 0x01, A;
+    AND 0xFF, A;
+    OR 0x0F, A;
+    XOR 0xAA, A;
+END_PROC

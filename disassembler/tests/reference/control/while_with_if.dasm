@@ -1,0 +1,19 @@
+{ Program 'WHWIF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_with_if.cod }
+{ md5sum f881107aef401d41b39e9bb017b76192 }
+
+PROGRAM WHWIF;
+
+PROC main =
+    CJNE RDA0, '1', label_35;
+    CJNE RDA1, '2', label_22;
+    MOVE '3', RDA2;
+    JUMP label_27;
+  label_22:
+    MOVE '4', RDA2;
+  label_27:
+    MOVE '0', RDA0;
+    JUMP main;
+  label_35:
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'TDMIXED' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_mixed.cod }
+{ md5sum 89dff135e44c722cc2de3aa5d067672f }
+
+PROGRAM TDMIXED;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '2', RDA1(I1);
+    MOVE '3', RDA11;
+END_PROC

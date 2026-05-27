@@ -1,0 +1,15 @@
+{ Program 'IFTESIMP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_then_else_simple.cod }
+{ md5sum c6da1616124f184e7dbd795b6b289338 }
+
+PROGRAM IFTESIMP;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '2', RDA1;
+    JUMP label_20;
+  label_15:
+    MOVE '3', RDA1;
+  label_20:
+END_PROC

@@ -1,0 +1,10 @@
+PROGRAM T_START;
+
+PROC main =
+    NOP;
+    NOP;
+    MOVE 'TESTPROC', P0;
+    NOP;
+    NOP;
+    RETURN;
+END_PROC

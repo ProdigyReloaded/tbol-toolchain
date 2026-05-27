@@ -1,0 +1,5 @@
+PROGRAM BMCV;
+DATA dt = A;
+PROC main =
+    MOVE '1' A;
+END_PROC

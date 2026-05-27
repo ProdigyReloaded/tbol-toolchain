@@ -1,0 +1,22 @@
+PROGRAM PMPROC;
+DATA
+    dt = MSG, REPLY, STATUS, CODE;
+PROC main =
+    MOVE 'hello', MSG;
+    process MSG;
+    EXIT CODE;
+END_PROC
+PROC process =
+    MOVE P1, MSG;
+    validate MSG;
+    IF STATUS = '0' THEN DO
+        MOVE '1', CODE;
+    END;
+END_PROC
+PROC validate =
+    IF P1 = '' THEN DO
+        MOVE '1', STATUS;
+        RETURN;
+    END;
+    MOVE '0', STATUS;
+END_PROC

@@ -1,0 +1,11 @@
+PROGRAM CL2ARG;
+DATA dt = A, B, RESULT;
+PROC main =
+    MOVE '10', A;
+    MOVE '5', B;
+    worker A, B;
+END_PROC
+PROC worker =
+    ADD P1, P2;
+    MOVE P2, RESULT;
+END_PROC

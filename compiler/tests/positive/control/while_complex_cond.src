@@ -1,0 +1,5 @@
+PROGRAM WHCPLX;
+DATA dt = A, B, C, D;
+PROC main =
+    WHILE A = '1' AND B = '2' OR C = '3' THEN MOVE '4', D;
+END_PROC

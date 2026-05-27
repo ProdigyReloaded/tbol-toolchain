@@ -1,0 +1,5 @@
+PROGRAM TSTRFR;
+DATA dt = A;
+PROC main =
+    REFRESH;
+END_PROC

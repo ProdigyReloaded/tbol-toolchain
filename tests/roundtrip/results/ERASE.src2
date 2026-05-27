@@ -1,0 +1,11 @@
+PROGRAM T_ERASE;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    ERASE RDA0;
+    ERASE '0';
+    RETURN;
+END_PROC

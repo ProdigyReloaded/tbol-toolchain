@@ -1,0 +1,10 @@
+{ Program 'SUBSR4' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file substr_pev.cod }
+{ md5sum 570ebec5e6e41cad95f723718bcd2bca }
+
+PROGRAM SUBSR4;
+
+PROC main =
+    SUBSTR &1, RDA0, 1, 5;
+END_PROC

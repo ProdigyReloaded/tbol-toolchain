@@ -1,0 +1,5 @@
+PROGRAM TSTDIV;
+DATA dt = A, B;
+PROC main =
+    DIVIDE A, B;
+END_PROC

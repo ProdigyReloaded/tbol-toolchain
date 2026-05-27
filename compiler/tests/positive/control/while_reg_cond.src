@@ -1,0 +1,7 @@
+PROGRAM WHREG;
+DATA dt = A, B;
+PROC main =
+    WHILE I1 = I2 THEN DO
+        ADD '1', I1;
+    END;
+END_PROC

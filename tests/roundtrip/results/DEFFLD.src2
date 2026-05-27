@@ -1,0 +1,18 @@
+PROGRAM T_DEFFLD;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3;
+
+PROC main =
+    DEFINE_FIELD RDA0, RDA1, RDA2, RDA3, '1', 0;
+    DEFINE_FIELD '1', '1', '10', '1', '1', 0;
+    DEFINE_FIELD P0, P1, P2, P3, '1', 0;
+    MOVE 1, I1;
+    MOVE 2, I2;
+    DEFINE_FIELD I1, I2, '10', '1', '1', 0;
+    RETURN;
+END_PROC

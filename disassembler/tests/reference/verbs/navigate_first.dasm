@@ -1,0 +1,10 @@
+{ Program 'TSTNVF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 04/06/26 12:290 }
+{ Original file navigate_first.cod }
+{ md5sum d3f63143c770ab843cc47a69e2369110 }
+
+PROGRAM TSTNVF;
+
+PROC main =
+    NAVIGATE FIRST;
+END_PROC

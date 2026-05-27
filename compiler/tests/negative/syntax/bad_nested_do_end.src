@@ -1,0 +1,6 @@
+PROGRAM BNDOE;
+DATA dt = A;
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '1', A;
+END_PROC

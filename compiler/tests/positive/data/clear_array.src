@@ -1,0 +1,6 @@
+PROGRAM TDCLRAR;
+DATA dt = A(5);
+PROC main =
+    MOVE '1', A(I1);
+    CLEAR A;
+END_PROC

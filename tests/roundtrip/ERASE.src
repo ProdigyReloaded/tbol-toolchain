@@ -1,0 +1,17 @@
+PROGRAM T_ERASE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { ERASE - 1 operand: color to erase to }
+    ERASE RDA0;
+
+    { ERASE with literal }
+    ERASE 0;
+
+    RETURN;
+END_PROC

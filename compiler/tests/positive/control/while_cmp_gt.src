@@ -1,0 +1,7 @@
+PROGRAM WHGT;
+DATA dt = A;
+PROC main =
+    WHILE I1 > '0' THEN DO
+        SUBTRACT '1', I1;
+    END;
+END_PROC

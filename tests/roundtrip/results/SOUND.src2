@@ -1,0 +1,10 @@
+PROGRAM T_SOUND;
+
+PROC main =
+    SOUND '1000', '10';
+    SOUND '0', '6';
+    MOVE 500, I1;
+    MOVE 5, I2;
+    SOUND I1, I2;
+    RETURN;
+END_PROC

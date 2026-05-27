@@ -1,0 +1,6 @@
+PROGRAM T_REFRESH;
+
+PROC main =
+    REFRESH;
+    RETURN;
+END_PROC

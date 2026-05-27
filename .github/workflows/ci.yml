@@ -1,0 +1,226 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            os: linux
+            arch: x86_64
+            vsce_target: linux-x64
+          - runner: ubuntu-24.04-arm
+            os: linux
+            arch: aarch64
+            vsce_target: linux-arm64
+          - runner: macos-latest
+            os: macos
+            arch: arm64
+            vsce_target: darwin-arm64
+          - runner: windows-latest
+            os: windows
+            arch: amd64
+            vsce_target: win32-x64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies (Ubuntu)
+        if: startsWith(matrix.runner, 'ubuntu')
+        run: sudo apt-get update && sudo apt-get install -y flex bison ninja-build
+
+      - name: Install dependencies (macOS)
+        if: startsWith(matrix.runner, 'macos')
+        run: brew install flex bison ninja
+
+      - name: Install dependencies (Windows)
+        if: matrix.os == 'windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            flex
+            bison
+            diffutils
+            vim
+
+      - name: Configure
+        if: matrix.os != 'windows'
+        run: cmake --preset default
+
+      - name: Build
+        if: matrix.os != 'windows'
+        run: cmake --build build
+
+      - name: Run tests
+        if: matrix.os != 'windows'
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Package tbol-tools archive
+        if: matrix.os != 'windows'
+        run: cmake --build build --target package
+
+      - name: Configure (Windows)
+        if: matrix.os == 'windows'
+        shell: msys2 {0}
+        run: cmake --preset default
+
+      - name: Build (Windows)
+        if: matrix.os == 'windows'
+        shell: msys2 {0}
+        run: cmake --build build
+
+      - name: Run tests (Windows)
+        if: matrix.os == 'windows'
+        shell: msys2 {0}
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Package tbol-tools archive (Windows)
+        if: matrix.os == 'windows'
+        shell: msys2 {0}
+        run: cmake --build build --target package
+
+      - name: Upload tbol-tools archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: tbol-tools-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            build/tbol-tools-*.tar.gz
+            build/tbol-tools-*.zip
+          retention-days: 7
+
+  asan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y flex bison ninja-build
+
+      - name: Configure (ASan)
+        run: cmake --preset asan
+
+      - name: Build (ASan)
+        run: cmake --build build-asan
+
+      - name: Run tests (ASan)
+        run: ctest --test-dir build-asan --output-on-failure
+
+  valgrind:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build valgrind image
+        run: docker build -f Dockerfile.valgrind -t tbol-valgrind .
+
+      - name: Run tests under Valgrind
+        run: docker run --rm tbol-valgrind
+
+  package-vsix:
+    needs: build-and-test
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            os: linux
+            arch: x86_64
+            vsce_target: linux-x64
+          - runner: ubuntu-24.04-arm
+            os: linux
+            arch: aarch64
+            vsce_target: linux-arm64
+          - runner: macos-latest
+            os: macos
+            arch: arm64
+            vsce_target: darwin-arm64
+          - runner: windows-latest
+            os: windows
+            arch: amd64
+            vsce_target: win32-x64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download tbol-tools archive
+        uses: actions/download-artifact@v4
+        with:
+          name: tbol-tools-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Extract binaries for .vsix
+        shell: bash
+        run: |
+          mkdir -p vscode-extension/bin
+          # The CPack zip contains a top-level <name>/bin/<binaries> tree;
+          # -j drops all directory components and writes binaries flat.
+          unzip -j -o tbol-tools-*-${{ matrix.os }}-${{ matrix.arch }}.zip \
+            '*/bin/*' -d vscode-extension/bin
+
+      - name: Mark binaries executable (Unix)
+        if: matrix.os != 'windows'
+        run: chmod +x vscode-extension/bin/*
+
+      - name: Install npm dependencies
+        working-directory: vscode-extension
+        run: npm install
+
+      - name: Package .vsix
+        working-directory: vscode-extension
+        run: npx vsce package --target ${{ matrix.vsce_target }}
+
+      - name: Upload .vsix
+        uses: actions/upload-artifact@v4
+        with:
+          name: tbol-vscode-${{ matrix.os }}-${{ matrix.arch }}
+          path: vscode-extension/*.vsix
+          retention-days: 7
+
+  # Create a GitHub Release with all artifacts when a tag is pushed
+  release:
+    if: github.event_name == 'release'
+    needs: [build-and-test, package-vsix]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Upload release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          shopt -s nullglob
+          for f in artifacts/tbol-tools-*/*.tar.gz artifacts/tbol-tools-*/*.zip; do
+            echo "Uploading $f"
+            gh release upload "${{ github.event.release.tag_name }}" "$f" \
+              --repo "${{ github.repository }}"
+          done
+          for f in artifacts/tbol-vscode-*/*.vsix; do
+            echo "Uploading $f"
+            gh release upload "${{ github.event.release.tag_name }}" "$f" \
+              --repo "${{ github.repository }}"
+          done

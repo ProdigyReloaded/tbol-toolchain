@@ -1,0 +1,12 @@
+PROGRAM T_OPENERR;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    OPEN_ERROR_WINDOW RDA0;
+    OPEN_ERROR_WINDOW 'Error message';
+    OPEN_ERROR_WINDOW P0;
+    RETURN;
+END_PROC

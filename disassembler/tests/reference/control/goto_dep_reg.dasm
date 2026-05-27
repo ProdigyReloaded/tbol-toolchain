@@ -1,0 +1,21 @@
+{ Program 'GDOREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_dep_reg.cod }
+{ md5sum f3cf2f2ce6d1cef6e7bd6050270db557 }
+
+PROGRAM GDOREG;
+
+PROC main =
+    MOVE 2, I1;
+    GOTO_DEPENDING_ON I1, label_14, label_22, label_30;
+  label_14:
+    MOVE '1', RDA0;
+    JUMP label_35;
+  label_22:
+    MOVE '2', RDA0;
+    JUMP label_35;
+  label_30:
+    MOVE '3', RDA0;
+  label_35:
+    MOVE 0, I1;
+END_PROC

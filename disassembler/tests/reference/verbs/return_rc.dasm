@@ -1,0 +1,14 @@
+{ Program 'TSTRETR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file return_rc.cod }
+{ md5sum aeeb7aa383ee13cfb572dfd5c1df98ca }
+
+PROGRAM TSTRETR;
+
+PROC main =
+    proc_1;
+END_PROC
+
+PROC proc_1 =
+    RETURN RDA0;
+END_PROC

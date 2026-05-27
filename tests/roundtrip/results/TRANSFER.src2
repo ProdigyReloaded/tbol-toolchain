@@ -1,0 +1,19 @@
+PROGRAM T_TRANSFER;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3;
+
+PROC main =
+    TRANSFER RDA0, RDA1, RDA2, RDA3;
+    TRANSFER 'PROG', 'param1', 'param2';
+    MOVE 'TESTPGM', P0;
+    TRANSFER P0, RDA1;
+    TRANSFER SYS_RETURN_CODE, RDA1;
+    RETURN;
+END_PROC

@@ -1,0 +1,20 @@
+PROGRAM T_EXIT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    EXIT;
+    RETURN;
+    EXIT RDA0;
+    RETURN;
+    EXIT '0';
+    RETURN;
+    MOVE 1, I1;
+    EXIT I1;
+    RETURN;
+    EXIT SYS_RETURN_CODE;
+END_PROC

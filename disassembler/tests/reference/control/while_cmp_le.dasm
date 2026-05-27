@@ -1,0 +1,13 @@
+{ Program 'WHLE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_cmp_le.cod }
+{ md5sum 0f46b6f815d448f8c78c421c8b08e8c7 }
+
+PROGRAM WHLE;
+
+PROC main =
+    CJGT I1, 100, label_17;
+    ADD 1, I1;
+    JUMP main;
+  label_17:
+END_PROC

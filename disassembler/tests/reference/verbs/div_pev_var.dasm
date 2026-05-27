@@ -1,0 +1,10 @@
+{ Program 'DIVPV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file div_pev_var.cod }
+{ md5sum ec458339a54920be941d91af5a417d1e }
+
+PROGRAM DIVPV;
+
+PROC main =
+    DIVIDE &1, RDA0;
+END_PROC

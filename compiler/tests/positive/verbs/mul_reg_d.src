@@ -1,0 +1,5 @@
+PROGRAM MULRD;
+DATA dt = A, B, C;
+PROC main =
+    MULTIPLY D1, A;
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'EIDXBO' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_idx_both.cod }
+{ md5sum 031d16f18c5ba3f2b50259d7e5cd1883 }
+
+PROGRAM EIDXBO;
+
+PROC main =
+    MOVE 0, I1;
+    MOVE 0, I2;
+    MOVE RDA0(I1), RDA5(I2);
+END_PROC

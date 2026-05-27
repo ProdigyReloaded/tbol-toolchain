@@ -1,0 +1,7 @@
+PROGRAM BWANE;
+DATA dt = STATUS, DONE;
+PROC main =
+    WHILE STATUS <> '0' AND DONE <> '1' THEN DO
+        SUBTRACT '1', STATUS;
+    END;
+END_PROC

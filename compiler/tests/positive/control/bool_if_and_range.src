@@ -1,0 +1,7 @@
+PROGRAM BIFANR;
+DATA dt = POS, MAX;
+PROC main =
+    MOVE '10', MAX;
+    IF POS > '0' AND POS <= MAX THEN
+        MOVE '1', I1;
+END_PROC

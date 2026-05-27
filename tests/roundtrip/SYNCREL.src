@@ -1,0 +1,14 @@
+PROGRAM T_SYNCREL;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { SYNC_RELEASE (no operands) }
+    SYNC_RELEASE;
+
+    RETURN;
+END_PROC

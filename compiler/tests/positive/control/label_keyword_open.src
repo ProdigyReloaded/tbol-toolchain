@@ -1,0 +1,8 @@
+PROGRAM LBLOPEN;
+DATA dt = A, B;
+PROC main =
+    GOTO OPEN;
+    MOVE '1', A;
+OPEN:
+    MOVE '2', B;
+END_PROC

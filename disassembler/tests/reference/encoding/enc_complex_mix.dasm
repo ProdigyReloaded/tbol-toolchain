@@ -1,0 +1,10 @@
+{ Program 'ECMIX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_complex_mix.cod }
+{ md5sum 40a1761c27a8e1e5c92cc1b01df40f26 }
+
+PROGRAM ECMIX;
+
+PROC main =
+    ADD 1, RDA156;
+END_PROC

@@ -1,0 +1,10 @@
+PROGRAM MGSAME;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN GOTO TARGET;
+    IF B = '2' THEN GOTO TARGET;
+    IF C = '3' THEN GOTO TARGET;
+    MOVE '0', A;
+TARGET:
+    MOVE '4', A;
+END_PROC

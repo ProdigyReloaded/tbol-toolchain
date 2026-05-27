@@ -1,0 +1,18 @@
+PROGRAM GOTOML;
+DATA dt = A, B;
+PROC main =
+    GOTO LBL3;
+LBL1:
+    MOVE '1', A;
+    GOTO LBL5;
+LBL2:
+    MOVE '2', A;
+    GOTO LBL1;
+LBL3:
+    MOVE '3', A;
+    GOTO LBL2;
+LBL4:
+    MOVE '4', A;
+LBL5:
+    MOVE '5', B;
+END_PROC

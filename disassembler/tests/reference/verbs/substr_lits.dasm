@@ -1,0 +1,10 @@
+{ Program 'SUBSR2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file substr_lits.cod }
+{ md5sum 0c392fcacf30d24deab5735c54fccdc9 }
+
+PROGRAM SUBSR2;
+
+PROC main =
+    SUBSTR RDA0, RDA1, 1, 10;
+END_PROC

@@ -1,0 +1,14 @@
+{ Program 'GOTOFWD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_forward.cod }
+{ md5sum 19ea8e97017b0b7012f3fc7fca8936a3 }
+
+PROGRAM GOTOFWD;
+
+PROC main =
+    MOVE '1', RDA0;
+    JUMP label_13;
+    MOVE '2', RDA0;
+  label_13:
+    MOVE '3', RDA1;
+END_PROC

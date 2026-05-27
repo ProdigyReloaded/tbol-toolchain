@@ -1,0 +1,10 @@
+{ Program 'CPNEST' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file copy_nested.cod }
+{ md5sum 05f3e2929314515e76e61e040a800e59 }
+
+PROGRAM CPNEST;
+
+PROC main =
+    MOVE '99', RDA0;
+END_PROC

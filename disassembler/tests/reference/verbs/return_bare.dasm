@@ -1,0 +1,14 @@
+{ Program 'TSTRET' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file return_bare.cod }
+{ md5sum 55b6b2e62dda1055da1119e8a3d13030 }
+
+PROGRAM TSTRET;
+
+PROC main =
+    proc_1;
+END_PROC
+
+PROC proc_1 =
+    RETURN;
+END_PROC

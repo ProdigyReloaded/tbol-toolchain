@@ -1,0 +1,15 @@
+PROGRAM T_INSTR;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    INSTR I1, RDA0, RDA1;
+    MOVE 'test', RDA2;
+    INSTR I1, RDA0, RDA2;
+    INSTR P0, P1, P2;
+    RETURN;
+END_PROC

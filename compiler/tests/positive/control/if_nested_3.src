@@ -1,0 +1,9 @@
+PROGRAM IFNEST3;
+DATA dt = A, B, C, D;
+PROC main =
+    IF A = '1' THEN DO
+        IF B = '2' THEN DO
+            IF C = '3' THEN MOVE '4', D;
+        END;
+    END;
+END_PROC

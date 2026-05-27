@@ -1,0 +1,39 @@
+PROGRAM T_PUSH;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1(10);
+
+PROC main =
+    { Basic PUSH }
+    PUSH RDA0;
+
+    { PUSH P register }
+    MOVE 'test', P0;
+    PUSH P0;
+
+    { PUSH I register }
+    MOVE 5, I1;
+    PUSH I1;
+
+    { PUSH indexed RDA }
+    PUSH RDA1(1);
+
+    { PUSH with variable index }
+    MOVE 3, I2;
+    PUSH RDA1(I2);
+
+    { PUSH PEV }
+    PUSH &1;
+
+    { PUSH GEV }
+    PUSH SYS_RETURN_CODE;
+
+    { PUSH string literal }
+    PUSH 'literal';
+
+    RETURN;
+END_PROC

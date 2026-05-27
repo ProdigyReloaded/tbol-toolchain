@@ -1,0 +1,14 @@
+PROGRAM T_SYNCSAVE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { SYNC_SAVE (no operands) }
+    SYNC_SAVE;
+
+    RETURN;
+END_PROC

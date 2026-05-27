@@ -1,0 +1,6 @@
+PROGRAM SVSING;
+DATA dt = ZERO, STATUS;
+PROC main =
+    MOVE '0', ZERO;
+    SAVE 'SMMF', ZERO;
+END_PROC

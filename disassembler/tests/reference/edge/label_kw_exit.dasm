@@ -1,0 +1,13 @@
+{ Program 'LKWEXIT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_kw_exit.cod }
+{ md5sum a52f4576a1a23924d7d580ffdf87144f }
+
+PROGRAM LKWEXIT;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    EXIT RDA0;
+END_PROC

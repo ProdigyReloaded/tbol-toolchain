@@ -1,0 +1,20 @@
+PROGRAM CLMPRC;
+DATA dt = A, B, C;
+PROC main =
+    init;
+    MOVE '5', B;
+    compute;
+    finish;
+END_PROC
+PROC init =
+    MOVE '0', A;
+    MOVE '0', B;
+    MOVE '0', C;
+END_PROC
+PROC compute =
+    ADD '1', A;
+    MULTIPLY '2', B;
+END_PROC
+PROC finish =
+    MOVE A, C;
+END_PROC

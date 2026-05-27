@@ -1,0 +1,5 @@
+PROGRAM TSTWR3;
+DATA dt = A, B;
+PROC main =
+    WRITE A, B, 100;
+END_PROC

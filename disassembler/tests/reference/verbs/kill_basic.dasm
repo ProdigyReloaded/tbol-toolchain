@@ -1,0 +1,10 @@
+{ Program 'TSTKIL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file kill_basic.cod }
+{ md5sum 55b8ff2fe626cbdc7cf32072e258b44f }
+
+PROGRAM TSTKIL;
+
+PROC main =
+    KILL '1';
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TSTOPW' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file open_window.cod }
+{ md5sum cf4b544e179f52ee760ed27345adbf8e }
+
+PROGRAM TSTOPW;
+
+PROC main =
+    OPEN_WINDOW '1';
+END_PROC

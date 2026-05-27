@@ -1,0 +1,10 @@
+PROGRAM IFCH5;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN MOVE '1', B;
+    ELSE IF A = '2' THEN MOVE '2', B;
+    ELSE IF A = '3' THEN MOVE '3', B;
+    ELSE IF A = '4' THEN MOVE '4', B;
+    ELSE IF A = '5' THEN MOVE '5', B;
+    ELSE MOVE '6', B;
+END_PROC

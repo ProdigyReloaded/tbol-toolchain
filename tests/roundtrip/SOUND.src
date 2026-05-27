@@ -1,0 +1,22 @@
+PROGRAM T_SOUND;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { SOUND with frequency and duration }
+    SOUND 1000, 10;
+
+    { SOUND with zero frequency (silence) }
+    SOUND 0, 6;
+
+    { SOUND with variables }
+    MOVE 500, I1;
+    MOVE 5, I2;
+    SOUND I1, I2;
+
+    RETURN;
+END_PROC

@@ -1,0 +1,124 @@
+#!/bin/bash
+#
+# TBOL Disassembler Test Runner
+#
+# Disassembles reference .cod files from the compiler test suite and compares
+# output against reference .dasm files.
+#
+# Usage:
+#   ./run_tests.sh                          # Run all tests
+#   ./run_tests.sh encoding                 # Run one category
+#   ./run_tests.sh verbs/add_basic          # Run one test
+#
+# Environment:
+#   TBOLDASM - path to tboldasm (default: ../tboldasm)
+#   UPDATE   - set to 1 to regenerate reference .dasm files
+
+set -uo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+TBOLDASM="${TBOLDASM:-$SCRIPT_DIR/../tboldasm}"
+COMPILER_TESTS="$SCRIPT_DIR/../../compiler/tests/positive"
+
+# Colors
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+pass=0
+fail=0
+skip=0
+
+run_test() {
+    local cod="$1"
+    local category="$2"
+    local base="$3"
+
+    local reference_dir="$SCRIPT_DIR/reference/$category"
+    local reference="$reference_dir/${base}.dasm"
+
+    # Disassemble
+    local actual
+    actual="$("$TBOLDASM" "$cod" 2>&1)"
+    local rc=$?
+
+    if [ $rc -ne 0 ]; then
+        echo -e "  ${RED}FAIL${NC}: $category/$base (tboldasm exited $rc)"
+        echo "$actual" | head -3 | sed 's/^/        /'
+        ((fail++))
+        return
+    fi
+
+    if [ "${UPDATE:-0}" = "1" ]; then
+        mkdir -p "$reference_dir"
+        echo "$actual" > "$reference"
+        echo -e "  ${YELLOW}UPDATED${NC}: $category/$base"
+        ((pass++))
+        return
+    fi
+
+    if [ ! -f "$reference" ]; then
+        echo -e "  ${YELLOW}SKIP${NC}: $category/$base (no reference file)"
+        ((skip++))
+        return
+    fi
+
+    if diff <(echo "$actual") "$reference" >/dev/null 2>&1; then
+        echo -e "  ${GREEN}PASS${NC}: $category/$base"
+        ((pass++))
+    else
+        echo -e "  ${RED}FAIL${NC}: $category/$base"
+        diff <(echo "$actual") "$reference" | head -10 | sed 's/^/        /'
+        ((fail++))
+    fi
+}
+
+# Determine what to run
+target="${1:-all}"
+
+echo "TBOL Disassembler Test Suite"
+echo "============================"
+echo ""
+
+if [ "$target" = "all" ]; then
+    for category_dir in "$COMPILER_TESTS"/*/; do
+        category="$(basename "$category_dir")"
+        [ "$category" = "includes" ] && continue
+        reference_subdir="$category_dir/reference"
+        [ -d "$reference_subdir" ] || continue
+        for cod in "$reference_subdir"/*.cod; do
+            [ -f "$cod" ] || continue
+            base="$(basename "$cod" .cod)"
+            run_test "$cod" "$category" "$base"
+        done
+    done
+elif [ -d "$COMPILER_TESTS/$target" ]; then
+    reference_subdir="$COMPILER_TESTS/$target/reference"
+    if [ -d "$reference_subdir" ]; then
+        for cod in "$reference_subdir"/*.cod; do
+            [ -f "$cod" ] || continue
+            base="$(basename "$cod" .cod)"
+            run_test "$cod" "$target" "$base"
+        done
+    fi
+else
+    # Single test: target is "category/basename"
+    category="$(dirname "$target")"
+    base="$(basename "$target")"
+    cod="$COMPILER_TESTS/$category/reference/${base}.cod"
+    if [ -f "$cod" ]; then
+        run_test "$cod" "$category" "$base"
+    else
+        echo -e "  ${RED}ERROR${NC}: $cod not found"
+        ((fail++))
+    fi
+fi
+
+echo ""
+echo "============================"
+echo -e "Results: ${GREEN}${pass} passed${NC}, ${RED}${fail} failed${NC}, ${YELLOW}${skip} skipped${NC}"
+
+if [ "$fail" -gt 0 ]; then
+    exit 1
+fi

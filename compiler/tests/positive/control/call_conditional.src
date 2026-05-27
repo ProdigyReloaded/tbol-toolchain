@@ -1,0 +1,8 @@
+PROGRAM CLCOND;
+DATA dt = MODE, RESULT;
+PROC main =
+    IF MODE = '1' THEN handler;
+END_PROC
+PROC handler =
+    MOVE '1', RESULT;
+END_PROC

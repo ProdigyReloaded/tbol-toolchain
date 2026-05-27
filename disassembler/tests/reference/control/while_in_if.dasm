@@ -1,0 +1,15 @@
+{ Program 'WHINIF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_in_if.cod }
+{ md5sum ce2b822d351711a6b76a91882067c92b }
+
+PROGRAM WHINIF;
+
+PROC main =
+    CJNE RDA0, '1', label_22;
+  label_7:
+    CJNE RDA1, '2', label_22;
+    MOVE '3', RDA2;
+    JUMP label_7;
+  label_22:
+END_PROC

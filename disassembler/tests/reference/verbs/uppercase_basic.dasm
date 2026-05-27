@@ -1,0 +1,10 @@
+{ Program 'TSTUPC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file uppercase_basic.cod }
+{ md5sum e0915f68b3f964842c0e46b54ee6f803 }
+
+PROGRAM TSTUPC;
+
+PROC main =
+    UPPERCASE RDA0;
+END_PROC

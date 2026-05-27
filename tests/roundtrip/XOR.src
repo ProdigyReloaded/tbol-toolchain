@@ -1,0 +1,15 @@
+PROGRAM T_XOR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    { XOR - check if this verb exists in TBOL }
+    { May need to remove if not implemented }
+    RETURN;
+END_PROC

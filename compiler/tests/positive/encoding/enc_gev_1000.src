@@ -1,0 +1,5 @@
+PROGRAM TEG1000;
+DATA dt = A;
+PROC main =
+    MOVE #1000, A;
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'MKFMTR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mkfmt_reg_dest.cod }
+{ md5sum 4cd35b9fc7b7ebfb6bd4b9affcc03595 }
+
+PROGRAM MKFMTR;
+
+PROC main =
+    MAKE_FORMAT P8,
+        RDA0:10,
+        RDA1:5;
+END_PROC

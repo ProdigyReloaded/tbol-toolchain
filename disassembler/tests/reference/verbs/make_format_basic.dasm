@@ -1,0 +1,11 @@
+{ Program 'TSTMKFM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file make_format_basic.cod }
+{ md5sum c680c732c8643b226876dc88c8feb572 }
+
+PROGRAM TSTMKFM;
+
+PROC main =
+    MAKE_FORMAT RDA0,
+        RDA1:5;
+END_PROC

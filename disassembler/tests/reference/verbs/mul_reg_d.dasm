@@ -1,0 +1,10 @@
+{ Program 'MULRD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_reg_d.cod }
+{ md5sum d393b5096d52af42fdadab8b4c8ce082 }
+
+PROGRAM MULRD;
+
+PROC main =
+    MULTIPLY D1, RDA0;
+END_PROC

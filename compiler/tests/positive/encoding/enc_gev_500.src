@@ -1,0 +1,5 @@
+PROGRAM EGEV500;
+DATA dt = A;
+PROC main =
+    MOVE #500, A;
+END_PROC

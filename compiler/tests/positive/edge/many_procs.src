@@ -1,0 +1,20 @@
+PROGRAM MANYPR;
+DATA dt = A;
+PROC main =
+    proca;
+    procb;
+    procc;
+    procd;
+END_PROC
+PROC proca =
+    MOVE '1', A;
+END_PROC
+PROC procb =
+    MOVE '2', A;
+END_PROC
+PROC procc =
+    MOVE '3', A;
+END_PROC
+PROC procd =
+    MOVE '4', A;
+END_PROC

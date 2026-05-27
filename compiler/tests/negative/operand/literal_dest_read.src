@@ -1,0 +1,5 @@
+PROGRAM LITRD;
+DATA dt = A;
+PROC main =
+    READ '1', '2';
+END_PROC

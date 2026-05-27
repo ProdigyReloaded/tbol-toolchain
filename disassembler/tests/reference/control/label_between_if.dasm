@@ -1,0 +1,15 @@
+{ Program 'LABIF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_between_if.cod }
+{ md5sum d0ac300b0dfc023df6d93c4e7cab43af }
+
+PROGRAM LABIF;
+
+PROC main =
+    CJNE RDA0, '1', label_12;
+    MOVE '2', RDA1;
+  label_12:
+    CJNE RDA1, '2', label_24;
+    MOVE '3', RDA2;
+  label_24:
+END_PROC

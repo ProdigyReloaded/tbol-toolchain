@@ -1,0 +1,32 @@
+PROGRAM CLRBUG;
+{ Test case for CLEAR array dimension bug in tbolc
+
+  Bug: When CLEARing an array variable by name, tbolc emits count=1
+       instead of the array's dimension. Structure names work correctly.
+
+  Expected bytecode (original compiler):
+    CLEAR arr1;     -> 51 05 22  (count=5, slot=0)
+    CLEAR arr2;     -> 51 05 27  (count=5, slot=5)
+    CLEAR alpha;    -> 51 0A 22  (count=10, slot=0)
+
+  Actual bytecode (tbolc - BUG):
+    CLEAR arr1;     -> 51 01 22  (count=1, WRONG)
+    CLEAR arr2;     -> 51 01 27  (count=1, WRONG)
+    CLEAR alpha;    -> 51 0A 22  (count=10, CORRECT)
+}
+
+DATA
+    alpha =
+        arr1(5),        { slots 0-4, array of 5 }
+        arr2(5);        { slots 5-9, array of 5 }
+
+PROC main =
+    { This CLEAR should use count=5, but tbolc emits count=1 }
+    CLEAR arr1;
+
+    { This CLEAR correctly uses count=5 }
+    CLEAR arr2;
+
+    { This CLEAR correctly uses count=7 (total structure size) }
+    CLEAR alpha;
+END_PROC

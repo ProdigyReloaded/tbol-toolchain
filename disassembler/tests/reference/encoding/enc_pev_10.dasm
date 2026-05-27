@@ -1,0 +1,10 @@
+{ Program 'EPEV10' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_pev_10.cod }
+{ md5sum f10a447f5d94b0a1b4708221b3cfcc7e }
+
+PROGRAM EPEV10;
+
+PROC main =
+    MOVE &10, RDA0;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'EC2LIT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_complex_2lit.cod }
+{ md5sum 8a676ca4ae1389a758686b568c46b2ef }
+
+PROGRAM EC2LIT;
+
+PROC main =
+    STRING RDA0, 'x', 'y';
+END_PROC

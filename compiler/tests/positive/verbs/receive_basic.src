@@ -1,0 +1,5 @@
+PROGRAM TSTRCV;
+DATA dt = A, B;
+PROC main =
+    RECEIVE A, B;
+END_PROC

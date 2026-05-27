@@ -1,0 +1,5 @@
+PROGRAM FEWLKP;
+DATA dt = A, B, C;
+PROC main =
+    LOOKUP A, B, C;
+END_PROC

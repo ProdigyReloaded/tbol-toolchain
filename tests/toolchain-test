@@ -1,0 +1,213 @@
+#!/bin/bash
+#
+# Toolchain fidelity test
+#
+# For each .cod file in the input glob:
+#   1. Decompile t1 with tboldc → s1
+#   2. Compile s1 with tbolc → t2
+#   3. Compile s1 with TBOL.EXE → t3
+#   4. Compare bytecode: t1 vs t2, t1 vs t3, t2 vs t3
+#
+# Usage: toolchain-test <glob>
+#   e.g.: toolchain-test 'tests/orig/cod/*.cod'
+
+set -o pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+TBOLDC="$PROJECT_DIR/decompiler/tboldc"
+TBOLC="$PROJECT_DIR/compiler/tbolc"
+DUMPINSTR="$PROJECT_DIR/decompiler/dumpinstr"
+TBOL_WRAPPER="$HOME/bin/tbol_exe_wrapper"
+INCLUDES="$PROJECT_DIR/includes"  # Only needed for compilers (COPY XXCGTSYS)
+
+# Counters
+TOTAL=0
+PASS=0
+FAIL_DECOMPILE=0
+FAIL_TBOLC=0
+FAIL_TBOL=0
+FAIL_BYTECODE=0
+
+# Arrays for summary
+declare -a FAILED_TESTS
+
+usage() {
+    echo "Usage: $0 <glob-pattern>"
+    echo "  e.g.: $0 'tests/orig/cod/*.cod'"
+    echo "        $0 '/path/to/corpus/*.cod'"
+    exit 1
+}
+
+# Compare two .cod files using dumpinstr (bytecode only)
+compare_bytecode() {
+    local file1="$1"
+    local file2="$2"
+
+    if [[ ! -f "$file1" ]] || [[ ! -f "$file2" ]]; then
+        return 1
+    fi
+
+    cmp -s <("$DUMPINSTR" "$file1") <("$DUMPINSTR" "$file2")
+}
+
+# Run test on a single .cod file
+run_test() {
+    local t1="$1"
+    local basename=$(basename "$t1" .cod)
+    basename=$(basename "$basename" .COD)
+    local lower=$(echo "$basename" | tr '[:upper:]' '[:lower:]')
+    local upper=$(echo "$basename" | tr '[:lower:]' '[:upper:]')
+
+    local workdir=$(mktemp -d)
+    trap "rm -rf '$workdir'" RETURN
+
+    local s1="$workdir/${lower}.src"
+    local t2="$workdir/${lower}.cod"
+    local t3="$workdir/${upper}.COD"
+
+    # Step 1: Decompile t1 → s1
+    # Use --compat to emit hex literals instead of \xNN escapes (TBOL.EXE compat)
+    if ! timeout 10 "$TBOLDC" --compat "$t1" > "$s1" 2>/dev/null; then
+        echo "FAIL: $basename (decompile failed)"
+        FAILED_TESTS+=("$basename: decompile failed")
+        ((FAIL_DECOMPILE++))
+        return 1
+    fi
+
+    if [[ ! -s "$s1" ]]; then
+        echo "FAIL: $basename (decompile produced empty output)"
+        FAILED_TESTS+=("$basename: decompile empty")
+        ((FAIL_DECOMPILE++))
+        return 1
+    fi
+
+    # Step 2: Compile s1 with tbolc → t2
+    if ! timeout 10 "$TBOLC" -I "$INCLUDES" -o "$workdir" "$s1" 2>/dev/null; then
+        echo "FAIL: $basename (tbolc compile failed)"
+        FAILED_TESTS+=("$basename: tbolc failed")
+        ((FAIL_TBOLC++))
+        return 1
+    fi
+
+    # Step 3: Compile s1 with TBOL.EXE → t3
+    if ! timeout 10 "$TBOL_WRAPPER" -o "$workdir" --no-listing -q "$s1" >/dev/null 2>&1; then
+        echo "FAIL: $basename (TBOL.EXE compile failed)"
+        FAILED_TESTS+=("$basename: TBOL.EXE failed")
+        ((FAIL_TBOL++))
+        return 1
+    fi
+
+    # Step 4: Compare bytecode
+    local t1_t2="-"
+    local t1_t3="-"
+    local t2_t3="-"
+
+    if [[ -f "$t2" ]]; then
+        if compare_bytecode "$t1" "$t2"; then
+            t1_t2="="
+        else
+            t1_t2="!"
+        fi
+    fi
+
+    if [[ -f "$t3" ]]; then
+        if compare_bytecode "$t1" "$t3"; then
+            t1_t3="="
+        else
+            t1_t3="!"
+        fi
+    fi
+
+    if [[ -f "$t2" ]] && [[ -f "$t3" ]]; then
+        if compare_bytecode "$t2" "$t3"; then
+            t2_t3="="
+        else
+            t2_t3="!"
+        fi
+    fi
+
+    # Determine result
+    if [[ "$t1_t2" == "=" ]] && [[ "$t1_t3" == "=" ]] && [[ "$t2_t3" == "=" ]]; then
+        echo "PASS: $basename  [t1=t2:$t1_t2  t1=t3:$t1_t3  t2=t3:$t2_t3]"
+        ((PASS++))
+        return 0
+    else
+        # Diagnose the failure
+        local diagnosis=""
+        if [[ "$t1_t2" == "!" ]] && [[ "$t1_t3" == "=" ]]; then
+            diagnosis="tbolc bug"
+        elif [[ "$t1_t2" == "=" ]] && [[ "$t1_t3" == "!" ]]; then
+            diagnosis="tboldc bug (source differs)"
+        elif [[ "$t1_t2" == "!" ]] && [[ "$t1_t3" == "!" ]] && [[ "$t2_t3" == "=" ]]; then
+            diagnosis="tboldc bug (compilers agree, original differs)"
+        else
+            diagnosis="bytecode mismatch"
+        fi
+
+        echo "FAIL: $basename  [t1=t2:$t1_t2  t1=t3:$t1_t3  t2=t3:$t2_t3]  ($diagnosis)"
+        FAILED_TESTS+=("$basename: $diagnosis [t1=t2:$t1_t2 t1=t3:$t1_t3 t2=t3:$t2_t3]")
+        ((FAIL_BYTECODE++))
+        return 1
+    fi
+}
+
+# Main
+if [[ $# -lt 1 ]]; then
+    usage
+fi
+
+# Check tools exist
+for tool in "$TBOLDC" "$TBOLC" "$DUMPINSTR" "$TBOL_WRAPPER"; do
+    if [[ ! -x "$tool" ]]; then
+        echo "Error: required tool not found or not executable: $tool"
+        exit 1
+    fi
+done
+
+echo "Toolchain Fidelity Test"
+echo "======================="
+echo ""
+echo "Legend: = (equal)  ! (different)  - (missing)"
+echo ""
+
+# Expand glob and process each file
+for t1 in $1; do
+    if [[ -f "$t1" ]]; then
+        ((TOTAL++))
+        run_test "$t1"
+    fi
+done
+
+# Summary
+echo ""
+echo "======================="
+echo "Summary"
+echo "======================="
+echo "Total:            $TOTAL"
+echo "Passed:           $PASS"
+echo "Failed:           $((TOTAL - PASS))"
+echo ""
+echo "Failure breakdown:"
+echo "  Decompile:      $FAIL_DECOMPILE"
+echo "  tbolc:          $FAIL_TBOLC"
+echo "  TBOL.EXE:       $FAIL_TBOL"
+echo "  Bytecode diff:  $FAIL_BYTECODE"
+
+if [[ ${#FAILED_TESTS[@]} -gt 0 ]]; then
+    echo ""
+    echo "Failed tests:"
+    for fail in "${FAILED_TESTS[@]}"; do
+        echo "  $fail"
+    done
+fi
+
+echo ""
+if [[ $PASS -eq $TOTAL ]]; then
+    echo "Result: ALL TESTS PASSED"
+    exit 0
+else
+    echo "Result: $((TOTAL - PASS)) FAILURES"
+    exit 1
+fi

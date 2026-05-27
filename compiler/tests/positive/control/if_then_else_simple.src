@@ -1,0 +1,6 @@
+PROGRAM IFTESIMP;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN MOVE '2', B;
+    ELSE MOVE '3', B;
+END_PROC

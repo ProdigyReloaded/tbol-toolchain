@@ -1,0 +1,5 @@
+PROGRAM LITSWP;
+DATA dt = A;
+PROC main =
+    SWAP A, '1';
+END_PROC

@@ -1,0 +1,24 @@
+PROGRAM T_START;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { START with RDA }
+    START RDA0;
+
+    { START with literal }
+    START 'PROCESS';
+
+    { START with P register }
+    MOVE 'TESTPROC', P0;
+    START P0;
+
+    { START with GEV }
+    START SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

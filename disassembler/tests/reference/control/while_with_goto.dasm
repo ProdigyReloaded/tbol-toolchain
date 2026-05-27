@@ -1,0 +1,17 @@
+{ Program 'WHGOTO' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_with_goto.cod }
+{ md5sum 16b36ffd9fb9500adc69cce1c962d86a }
+
+PROGRAM WHGOTO;
+
+PROC main =
+    CJNE RDA0, '1', label_25;
+    CJNE RDA1, '2', label_17;
+    JUMP label_25;
+  label_17:
+    MOVE '3', RDA1;
+    JUMP main;
+  label_25:
+    MOVE '4', RDA0;
+END_PROC

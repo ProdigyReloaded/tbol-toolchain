@@ -1,0 +1,5 @@
+PROGRAM SAVVAR;
+DATA dt = A, B, C;
+PROC main =
+    SAVE A, B, C;
+END_PROC

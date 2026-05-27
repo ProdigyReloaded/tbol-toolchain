@@ -1,0 +1,12 @@
+PROGRAM PLOOPS;
+DATA
+    dt = LIST(20), TARGET, FOUND;
+PROC main =
+    MOVE '0', FOUND;
+    MOVE '1', I1;
+    WHILE I1 <= '20' AND FOUND = '0' THEN DO
+        IF LIST(I1) = TARGET THEN
+            MOVE '1', FOUND;
+        ADD '1', I1;
+    END;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM MNYADD;
+DATA dt = A, B, C;
+PROC main =
+    ADD A, B, C;
+END_PROC

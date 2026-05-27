@@ -1,0 +1,24 @@
+PROGRAM T_TIMERON;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { TIMER_ON with RDA }
+    TIMER_ON RDA0;
+
+    { TIMER_ON with literal }
+    TIMER_ON 1000;
+
+    { TIMER_ON with I register }
+    MOVE 500, I1;
+    TIMER_ON I1;
+
+    { TIMER_ON with GEV }
+    TIMER_ON SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

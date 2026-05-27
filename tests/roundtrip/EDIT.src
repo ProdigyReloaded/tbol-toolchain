@@ -1,0 +1,22 @@
+PROGRAM T_EDIT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    { EDIT with format string and args }
+    EDIT RDA0, '%-20s%s', RDA1, RDA2;
+
+    { EDIT with P registers }
+    EDIT P0, '%s %s', P1, P2;
+
+    { EDIT with multiple args }
+    EDIT RDA0, '%2s%-18s%s', RDA1, RDA2, RDA0;
+
+    RETURN;
+END_PROC

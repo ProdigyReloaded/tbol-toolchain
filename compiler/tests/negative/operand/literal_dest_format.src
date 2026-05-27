@@ -1,0 +1,5 @@
+PROGRAM LITFMT;
+DATA dt = A, B;
+PROC main =
+    FORMAT A, B, '1';
+END_PROC

@@ -1,0 +1,6 @@
+PROGRAM CASEMIX;
+data DT = myVar;
+Proc Main =
+    move '1', MYVAR;
+    Move myVar, MYVAR;
+end_proc

@@ -1,0 +1,9 @@
+PROGRAM CLREG;
+DATA dt = RESULT;
+PROC main =
+    MOVE '42', I1;
+    helper I1;
+END_PROC
+PROC helper =
+    MOVE P1, RESULT;
+END_PROC

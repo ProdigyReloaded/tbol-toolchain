@@ -1,0 +1,9 @@
+PROGRAM IFTDOES;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN DO
+        MOVE '2', B;
+        MOVE '3', C;
+    END;
+    ELSE MOVE '4', B;
+END_PROC

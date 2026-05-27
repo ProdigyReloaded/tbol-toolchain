@@ -1,0 +1,5 @@
+PROGRAM MANYOP;
+DATA dt = A, B, C, D;
+PROC main =
+    MOVE A, B, C, D;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM PUSH2;
+DATA dt = A, B, C;
+PROC main =
+    PUSH '123';
+END_PROC

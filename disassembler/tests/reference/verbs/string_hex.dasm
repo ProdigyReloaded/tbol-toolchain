@@ -1,0 +1,10 @@
+{ Program 'STRHEX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_hex.cod }
+{ md5sum 0f7129426fff531326132718e98d287c }
+
+PROGRAM STRHEX;
+
+PROC main =
+    STRING RDA0, 'A', 'B';
+END_PROC

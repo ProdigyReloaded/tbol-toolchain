@@ -1,0 +1,12 @@
+{ Program 'IFCMPEQ' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_cmp_eq.cod }
+{ md5sum 1223d453f9622f9f17559135fcf2ce95 }
+
+PROGRAM IFCMPEQ;
+
+PROC main =
+    CJNE RDA0, '1', label_12;
+    MOVE '2', RDA1;
+  label_12:
+END_PROC

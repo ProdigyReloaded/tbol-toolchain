@@ -1,0 +1,34 @@
+PROGRAM T_POP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1(10);
+
+PROC main =
+    { Basic POP }
+    POP RDA0;
+
+    { POP to P register }
+    POP P0;
+
+    { POP to I register }
+    POP I1;
+
+    { POP to indexed RDA }
+    POP RDA1(1);
+
+    { POP with variable index }
+    MOVE 3, I2;
+    POP RDA1(I2);
+
+    { POP to PEV }
+    POP &1;
+
+    { POP to GEV }
+    POP SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

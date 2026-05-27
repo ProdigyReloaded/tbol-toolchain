@@ -1,0 +1,10 @@
+{ Program 'CMTMLN' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file comments_multiline.cod }
+{ md5sum 08db4bc7cc2237f196606bf356e3cc80 }
+
+PROGRAM CMTMLN;
+
+PROC main =
+    MOVE 0, I1;
+END_PROC

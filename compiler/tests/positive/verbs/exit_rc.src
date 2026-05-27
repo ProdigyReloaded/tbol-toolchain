@@ -1,0 +1,5 @@
+PROGRAM TSTEXR;
+DATA dt = A;
+PROC main =
+    EXIT A;
+END_PROC

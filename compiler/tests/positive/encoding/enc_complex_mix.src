@@ -1,0 +1,5 @@
+PROGRAM ECMIX;
+DATA dt = PAD(156), A, B;
+PROC main =
+    ADD '1', A;
+END_PROC

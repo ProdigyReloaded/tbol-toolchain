@@ -1,0 +1,5 @@
+PROGRAM PROCLBL;
+DATA dt = A;
+PROC main =
+SKIP:
+END_PROC

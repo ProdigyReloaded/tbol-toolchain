@@ -1,0 +1,10 @@
+{ Program 'TSTCAT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_concat.cod }
+{ md5sum db11d5f73a0f556cf36b966541929b59 }
+
+PROGRAM TSTCAT;
+
+PROC main =
+    STRING RDA0, RDA1, RDA2;
+END_PROC

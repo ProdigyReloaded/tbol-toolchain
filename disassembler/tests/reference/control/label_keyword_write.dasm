@@ -1,0 +1,13 @@
+{ Program 'LBLWRITE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_keyword_write.cod }
+{ md5sum 9a6f4092774e81e20064fbea33bc61f6 }
+
+PROGRAM LBLWRITE;
+
+PROC main =
+    JUMP label_8;
+    MOVE '1', RDA0;
+  label_8:
+    MOVE '2', RDA1;
+END_PROC

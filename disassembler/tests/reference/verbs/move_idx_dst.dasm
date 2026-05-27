@@ -1,0 +1,10 @@
+{ Program 'MVIDXD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file move_idx_dst.cod }
+{ md5sum 1122b77447e1e0a366cad6210371a2a7 }
+
+PROGRAM MVIDXD;
+
+PROC main =
+    MOVE RDA0, RDA1(I1);
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'IFIDXLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_idx_lit.cod }
+{ md5sum eb96aa3d0c550625ba27769867828fb7 }
+
+PROGRAM IFIDXLT;
+
+PROC main =
+    CJNE RDA0(I1), '1', label_15;
+    MOVE 0, I1;
+  label_15:
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM SVPEV;
+DATA dt = A;
+PROC main =
+    SAVE 'MY_KEYS', &20, &28;
+END_PROC

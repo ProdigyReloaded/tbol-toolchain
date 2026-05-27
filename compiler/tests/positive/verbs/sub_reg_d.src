@@ -1,0 +1,5 @@
+PROGRAM SUBRD;
+DATA dt = A, B, C;
+PROC main =
+    SUBTRACT D1, A;
+END_PROC

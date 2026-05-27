@@ -1,0 +1,12 @@
+{ Program 'IFVARLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_var_lit.cod }
+{ md5sum 7d7135328556e4642611c88ca355f014 }
+
+PROGRAM IFVARLT;
+
+PROC main =
+    CJNE RDA0, '1', label_12;
+    MOVE 0, I1;
+  label_12:
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM SFBASIC;
+DATA dt = A, B;
+PROC main =
+    SET_FUNCTION '10', '1';
+END_PROC

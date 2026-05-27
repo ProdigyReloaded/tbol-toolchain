@@ -1,0 +1,24 @@
+{ Program 'WHNDP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_nested_deep.cod }
+{ md5sum 1e918e4b1cdc2bc54b20e89a7bc597c5 }
+
+PROGRAM WHNDP;
+
+PROC main =
+    CJNE RDA0, '1', label_50;
+  label_7:
+    CJNE RDA1, '2', label_42;
+  label_14:
+    CJNE RDA2, '3', label_34;
+    MOVE '4', RDA3;
+    MOVE '0', RDA2;
+    JUMP label_14;
+  label_34:
+    MOVE '0', RDA1;
+    JUMP label_7;
+  label_42:
+    MOVE '0', RDA0;
+    JUMP main;
+  label_50:
+END_PROC

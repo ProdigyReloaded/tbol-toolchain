@@ -1,0 +1,30 @@
+PROGRAM T_GOTODEP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { Initialize choice variable }
+    MOVE 1, I1;
+
+    { GOTO_DEPENDING_ON with I register and labels }
+    GOTO_DEPENDING_ON I1, case1, case2, case3;
+
+case1:
+    MOVE 'ONE', RDA0;
+    GOTO done;
+
+case2:
+    MOVE 'TWO', RDA0;
+    GOTO done;
+
+case3:
+    MOVE 'THREE', RDA0;
+    GOTO done;
+
+done:
+    RETURN;
+END_PROC

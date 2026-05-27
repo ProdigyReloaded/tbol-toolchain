@@ -1,0 +1,5 @@
+PROGRAM FEWSTR;
+DATA dt = A;
+PROC main =
+    STRING A;
+END_PROC

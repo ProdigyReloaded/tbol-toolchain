@@ -1,0 +1,16 @@
+{ Program 'IFWCL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_with_call.cod }
+{ md5sum b3bec56448cb76a46e1f0498a4f2bc44 }
+
+PROGRAM IFWCL;
+
+PROC main =
+    CJNE RDA0, '1', label_11;
+    proc_1;
+  label_11:
+END_PROC
+
+PROC proc_1 =
+    MOVE '2', RDA1;
+END_PROC

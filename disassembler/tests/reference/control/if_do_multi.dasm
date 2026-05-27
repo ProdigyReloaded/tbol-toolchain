@@ -1,0 +1,19 @@
+{ Program 'IFDM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_do_multi.cod }
+{ md5sum 003f19eaa71789057d8e5f36a6c1f4d4 }
+
+PROGRAM IFDM;
+
+PROC main =
+    CJNE RDA0, '1', label_43;
+    MOVE '1', RDA1;
+    MOVE '2', RDA2;
+    ADD 1, RDA3;
+    SUBTRACT 1, RDA0;
+    MULTIPLY 2, RDA1;
+    MOVE RDA0, RDA2;
+    ADD RDA1, RDA3;
+    MOVE 0, I1;
+  label_43:
+END_PROC

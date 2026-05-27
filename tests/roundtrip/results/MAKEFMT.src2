@@ -1,0 +1,19 @@
+PROGRAM T_MAKEFMT;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    MAKE_FORMAT RDA0,
+        RDA1:5:0,
+        RDA2:10:2;
+    MAKE_FORMAT RDA0,
+        'PREFIX':3:0,
+        RDA1:5:0;
+    MAKE_FORMAT RDA0,
+        RDA1:0:0;
+    RETURN;
+END_PROC

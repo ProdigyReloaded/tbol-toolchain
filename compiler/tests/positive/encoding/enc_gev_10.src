@@ -1,0 +1,5 @@
+PROGRAM EGEV10;
+DATA dt = A;
+PROC main =
+    MOVE #10, A;
+END_PROC

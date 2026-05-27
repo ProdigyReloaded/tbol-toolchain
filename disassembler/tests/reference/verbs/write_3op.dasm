@@ -1,0 +1,10 @@
+{ Program 'TSTWR3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 04/04/26 13:220 }
+{ Original file write_3op.cod }
+{ md5sum 722f11e0f40cf7dac10cf77d875a1b12 }
+
+PROGRAM TSTWR3;
+
+PROC main =
+    WRITE RDA0, RDA1, '100';
+END_PROC

@@ -1,0 +1,13 @@
+{ Label stripping: unreferenced labels should be removed }
+PROGRAM STRIP;
+DATA
+vars =
+A;
+PROC main =
+    label_100:
+    MOVE '1', A;
+    label_200:
+    GOTO label_100;
+    label_300:
+    MOVE '2', A;
+END_PROC

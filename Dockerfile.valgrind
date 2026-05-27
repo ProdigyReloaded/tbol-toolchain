@@ -1,0 +1,29 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y \
+    gcc g++ cmake ninja-build flex bison valgrind \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY CMakeLists.txt CMakePresets.json Dockerfile.valgrind.supp LICENSE ./
+COPY shared/ shared/
+COPY compiler/ compiler/
+COPY disassembler/ disassembler/
+COPY decompiler/ decompiler/
+COPY formatter/ formatter/
+COPY lsp/ lsp/
+
+RUN cmake --preset default && cmake --build build
+
+CMD ["bash", "-c", "\
+    echo '=== Valgrind: all tests ===' && \
+    time ctest --test-dir build --output-on-failure \
+        --overwrite MemoryCheckCommand=/usr/bin/valgrind \
+        --overwrite 'MemoryCheckCommandOptions=--leak-check=full --error-exitcode=1 --errors-for-leak-kinds=definite,possible --suppressions=/src/Dockerfile.valgrind.supp' \
+        -T memcheck 2>&1; \
+    echo ''; \
+    echo '=== Valgrind summary ===' && \
+    cat build/Testing/Temporary/MemoryChecker.*.log 2>/dev/null | \
+        grep -E 'ERROR SUMMARY|definitely lost|indirectly lost' | \
+        sort -u \
+    "]

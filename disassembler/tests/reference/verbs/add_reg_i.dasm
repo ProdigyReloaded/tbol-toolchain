@@ -1,0 +1,10 @@
+{ Program 'ADREGI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_reg_i.cod }
+{ md5sum 2b5d7dacb1337b3481dddc964db44e66 }
+
+PROGRAM ADREGI;
+
+PROC main =
+    ADD I1, RDA0;
+END_PROC

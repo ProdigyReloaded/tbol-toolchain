@@ -1,0 +1,6 @@
+PROGRAM BIFORE;
+DATA dt = EVENT;
+PROC main =
+    IF EVENT = '1' OR EVENT = '2' OR EVENT = '3' THEN
+        MOVE '1', I1;
+END_PROC

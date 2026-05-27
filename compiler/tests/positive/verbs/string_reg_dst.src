@@ -1,0 +1,5 @@
+PROGRAM STRRDS;
+DATA dt = A, B, C;
+PROC main =
+    STRING P1, A, B;
+END_PROC

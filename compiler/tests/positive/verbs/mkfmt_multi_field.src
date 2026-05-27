@@ -1,0 +1,8 @@
+PROGRAM MKFMTM;
+DATA dt = RESULT, LNAME, FNAME, CITY;
+PROC main =
+    MAKE_FORMAT RESULT,
+        LNAME:20,
+        FNAME:15,
+        CITY:18;
+END_PROC

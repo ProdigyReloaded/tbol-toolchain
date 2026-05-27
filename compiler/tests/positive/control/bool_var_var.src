@@ -1,0 +1,5 @@
+PROGRAM BOOLVV;
+DATA dt = A, B, C;
+PROC main =
+    IF A = B THEN MOVE '1', C;
+END_PROC

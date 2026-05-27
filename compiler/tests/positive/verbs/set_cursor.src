@@ -1,0 +1,5 @@
+PROGRAM TSTCUR;
+DATA dt = A;
+PROC main =
+    SET_CURSOR A;
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'PPCD2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file preproc_copy_with_def.cod }
+{ md5sum 792eab4f562fe805e7892021b29716de }
+
+PROGRAM PPCD2;
+
+PROC main =
+    CJNE RDA0, '200', label_14;
+    MOVE '1', RDA0;
+  label_14:
+END_PROC

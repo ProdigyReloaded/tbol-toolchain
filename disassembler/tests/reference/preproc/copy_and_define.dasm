@@ -1,0 +1,10 @@
+{ Program 'CPNDEF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file copy_and_define.cod }
+{ md5sum c8921fecc2eeef41759a6592194cc0a0 }
+
+PROGRAM CPNDEF;
+
+PROC main =
+    MOVE '42', RDA0;
+END_PROC

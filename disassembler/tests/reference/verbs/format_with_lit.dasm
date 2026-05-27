@@ -1,0 +1,10 @@
+{ Program 'FMTLIT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file format_with_lit.cod }
+{ md5sum 9436e23b16ac5c42d4a0d1a215bd5ffb }
+
+PROGRAM FMTLIT;
+
+PROC main =
+    FORMAT '###', RDA0, RDA1;
+END_PROC

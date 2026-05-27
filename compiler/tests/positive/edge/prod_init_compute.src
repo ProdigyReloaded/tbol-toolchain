@@ -1,0 +1,15 @@
+PROGRAM PINITC;
+DATA
+    vars = STATUS, RESULT, COUNTER;
+PROC main =
+    MOVE '0', STATUS;
+    MOVE '0', RESULT;
+    MOVE '0', COUNTER;
+    WHILE COUNTER < '10' THEN DO
+        ADD '1', COUNTER;
+        ADD COUNTER, RESULT;
+    END;
+    IF RESULT > '50' THEN
+        MOVE '1', STATUS;
+    EXIT STATUS;
+END_PROC

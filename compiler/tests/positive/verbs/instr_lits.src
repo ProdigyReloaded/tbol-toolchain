@@ -1,0 +1,5 @@
+PROGRAM INSTR2;
+DATA dt = A, B, C;
+PROC main =
+    INSTR A, 'x', B;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'STRSNGL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_single.cod }
+{ md5sum 74d6b9a4f1496850640eab3bb74379d3 }
+
+PROGRAM STRSNGL;
+
+PROC main =
+    STRING RDA0, RDA1;
+END_PROC

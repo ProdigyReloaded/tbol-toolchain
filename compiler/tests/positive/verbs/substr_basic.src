@@ -1,0 +1,5 @@
+PROGRAM TSTSUB2;
+DATA dt = A, B;
+PROC main =
+    SUBSTR A, B, '1', '5';
+END_PROC

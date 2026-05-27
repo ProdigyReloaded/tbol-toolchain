@@ -1,0 +1,5 @@
+PROGRAM TELITHX;
+DATA dt = A;
+PROC main =
+    MOVE 0x1F, A;
+END_PROC

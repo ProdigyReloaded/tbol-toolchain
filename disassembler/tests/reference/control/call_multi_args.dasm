@@ -1,0 +1,16 @@
+{ Program 'CALLMARG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_multi_args.cod }
+{ md5sum 057ceca9909654304334efa354be512c }
+
+PROGRAM CALLMARG;
+
+PROC main =
+    proc_1 RDA1, RDA2, RDA3;
+END_PROC
+
+PROC proc_1 =
+    MOVE RDA1, RDA0;
+    MOVE RDA2, RDA1;
+    MOVE RDA3, RDA2;
+END_PROC

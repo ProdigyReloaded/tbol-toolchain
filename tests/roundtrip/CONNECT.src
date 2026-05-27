@@ -1,0 +1,20 @@
+PROGRAM T_CONNECT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { CONNECT - 1 operand }
+    CONNECT RDA0;
+
+    { CONNECT with literal }
+    CONNECT 'HOST';
+
+    { CONNECT with P register }
+    CONNECT P0;
+
+    RETURN;
+END_PROC

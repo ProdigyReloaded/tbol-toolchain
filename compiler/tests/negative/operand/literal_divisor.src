@@ -1,0 +1,5 @@
+PROGRAM LITDIV;
+DATA dt = A;
+PROC main =
+    DIVIDE A, '2';
+END_PROC

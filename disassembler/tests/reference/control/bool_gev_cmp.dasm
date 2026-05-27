@@ -1,0 +1,12 @@
+{ Program 'BOOLGEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_gev_cmp.cod }
+{ md5sum b528a16cc04a6e1c22196bd988fa7380 }
+
+PROGRAM BOOLGEV;
+
+PROC main =
+    CJNE #1, '1', label_14;
+    MOVE '2', RDA0;
+  label_14:
+END_PROC

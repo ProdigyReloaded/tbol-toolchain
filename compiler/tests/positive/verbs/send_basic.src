@@ -1,0 +1,5 @@
+PROGRAM TSTSND;
+DATA dt = A;
+PROC main =
+    SEND A;
+END_PROC

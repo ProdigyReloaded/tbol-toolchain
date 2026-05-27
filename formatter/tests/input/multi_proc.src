@@ -1,0 +1,16 @@
+{ Multiple procedures and top-level constructs }
+PROGRAM MULTI;
+COPY XXCGTSYS;
+DEFINE MAX_VAL, '100';
+DATA
+vars =
+A,
+B;
+PROC main =
+MOVE '1', A;
+helper;
+END_PROC
+PROC helper =
+IF A = '1' THEN MOVE '2', B;
+RETURN;
+END_PROC

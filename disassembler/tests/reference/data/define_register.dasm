@@ -1,0 +1,11 @@
+{ Program 'TDDEFRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_register.cod }
+{ md5sum 43a3e5a6f4ca08a92f774e9470032288 }
+
+PROGRAM TDDEFRG;
+
+PROC main =
+    MOVE 5, I1;
+    MOVE I1, RDA0;
+END_PROC

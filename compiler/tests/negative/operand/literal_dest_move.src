@@ -1,0 +1,5 @@
+PROGRAM LITDST;
+DATA dt = A;
+PROC main =
+    MOVE A, '123';
+END_PROC

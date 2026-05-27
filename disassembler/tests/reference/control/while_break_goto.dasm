@@ -1,0 +1,17 @@
+{ Program 'WHBRK' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_break_goto.cod }
+{ md5sum f9bbc48dc45b754bc39f758927ed8e6d }
+
+PROGRAM WHBRK;
+
+PROC main =
+    CJNE RDA0, '1', label_25;
+    CJNE RDA1, '2', label_17;
+    JUMP label_25;
+  label_17:
+    MOVE '0', RDA0;
+    JUMP main;
+  label_25:
+    MOVE '3', RDA1;
+END_PROC

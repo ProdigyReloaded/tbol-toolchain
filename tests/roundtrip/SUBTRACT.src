@@ -1,0 +1,42 @@
+PROGRAM T_SUBTRACT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic SUBTRACT }
+    SUBTRACT RDA0, RDA1;
+
+    { SUBTRACT with numeric literal }
+    SUBTRACT 5, RDA0;
+
+    { SUBTRACT with I register }
+    MOVE 10, I1;
+    SUBTRACT I1, RDA0;
+    SUBTRACT RDA0, I1;
+
+    { SUBTRACT with D register }
+    MOVE '1.5', D1;
+    SUBTRACT D1, RDA0;
+
+    { SUBTRACT with indexed RDA }
+    SUBTRACT RDA2(1), RDA0;
+    SUBTRACT RDA0, RDA2(5);
+
+    { SUBTRACT with variable index }
+    MOVE 3, I2;
+    SUBTRACT RDA2(I2), RDA0;
+
+    { SUBTRACT with PEV }
+    SUBTRACT &1, RDA0;
+
+    { SUBTRACT with GEV }
+    SUBTRACT SYS_RETURN_CODE, RDA0;
+
+    RETURN;
+END_PROC

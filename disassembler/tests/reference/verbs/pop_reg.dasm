@@ -1,0 +1,10 @@
+{ Program 'POP1' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file pop_reg.cod }
+{ md5sum e6ac0e87d1b3769711f6682d774e3c8a }
+
+PROGRAM POP1;
+
+PROC main =
+    POP I1;
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'SFMULT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file setfn_multiple.cod }
+{ md5sum 78b47685dcf3e56cca59961eb90cf7e3 }
+
+PROGRAM SFMULT;
+
+PROC main =
+    SET_FUNCTION NAVIGATION, '1';
+    SET_FUNCTION NEXT, '2';
+    SET_FUNCTION BACK, '2';
+END_PROC

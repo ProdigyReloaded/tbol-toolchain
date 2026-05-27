@@ -1,0 +1,10 @@
+{ Program 'ADREGD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_reg_d.cod }
+{ md5sum 4941f9e3c9d6317d3d44636f180784e9 }
+
+PROGRAM ADREGD;
+
+PROC main =
+    ADD D1, RDA0;
+END_PROC

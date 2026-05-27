@@ -1,0 +1,7 @@
+PROGRAM TDMIXED;
+DATA dt = X, Y(10), Z;
+PROC main =
+    MOVE '1', X;
+    MOVE '2', Y(I1);
+    MOVE '3', Z;
+END_PROC

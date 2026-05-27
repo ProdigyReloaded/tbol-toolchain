@@ -1,0 +1,10 @@
+{ Program 'SUBRD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sub_reg_d.cod }
+{ md5sum 727e387fc39608b5998c3557618a8fc4 }
+
+PROGRAM SUBRD;
+
+PROC main =
+    SUBTRACT D1, RDA0;
+END_PROC

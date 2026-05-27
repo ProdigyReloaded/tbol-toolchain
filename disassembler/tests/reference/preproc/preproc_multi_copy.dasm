@@ -1,0 +1,10 @@
+{ Program 'PPMC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file preproc_multi_copy.cod }
+{ md5sum 6b4cb6ac0d2774333705ee064113fca2 }
+
+PROGRAM PPMC;
+
+PROC main =
+    ADD 10, RDA0;
+END_PROC

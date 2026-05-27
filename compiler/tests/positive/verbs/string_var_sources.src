@@ -1,0 +1,5 @@
+PROGRAM STRVARS;
+DATA dt = A, B, C;
+PROC main =
+    STRING A, B, C;
+END_PROC

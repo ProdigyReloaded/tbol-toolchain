@@ -1,0 +1,20 @@
+{ Program 'PLOOPS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_loop_search.cod }
+{ md5sum bbdcca2c5fd564f49bc31b9a7ef63f19 }
+
+PROGRAM PLOOPS;
+
+PROC main =
+    MOVE '0', RDA21;
+    MOVE 1, I1;
+  label_10:
+    CJGT I1, 20, label_46;
+    CJNE RDA21, '0', label_46;
+    CJNE RDA0(I1), RDA20, label_38;
+    MOVE '1', RDA21;
+  label_38:
+    ADD 1, I1;
+    JUMP label_10;
+  label_46:
+END_PROC

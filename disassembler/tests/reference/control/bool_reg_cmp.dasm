@@ -1,0 +1,13 @@
+{ Program 'BOOLREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_reg_cmp.cod }
+{ md5sum 27252c64982a7380c4b9a9c0894aeb4f }
+
+PROGRAM BOOLREG;
+
+PROC main =
+    CJNE I1, 0, label_19;
+    CJLE I2, 5, label_19;
+    MOVE '1', RDA0;
+  label_19:
+END_PROC

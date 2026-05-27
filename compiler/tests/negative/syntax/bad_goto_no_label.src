@@ -1,0 +1,5 @@
+PROGRAM BGTNOL;
+DATA dt = A;
+PROC main =
+    GOTO ;
+END_PROC

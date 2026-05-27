@@ -1,0 +1,5 @@
+PROGRAM ANDPEV;
+DATA dt = A, B, C;
+PROC main =
+    AND &1, A;
+END_PROC

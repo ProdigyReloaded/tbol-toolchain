@@ -1,0 +1,5 @@
+PROGRAM BOOLORC3;
+DATA dt = A, B, C, D;
+PROC main =
+    IF A = '1' OR B = '2' OR C = '3' THEN MOVE '4', D;
+END_PROC

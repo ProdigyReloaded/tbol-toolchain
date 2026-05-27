@@ -1,0 +1,19 @@
+{ Program 'WHMULT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_multi_stmt.cod }
+{ md5sum c250e6a1ae26ffc429a5d7eb7ca912cc }
+
+PROGRAM WHMULT;
+
+PROC main =
+    MOVE 0, I1;
+  label_5:
+    CJGE I1, 5, label_36;
+    ADD 1, I1;
+    MOVE I1, RDA0;
+    ADD 1, RDA1;
+    MULTIPLY 2, RDA2;
+    MOVE RDA0, RDA3;
+    JUMP label_5;
+  label_36:
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TELITNM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_literal_num.cod }
+{ md5sum 5132978328444b2c297bfc3fd4b9166c }
+
+PROGRAM TELITNM;
+
+PROC main =
+    ADD 12345, RDA0;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM BOOLGEV;
+DATA dt = A;
+PROC main =
+    IF #1 = '1' THEN MOVE '2', A;
+END_PROC

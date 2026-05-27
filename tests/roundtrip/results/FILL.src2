@@ -1,0 +1,17 @@
+PROGRAM T_FILL;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;                               { array, bounds unknown }
+
+PROC main =
+    FILL RDA0, '*', '10';
+    MOVE 15, I1;
+    FILL RDA0, '#', I1;
+    FILL RDA1, '*', '5';
+    MOVE 3, I2;
+    FILL RDA1(I2), '+', '8';
+    FILL P0, '=', '10';
+    RETURN;
+END_PROC

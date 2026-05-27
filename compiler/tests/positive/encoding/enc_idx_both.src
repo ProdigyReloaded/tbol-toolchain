@@ -1,0 +1,7 @@
+PROGRAM EIDXBO;
+DATA dt = A(5), B(5);
+PROC main =
+    MOVE '0', I1;
+    MOVE '0', I2;
+    MOVE A(I1), B(I2);
+END_PROC

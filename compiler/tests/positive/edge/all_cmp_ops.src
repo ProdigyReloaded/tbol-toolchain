@@ -1,0 +1,10 @@
+PROGRAM ALLCMP;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN MOVE '1', B;
+    IF A <> '1' THEN MOVE '2', B;
+    IF A < '1' THEN MOVE '3', B;
+    IF A > '1' THEN MOVE '4', B;
+    IF A <= '1' THEN MOVE '5', B;
+    IF A >= '1' THEN MOVE '6', B;
+END_PROC

@@ -1,0 +1,13 @@
+{ Program 'PSTRBLD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_string_build.cod }
+{ md5sum 55a1eefd01f1efa104234a7f9a2b3653 }
+
+PROGRAM PSTRBLD;
+
+PROC main =
+    MOVE 'hello', RDA1;
+    MOVE 'world', RDA2;
+    MOVE ' ', RDA3;
+    STRING RDA0, RDA1, RDA3, RDA2;
+END_PROC

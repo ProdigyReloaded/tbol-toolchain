@@ -1,0 +1,10 @@
+{ Program 'TDDEFGV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_gev.cod }
+{ md5sum 16c575cef97843a11f79869be8d13853 }
+
+PROGRAM TDDEFGV;
+
+PROC main =
+    MOVE #100, RDA0;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM MVNUMLT;
+DATA dt = A, B;
+PROC main =
+    MOVE '123', A;
+END_PROC

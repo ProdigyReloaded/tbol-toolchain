@@ -1,0 +1,20 @@
+{ Program 'BIFORE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_if_or_eq.cod }
+{ md5sum f5d243d9edb56c67db4d9255c7618e01 }
+
+PROGRAM BIFORE;
+
+PROC main =
+    CJNE RDA0, '1', label_10;
+    JUMP label_17;
+  label_10:
+    CJNE RDA0, '2', label_20;
+  label_17:
+    JUMP label_27;
+  label_20:
+    CJNE RDA0, '3', label_32;
+  label_27:
+    MOVE 1, I1;
+  label_32:
+END_PROC

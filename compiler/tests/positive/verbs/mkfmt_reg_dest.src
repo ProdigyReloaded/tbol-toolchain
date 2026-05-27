@@ -1,0 +1,7 @@
+PROGRAM MKFMTR;
+DATA dt = FLD1, FLD2;
+PROC main =
+    MAKE_FORMAT P8,
+        FLD1:10,
+        FLD2:5;
+END_PROC

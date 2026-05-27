@@ -1,0 +1,25 @@
+PROGRAM T_DIVIDE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3;                               { array, bounds unknown }
+
+PROC main =
+    DIVIDE RDA0, RDA1;
+    MOVE 2, I1;
+    DIVIDE RDA0, I1;
+    MOVE 2.0, D1;
+    DIVIDE RDA0, D1;
+    DIVIDE RDA0, RDA3;
+    MOVE 3, I2;
+    DIVIDE RDA0, RDA3(I2);
+    DIVIDE RDA0, RDA1, RDA2;
+    DIVIDE RDA0, &1;
+    DIVIDE RDA0, SYS_RETURN_CODE;
+    RETURN;
+END_PROC

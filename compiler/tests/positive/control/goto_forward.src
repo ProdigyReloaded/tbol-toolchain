@@ -1,0 +1,9 @@
+PROGRAM GOTOFWD;
+DATA dt = A, B;
+PROC main =
+    MOVE '1', A;
+    GOTO SKIP;
+    MOVE '2', A;
+SKIP:
+    MOVE '3', B;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM EPEV100;
+DATA dt = A;
+PROC main =
+    MOVE &100, A;
+END_PROC

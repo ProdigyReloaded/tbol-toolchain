@@ -1,0 +1,16 @@
+PROGRAM T_KILL;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    KILL RDA0;
+    KILL 'PROCESS';
+    MOVE 'TESTPROC', P0;
+    KILL P0;
+    KILL SYS_RETURN_CODE;
+    RETURN;
+END_PROC

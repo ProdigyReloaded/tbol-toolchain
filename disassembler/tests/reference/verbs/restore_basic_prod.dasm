@@ -1,0 +1,10 @@
+{ Program 'RSTRPR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file restore_basic_prod.cod }
+{ md5sum 62675bdf46e557cdbccf17c03a3374a6 }
+
+PROGRAM RSTRPR;
+
+PROC main =
+    RESTORE 'MY_STATE', RDA0;
+END_PROC

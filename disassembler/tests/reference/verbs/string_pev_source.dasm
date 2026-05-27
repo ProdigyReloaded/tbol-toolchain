@@ -1,0 +1,10 @@
+{ Program 'STRPEV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_pev_source.cod }
+{ md5sum 7b6c1cc6ba58d2618958e71199d98989 }
+
+PROGRAM STRPEV;
+
+PROC main =
+    STRING RDA0, &1;
+END_PROC

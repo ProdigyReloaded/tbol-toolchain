@@ -1,0 +1,5 @@
+PROGRAM CLRREG;
+DATA dt = A, B;
+PROC main =
+    CLEAR A;
+END_PROC

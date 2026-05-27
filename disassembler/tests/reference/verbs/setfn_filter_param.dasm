@@ -1,0 +1,10 @@
+{ Program 'SFFPRM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file setfn_filter_param.cod }
+{ md5sum 1193065b0537283cf97159ea2a01afe0 }
+
+PROGRAM SFFPRM;
+
+PROC main =
+    SET_FUNCTION BACK, '3', RDA0, RDA1;
+END_PROC

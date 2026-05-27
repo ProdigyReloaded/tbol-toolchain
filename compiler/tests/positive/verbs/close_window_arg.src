@@ -1,0 +1,5 @@
+PROGRAM TSTCWA;
+DATA dt = A;
+PROC main =
+    CLOSE_WINDOW '1';
+END_PROC

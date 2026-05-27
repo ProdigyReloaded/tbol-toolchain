@@ -1,0 +1,5 @@
+PROGRAM TEPV200;
+DATA dt = A;
+PROC main =
+    MOVE &200, A;
+END_PROC

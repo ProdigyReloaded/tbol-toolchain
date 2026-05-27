@@ -1,0 +1,11 @@
+{ Program 'TDSAV2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file save_two_ops.cod }
+{ md5sum 87cb8a1488a5305c6797136121a4554c }
+
+PROGRAM TDSAV2;
+
+PROC main =
+    MOVE '1', RDA0;
+    SAVE RDA0, RDA1;
+END_PROC

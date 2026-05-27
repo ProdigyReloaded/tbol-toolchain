@@ -1,0 +1,9 @@
+PROGRAM WHWIF;
+DATA dt = A, B, C;
+PROC main =
+    WHILE A = '1' THEN DO
+        IF B = '2' THEN MOVE '3', C;
+        ELSE MOVE '4', C;
+        MOVE '0', A;
+    END;
+END_PROC

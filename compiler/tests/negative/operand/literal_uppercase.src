@@ -1,0 +1,5 @@
+PROGRAM LITUPP;
+DATA dt = A;
+PROC main =
+    UPPERCASE '1';
+END_PROC

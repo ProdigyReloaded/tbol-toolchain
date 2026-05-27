@@ -1,0 +1,10 @@
+PROGRAM CALLMARG;
+DATA dt = A, B, C, D;
+PROC main =
+    helper B, C, D;
+END_PROC
+PROC helper =
+    MOVE B, A;
+    MOVE C, B;
+    MOVE D, C;
+END_PROC

@@ -1,0 +1,51 @@
+PROGRAM T_MOVE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2(10);
+
+PROC main =
+    { Basic MOVE between RDA slots }
+    MOVE RDA0, RDA1;
+
+    { MOVE with string literal }
+    MOVE 'hello', RDA0;
+
+    { MOVE with numeric literal }
+    MOVE 42, RDA0;
+
+    { MOVE to/from I register }
+    MOVE 1, I1;
+    MOVE I1, RDA0;
+
+    { MOVE to/from D register }
+    MOVE '3.14', D1;
+    MOVE D1, RDA0;
+
+    { MOVE to/from P register }
+    MOVE 'test', P0;
+    MOVE P0, RDA0;
+
+    { MOVE with indexed RDA (literal index) }
+    MOVE RDA2(1), RDA0;
+    MOVE RDA0, RDA2(5);
+
+    { MOVE with indexed RDA (variable index) }
+    MOVE 3, I1;
+    MOVE RDA2(I1), RDA0;
+    MOVE RDA0, RDA2(I1);
+
+    { MOVE with PEV }
+    MOVE &1, RDA0;
+    MOVE RDA0, &2;
+
+    { MOVE with GEV }
+    MOVE SYS_RETURN_CODE, RDA0;
+    MOVE RDA0, SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

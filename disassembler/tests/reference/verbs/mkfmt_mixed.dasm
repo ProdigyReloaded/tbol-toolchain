@@ -1,0 +1,13 @@
+{ Program 'MKFMTX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mkfmt_mixed.cod }
+{ md5sum 716b1a23d3d522132135fadb6be12ddf }
+
+PROGRAM MKFMTX;
+
+PROC main =
+    MAKE_FORMAT RDA0,
+        RDA1:20,
+        RDA2:2,
+        RDA3:5;
+END_PROC

@@ -1,0 +1,14 @@
+{ Program 'LAWH' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_after_while.cod }
+{ md5sum 9ea744b55c7f18fe6b40f1bef1b73f2b }
+
+PROGRAM LAWH;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '0', RDA0;
+    JUMP main;
+  label_15:
+    MOVE '2', RDA1;
+END_PROC

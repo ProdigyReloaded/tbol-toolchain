@@ -1,0 +1,16 @@
+{ Program 'TDALTYP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file data_use_all_types.cod }
+{ md5sum 0e32ccf5c26c71c3daca00b95843ad33 }
+
+PROGRAM TDALTYP;
+
+PROC main =
+    MOVE 'rda', RDA0;
+    MOVE RDA0, RDA1;
+    MOVE 1, I1;
+    MOVE 2, D1;
+    MOVE 'param', P1;
+    MOVE &5, RDA0;
+    MOVE #100, RDA1;
+END_PROC

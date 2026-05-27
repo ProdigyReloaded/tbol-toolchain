@@ -1,0 +1,11 @@
+{ Program 'CALLUDEF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_undefined.cod }
+{ md5sum 2fd536d77bec09bcf85729cf3f68884a }
+
+PROGRAM CALLUDEF;
+
+PROC main =
+    MOVE '1', RDA0;
+    _undefined;
+END_PROC

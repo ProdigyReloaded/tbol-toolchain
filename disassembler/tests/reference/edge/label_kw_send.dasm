@@ -1,0 +1,13 @@
+{ Program 'LKWSND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_kw_send.cod }
+{ md5sum 855348fa81feb4aeb989b4768078a8a9 }
+
+PROGRAM LKWSND;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    MOVE '1', RDA0;
+END_PROC

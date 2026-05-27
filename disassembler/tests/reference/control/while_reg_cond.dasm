@@ -1,0 +1,13 @@
+{ Program 'WHREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_reg_cond.cod }
+{ md5sum 05f7c95fe877d213675836403fcd2191 }
+
+PROGRAM WHREG;
+
+PROC main =
+    CJNE I1, I2, label_13;
+    ADD 1, I1;
+    JUMP main;
+  label_13:
+END_PROC

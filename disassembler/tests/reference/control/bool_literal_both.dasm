@@ -1,0 +1,12 @@
+{ Program 'BOOLLB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file bool_literal_both.cod }
+{ md5sum 438bc2822f20193dcabfd08231afb3fe }
+
+PROGRAM BOOLLB;
+
+PROC main =
+    CJNE '1', '1', label_14;
+    MOVE '2', RDA0;
+  label_14:
+END_PROC

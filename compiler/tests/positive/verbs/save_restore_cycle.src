@@ -1,0 +1,8 @@
+PROGRAM SVRSTC;
+DATA dt = A, B, C;
+PROC main =
+    SAVE 'BLK', A, C;
+    MOVE '99', A;
+    MOVE '99', B;
+    RESTORE 'BLK', A;
+END_PROC

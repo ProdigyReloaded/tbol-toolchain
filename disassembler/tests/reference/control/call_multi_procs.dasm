@@ -1,0 +1,28 @@
+{ Program 'CLMPRC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_multi_procs.cod }
+{ md5sum f6469e73393d7b6f8ee793d06da708e9 }
+
+PROGRAM CLMPRC;
+
+PROC main =
+    proc_1;
+    MOVE '5', RDA1;
+    proc_2;
+    proc_3;
+END_PROC
+
+PROC proc_1 =
+    MOVE '0', RDA0;
+    MOVE '0', RDA1;
+    MOVE '0', RDA2;
+END_PROC
+
+PROC proc_2 =
+    ADD 1, RDA0;
+    MULTIPLY 2, RDA1;
+END_PROC
+
+PROC proc_3 =
+    MOVE RDA0, RDA2;
+END_PROC

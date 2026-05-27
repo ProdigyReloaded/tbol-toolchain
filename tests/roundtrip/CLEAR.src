@@ -1,0 +1,48 @@
+PROGRAM T_CLEAR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3,
+    RDA4,
+    RDA5,
+    RDA6,
+    RDA7,
+    RDA8,
+    RDA9;
+  struct1 =
+    RDA10,
+    RDA11,
+    RDA12,
+    RDA13,
+    RDA14;
+
+PROC main =
+    { CLEAR single slot }
+    CLEAR RDA0;
+
+    { CLEAR with P register }
+    CLEAR P0;
+
+    { CLEAR structure by name }
+    CLEAR struct1;
+
+    { CLEAR range with literals }
+    CLEAR RDA0, RDA5;
+
+    { CLEAR range with RDA slots }
+    CLEAR RDA0, RDA9;
+
+    { CLEAR with PEV }
+    CLEAR &1;
+
+    { CLEAR with indexed }
+    MOVE 3, I1;
+    CLEAR RDA0(I1);
+
+    RETURN;
+END_PROC

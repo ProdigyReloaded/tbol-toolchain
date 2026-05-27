@@ -1,0 +1,5 @@
+PROGRAM FEWSBS;
+DATA dt = A, B, C;
+PROC main =
+    SUBSTR A, B, C;
+END_PROC

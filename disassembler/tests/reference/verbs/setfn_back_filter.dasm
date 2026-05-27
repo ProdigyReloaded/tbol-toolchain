@@ -1,0 +1,10 @@
+{ Program 'SFBFLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file setfn_back_filter.cod }
+{ md5sum 35005d5464fe465b6d408a514504336f }
+
+PROGRAM SFBFLT;
+
+PROC main =
+    SET_FUNCTION BACK, '3', RDA0, RDA1;
+END_PROC

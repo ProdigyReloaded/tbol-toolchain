@@ -1,0 +1,7 @@
+PROGRAM WHINIF;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN DO
+        WHILE B = '2' THEN MOVE '3', C;
+    END;
+END_PROC

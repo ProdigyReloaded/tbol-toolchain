@@ -1,0 +1,21 @@
+{ Program 'IFEDM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_else_do_multi.cod }
+{ md5sum 5acf4a90a504b9f7f11a8a2b2c2b2239 }
+
+PROGRAM IFEDM;
+
+PROC main =
+    CJNE RDA0, '1', label_25;
+    MOVE '1', RDA1;
+    MOVE '2', RDA2;
+    ADD 1, RDA3;
+    JUMP label_48;
+  label_25:
+    MOVE '3', RDA1;
+    MOVE '4', RDA2;
+    SUBTRACT 1, RDA3;
+    MOVE RDA0, RDA1;
+    ADD 1, RDA0;
+  label_48:
+END_PROC

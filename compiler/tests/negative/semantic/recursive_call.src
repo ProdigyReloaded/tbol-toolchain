@@ -1,0 +1,5 @@
+PROGRAM RECCALL;
+DATA dt = A;
+PROC main =
+    IF A = '1' THEN main;
+END_PROC

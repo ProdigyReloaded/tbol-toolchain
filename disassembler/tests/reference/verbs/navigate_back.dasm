@@ -1,0 +1,10 @@
+{ Program 'TSTNVB' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 04/06/26 12:290 }
+{ Original file navigate_back.cod }
+{ md5sum 8af3d572f5371fa38d475b8e34a79060 }
+
+PROGRAM TSTNVB;
+
+PROC main =
+    NAVIGATE BACK;
+END_PROC

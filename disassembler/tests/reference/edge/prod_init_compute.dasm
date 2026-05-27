@@ -1,0 +1,22 @@
+{ Program 'PINITC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file prod_init_compute.cod }
+{ md5sum 61036e450eeb13fc3b5c699c2d69dcf0 }
+
+PROGRAM PINITC;
+
+PROC main =
+    MOVE '0', RDA0;
+    MOVE '0', RDA1;
+    MOVE '0', RDA2;
+  label_15:
+    CJGE RDA2, '10', label_34;
+    ADD 1, RDA2;
+    ADD RDA2, RDA1;
+    JUMP label_15;
+  label_34:
+    CJLE RDA1, '50', label_47;
+    MOVE '1', RDA0;
+  label_47:
+    EXIT RDA0;
+END_PROC

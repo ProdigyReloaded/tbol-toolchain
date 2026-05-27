@@ -1,0 +1,2 @@
+DATA
+    cpgrp = CPFLD1(10), CPFLD2, CPFLD3(5);

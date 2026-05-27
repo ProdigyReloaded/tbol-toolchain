@@ -1,0 +1,11 @@
+{ Program 'MANYVR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file many_vars.cod }
+{ md5sum a6458068558622ce0e4ece997340a843 }
+
+PROGRAM MANYVR;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '20', RDA19;
+END_PROC

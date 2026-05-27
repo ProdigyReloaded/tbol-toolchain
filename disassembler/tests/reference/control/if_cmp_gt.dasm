@@ -1,0 +1,12 @@
+{ Program 'IFCMPGT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_cmp_gt.cod }
+{ md5sum 83bde849564cb296b52523c59515ab89 }
+
+PROGRAM IFCMPGT;
+
+PROC main =
+    CJLE RDA0, '1', label_12;
+    MOVE '2', RDA1;
+  label_12:
+END_PROC

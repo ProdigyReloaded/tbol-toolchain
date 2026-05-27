@@ -1,0 +1,13 @@
+{ Program 'WHGE' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_cmp_ge.cod }
+{ md5sum 42e28d080497877d35b5856ce8fd81ed }
+
+PROGRAM WHGE;
+
+PROC main =
+    CJLT I1, 1, label_15;
+    SUBTRACT 1, I1;
+    JUMP main;
+  label_15:
+END_PROC

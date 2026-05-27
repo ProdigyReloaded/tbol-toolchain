@@ -1,0 +1,6 @@
+PROGRAM PPDN;
+DEFINE AMOUNT, '25';
+DATA dt = A;
+PROC main =
+    ADD AMOUNT, A;
+END_PROC

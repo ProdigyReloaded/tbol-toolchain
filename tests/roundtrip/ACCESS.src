@@ -1,0 +1,26 @@
+PROGRAM T_ACCESS;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    { ACCESS with 2 operands }
+    ACCESS RDA0, RDA1;
+
+    { ACCESS with literals }
+    ACCESS 'RESOURCE', 'MODE';
+
+    { ACCESS with P registers }
+    MOVE 'FILE', P0;
+    MOVE 'R', P1;
+    ACCESS P0, P1;
+
+    { ACCESS with GEV }
+    ACCESS SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

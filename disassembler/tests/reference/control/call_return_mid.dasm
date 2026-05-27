@@ -1,0 +1,18 @@
+{ Program 'CALLRETM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_return_mid.cod }
+{ md5sum 5db8e6eb88b17ecdcbb9dfdfae876b9a }
+
+PROGRAM CALLRETM;
+
+PROC main =
+    proc_1;
+END_PROC
+
+PROC proc_1 =
+    MOVE '1', RDA0;
+    CJNE RDA0, '1', label_18;
+    RETURN;
+  label_18:
+    MOVE '2', RDA1;
+END_PROC

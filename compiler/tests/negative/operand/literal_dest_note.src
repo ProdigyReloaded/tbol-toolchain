@@ -1,0 +1,5 @@
+PROGRAM LITNOT;
+DATA dt = A;
+PROC main =
+    NOTE '1', '2';
+END_PROC

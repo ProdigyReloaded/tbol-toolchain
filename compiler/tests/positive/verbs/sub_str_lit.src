@@ -1,0 +1,5 @@
+PROGRAM SUBSL;
+DATA dt = A, B, C;
+PROC main =
+    SUBTRACT '5', A;
+END_PROC

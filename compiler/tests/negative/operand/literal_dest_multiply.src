@@ -1,0 +1,5 @@
+PROGRAM LITMUL;
+DATA dt = A;
+PROC main =
+    MULTIPLY '1', '2';
+END_PROC

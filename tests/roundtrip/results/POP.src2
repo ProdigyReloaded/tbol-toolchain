@@ -1,0 +1,20 @@
+PROGRAM T_POP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;                               { array, bounds unknown }
+
+PROC main =
+    POP RDA0;
+    POP P0;
+    POP I1;
+    POP RDA1;
+    MOVE 3, I2;
+    POP RDA1(I2);
+    POP &1;
+    POP SYS_RETURN_CODE;
+    RETURN;
+END_PROC

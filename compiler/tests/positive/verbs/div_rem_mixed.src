@@ -1,0 +1,5 @@
+PROGRAM DIVRM4;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE '10', A, I1;
+END_PROC

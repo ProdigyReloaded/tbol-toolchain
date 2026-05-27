@@ -1,0 +1,11 @@
+{ Program 'TEREGI8' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_reg_i8.cod }
+{ md5sum 4e87b5bfb72d88a3b5b317fd7f8f245a }
+
+PROGRAM TEREGI8;
+
+PROC main =
+    MOVE 1, I8;
+    MOVE I8, RDA0;
+END_PROC

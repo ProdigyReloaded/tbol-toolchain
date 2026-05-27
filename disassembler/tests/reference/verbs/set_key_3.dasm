@@ -1,0 +1,10 @@
+{ Program 'SKEY3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file set_key_3.cod }
+{ md5sum de09797bc1e55013512d5e21e50bc619 }
+
+PROGRAM SKEY3;
+
+PROC main =
+    SET_KEY '1', '2', '3';
+END_PROC

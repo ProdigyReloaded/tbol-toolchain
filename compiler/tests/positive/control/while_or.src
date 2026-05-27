@@ -1,0 +1,5 @@
+PROGRAM WHOR;
+DATA dt = A, B, C;
+PROC main =
+    WHILE A = '1' OR B = '2' THEN MOVE '3', C;
+END_PROC

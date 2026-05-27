@@ -1,0 +1,14 @@
+PROGRAM WHNDP;
+DATA dt = A, B, C, D;
+PROC main =
+    WHILE A = '1' THEN DO
+        WHILE B = '2' THEN DO
+            WHILE C = '3' THEN DO
+                MOVE '4', D;
+                MOVE '0', C;
+            END;
+            MOVE '0', B;
+        END;
+        MOVE '0', A;
+    END;
+END_PROC

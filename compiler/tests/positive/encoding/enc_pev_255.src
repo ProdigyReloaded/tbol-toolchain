@@ -1,0 +1,5 @@
+PROGRAM EPEV255;
+DATA dt = A;
+PROC main =
+    MOVE &255, A;
+END_PROC

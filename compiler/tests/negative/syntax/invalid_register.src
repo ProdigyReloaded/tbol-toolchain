@@ -1,0 +1,5 @@
+PROGRAM BADREG;
+DATA dt = A;
+PROC main =
+    MOVE '1', I9;
+END_PROC

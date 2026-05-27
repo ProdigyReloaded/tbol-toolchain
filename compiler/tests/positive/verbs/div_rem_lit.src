@@ -1,0 +1,5 @@
+PROGRAM DIVRM2;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE '100', A, B;
+END_PROC

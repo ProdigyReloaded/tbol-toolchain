@@ -1,0 +1,10 @@
+{ Program 'TDDEFNM' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file define_numeric.cod }
+{ md5sum 23961583e517f97cd7d4f9154c1a213e }
+
+PROGRAM TDDEFNM;
+
+PROC main =
+    ADD 42, RDA0;
+END_PROC

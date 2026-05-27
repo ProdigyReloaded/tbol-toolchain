@@ -1,0 +1,5 @@
+PROGRAM EPEV63;
+DATA dt = A;
+PROC main =
+    MOVE &63, A;
+END_PROC

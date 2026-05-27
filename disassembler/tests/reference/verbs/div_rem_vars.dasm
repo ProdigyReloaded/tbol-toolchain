@@ -1,0 +1,10 @@
+{ Program 'DIVRM1' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file div_rem_vars.cod }
+{ md5sum d519e67bb01c225d01803195530b3420 }
+
+PROGRAM DIVRM1;
+
+PROC main =
+    DIVIDE RDA0, RDA1, RDA2;
+END_PROC

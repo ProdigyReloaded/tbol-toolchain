@@ -1,0 +1,31 @@
+PROGRAM T_ADD;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,                               { array, bounds unknown }
+    RDA3,                               { unused }
+    RDA4,                               { unused }
+    RDA5,                               { unused }
+    RDA6;
+
+PROC main =
+    ADD RDA0, RDA1;
+    ADD 10, RDA0;
+    MOVE 5, I1;
+    ADD I1, RDA0;
+    ADD RDA0, I1;
+    MOVE 2.5, D1;
+    ADD D1, RDA0;
+    ADD RDA0, D1;
+    ADD RDA2, RDA0;
+    ADD RDA0, RDA6;
+    MOVE 3, I2;
+    ADD RDA2(I2), RDA0;
+    ADD &1, RDA0;
+    ADD SYS_RETURN_CODE, RDA0;
+    RETURN;
+END_PROC

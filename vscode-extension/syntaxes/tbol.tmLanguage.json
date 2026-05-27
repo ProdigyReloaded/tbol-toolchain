@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "TBOL",
+  "scopeName": "source.tbol",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#registers" },
+    { "include": "#special-vars" },
+    { "include": "#operators" },
+    { "include": "#identifiers" }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.block.tbol",
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": []
+    },
+    "strings": {
+      "name": "string.quoted.single.tbol",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "name": "constant.character.escape.tbol",
+          "match": "''|\\\\[\\\\0x']|\\\\x[0-9a-fA-F]{2}"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.tbol",
+          "match": "\\b0x[0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.tbol",
+          "match": "-?\\b[0-9]+(?![A-Za-z_])(\\.[0-9]+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.tbol",
+          "match": "\\b(IF|THEN|ELSE|DO|END|WHILE|GOTO|GOTO_DEPENDING_ON|EXIT|RETURN)\\b"
+        },
+        {
+          "name": "keyword.declaration.tbol",
+          "match": "\\b(PROGRAM|PROC|END_PROC|DATA|DEFINE|COPY)\\b"
+        },
+        {
+          "name": "keyword.operator.arithmetic.tbol",
+          "match": "\\b(ADD|SUBTRACT|MULTIPLY|DIVIDE|ABS)\\b"
+        },
+        {
+          "name": "keyword.operator.bitwise.tbol",
+          "match": "\\b(AND|OR|XOR|TEST)\\b"
+        },
+        {
+          "name": "keyword.other.data.tbol",
+          "match": "\\b(MOVE|SWAP|FILL|CLEAR|PUSH|POP)\\b"
+        },
+        {
+          "name": "keyword.other.string.tbol",
+          "match": "\\b(STRING|SUBSTR|INSTR|UPPERCASE|LENGTH|EDIT)\\b"
+        },
+        {
+          "name": "keyword.other.navigation.tbol",
+          "match": "\\b(NAVIGATE|FIRST|NEXT|BACK|LAST|FETCH)\\b"
+        },
+        {
+          "name": "keyword.other.window.tbol",
+          "match": "\\b(OPEN_WINDOW|CLOSE_WINDOW|OPEN_ERROR_WINDOW|KILL|LINK|TRANSFER|PURGE_CACHE)\\b"
+        },
+        {
+          "name": "keyword.other.file.tbol",
+          "match": "\\b(OPEN|CLOSE|READ|WRITE|NOTE|POINT|DELETE)\\b"
+        },
+        {
+          "name": "keyword.other.comm.tbol",
+          "match": "\\b(CONNECT|DISCONNECT|SEND|RECEIVE|CANCEL|TIMEOUT|PRIORITY|OPT_HDRS)\\b"
+        },
+        {
+          "name": "keyword.other.state.tbol",
+          "match": "\\b(SAVE|RESTORE|RELEASE)\\b"
+        },
+        {
+          "name": "keyword.other.timer.tbol",
+          "match": "\\b(WAIT|START|STOP)\\b"
+        },
+        {
+          "name": "keyword.other.display.tbol",
+          "match": "\\b(REFRESH|ERASE|SET_CURSOR|SOUND)\\b"
+        },
+        {
+          "name": "keyword.other.field.tbol",
+          "match": "\\b(DEFINE_FIELD|SET_ATTRIBUTE|SET_FUNCTION|SET_KEY)\\b"
+        },
+        {
+          "name": "keyword.other.format.tbol",
+          "match": "\\b(FORMAT|MAKE_FORMAT)\\b"
+        },
+        {
+          "name": "keyword.other.misc.tbol",
+          "match": "\\b(LOOKUP|SORT|ERROR|TRIGGER_FUNCTION)\\b"
+        }
+      ]
+    },
+    "registers": {
+      "patterns": [
+        {
+          "name": "variable.language.register.i.tbol",
+          "match": "\\bI[1-8]\\b"
+        },
+        {
+          "name": "variable.language.register.d.tbol",
+          "match": "\\bD[1-8]\\b"
+        },
+        {
+          "name": "variable.language.register.p.tbol",
+          "match": "\\bP[0-8]\\b"
+        }
+      ]
+    },
+    "special-vars": {
+      "patterns": [
+        {
+          "name": "variable.language.pev.tbol",
+          "match": "&[0-9]+"
+        },
+        {
+          "name": "variable.language.gev.tbol",
+          "match": "#[0-9]+"
+        },
+        {
+          "name": "constant.language.rda.tbol",
+          "match": "\\b(RDA_FIRST|RDA_LAST)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.tbol",
+          "match": "<>|<=|>=|<|>|="
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "entity.name.function.tbol",
+          "match": "(?<=PROC\\s+)[A-Za-z0-9_]+"
+        },
+        {
+          "name": "entity.name.type.tbol",
+          "match": "(?<=PROGRAM\\s+)[A-Za-z0-9_]+"
+        },
+        {
+          "name": "variable.other.tbol",
+          "match": "\\b[0-9]*[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

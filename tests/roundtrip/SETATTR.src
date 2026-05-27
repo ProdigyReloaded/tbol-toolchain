@@ -1,0 +1,27 @@
+PROGRAM T_SETATTR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { SET_ATTRIBUTE with field and attribute string }
+    SET_ATTRIBUTE RDA0, 'DISPLAY';
+
+    { SET_ATTRIBUTE with different types }
+    SET_ATTRIBUTE RDA0, 'INPUT';
+    SET_ATTRIBUTE RDA0, 'ACTION';
+    SET_ATTRIBUTE RDA0, 'DISPLAY COLOR(0,2)';
+    SET_ATTRIBUTE RDA0, 'INPUT COLOR(7,0)';
+
+    { SET_ATTRIBUTE with literal field number }
+    SET_ATTRIBUTE 1, 'DISPLAY';
+    SET_ATTRIBUTE '32', 'INPUT COLOR(7,0)';
+
+    { SET_ATTRIBUTE with P register }
+    SET_ATTRIBUTE P0, 'DISPLAY COLOR(12,3)';
+
+    RETURN;
+END_PROC

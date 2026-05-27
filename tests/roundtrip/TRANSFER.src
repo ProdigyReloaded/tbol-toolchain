@@ -1,0 +1,27 @@
+PROGRAM T_TRANSFER;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3;
+
+PROC main =
+    { TRANSFER with multiple operands }
+    TRANSFER RDA0, RDA1, RDA2, RDA3;
+
+    { TRANSFER with literals }
+    TRANSFER 'PROG', 'param1', 'param2';
+
+    { TRANSFER with P registers }
+    MOVE 'TESTPGM', P0;
+    TRANSFER P0, RDA1;
+
+    { TRANSFER with GEV }
+    TRANSFER SYS_RETURN_CODE, RDA1;
+
+    RETURN;
+END_PROC

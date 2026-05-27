@@ -1,0 +1,13 @@
+{ Program 'LKWADD' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_kw_add.cod }
+{ md5sum fc025fa7e8381263376ec7f5cedf94f4 }
+
+PROGRAM LKWADD;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    ADD 1, RDA0;
+END_PROC

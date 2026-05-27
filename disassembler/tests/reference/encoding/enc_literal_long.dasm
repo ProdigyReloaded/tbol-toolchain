@@ -1,0 +1,10 @@
+{ Program 'TELITLG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_literal_long.cod }
+{ md5sum bbb578b4396f09925447da529ee33e51 }
+
+PROGRAM TELITLG;
+
+PROC main =
+    MOVE 'This is a long string literal for testing how the compiler handles encoding longer values ok ok', RDA0;
+END_PROC

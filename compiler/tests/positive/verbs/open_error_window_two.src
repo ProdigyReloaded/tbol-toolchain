@@ -1,0 +1,5 @@
+PROGRAM TSTOET;
+DATA dt = A;
+PROC main =
+    OPEN_ERROR_WINDOW '1', '2';
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM TSTKIL;
+DATA dt = A;
+PROC main =
+    KILL '1';
+END_PROC

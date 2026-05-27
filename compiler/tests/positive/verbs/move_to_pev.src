@@ -1,0 +1,5 @@
+PROGRAM MVTOPEV;
+DATA dt = A, B;
+PROC main =
+    MOVE '1', &1;
+END_PROC

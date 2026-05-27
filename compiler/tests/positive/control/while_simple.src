@@ -1,0 +1,5 @@
+PROGRAM WHSIMP;
+DATA dt = A, B;
+PROC main =
+    WHILE A = '1' THEN MOVE '2', B;
+END_PROC

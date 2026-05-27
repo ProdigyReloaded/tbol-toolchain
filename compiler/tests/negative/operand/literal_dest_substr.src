@@ -1,0 +1,5 @@
+PROGRAM LITSBS;
+DATA dt = A;
+PROC main =
+    SUBSTR A, '1', '1', '5';
+END_PROC

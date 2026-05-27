@@ -1,0 +1,14 @@
+{ Program 'WHAND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_and.cod }
+{ md5sum 13e091defdc1e634dfc2bdd5584413a8 }
+
+PROGRAM WHAND;
+
+PROC main =
+    CJNE RDA0, '1', label_22;
+    CJNE RDA1, '2', label_22;
+    MOVE '3', RDA2;
+    JUMP main;
+  label_22:
+END_PROC

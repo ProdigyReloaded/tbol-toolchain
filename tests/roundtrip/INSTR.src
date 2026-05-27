@@ -1,0 +1,24 @@
+PROGRAM T_INSTR;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    { INSTR - find position of substring (3 operands) }
+    { result, source, search - all must be variables }
+    INSTR I1, RDA0, RDA1;
+
+    { INSTR with different variables }
+    MOVE 'test', RDA2;
+    INSTR I1, RDA0, RDA2;
+
+    { INSTR with P registers }
+    INSTR P0, P1, P2;
+
+    RETURN;
+END_PROC

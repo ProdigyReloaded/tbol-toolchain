@@ -1,0 +1,11 @@
+{ Program 'MKFMTS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mkfmt_single.cod }
+{ md5sum 46fe7dc46b4cd369f3e2a0d864c9b2c0 }
+
+PROGRAM MKFMTS;
+
+PROC main =
+    MAKE_FORMAT RDA0,
+        RDA1:10;
+END_PROC

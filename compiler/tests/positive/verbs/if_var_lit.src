@@ -1,0 +1,5 @@
+PROGRAM IFVARLT;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN MOVE '0', I1;
+END_PROC

@@ -1,0 +1,10 @@
+{ Program 'TSTTST' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file test_basic.cod }
+{ md5sum e3802224dd0a38478d8aa3c2afb6caa0 }
+
+PROGRAM TSTTST;
+
+PROC main =
+    TEST RDA0, RDA1;
+END_PROC

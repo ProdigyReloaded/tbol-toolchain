@@ -1,0 +1,10 @@
+{ Program 'TSTINS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file instr_basic.cod }
+{ md5sum 8c86eeb49f9f0bdfbf3228b7aa866ddb }
+
+PROGRAM TSTINS;
+
+PROC main =
+    INSTR RDA0, 'x', RDA1;
+END_PROC

@@ -1,0 +1,7 @@
+PROGRAM CMTINL;
+DATA dt = A; { declare variable }
+PROC main =
+    MOVE '1', A; { initialize }
+    { This is a full-line comment }
+    ADD '1', A;
+END_PROC

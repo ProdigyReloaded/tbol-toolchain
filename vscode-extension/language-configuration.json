@@ -1,0 +1,23 @@
+{
+  "comments": {
+    "blockComment": ["{", "}"]
+  },
+  "brackets": [
+    ["(", ")"],
+    ["DO", "END"]
+  ],
+  "autoClosingPairs": [
+    { "open": "{", "close": "}" },
+    { "open": "(", "close": ")" },
+    { "open": "'", "close": "'", "notIn": ["string"] }
+  ],
+  "surroundingPairs": [
+    { "open": "{", "close": "}" },
+    { "open": "(", "close": ")" },
+    { "open": "'", "close": "'" }
+  ],
+  "folding": {
+    "offSide": false
+  },
+  "wordPattern": "[0-9]*[A-Za-z_][A-Za-z0-9_]*|#[0-9]+|&[0-9]+|[ID][1-8]|P[0-8]"
+}

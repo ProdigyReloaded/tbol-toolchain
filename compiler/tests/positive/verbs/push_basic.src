@@ -1,0 +1,5 @@
+PROGRAM TSTPSH;
+DATA dt = A;
+PROC main =
+    PUSH A;
+END_PROC

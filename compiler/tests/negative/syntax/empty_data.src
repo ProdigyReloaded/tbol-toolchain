@@ -1,0 +1,5 @@
+PROGRAM NODATA;
+DATA dt = ;
+PROC main =
+    MOVE '0', I1;
+END_PROC

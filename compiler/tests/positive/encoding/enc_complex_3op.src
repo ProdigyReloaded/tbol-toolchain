@@ -1,0 +1,5 @@
+PROGRAM EC3OP;
+DATA dt = PAD(156), A, B, C;
+PROC main =
+    INSTR A, 'x', C;
+END_PROC

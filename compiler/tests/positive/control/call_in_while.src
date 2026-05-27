@@ -1,0 +1,11 @@
+PROGRAM CLWHL;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+    WHILE I1 < '5' THEN DO
+        increment I1;
+    END;
+END_PROC
+PROC increment =
+    ADD '1', P1;
+END_PROC

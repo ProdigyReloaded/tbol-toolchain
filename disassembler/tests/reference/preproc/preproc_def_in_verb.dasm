@@ -1,0 +1,14 @@
+{ Program 'PPDV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file preproc_def_in_verb.cod }
+{ md5sum fcc445c226dcfee0adcbe743b2591caa }
+
+PROGRAM PPDV;
+
+PROC main =
+    MOVE '10', RDA0;
+    ADD 10, RDA1;
+    CJNE RDA0, '10', label_25;
+    MOVE '0', RDA0;
+  label_25:
+END_PROC

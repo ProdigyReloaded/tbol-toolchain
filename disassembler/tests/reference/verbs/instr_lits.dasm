@@ -1,0 +1,10 @@
+{ Program 'INSTR2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file instr_lits.cod }
+{ md5sum 92a03465460daabb4b03e6c9b0ba7072 }
+
+PROGRAM INSTR2;
+
+PROC main =
+    INSTR RDA0, 'x', RDA1;
+END_PROC

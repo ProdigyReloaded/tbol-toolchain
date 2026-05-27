@@ -1,0 +1,5 @@
+PROGRAM BADDATA;
+DATA dt = A B;
+PROC main =
+    MOVE '0', I1;
+END_PROC

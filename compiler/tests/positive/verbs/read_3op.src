@@ -1,0 +1,5 @@
+PROGRAM TSTRD3;
+DATA dt = A, B;
+PROC main =
+    READ A, B, 314;
+END_PROC

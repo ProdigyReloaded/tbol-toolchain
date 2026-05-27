@@ -1,0 +1,10 @@
+{ Program 'TSTPRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file purge_cache.cod }
+{ md5sum 78291e6097f824e09864331f9370f042 }
+
+PROGRAM TSTPRG;
+
+PROC main =
+    PURGE_CACHE;
+END_PROC

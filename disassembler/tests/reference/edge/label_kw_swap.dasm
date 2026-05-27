@@ -1,0 +1,13 @@
+{ Program 'LKWSWP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file label_kw_swap.cod }
+{ md5sum df5ae55411a55476ec14a5f6623e38cf }
+
+PROGRAM LKWSWP;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    SWAP RDA0, RDA1;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM TSTOR;
+DATA dt = A;
+PROC main =
+    OR '1', A;
+END_PROC

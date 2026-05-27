@@ -1,0 +1,15 @@
+{ Program 'IFNST4' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_nested_4.cod }
+{ md5sum a43c89ad37b7003c6034b8f00f1f6cb8 }
+
+PROGRAM IFNST4;
+
+PROC main =
+    CJNE RDA0, '1', label_33;
+    CJNE RDA1, '2', label_33;
+    CJNE RDA2, '3', label_33;
+    CJNE RDA3, '4', label_33;
+    MOVE '5', RDA4;
+  label_33:
+END_PROC

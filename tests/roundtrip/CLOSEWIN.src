@@ -1,0 +1,14 @@
+PROGRAM T_CLOSEWIN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { CLOSE_WINDOW }
+    CLOSE_WINDOW;
+
+    RETURN;
+END_PROC

@@ -1,0 +1,12 @@
+{ Program 'TDCLRST' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file clear_struct.cod }
+{ md5sum 7501f5a0e45b4233d82523370f5d8f87 }
+
+PROGRAM TDCLRST;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE '2', RDA1;
+    CLEAR RDA0;
+END_PROC

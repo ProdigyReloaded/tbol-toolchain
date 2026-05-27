@@ -1,0 +1,31 @@
+{ Program 'IFCH5' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file if_else_chain_5.cod }
+{ md5sum f9c4d4564ba3e1494e45e75908bca4b4 }
+
+PROGRAM IFCH5;
+
+PROC main =
+    CJNE RDA0, '1', label_15;
+    MOVE '1', RDA1;
+    JUMP label_80;
+  label_15:
+    CJNE RDA0, '2', label_30;
+    MOVE '2', RDA1;
+    JUMP label_80;
+  label_30:
+    CJNE RDA0, '3', label_45;
+    MOVE '3', RDA1;
+    JUMP label_80;
+  label_45:
+    CJNE RDA0, '4', label_60;
+    MOVE '4', RDA1;
+    JUMP label_80;
+  label_60:
+    CJNE RDA0, '5', label_75;
+    MOVE '5', RDA1;
+    JUMP label_80;
+  label_75:
+    MOVE '6', RDA1;
+  label_80:
+END_PROC

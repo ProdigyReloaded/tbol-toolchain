@@ -1,0 +1,28 @@
+PROGRAM T_FORMAT;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    { FORMAT with 3 operands }
+    FORMAT RDA0, RDA1, RDA2;
+
+    { FORMAT with literals }
+    FORMAT 'DATA', 'FMT', RDA2;
+
+    { FORMAT with P registers }
+    MOVE 'VALUE', P0;
+    MOVE 'PATTERN', P1;
+    FORMAT P0, P1, RDA2;
+
+    { FORMAT with I register }
+    MOVE 12345, I1;
+    FORMAT I1, 'ZZZZZ', RDA2;
+
+    RETURN;
+END_PROC

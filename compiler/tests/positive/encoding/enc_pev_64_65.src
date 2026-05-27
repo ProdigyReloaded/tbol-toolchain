@@ -1,0 +1,6 @@
+PROGRAM EPEV6465;
+DATA dt = A, B;
+PROC main =
+    MOVE &64, A;
+    MOVE &65, B;
+END_PROC

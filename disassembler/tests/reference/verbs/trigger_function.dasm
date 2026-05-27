@@ -1,0 +1,10 @@
+{ Program 'TSTTRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file trigger_function.cod }
+{ md5sum a2447bc7d03ac247223131ac07573408 }
+
+PROGRAM TSTTRG;
+
+PROC main =
+    TRIGGER_FUNCTION ADD_TEXT;
+END_PROC

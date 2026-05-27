@@ -1,0 +1,5 @@
+PROGRAM MULRI;
+DATA dt = A, B, C;
+PROC main =
+    MULTIPLY I1, A;
+END_PROC

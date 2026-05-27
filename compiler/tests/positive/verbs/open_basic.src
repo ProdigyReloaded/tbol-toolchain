@@ -1,0 +1,5 @@
+PROGRAM TSTOPN;
+DATA dt = A;
+PROC main =
+    OPEN '1', '2';
+END_PROC

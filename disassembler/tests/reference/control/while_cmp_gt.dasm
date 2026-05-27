@@ -1,0 +1,13 @@
+{ Program 'WHGT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_cmp_gt.cod }
+{ md5sum e482bcc2b3f192e52767d1b79a17e8e8 }
+
+PROGRAM WHGT;
+
+PROC main =
+    CJLE I1, 0, label_15;
+    SUBTRACT 1, I1;
+    JUMP main;
+  label_15:
+END_PROC

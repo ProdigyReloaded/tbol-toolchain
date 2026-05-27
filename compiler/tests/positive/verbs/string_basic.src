@@ -1,0 +1,5 @@
+PROGRAM TSTSTR;
+DATA dt = A;
+PROC main =
+    STRING A, 'hello';
+END_PROC

@@ -1,0 +1,11 @@
+PROGRAM T_TIMOFF;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    TIMER_OFF RDA0;
+    TIMER_OFF '1';
+    RETURN;
+END_PROC

@@ -1,0 +1,9 @@
+PROGRAM LAWH;
+DATA dt = A, B;
+PROC main =
+    WHILE A = '1' THEN DO
+        MOVE '0', A;
+    END;
+AFTER:
+    MOVE '2', B;
+END_PROC

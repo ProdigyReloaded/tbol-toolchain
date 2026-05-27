@@ -1,0 +1,10 @@
+{ Program 'TEPV200' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_pev_200.cod }
+{ md5sum 73ef36d1ab9baab397cf470e43537e5d }
+
+PROGRAM TEPV200;
+
+PROC main =
+    MOVE &200, RDA0;
+END_PROC

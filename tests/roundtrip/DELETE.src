@@ -1,0 +1,24 @@
+PROGRAM T_DELETE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { DELETE with RDA }
+    DELETE RDA0;
+
+    { DELETE with literal }
+    DELETE 'FILENAME';
+
+    { DELETE with P register }
+    MOVE 'TESTFILE', P0;
+    DELETE P0;
+
+    { DELETE with GEV }
+    DELETE SYS_RETURN_CODE;
+
+    RETURN;
+END_PROC

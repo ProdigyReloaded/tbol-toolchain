@@ -1,0 +1,5 @@
+PROGRAM TSTNVN;
+DATA dt = A;
+PROC main =
+    NAVIGATE NEXT;
+END_PROC

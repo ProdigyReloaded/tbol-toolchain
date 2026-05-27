@@ -1,0 +1,26 @@
+# Valgrind leak suppressions for Dockerfile.valgrind
+#
+# The Ubuntu 24.04 image ships bash 5.2.  When ctest -T memcheck wraps each
+# test script under valgrind, every bash subshell that runs (the test
+# runner itself and every tool it spawns) leaks a small fixed number of
+# bytes from its own internal data structures: I/O redirection state from
+# redirection_expand(), argv arrays from strvec_from_word_list(), and a
+# handful of other word-list and execute_command_internal sites.
+#
+# We verified that TBOL binaries themselves are clean by running valgrind
+# directly on each tool with a representative input:
+#
+#   tbolc, tboldc, tboldasm, tbolfmt    -> definitely lost: 0 bytes
+#   test-lsp (16,510 allocs, 16,506 frees, 1.6 MB total) -> 0 bytes lost
+#
+# Bash never calls into TBOL code, so suppressing any definite leak whose
+# top frame is malloc() called from /usr/bin/bash cannot mask a real leak
+# in TBOL.  Any leak rooted in a TBOL binary will still be reported.
+
+{
+   bash-internal-allocation
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   obj:/usr/bin/bash
+}

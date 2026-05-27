@@ -1,0 +1,15 @@
+{ Program 'CLREG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_with_reg.cod }
+{ md5sum 5134f1409658fd2945bc0871b8cf0762 }
+
+PROGRAM CLREG;
+
+PROC main =
+    MOVE 42, I1;
+    proc_1 I1;
+END_PROC
+
+PROC proc_1 =
+    MOVE P1, RDA0;
+END_PROC

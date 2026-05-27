@@ -1,0 +1,10 @@
+{ Program 'LEN2' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file length_reg.cod }
+{ md5sum 0e73450c6d8b74c4531435e6c7c430d3 }
+
+PROGRAM LEN2;
+
+PROC main =
+    LENGTH I1, RDA0;
+END_PROC

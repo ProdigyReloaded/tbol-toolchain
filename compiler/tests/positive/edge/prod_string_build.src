@@ -1,0 +1,9 @@
+PROGRAM PSTRBLD;
+DATA
+    dt = OUTPUT, PART1, PART2, SEP;
+PROC main =
+    MOVE 'hello', PART1;
+    MOVE 'world', PART2;
+    MOVE ' ', SEP;
+    STRING OUTPUT, PART1, SEP, PART2;
+END_PROC

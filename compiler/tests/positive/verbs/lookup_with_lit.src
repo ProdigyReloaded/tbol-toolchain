@@ -1,0 +1,5 @@
+PROGRAM LKUPLIT;
+DATA dt = A, B, C;
+PROC main =
+    LOOKUP '1', A, '1', '5', B;
+END_PROC

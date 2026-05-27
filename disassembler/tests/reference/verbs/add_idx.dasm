@@ -1,0 +1,10 @@
+{ Program 'ADIDX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file add_idx.cod }
+{ md5sum a69ba0fb6618bd2151e3b6a1813cf24c }
+
+PROGRAM ADIDX;
+
+PROC main =
+    ADD 1, RDA0(I1);
+END_PROC

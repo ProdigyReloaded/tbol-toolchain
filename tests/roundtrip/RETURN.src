@@ -1,0 +1,33 @@
+PROGRAM T_RETURN;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    { Basic RETURN (no operand) }
+    RETURN;
+END_PROC
+
+PROC test1 =
+    { RETURN with return code }
+    RETURN RDA0;
+END_PROC
+
+PROC test2 =
+    { RETURN with literal }
+    RETURN '0';
+END_PROC
+
+PROC test3 =
+    { RETURN with I register }
+    MOVE 1, I1;
+    RETURN I1;
+END_PROC
+
+PROC test4 =
+    { RETURN with GEV }
+    RETURN SYS_RETURN_CODE;
+END_PROC

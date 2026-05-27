@@ -1,0 +1,10 @@
+{ Program 'SUBVAR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sub_var.cod }
+{ md5sum 4c461536e22576747406a766e95e9d49 }
+
+PROGRAM SUBVAR;
+
+PROC main =
+    SUBTRACT RDA1, RDA0;
+END_PROC

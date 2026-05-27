@@ -1,0 +1,26 @@
+{ Program 'GOTODP5' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file goto_dep_5.cod }
+{ md5sum a08522f7081202a269a2f9facf51aedb }
+
+PROGRAM GOTODP5;
+
+PROC main =
+    GOTO_DEPENDING_ON RDA0, label_13, label_21, label_29, label_37, label_45;
+  label_13:
+    MOVE '1', RDA1;
+    JUMP label_50;
+  label_21:
+    MOVE '2', RDA1;
+    JUMP label_50;
+  label_29:
+    MOVE '3', RDA1;
+    JUMP label_50;
+  label_37:
+    MOVE '4', RDA1;
+    JUMP label_50;
+  label_45:
+    MOVE '5', RDA1;
+  label_50:
+    MOVE '0', RDA0;
+END_PROC

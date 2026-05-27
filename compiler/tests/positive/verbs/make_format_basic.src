@@ -1,0 +1,5 @@
+PROGRAM TSTMKFM;
+DATA dt = A, B;
+PROC main =
+    MAKE_FORMAT A, B:5;
+END_PROC

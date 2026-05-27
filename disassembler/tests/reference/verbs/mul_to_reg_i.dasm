@@ -1,0 +1,10 @@
+{ Program 'MULTRI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_to_reg_i.cod }
+{ md5sum 1b309a34552a19f6a14b8b23ba61497f }
+
+PROGRAM MULTRI;
+
+PROC main =
+    MULTIPLY 2, I1;
+END_PROC

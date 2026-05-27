@@ -1,0 +1,5 @@
+PROGRAM TSTMLT;
+DATA dt = A;
+PROC main =
+    STRING A, 'hello', ' ', 'world';
+END_PROC

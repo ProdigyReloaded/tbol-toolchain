@@ -1,0 +1,10 @@
+{ Program 'TSTCON' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file connect_basic.cod }
+{ md5sum a9c22eda55f0487539643a3a3b7036c0 }
+
+PROGRAM TSTCON;
+
+PROC main =
+    CONNECT '1';
+END_PROC

@@ -1,0 +1,179 @@
+{
+  "name": "prodigy-tbol",
+  "displayName": "Prodigy TBOL",
+  "description": "Language support for TBOL (TRINTEX Basic Object Language)",
+  "version": "0.1.0",
+  "author": "Phillip Heller",
+  "publisher": "ProdigyReloaded",
+  "license": "GPL-3.0-only",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProdigyReloaded/tbol-tools"
+  },
+  "bugs": {
+    "url": "https://github.com/ProdigyReloaded/tbol-tools/issues"
+  },
+  "homepage": "https://github.com/ProdigyReloaded/tbol-tools#readme",
+  "keywords": [
+    "tbol",
+    "prodigy",
+    "prodigy-reloaded",
+    "language",
+    "language-server"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:tbol",
+    "onUri"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configurationDefaults": {
+      "[tbol]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.colorDecorators": false
+      }
+    },
+    "languages": [
+      {
+        "id": "tbol",
+        "aliases": [
+          "TBOL",
+          "tbol"
+        ],
+        "extensions": [
+          ".src",
+          ".SRC"
+        ],
+        "filenamePatterns": [
+          "*COPY",
+          "*GCOPY",
+          "*GTSYS",
+          "*OIDS",
+          "*SYS",
+          "*copy",
+          "*sys"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tbol",
+        "scopeName": "source.tbol",
+        "path": "./syntaxes/tbol.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "tbol.decompile",
+        "title": "Decompile .COD/.PGM File",
+        "category": "TBOL"
+      },
+      {
+        "command": "tbol.disassemble",
+        "title": "Disassemble .COD/.PGM File (raw)",
+        "category": "TBOL"
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "tbol",
+        "required": ["file"],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The TBOL source file to compile"
+          }
+        }
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "tbolc",
+        "owner": "tbol",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+):\\s+(error|warning|note):\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    ],
+    "configuration": {
+      "title": "TBOL",
+      "properties": {
+        "tbol.includePaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Paths to search for COPY files (in addition to the file's directory)"
+        },
+        "tbol.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the tbolc compiler executable. If empty, searches bundled, sibling, and PATH."
+        },
+        "tbol.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the tbol-lsp executable. If empty, uses bundled server."
+        },
+        "tbol.disassemblerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the tboldasm disassembler executable. If empty, searches bundled, sibling, and PATH."
+        },
+        "tbol.decompilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the tboldc decompiler executable. If empty, searches bundled, sibling, and PATH."
+        },
+        "tbol.unreferencedStyle": {
+          "type": "string",
+          "enum": ["strikethrough", "dim", "both", "none"],
+          "default": "strikethrough",
+          "description": "How to display unreferenced symbols (variables, labels, defines, procedures)."
+        },
+        "tbol.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the TBOL language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run bundle",
+    "compile": "tsc -p ./",
+    "bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.27.4",
+    "typescript": "^5.0.0"
+  }
+}

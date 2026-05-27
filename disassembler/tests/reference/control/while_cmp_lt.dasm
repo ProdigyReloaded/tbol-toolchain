@@ -1,0 +1,13 @@
+{ Program 'WHLT' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file while_cmp_lt.cod }
+{ md5sum a101ec9ac994cdb216220ba4fc5047d3 }
+
+PROGRAM WHLT;
+
+PROC main =
+    CJGE I1, 10, label_16;
+    ADD 1, I1;
+    JUMP main;
+  label_16:
+END_PROC

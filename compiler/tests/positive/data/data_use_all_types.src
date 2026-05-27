@@ -1,0 +1,11 @@
+PROGRAM TDALTYP;
+DATA dt = A, B;
+PROC main =
+    MOVE 'rda', A;
+    MOVE A, B;
+    MOVE '1', I1;
+    MOVE '2', D1;
+    MOVE 'param', P1;
+    MOVE &5, A;
+    MOVE #100, B;
+END_PROC

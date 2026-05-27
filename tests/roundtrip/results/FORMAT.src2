@@ -1,0 +1,18 @@
+PROGRAM T_FORMAT;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+
+PROC main =
+    FORMAT RDA0, RDA1, RDA2;
+    FORMAT 'DATA', 'FMT', RDA2;
+    MOVE 'VALUE', P0;
+    MOVE 'PATTERN', P1;
+    FORMAT P0, P1, RDA2;
+    MOVE 12345, I1;
+    FORMAT I1, 'ZZZZZ', RDA2;
+    RETURN;
+END_PROC

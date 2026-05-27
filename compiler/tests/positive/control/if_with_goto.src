@@ -1,0 +1,8 @@
+PROGRAM IFWGO;
+DATA dt = A, B;
+PROC main =
+    IF A = '1' THEN GOTO SKIP;
+    MOVE '2', B;
+SKIP:
+    MOVE '3', A;
+END_PROC

@@ -1,0 +1,16 @@
+{ Program 'CLCOND' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:050 }
+{ Original file call_conditional.cod }
+{ md5sum 4a5fcd14b52121b1f4a8d0b14b4c9b59 }
+
+PROGRAM CLCOND;
+
+PROC main =
+    CJNE RDA0, '1', label_11;
+    proc_1;
+  label_11:
+END_PROC
+
+PROC proc_1 =
+    MOVE '1', RDA1;
+END_PROC

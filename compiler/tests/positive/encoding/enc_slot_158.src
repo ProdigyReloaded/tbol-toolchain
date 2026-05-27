@@ -1,0 +1,5 @@
+PROGRAM TESL158;
+DATA dt = PAD(156), A, B, C, D;
+PROC main =
+    MOVE '1', D;
+END_PROC

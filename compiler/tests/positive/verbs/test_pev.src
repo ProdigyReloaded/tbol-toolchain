@@ -1,0 +1,5 @@
+PROGRAM TSTPEV;
+DATA dt = A, B, C;
+PROC main =
+    TEST &1, &2;
+END_PROC

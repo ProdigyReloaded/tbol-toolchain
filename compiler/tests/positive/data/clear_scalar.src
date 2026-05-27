@@ -1,0 +1,6 @@
+PROGRAM TDCLRSC;
+DATA dt = A;
+PROC main =
+    MOVE 'hello', A;
+    CLEAR A;
+END_PROC

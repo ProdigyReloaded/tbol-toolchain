@@ -1,0 +1,19 @@
+PROGRAM PNSTIF;
+DATA
+    dt = MODE, STATUS, RESULT, FLAG;
+PROC main =
+    IF MODE = '1' THEN DO
+        IF STATUS = '0' THEN DO
+            MOVE '1', RESULT;
+            MOVE '1', FLAG;
+        END; ELSE DO
+            MOVE '2', RESULT;
+        END;
+    END; ELSE IF MODE = '2' THEN DO
+        MOVE '3', RESULT;
+    END; ELSE DO
+        MOVE '0', RESULT;
+        MOVE '0', FLAG;
+    END;
+    EXIT RESULT;
+END_PROC

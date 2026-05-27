@@ -1,0 +1,29 @@
+{ Program 'MANYPR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file many_procs.cod }
+{ md5sum a2dca765855b1c177b59e78d9459b326 }
+
+PROGRAM MANYPR;
+
+PROC main =
+    proc_1;
+    proc_2;
+    proc_3;
+    proc_4;
+END_PROC
+
+PROC proc_1 =
+    MOVE '1', RDA0;
+END_PROC
+
+PROC proc_2 =
+    MOVE '2', RDA0;
+END_PROC
+
+PROC proc_3 =
+    MOVE '3', RDA0;
+END_PROC
+
+PROC proc_4 =
+    MOVE '4', RDA0;
+END_PROC

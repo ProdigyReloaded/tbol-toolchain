@@ -1,0 +1,10 @@
+PROGRAM TDSTCSR;
+DATA dt = A, B, C;
+PROC main =
+    MOVE '1', A;
+    MOVE '2', B;
+    MOVE '3', C;
+    CLEAR dt;
+    SAVE A, B, C;
+    RESTORE A, B;
+END_PROC

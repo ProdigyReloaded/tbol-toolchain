@@ -1,0 +1,5 @@
+PROGRAM DIVLV;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE '10', A;
+END_PROC

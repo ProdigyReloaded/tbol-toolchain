@@ -1,0 +1,8 @@
+PROGRAM LBLWRITE;
+DATA dt = A, B;
+PROC main =
+    GOTO WRITE;
+    MOVE '1', A;
+WRITE:
+    MOVE '2', B;
+END_PROC

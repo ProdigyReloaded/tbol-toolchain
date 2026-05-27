@@ -1,0 +1,6 @@
+PROGRAM T_WAIT;
+
+PROC main =
+    WAIT;
+    RETURN;
+END_PROC

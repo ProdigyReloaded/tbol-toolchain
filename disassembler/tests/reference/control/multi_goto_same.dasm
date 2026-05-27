@@ -1,0 +1,21 @@
+{ Program 'MGSAME' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file multi_goto_same.cod }
+{ md5sum 0d33fc60eaad3f4d4bb7406b0e419051 }
+
+PROGRAM MGSAME;
+
+PROC main =
+    CJNE RDA0, '1', label_10;
+    JUMP label_35;
+  label_10:
+    CJNE RDA1, '2', label_20;
+    JUMP label_35;
+  label_20:
+    CJNE RDA2, '3', label_30;
+    JUMP label_35;
+  label_30:
+    MOVE '0', RDA0;
+  label_35:
+    MOVE '4', RDA0;
+END_PROC

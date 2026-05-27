@@ -1,0 +1,5 @@
+PROGRAM BARRZ;
+DATA dt = A(0);
+PROC main =
+    MOVE '0', I1;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM BOOLREG;
+DATA dt = A;
+PROC main =
+    IF I1 = '0' AND I2 > '5' THEN MOVE '1', A;
+END_PROC

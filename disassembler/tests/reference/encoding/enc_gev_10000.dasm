@@ -1,0 +1,10 @@
+{ Program 'EGV10K' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_gev_10000.cod }
+{ md5sum fcba745e1859bd64a4ebbf0169e07993 }
+
+PROGRAM EGV10K;
+
+PROC main =
+    MOVE #10000, RDA0;
+END_PROC

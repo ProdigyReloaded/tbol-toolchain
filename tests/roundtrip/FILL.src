@@ -1,0 +1,29 @@
+PROGRAM T_FILL;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1(10);
+
+PROC main =
+    { Basic FILL (3 operands: dest, char, count) }
+    FILL RDA0, '*', 10;
+
+    { FILL with I register count }
+    MOVE 15, I1;
+    FILL RDA0, '#', I1;
+
+    { FILL indexed RDA }
+    FILL RDA1(1), '*', 5;
+
+    { FILL with variable index }
+    MOVE 3, I2;
+    FILL RDA1(I2), '+', 8;
+
+    { FILL with P register dest }
+    FILL P0, '=', 10;
+
+    RETURN;
+END_PROC

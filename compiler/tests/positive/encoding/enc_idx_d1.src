@@ -1,0 +1,6 @@
+PROGRAM EIDXD1;
+DATA dt = A(5);
+PROC main =
+    MOVE '0', D1;
+    MOVE 'val', A(D1);
+END_PROC

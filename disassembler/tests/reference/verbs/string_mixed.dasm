@@ -1,0 +1,10 @@
+{ Program 'STRMIX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_mixed.cod }
+{ md5sum e399f2e12affce196c6ab1ea162d2c12 }
+
+PROGRAM STRMIX;
+
+PROC main =
+    STRING RDA0, I1, &1, #1, 'x';
+END_PROC

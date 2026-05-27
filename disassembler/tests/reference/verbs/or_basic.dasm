@@ -1,0 +1,10 @@
+{ Program 'TSTOR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file or_basic.cod }
+{ md5sum 2b8a08b561c5f5f196de597f04f24813 }
+
+PROGRAM TSTOR;
+
+PROC main =
+    OR '1', RDA0;
+END_PROC

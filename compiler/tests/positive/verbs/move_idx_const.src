@@ -1,0 +1,5 @@
+PROGRAM MVIDXC;
+DATA dt = A(5), B;
+PROC main =
+    MOVE A(3), B;
+END_PROC

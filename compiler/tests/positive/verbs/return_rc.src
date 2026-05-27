@@ -1,0 +1,8 @@
+PROGRAM TSTRETR;
+DATA dt = A;
+PROC main =
+    helper;
+END_PROC
+PROC helper =
+    RETURN A;
+END_PROC

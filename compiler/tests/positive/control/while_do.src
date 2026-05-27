@@ -1,0 +1,8 @@
+PROGRAM WHDO;
+DATA dt = A, B, C;
+PROC main =
+    WHILE A = '1' THEN DO
+        MOVE '2', B;
+        MOVE '3', C;
+    END;
+END_PROC

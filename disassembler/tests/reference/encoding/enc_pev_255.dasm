@@ -1,0 +1,10 @@
+{ Program 'EPEV255' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_pev_255.cod }
+{ md5sum 4a6073b5df96689f283601c8e14edb31 }
+
+PROGRAM EPEV255;
+
+PROC main =
+    MOVE &255, RDA0;
+END_PROC

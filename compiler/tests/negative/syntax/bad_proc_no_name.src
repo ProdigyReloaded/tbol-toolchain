@@ -1,0 +1,5 @@
+PROGRAM BPNON;
+DATA dt = A;
+PROC =
+    MOVE '1', A;
+END_PROC

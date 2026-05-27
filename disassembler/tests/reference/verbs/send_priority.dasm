@@ -1,0 +1,10 @@
+{ Program 'SNDPRI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file send_priority.cod }
+{ md5sum b332c893e7d8de6446e398972246b07a }
+
+PROGRAM SNDPRI;
+
+PROC main =
+    SEND RDA0, PRIORITY;
+END_PROC

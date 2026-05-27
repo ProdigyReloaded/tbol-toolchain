@@ -1,0 +1,10 @@
+{ Program 'SUBSR3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file substr_mixed.cod }
+{ md5sum dbb8178d369d8891ed22d1f388355be5 }
+
+PROGRAM SUBSR3;
+
+PROC main =
+    SUBSTR RDA0, RDA1, I1, 5;
+END_PROC

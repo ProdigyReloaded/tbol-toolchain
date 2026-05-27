@@ -1,0 +1,11 @@
+PROGRAM DUPP;
+DATA dt = A;
+PROC helper =
+    MOVE '0', I1;
+END_PROC
+PROC helper =
+    MOVE '0', I1;
+END_PROC
+PROC main =
+    MOVE '0', I1;
+END_PROC

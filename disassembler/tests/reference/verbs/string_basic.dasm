@@ -1,0 +1,10 @@
+{ Program 'TSTSTR' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_basic.cod }
+{ md5sum 91dcf87d0ebd6080a27ba653e24fc153 }
+
+PROGRAM TSTSTR;
+
+PROC main =
+    STRING RDA0, 'hello';
+END_PROC

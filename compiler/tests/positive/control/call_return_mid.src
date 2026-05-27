@@ -1,0 +1,10 @@
+PROGRAM CALLRETM;
+DATA dt = A, B;
+PROC main =
+    helper;
+END_PROC
+PROC helper =
+    MOVE '1', A;
+    IF A = '1' THEN RETURN;
+    MOVE '2', B;
+END_PROC

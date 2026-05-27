@@ -1,0 +1,21 @@
+{ Program 'KWLBLS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file keyword_labels.cod }
+{ md5sum f40ca50120a396127777d5e84ac3a7a2 }
+
+PROGRAM KWLBLS;
+
+PROC main =
+    JUMP label_8;
+    MOVE 0, I1;
+  label_8:
+    MOVE '1', RDA0;
+    JUMP label_21;
+    MOVE 0, I1;
+  label_21:
+    MOVE '2', RDA0;
+    JUMP label_34;
+    MOVE 0, I1;
+  label_34:
+    MOVE 0, I1;
+END_PROC

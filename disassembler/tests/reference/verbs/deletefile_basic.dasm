@@ -1,0 +1,10 @@
+{ Program 'TSTDELF' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file deletefile_basic.cod }
+{ md5sum 3be1cb230b69532579709109653fce40 }
+
+PROGRAM TSTDELF;
+
+PROC main =
+    DELETE RDA0;
+END_PROC

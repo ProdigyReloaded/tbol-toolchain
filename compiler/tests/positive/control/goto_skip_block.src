@@ -1,0 +1,8 @@
+PROGRAM GOSKIP;
+DATA dt = A, B, C;
+PROC main =
+    IF A = '1' THEN GOTO SKIP;
+    IF B = '2' THEN MOVE '3', C;
+SKIP:
+    MOVE '4', C;
+END_PROC

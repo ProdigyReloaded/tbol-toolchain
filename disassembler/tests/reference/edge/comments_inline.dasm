@@ -1,0 +1,11 @@
+{ Program 'CMTINL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file comments_inline.cod }
+{ md5sum 204fd15988343cf4a56f7811a39c3579 }
+
+PROGRAM CMTINL;
+
+PROC main =
+    MOVE '1', RDA0;
+    ADD 1, RDA0;
+END_PROC

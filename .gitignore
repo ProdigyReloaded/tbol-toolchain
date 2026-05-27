@@ -1,0 +1,62 @@
+# CMake
+build/
+build-*/
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+*.dSYM/
+
+# Compiled binaries (from in-tree builds, if any)
+compiler/tbolc
+compiler/tests/getbytecode
+decompiler/tboldc
+disassembler/tboldasm
+formatter/tbolfmt
+lsp/tbol-lsp
+lsp/test-lsp
+
+# Static analysis / coverage
+*.plist
+coverage/
+
+# Bison debug output
+compiler/parser/tbol.output
+
+# Generated parser/lexer files (keep .l and .y, ignore generated)
+# Note: we do commit lex.yy.c and tbol.tab.c for users without flex/bison
+
+# VS Code extension build output
+vscode-extension/out/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Test/build outputs
+*.cod
+!compiler/tests/positive/*/reference/*.cod
+*.lst
+*.sym
+
+# Scratch / temp directories
+tt/
+tests/tmp/
+attic/
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Local-only files (per-developer scratch, not for release)
+*.local
+compiler/tests/gen_golden_local.sh

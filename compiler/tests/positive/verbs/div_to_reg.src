@@ -1,0 +1,5 @@
+PROGRAM DIVTR;
+DATA dt = A, B, C;
+PROC main =
+    DIVIDE '10', I1;
+END_PROC

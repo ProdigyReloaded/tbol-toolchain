@@ -1,0 +1,5 @@
+PROGRAM TSTMBLK;
+DATA dt = A(5), B(5);
+PROC main =
+    MOVE A, B;
+END_PROC

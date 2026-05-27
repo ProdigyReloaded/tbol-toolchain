@@ -1,0 +1,5 @@
+PROGRAM TEIDXCN;
+DATA dt = A(10);
+PROC main =
+    MOVE 'val', A(3);
+END_PROC

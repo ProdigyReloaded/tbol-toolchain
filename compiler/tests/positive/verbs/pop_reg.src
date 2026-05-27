@@ -1,0 +1,5 @@
+PROGRAM POP1;
+DATA dt = A, B, C;
+PROC main =
+    POP I1;
+END_PROC

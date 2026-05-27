@@ -1,0 +1,10 @@
+{ Program 'DIVLV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file div_lit_var.cod }
+{ md5sum 40d96afc7bbbbeac580d7aac98d34165 }
+
+PROGRAM DIVLV;
+
+PROC main =
+    DIVIDE 10, RDA0;
+END_PROC

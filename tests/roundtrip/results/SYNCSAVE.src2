@@ -1,0 +1,6 @@
+PROGRAM T_SYNCSAVE;
+
+PROC main =
+    SYNC_SAVE;
+    RETURN;
+END_PROC

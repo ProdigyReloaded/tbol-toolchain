@@ -1,0 +1,5 @@
+PROGRAM DFFLD7;
+DATA dt = A, B;
+PROC main =
+    DEFINE_FIELD A, '1', '2', '3', '4', '5', '6';
+END_PROC

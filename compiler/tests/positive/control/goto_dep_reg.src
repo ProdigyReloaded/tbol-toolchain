@@ -1,0 +1,16 @@
+PROGRAM GDOREG;
+DATA dt = A;
+PROC main =
+    MOVE '2', I1;
+    GOTO_DEPENDING_ON I1, LBL1, LBL2, LBL3;
+LBL1:
+    MOVE '1', A;
+    GOTO LBL4;
+LBL2:
+    MOVE '2', A;
+    GOTO LBL4;
+LBL3:
+    MOVE '3', A;
+LBL4:
+    MOVE '0', I1;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM IFREGRG;
+DATA dt = A, B;
+PROC main =
+    IF I1 = I2 THEN MOVE '0', I1;
+END_PROC

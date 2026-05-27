@@ -1,0 +1,12 @@
+PROGRAM T_CONNECT;
+
+DATA
+  vars =
+    RDA0;
+
+PROC main =
+    CONNECT RDA0;
+    CONNECT 'HOST';
+    CONNECT P0;
+    RETURN;
+END_PROC

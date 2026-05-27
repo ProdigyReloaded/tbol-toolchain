@@ -1,0 +1,5 @@
+PROGRAM LITSTR;
+DATA dt = A;
+PROC main =
+    STRING '1', A;
+END_PROC

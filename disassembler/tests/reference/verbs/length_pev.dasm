@@ -1,0 +1,10 @@
+{ Program 'LEN3' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file length_pev.cod }
+{ md5sum 309880f7c762a1c2086ca949c32a9ed3 }
+
+PROGRAM LEN3;
+
+PROC main =
+    LENGTH &1, RDA0;
+END_PROC

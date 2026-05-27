@@ -1,0 +1,5 @@
+PROGRAM IFPEV2;
+DATA dt = A;
+PROC main =
+    IF &1 = '1' AND &2 = '2' THEN MOVE '3', A;
+END_PROC

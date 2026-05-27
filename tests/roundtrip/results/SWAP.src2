@@ -1,0 +1,23 @@
+PROGRAM T_SWAP;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2,
+    RDA3;
+
+PROC main =
+    SWAP RDA0, RDA1;
+    SWAP P0, P1;
+    SWAP I1, I2;
+    SWAP RDA0, P0;
+    SWAP RDA2, RDA3;
+    MOVE 3, I3;
+    SWAP RDA2(I3), RDA0;
+    SWAP &1, RDA0;
+    SWAP SYS_RETURN_CODE, RDA0;
+    RETURN;
+END_PROC

@@ -1,0 +1,10 @@
+PROGRAM GOTOFWH;
+DATA dt = A, B;
+PROC main =
+    WHILE A = '1' THEN DO
+        MOVE '2', B;
+        IF B = '2' THEN GOTO EXIT;
+    END;
+EXIT:
+    MOVE '3', A;
+END_PROC

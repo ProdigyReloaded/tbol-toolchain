@@ -1,0 +1,17 @@
+PROGRAM UPPERCAS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;                               { array, bounds unknown }
+
+PROC main =
+    UPPERCASE RDA0;
+    MOVE 'hello', P0;
+    UPPERCASE P0;
+    UPPERCASE RDA1;
+    MOVE 3, I1;
+    UPPERCASE RDA1(I1);
+    UPPERCASE &1;
+    RETURN;
+END_PROC

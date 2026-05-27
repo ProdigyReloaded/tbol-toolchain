@@ -1,0 +1,7 @@
+PROGRAM MKFMTI;
+DATA dt = FMT(3), FLD1, FLD2;
+PROC main =
+    MAKE_FORMAT FMT(I1),
+        FLD1:10,
+        FLD2:5;
+END_PROC

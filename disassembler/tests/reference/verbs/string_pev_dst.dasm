@@ -1,0 +1,10 @@
+{ Program 'STRPDST' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file string_pev_dst.cod }
+{ md5sum dd5c1d61922ade3d94b5711d75d66d01 }
+
+PROGRAM STRPDST;
+
+PROC main =
+    STRING &1, RDA0, RDA1;
+END_PROC

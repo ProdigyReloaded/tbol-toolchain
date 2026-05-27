@@ -1,0 +1,5 @@
+PROGRAM BADTOK;
+DATA dt = A;
+PROC main =
+    MOVE @invalid, A;
+END_PROC

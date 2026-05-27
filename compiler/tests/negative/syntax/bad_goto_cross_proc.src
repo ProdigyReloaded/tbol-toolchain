@@ -1,0 +1,9 @@
+PROGRAM BGTXP;
+DATA dt = A;
+PROC helper =
+THERE:
+    MOVE '1', A;
+END_PROC
+PROC main =
+    GOTO THERE;
+END_PROC

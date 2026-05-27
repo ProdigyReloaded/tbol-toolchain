@@ -1,0 +1,10 @@
+{ Program 'TSTCLA' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file close_all.cod }
+{ md5sum f2bf59add7110c9c595c9cd3f89b7a57 }
+
+PROGRAM TSTCLA;
+
+PROC main =
+    CLOSE RDA0;
+END_PROC

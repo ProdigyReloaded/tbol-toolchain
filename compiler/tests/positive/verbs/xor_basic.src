@@ -1,0 +1,5 @@
+PROGRAM TSTXOR;
+DATA dt = A;
+PROC main =
+    XOR '255', A;
+END_PROC

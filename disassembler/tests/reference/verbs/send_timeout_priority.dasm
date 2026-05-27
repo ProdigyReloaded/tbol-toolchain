@@ -1,0 +1,10 @@
+{ Program 'SNDTP' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file send_timeout_priority.cod }
+{ md5sum 0797a0eae6e0076dc53bf580c40af563 }
+
+PROGRAM SNDTP;
+
+PROC main =
+    SEND RDA0, RDA1, TIMEOUT(30), PRIORITY;
+END_PROC

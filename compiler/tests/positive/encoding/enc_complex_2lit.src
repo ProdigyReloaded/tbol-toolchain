@@ -1,0 +1,5 @@
+PROGRAM EC2LIT;
+DATA dt = A;
+PROC main =
+    STRING A, 'x', 'y';
+END_PROC

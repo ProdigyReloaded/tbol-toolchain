@@ -1,0 +1,10 @@
+{ Program 'SFBASIC' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file set_func_basic.cod }
+{ md5sum 1caec23e88d0fdab23596fe785d33035 }
+
+PROGRAM SFBASIC;
+
+PROC main =
+    SET_FUNCTION NAVIGATION, '1';
+END_PROC

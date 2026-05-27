@@ -1,0 +1,5 @@
+PROGRAM TSTMOV;
+DATA dt = A;
+PROC main =
+    MOVE 'hello', A;
+END_PROC

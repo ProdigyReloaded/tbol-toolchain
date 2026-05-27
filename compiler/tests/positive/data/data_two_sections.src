@@ -1,0 +1,8 @@
+PROGRAM TDTWOSEC;
+DATA
+    grp1 = A, B;
+    grp2 = C, D;
+PROC main =
+    MOVE A, C;
+    MOVE B, D;
+END_PROC

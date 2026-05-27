@@ -1,0 +1,10 @@
+{ Program 'MULSL' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file mul_str_lit.cod }
+{ md5sum c75dc4a2ff12059194f13ee0588c9cd8 }
+
+PROGRAM MULSL;
+
+PROC main =
+    MULTIPLY 5, RDA0;
+END_PROC

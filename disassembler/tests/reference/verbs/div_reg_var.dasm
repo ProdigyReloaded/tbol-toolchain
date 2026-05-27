@@ -1,0 +1,10 @@
+{ Program 'DIVRV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file div_reg_var.cod }
+{ md5sum 9a6658bfa94f3ed085a33a68951a94b1 }
+
+PROGRAM DIVRV;
+
+PROC main =
+    DIVIDE I1, RDA0;
+END_PROC

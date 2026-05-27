@@ -1,0 +1,12 @@
+{ Program 'IFREGRG' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file if_reg_reg.cod }
+{ md5sum 515f730a0faba1736b5110aaabffe937 }
+
+PROGRAM IFREGRG;
+
+PROC main =
+    CJNE I1, I2, label_10;
+    MOVE 0, I1;
+  label_10:
+END_PROC

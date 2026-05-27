@@ -1,0 +1,5 @@
+PROGRAM MNYPSH;
+DATA dt = A, B;
+PROC main =
+    PUSH A, B;
+END_PROC

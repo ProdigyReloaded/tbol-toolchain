@@ -1,0 +1,11 @@
+{ Program 'BLANKS' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file blank_lines.cod }
+{ md5sum 25f53d2783108d54cf1db387068f8eb2 }
+
+PROGRAM BLANKS;
+
+PROC main =
+    MOVE '1', RDA0;
+    ADD 1, RDA0;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM FEWDIV;
+DATA dt = A;
+PROC main =
+    DIVIDE A;
+END_PROC

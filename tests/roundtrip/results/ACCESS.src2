@@ -1,0 +1,18 @@
+PROGRAM T_ACCESS;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    ACCESS RDA0, RDA1;
+    ACCESS 'RESOURCE', 'MODE';
+    MOVE 'FILE', P0;
+    MOVE 'R', P1;
+    ACCESS P0, P1;
+    ACCESS SYS_RETURN_CODE, RDA1;
+    RETURN;
+END_PROC

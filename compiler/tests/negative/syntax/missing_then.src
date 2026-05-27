@@ -1,0 +1,5 @@
+PROGRAM NOTHEN;
+DATA dt = A;
+PROC main =
+    IF A = '1' MOVE '2', A;
+END_PROC

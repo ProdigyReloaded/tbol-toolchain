@@ -1,0 +1,10 @@
+{ Program 'TSTNAV' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file navigate_basic.cod }
+{ md5sum d9300e0fcc0712e5ff8852755f00c9b8 }
+
+PROGRAM TSTNAV;
+
+PROC main =
+    NAVIGATE '12345678';
+END_PROC

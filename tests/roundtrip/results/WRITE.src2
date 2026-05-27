@@ -1,0 +1,18 @@
+PROGRAM T_WRITE;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1;
+
+PROC main =
+    WRITE RDA0, RDA1;
+    WRITE 'FILE', 'data';
+    MOVE 'TESTFILE', P0;
+    MOVE 'content', P1;
+    WRITE P0, P1;
+    WRITE SYS_RETURN_CODE, RDA1;
+    RETURN;
+END_PROC

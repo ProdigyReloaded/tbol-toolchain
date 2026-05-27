@@ -1,0 +1,10 @@
+{ Program 'SUBRI' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file sub_reg_i.cod }
+{ md5sum 46fbc2707bbf6fbcb95a608ce3f11d4f }
+
+PROGRAM SUBRI;
+
+PROC main =
+    SUBTRACT I1, RDA0;
+END_PROC

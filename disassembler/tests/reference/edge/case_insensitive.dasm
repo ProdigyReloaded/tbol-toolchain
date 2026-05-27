@@ -1,0 +1,11 @@
+{ Program 'CASEMIX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file case_insensitive.cod }
+{ md5sum b8d634db97ddfbb2fd07eadf52cd7c8b }
+
+PROGRAM CASEMIX;
+
+PROC main =
+    MOVE '1', RDA0;
+    MOVE RDA0, RDA0;
+END_PROC

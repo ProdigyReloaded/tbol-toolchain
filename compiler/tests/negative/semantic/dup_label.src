@@ -1,0 +1,9 @@
+PROGRAM DUPL;
+DATA dt = A;
+PROC main =
+    MOVE '0', I1;
+SAME:
+    MOVE '0', I1;
+SAME:
+    MOVE '0', I1;
+END_PROC

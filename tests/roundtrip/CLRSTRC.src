@@ -1,0 +1,54 @@
+PROGRAM CLRSTRC;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1,
+    RDA2;
+  struct5 =
+    RDA3,
+    RDA4,
+    RDA5,
+    RDA6,
+    RDA7;
+  struct25 =
+    RDA10,
+    RDA11,
+    RDA12,
+    RDA13,
+    RDA14,
+    RDA15,
+    RDA16,
+    RDA17,
+    RDA18,
+    RDA19,
+    RDA20,
+    RDA21,
+    RDA22,
+    RDA23,
+    RDA24,
+    RDA25,
+    RDA26,
+    RDA27,
+    RDA28,
+    RDA29,
+    RDA30,
+    RDA31,
+    RDA32,
+    RDA33,
+    RDA34;
+
+PROC main =
+    { CLEAR 5-slot structure by name - should use opcode 0x51 }
+    CLEAR struct5;
+
+    { CLEAR 25-slot structure by name - should use opcode 0x51 }
+    CLEAR struct25;
+
+    { CLEAR range - should use opcode 0x52 }
+    CLEAR RDA0, RDA2;
+
+    RETURN;
+END_PROC

@@ -1,0 +1,5 @@
+PROGRAM ORREG;
+DATA dt = A, B, C;
+PROC main =
+    OR I1, A;
+END_PROC

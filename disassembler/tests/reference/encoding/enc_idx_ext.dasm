@@ -1,0 +1,11 @@
+{ Program 'EIDXEX' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file enc_idx_ext.cod }
+{ md5sum 7938a2bacdcc8a6dcf029a84a2080bf9 }
+
+PROGRAM EIDXEX;
+
+PROC main =
+    MOVE 0, I1;
+    MOVE 'val', RDA156(I1);
+END_PROC

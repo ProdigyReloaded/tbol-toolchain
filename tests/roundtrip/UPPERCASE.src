@@ -1,0 +1,29 @@
+PROGRAM UPPERCAS;
+
+COPY XXCGTSYS;
+
+DATA
+  vars =
+    RDA0,
+    RDA1(10);
+
+PROC main =
+    { Basic UPPERCASE }
+    UPPERCASE RDA0;
+
+    { UPPERCASE P register }
+    MOVE 'hello', P0;
+    UPPERCASE P0;
+
+    { UPPERCASE indexed RDA }
+    UPPERCASE RDA1(1);
+
+    { UPPERCASE with variable index }
+    MOVE 3, I1;
+    UPPERCASE RDA1(I1);
+
+    { UPPERCASE PEV }
+    UPPERCASE &1;
+
+    RETURN;
+END_PROC

@@ -1,0 +1,6 @@
+PROGRAM MISSSEMI;
+DATA dt = A;
+PROC main =
+    MOVE '1', A
+    MOVE '2', A;
+END_PROC

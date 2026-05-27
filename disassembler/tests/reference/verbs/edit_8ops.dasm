@@ -1,0 +1,10 @@
+{ Program 'EDIT8' compiled with TBOL COMPILER version 4.210 }
+{ Date Program compiled 03/17/26 18:060 }
+{ Original file edit_8ops.cod }
+{ md5sum 4259f940477dd56326e0c8d9da3219c3 }
+
+PROGRAM EDIT8;
+
+PROC main =
+    EDIT RDA0, '1', '2', '3', '4', '5', '6', '7';
+END_PROC
