@@ -274,7 +274,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 17 "parser/tbol.y"
+#line 17 "compiler/parser/tbol.y"
 
 /*
  * TBOL Compiler - Parser with AST Construction
@@ -343,7 +343,7 @@ AstNode *ast_root = NULL;
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 70 "parser/tbol.y"
+#line 70 "compiler/parser/tbol.y"
 {
     int ival;
     char *sval;
@@ -356,7 +356,7 @@ typedef union YYSTYPE
     } send_mods;
 }
 /* Line 193 of yacc.c.  */
-#line 360 "parser/tbol.tab.c"
+#line 360 "compiler/parser/tbol.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -381,7 +381,7 @@ typedef struct YYLTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 385 "parser/tbol.tab.c"
+#line 385 "compiler/parser/tbol.tab.c"
 
 #ifdef short
 # undef short
@@ -788,22 +788,22 @@ static const yytype_uint16 yyrline[] =
      498,   500,   501,   502,   503,   504,   505,   506,   508,   509,
      510,   511,   512,   514,   515,   516,   518,   519,   520,   522,
      523,   524,   525,   527,   528,   529,   530,   532,   533,   534,
-     535,   536,   540,   543,   546,   549,   552,   556,   564,   617,
-     618,   625,   626,   630,   636,   646,   655,   666,   675,   676,
-     683,   684,   691,   695,   701,   702,   703,   704,   705,   706,
-     712,   713,   714,   715,   718,   721,   725,   728,   732,   735,
-     739,   742,   746,   751,   754,   758,   761,   765,   768,   771,
-     775,   778,   782,   785,   789,   792,   798,   802,   806,   810,
-     814,   819,   822,   825,   828,   831,   835,   839,   843,   847,
-     851,   855,   859,   865,   870,   874,   881,   886,   891,   896,
-     901,   906,   911,   916,   921,   926,   931,   936,   942,   947,
-     954,   962,   969,   977,   982,   987,   992,   997,  1002,  1007,
-    1013,  1018,  1026,  1031,  1037,  1042,  1047,  1055,  1061,  1067,
-    1073,  1079,  1094,  1101,  1106,  1112,  1121,  1131,  1140,  1152,
-    1157,  1171,  1181,  1191,  1203,  1218,  1223,  1231,  1235,  1242,
-    1246,  1253,  1259,  1265,  1276,  1281,  1297,  1302,  1303,  1304,
-    1305,  1306,  1307,  1311,  1316,  1321,  1326,  1329,  1338,  1341,
-    1348,  1353,  1357
+     535,   536,   540,   547,   550,   553,   556,   560,   568,   621,
+     622,   629,   630,   634,   640,   650,   659,   670,   679,   680,
+     687,   688,   695,   699,   705,   706,   707,   708,   709,   710,
+     716,   717,   718,   719,   722,   725,   729,   732,   736,   739,
+     743,   746,   750,   755,   758,   762,   765,   769,   772,   775,
+     779,   782,   786,   789,   793,   796,   802,   806,   810,   814,
+     818,   823,   826,   829,   832,   835,   839,   843,   847,   851,
+     855,   859,   863,   869,   874,   878,   885,   890,   895,   900,
+     905,   910,   915,   920,   925,   930,   935,   940,   946,   951,
+     958,   966,   973,   981,   986,   991,   996,  1001,  1006,  1011,
+    1017,  1022,  1030,  1035,  1041,  1046,  1051,  1059,  1065,  1071,
+    1077,  1083,  1098,  1105,  1110,  1116,  1125,  1135,  1144,  1156,
+    1161,  1175,  1185,  1195,  1207,  1222,  1227,  1235,  1239,  1246,
+    1250,  1257,  1263,  1269,  1280,  1285,  1301,  1306,  1307,  1308,
+    1309,  1310,  1311,  1315,  1320,  1325,  1330,  1333,  1342,  1345,
+    1352,  1357,  1361
 };
 #endif
 
@@ -1870,179 +1870,179 @@ yydestruct (yymsg, yytype, yyvaluep, yylocationp)
   switch (yytype)
     {
       case 99: /* "LIT_STR" */
-#line 97 "parser/tbol.y"
+#line 97 "compiler/parser/tbol.y"
 	{ free((yyvaluep->sval)); };
-#line 1876 "parser/tbol.tab.c"
+#line 1876 "compiler/parser/tbol.tab.c"
 	break;
       case 100: /* "LIT_NUM" */
-#line 97 "parser/tbol.y"
+#line 97 "compiler/parser/tbol.y"
 	{ free((yyvaluep->sval)); };
-#line 1881 "parser/tbol.tab.c"
+#line 1881 "compiler/parser/tbol.tab.c"
 	break;
       case 101: /* "LIT_HEX" */
-#line 97 "parser/tbol.y"
+#line 97 "compiler/parser/tbol.y"
 	{ free((yyvaluep->sval)); };
-#line 1886 "parser/tbol.tab.c"
+#line 1886 "compiler/parser/tbol.tab.c"
 	break;
       case 102: /* "IDENT" */
-#line 98 "parser/tbol.y"
+#line 98 "compiler/parser/tbol.y"
 	{ free((yyvaluep->ident_pair).canonical); free((yyvaluep->ident_pair).original); };
-#line 1891 "parser/tbol.tab.c"
+#line 1891 "compiler/parser/tbol.tab.c"
 	break;
       case 110: /* "definitions" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1896 "parser/tbol.tab.c"
+#line 1896 "compiler/parser/tbol.tab.c"
 	break;
       case 111: /* "definition" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1901 "parser/tbol.tab.c"
+#line 1901 "compiler/parser/tbol.tab.c"
 	break;
       case 112: /* "data_group" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1906 "parser/tbol.tab.c"
+#line 1906 "compiler/parser/tbol.tab.c"
 	break;
       case 113: /* "data_section" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1911 "parser/tbol.tab.c"
+#line 1911 "compiler/parser/tbol.tab.c"
 	break;
       case 114: /* "var_decl_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1916 "parser/tbol.tab.c"
+#line 1916 "compiler/parser/tbol.tab.c"
 	break;
       case 115: /* "var_decl" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1921 "parser/tbol.tab.c"
+#line 1921 "compiler/parser/tbol.tab.c"
 	break;
       case 116: /* "define_stmt" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1926 "parser/tbol.tab.c"
+#line 1926 "compiler/parser/tbol.tab.c"
 	break;
       case 117: /* "proc_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1931 "parser/tbol.tab.c"
+#line 1931 "compiler/parser/tbol.tab.c"
 	break;
       case 118: /* "proc" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1936 "parser/tbol.tab.c"
+#line 1936 "compiler/parser/tbol.tab.c"
 	break;
       case 119: /* "stmt_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1941 "parser/tbol.tab.c"
+#line 1941 "compiler/parser/tbol.tab.c"
 	break;
       case 120: /* "label_prefix" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1946 "parser/tbol.tab.c"
+#line 1946 "compiler/parser/tbol.tab.c"
 	break;
       case 121: /* "label" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1951 "parser/tbol.tab.c"
+#line 1951 "compiler/parser/tbol.tab.c"
 	break;
       case 122: /* "label_name" */
-#line 97 "parser/tbol.y"
+#line 97 "compiler/parser/tbol.y"
 	{ free((yyvaluep->sval)); };
-#line 1956 "parser/tbol.tab.c"
+#line 1956 "compiler/parser/tbol.tab.c"
 	break;
       case 123: /* "statement" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1961 "parser/tbol.tab.c"
+#line 1961 "compiler/parser/tbol.tab.c"
 	break;
       case 124: /* "define_in_proc" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1966 "parser/tbol.tab.c"
+#line 1966 "compiler/parser/tbol.tab.c"
 	break;
       case 125: /* "simple_stmt" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1971 "parser/tbol.tab.c"
+#line 1971 "compiler/parser/tbol.tab.c"
 	break;
       case 126: /* "then_body" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1976 "parser/tbol.tab.c"
+#line 1976 "compiler/parser/tbol.tab.c"
 	break;
       case 127: /* "if_stmt" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1981 "parser/tbol.tab.c"
+#line 1981 "compiler/parser/tbol.tab.c"
 	break;
       case 128: /* "while_stmt" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1986 "parser/tbol.tab.c"
+#line 1986 "compiler/parser/tbol.tab.c"
 	break;
       case 129: /* "do_block" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1991 "parser/tbol.tab.c"
+#line 1991 "compiler/parser/tbol.tab.c"
 	break;
       case 130: /* "condition" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 1996 "parser/tbol.tab.c"
+#line 1996 "compiler/parser/tbol.tab.c"
 	break;
       case 131: /* "condition_term" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2001 "parser/tbol.tab.c"
+#line 2001 "compiler/parser/tbol.tab.c"
 	break;
       case 132: /* "condition_factor" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2006 "parser/tbol.tab.c"
+#line 2006 "compiler/parser/tbol.tab.c"
 	break;
       case 134: /* "verb_stmt" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2011 "parser/tbol.tab.c"
+#line 2011 "compiler/parser/tbol.tab.c"
 	break;
       case 135: /* "label_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2016 "parser/tbol.tab.c"
+#line 2016 "compiler/parser/tbol.tab.c"
 	break;
       case 136: /* "expr_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2021 "parser/tbol.tab.c"
+#line 2021 "compiler/parser/tbol.tab.c"
 	break;
       case 137: /* "format_spec_list" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2026 "parser/tbol.tab.c"
+#line 2026 "compiler/parser/tbol.tab.c"
 	break;
       case 138: /* "format_spec" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2031 "parser/tbol.tab.c"
+#line 2031 "compiler/parser/tbol.tab.c"
 	break;
       case 139: /* "proc_call" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2036 "parser/tbol.tab.c"
+#line 2036 "compiler/parser/tbol.tab.c"
 	break;
       case 140: /* "indexable" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2041 "parser/tbol.tab.c"
+#line 2041 "compiler/parser/tbol.tab.c"
 	break;
       case 141: /* "expr" */
-#line 99 "parser/tbol.y"
+#line 99 "compiler/parser/tbol.y"
 	{ ast_free((yyvaluep->node)); };
-#line 2046 "parser/tbol.tab.c"
+#line 2046 "compiler/parser/tbol.tab.c"
 	break;
 
       default:
@@ -2365,7 +2365,7 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 176 "parser/tbol.y"
+#line 176 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_program((yyvsp[(2) - (5)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (5)])));
         free((yyvsp[(2) - (5)].ident_pair).canonical); free((yyvsp[(2) - (5)].ident_pair).original);
@@ -2391,7 +2391,7 @@ yyreduce:
     break;
 
   case 3:
-#line 198 "parser/tbol.y"
+#line 198 "compiler/parser/tbol.y"
     {
         /* Error in program name - recover and continue */
         yyerrok;
@@ -2415,7 +2415,7 @@ yyreduce:
     break;
 
   case 4:
-#line 218 "parser/tbol.y"
+#line 218 "compiler/parser/tbol.y"
     {
         /* Complete parse failure - no PROGRAM statement found.
          * YYABORT immediately to avoid infinite error recovery loop. */
@@ -2426,12 +2426,12 @@ yyreduce:
     break;
 
   case 5:
-#line 228 "parser/tbol.y"
+#line 228 "compiler/parser/tbol.y"
     { (yyval.node) = NULL; ;}
     break;
 
   case 6:
-#line 229 "parser/tbol.y"
+#line 229 "compiler/parser/tbol.y"
     {
         if (!(yyvsp[(1) - (2)].node)) {
             (yyval.node) = ast_new(AST_PROGRAM, MAKE_LOC((yylsp[(2) - (2)])));  /* Temporary container */
@@ -2443,22 +2443,22 @@ yyreduce:
     break;
 
   case 7:
-#line 240 "parser/tbol.y"
+#line 240 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 8:
-#line 241 "parser/tbol.y"
+#line 241 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 9:
-#line 242 "parser/tbol.y"
+#line 242 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 10:
-#line 243 "parser/tbol.y"
+#line 243 "compiler/parser/tbol.y"
     {
         yyerrok;
         (yyval.node) = ast_error(MAKE_LOC((yylsp[(1) - (2)])));
@@ -2466,7 +2466,7 @@ yyreduce:
     break;
 
   case 11:
-#line 251 "parser/tbol.y"
+#line 251 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_data_section((yyvsp[(1) - (4)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (4)])));
         free((yyvsp[(1) - (4)].ident_pair).canonical); free((yyvsp[(1) - (4)].ident_pair).original);
@@ -2482,7 +2482,7 @@ yyreduce:
     break;
 
   case 12:
-#line 267 "parser/tbol.y"
+#line 267 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_data_section((yyvsp[(2) - (5)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (5)])));
         free((yyvsp[(2) - (5)].ident_pair).canonical); free((yyvsp[(2) - (5)].ident_pair).original);
@@ -2499,7 +2499,7 @@ yyreduce:
     break;
 
   case 13:
-#line 280 "parser/tbol.y"
+#line 280 "compiler/parser/tbol.y"
     {
         yyerrok;
         (yyval.node) = ast_error(MAKE_LOC((yylsp[(1) - (3)])));
@@ -2507,7 +2507,7 @@ yyreduce:
     break;
 
   case 14:
-#line 287 "parser/tbol.y"
+#line 287 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_new(AST_DATA_SECTION, MAKE_LOC((yylsp[(1) - (1)])));  /* Container */
         ast_add_child((yyval.node), (yyvsp[(1) - (1)].node)); (yyvsp[(1) - (1)].node) = NULL;
@@ -2515,7 +2515,7 @@ yyreduce:
     break;
 
   case 15:
-#line 291 "parser/tbol.y"
+#line 291 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (3)].node); (yyvsp[(1) - (3)].node) = NULL;
         ast_add_child((yyval.node), (yyvsp[(3) - (3)].node)); (yyvsp[(3) - (3)].node) = NULL;
@@ -2523,7 +2523,7 @@ yyreduce:
     break;
 
   case 16:
-#line 298 "parser/tbol.y"
+#line 298 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_var_decl((yyvsp[(1) - (1)].ident_pair).canonical, 0, MAKE_LOC((yylsp[(1) - (1)])));
         if ((yyvsp[(1) - (1)].ident_pair).original) (yyval.node)->data.var_decl.original_text = (yyvsp[(1) - (1)].ident_pair).original;
@@ -2533,7 +2533,7 @@ yyreduce:
     break;
 
   case 17:
-#line 304 "parser/tbol.y"
+#line 304 "compiler/parser/tbol.y"
     {
         int asize = atoi((yyvsp[(3) - (4)].sval));
         if (asize <= 0) {
@@ -2549,7 +2549,7 @@ yyreduce:
     break;
 
   case 18:
-#line 320 "parser/tbol.y"
+#line 320 "compiler/parser/tbol.y"
     {
         /* Convert expr to string for DEFINE value */
         char *val = NULL;
@@ -2608,7 +2608,7 @@ yyreduce:
     break;
 
   case 19:
-#line 379 "parser/tbol.y"
+#line 379 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_new(AST_PROGRAM, MAKE_LOC((yylsp[(1) - (1)])));  /* Container */
         ast_add_child((yyval.node), (yyvsp[(1) - (1)].node)); (yyvsp[(1) - (1)].node) = NULL;
@@ -2616,7 +2616,7 @@ yyreduce:
     break;
 
   case 20:
-#line 383 "parser/tbol.y"
+#line 383 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (2)].node); (yyvsp[(1) - (2)].node) = NULL;
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -2624,7 +2624,7 @@ yyreduce:
     break;
 
   case 21:
-#line 387 "parser/tbol.y"
+#line 387 "compiler/parser/tbol.y"
     {
         /* Skip garbage lines between procs */
         yyerrok;
@@ -2633,7 +2633,7 @@ yyreduce:
     break;
 
   case 22:
-#line 395 "parser/tbol.y"
+#line 395 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_proc((yyvsp[(2) - (5)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (5)])));
         if ((yyvsp[(2) - (5)].ident_pair).original) (yyval.node)->data.proc.original_text = (yyvsp[(2) - (5)].ident_pair).original;
@@ -2650,7 +2650,7 @@ yyreduce:
     break;
 
   case 23:
-#line 408 "parser/tbol.y"
+#line 408 "compiler/parser/tbol.y"
     {
         yyerrok;
         (yyval.node) = ast_proc((yyvsp[(2) - (5)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (5)])));
@@ -2661,7 +2661,7 @@ yyreduce:
     break;
 
   case 24:
-#line 422 "parser/tbol.y"
+#line 422 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (2)].node) ? (yyvsp[(1) - (2)].node) : ast_new(AST_DO_BLOCK, MAKE_LOC((yylsp[(2) - (2)])));
         if ((yyvsp[(1) - (2)].node)) { (yyvsp[(1) - (2)].node) = NULL; }
@@ -2670,7 +2670,7 @@ yyreduce:
     break;
 
   case 25:
-#line 427 "parser/tbol.y"
+#line 427 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (2)].node); (yyvsp[(1) - (2)].node) = NULL;
         if ((yyvsp[(2) - (2)].node)) { ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL; }
@@ -2678,7 +2678,7 @@ yyreduce:
     break;
 
   case 26:
-#line 431 "parser/tbol.y"
+#line 431 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (2)].node); (yyvsp[(1) - (2)].node) = NULL;
         if ((yyvsp[(2) - (2)].node)) { ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL; }
@@ -2686,12 +2686,12 @@ yyreduce:
     break;
 
   case 27:
-#line 439 "parser/tbol.y"
+#line 439 "compiler/parser/tbol.y"
     { (yyval.node) = NULL; ;}
     break;
 
   case 28:
-#line 440 "parser/tbol.y"
+#line 440 "compiler/parser/tbol.y"
     {
         if (!(yyvsp[(1) - (2)].node)) {
             (yyval.node) = ast_new(AST_DO_BLOCK, MAKE_LOC((yylsp[(2) - (2)])));
@@ -2703,7 +2703,7 @@ yyreduce:
     break;
 
   case 29:
-#line 451 "parser/tbol.y"
+#line 451 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_label((yyvsp[(1) - (2)].sval), MAKE_LOC((yylsp[(1) - (2)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(2) - (2)])));
@@ -2712,345 +2712,349 @@ yyreduce:
     break;
 
   case 30:
-#line 463 "parser/tbol.y"
+#line 463 "compiler/parser/tbol.y"
     { (yyval.sval) = (yyvsp[(1) - (1)].ident_pair).canonical; free((yyvsp[(1) - (1)].ident_pair).original); ;}
     break;
 
   case 31:
-#line 465 "parser/tbol.y"
+#line 465 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("EXIT"); ;}
     break;
 
   case 32:
-#line 466 "parser/tbol.y"
+#line 466 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("RETURN"); ;}
     break;
 
   case 33:
-#line 468 "parser/tbol.y"
+#line 468 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("MOVE"); ;}
     break;
 
   case 34:
-#line 469 "parser/tbol.y"
+#line 469 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("ABS"); ;}
     break;
 
   case 35:
-#line 470 "parser/tbol.y"
+#line 470 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SWAP"); ;}
     break;
 
   case 36:
-#line 471 "parser/tbol.y"
+#line 471 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("FILL"); ;}
     break;
 
   case 37:
-#line 472 "parser/tbol.y"
+#line 472 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("CLEAR"); ;}
     break;
 
   case 38:
-#line 473 "parser/tbol.y"
+#line 473 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("PUSH"); ;}
     break;
 
   case 39:
-#line 474 "parser/tbol.y"
+#line 474 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("POP"); ;}
     break;
 
   case 40:
-#line 476 "parser/tbol.y"
+#line 476 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("STRING"); ;}
     break;
 
   case 41:
-#line 477 "parser/tbol.y"
+#line 477 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SUBSTR"); ;}
     break;
 
   case 42:
-#line 478 "parser/tbol.y"
+#line 478 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("INSTR"); ;}
     break;
 
   case 43:
-#line 479 "parser/tbol.y"
+#line 479 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("UPPERCASE"); ;}
     break;
 
   case 44:
-#line 480 "parser/tbol.y"
+#line 480 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("LENGTH"); ;}
     break;
 
   case 45:
-#line 481 "parser/tbol.y"
+#line 481 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("EDIT"); ;}
     break;
 
   case 46:
-#line 483 "parser/tbol.y"
+#line 483 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("ADD"); ;}
     break;
 
   case 47:
-#line 484 "parser/tbol.y"
+#line 484 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SUBTRACT"); ;}
     break;
 
   case 48:
-#line 485 "parser/tbol.y"
+#line 485 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("MULTIPLY"); ;}
     break;
 
   case 49:
-#line 486 "parser/tbol.y"
+#line 486 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("DIVIDE"); ;}
     break;
 
   case 50:
-#line 487 "parser/tbol.y"
+#line 487 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("XOR"); ;}
     break;
 
   case 51:
-#line 488 "parser/tbol.y"
+#line 488 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("TEST"); ;}
     break;
 
   case 52:
-#line 490 "parser/tbol.y"
+#line 490 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("NAVIGATE"); ;}
     break;
 
   case 53:
-#line 491 "parser/tbol.y"
+#line 491 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("FETCH"); ;}
     break;
 
   case 54:
-#line 492 "parser/tbol.y"
+#line 492 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("OPEN_WINDOW"); ;}
     break;
 
   case 55:
-#line 493 "parser/tbol.y"
+#line 493 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("CLOSE_WINDOW"); ;}
     break;
 
   case 56:
-#line 494 "parser/tbol.y"
+#line 494 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("OPEN_ERROR_WINDOW"); ;}
     break;
 
   case 57:
-#line 495 "parser/tbol.y"
+#line 495 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("KILL"); ;}
     break;
 
   case 58:
-#line 496 "parser/tbol.y"
+#line 496 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("LINK"); ;}
     break;
 
   case 59:
-#line 497 "parser/tbol.y"
+#line 497 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("TRANSFER"); ;}
     break;
 
   case 60:
-#line 498 "parser/tbol.y"
+#line 498 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("PURGE_CACHE"); ;}
     break;
 
   case 61:
-#line 500 "parser/tbol.y"
+#line 500 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("OPEN"); ;}
     break;
 
   case 62:
-#line 501 "parser/tbol.y"
+#line 501 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("CLOSE"); ;}
     break;
 
   case 63:
-#line 502 "parser/tbol.y"
+#line 502 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("READ"); ;}
     break;
 
   case 64:
-#line 503 "parser/tbol.y"
+#line 503 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("WRITE"); ;}
     break;
 
   case 65:
-#line 504 "parser/tbol.y"
+#line 504 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("NOTE"); ;}
     break;
 
   case 66:
-#line 505 "parser/tbol.y"
+#line 505 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("POINT"); ;}
     break;
 
   case 67:
-#line 506 "parser/tbol.y"
+#line 506 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("DELETE"); ;}
     break;
 
   case 68:
-#line 508 "parser/tbol.y"
+#line 508 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("CONNECT"); ;}
     break;
 
   case 69:
-#line 509 "parser/tbol.y"
+#line 509 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("DISCONNECT"); ;}
     break;
 
   case 70:
-#line 510 "parser/tbol.y"
+#line 510 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SEND"); ;}
     break;
 
   case 71:
-#line 511 "parser/tbol.y"
+#line 511 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("RECEIVE"); ;}
     break;
 
   case 72:
-#line 512 "parser/tbol.y"
+#line 512 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("CANCEL"); ;}
     break;
 
   case 73:
-#line 514 "parser/tbol.y"
+#line 514 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SAVE"); ;}
     break;
 
   case 74:
-#line 515 "parser/tbol.y"
+#line 515 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("RESTORE"); ;}
     break;
 
   case 75:
-#line 516 "parser/tbol.y"
+#line 516 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("RELEASE"); ;}
     break;
 
   case 76:
-#line 518 "parser/tbol.y"
+#line 518 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("WAIT"); ;}
     break;
 
   case 77:
-#line 519 "parser/tbol.y"
+#line 519 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("START"); ;}
     break;
 
   case 78:
-#line 520 "parser/tbol.y"
+#line 520 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("STOP"); ;}
     break;
 
   case 79:
-#line 522 "parser/tbol.y"
+#line 522 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("REFRESH"); ;}
     break;
 
   case 80:
-#line 523 "parser/tbol.y"
+#line 523 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("ERASE"); ;}
     break;
 
   case 81:
-#line 524 "parser/tbol.y"
+#line 524 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SET_CURSOR"); ;}
     break;
 
   case 82:
-#line 525 "parser/tbol.y"
+#line 525 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SOUND"); ;}
     break;
 
   case 83:
-#line 527 "parser/tbol.y"
+#line 527 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("DEFINE_FIELD"); ;}
     break;
 
   case 84:
-#line 528 "parser/tbol.y"
+#line 528 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SET_ATTRIBUTE"); ;}
     break;
 
   case 85:
-#line 529 "parser/tbol.y"
+#line 529 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SET_FUNCTION"); ;}
     break;
 
   case 86:
-#line 530 "parser/tbol.y"
+#line 530 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SET_KEY"); ;}
     break;
 
   case 87:
-#line 532 "parser/tbol.y"
+#line 532 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("FORMAT"); ;}
     break;
 
   case 88:
-#line 533 "parser/tbol.y"
+#line 533 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("LOOKUP"); ;}
     break;
 
   case 89:
-#line 534 "parser/tbol.y"
+#line 534 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("SORT"); ;}
     break;
 
   case 90:
-#line 535 "parser/tbol.y"
+#line 535 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("ERROR"); ;}
     break;
 
   case 91:
-#line 536 "parser/tbol.y"
+#line 536 "compiler/parser/tbol.y"
     { (yyval.sval) = strdup("TRIGGER_FUNCTION"); ;}
     break;
 
   case 92:
-#line 540 "parser/tbol.y"
+#line 540 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (2)].node); (yyvsp[(1) - (2)].node) = NULL;
+        /* Verb statements and proc calls set only their start location; give
+         * them a true end span (through the last operand) for .sdb column
+         * info. @1 spans the whole simple_stmt reduction. */
+        if ((yyval.node)) ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (2)])));
     ;}
     break;
 
   case 93:
-#line 543 "parser/tbol.y"
+#line 547 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL;
     ;}
     break;
 
   case 94:
-#line 546 "parser/tbol.y"
+#line 550 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL;
     ;}
     break;
 
   case 95:
-#line 549 "parser/tbol.y"
+#line 553 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL;
     ;}
     break;
 
   case 96:
-#line 552 "parser/tbol.y"
+#line 556 "compiler/parser/tbol.y"
     {
         /* Empty statement - can occur after COPY expansion */
         (yyval.node) = NULL;
@@ -3058,7 +3062,7 @@ yyreduce:
     break;
 
   case 97:
-#line 556 "parser/tbol.y"
+#line 560 "compiler/parser/tbol.y"
     {
         yyerrok;
         (yyval.node) = ast_error(MAKE_LOC((yylsp[(1) - (2)])));
@@ -3066,7 +3070,7 @@ yyreduce:
     break;
 
   case 98:
-#line 564 "parser/tbol.y"
+#line 568 "compiler/parser/tbol.y"
     {
         char *val = NULL;
         char *preproc_val = NULL;
@@ -3120,27 +3124,27 @@ yyreduce:
     break;
 
   case 99:
-#line 617 "parser/tbol.y"
+#line 621 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 100:
-#line 618 "parser/tbol.y"
+#line 622 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 101:
-#line 625 "parser/tbol.y"
+#line 629 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 102:
-#line 626 "parser/tbol.y"
+#line 630 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 103:
-#line 630 "parser/tbol.y"
+#line 634 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_if(MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3150,7 +3154,7 @@ yyreduce:
     break;
 
   case 104:
-#line 636 "parser/tbol.y"
+#line 640 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_if(MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3161,7 +3165,7 @@ yyreduce:
     break;
 
   case 105:
-#line 646 "parser/tbol.y"
+#line 650 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_while(MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3171,7 +3175,7 @@ yyreduce:
     break;
 
   case 106:
-#line 655 "parser/tbol.y"
+#line 659 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_do_block(MAKE_LOC((yylsp[(1) - (4)])));
         if ((yyvsp[(2) - (4)].node)) {
@@ -3186,7 +3190,7 @@ yyreduce:
     break;
 
   case 107:
-#line 666 "parser/tbol.y"
+#line 670 "compiler/parser/tbol.y"
     {
         yyerrok;
         (yyval.node) = ast_do_block(MAKE_LOC((yylsp[(1) - (4)])));
@@ -3195,12 +3199,12 @@ yyreduce:
     break;
 
   case 108:
-#line 675 "parser/tbol.y"
+#line 679 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 109:
-#line 676 "parser/tbol.y"
+#line 680 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_logic_or((yyvsp[(1) - (3)].node), (yyvsp[(3) - (3)].node), MAKE_LOC((yylsp[(2) - (3)])));
         (yyvsp[(1) - (3)].node) = NULL; (yyvsp[(3) - (3)].node) = NULL;
@@ -3208,12 +3212,12 @@ yyreduce:
     break;
 
   case 110:
-#line 683 "parser/tbol.y"
+#line 687 "compiler/parser/tbol.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL; ;}
     break;
 
   case 111:
-#line 684 "parser/tbol.y"
+#line 688 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_logic_and((yyvsp[(1) - (3)].node), (yyvsp[(3) - (3)].node), MAKE_LOC((yylsp[(2) - (3)])));
         (yyvsp[(1) - (3)].node) = NULL; (yyvsp[(3) - (3)].node) = NULL;
@@ -3221,7 +3225,7 @@ yyreduce:
     break;
 
   case 112:
-#line 691 "parser/tbol.y"
+#line 695 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_compare((yyvsp[(2) - (3)].cmp_op), (yyvsp[(1) - (3)].node), (yyvsp[(3) - (3)].node), MAKE_LOC((yylsp[(2) - (3)])));
         (yyvsp[(1) - (3)].node) = NULL; (yyvsp[(3) - (3)].node) = NULL;
@@ -3229,71 +3233,71 @@ yyreduce:
     break;
 
   case 113:
-#line 695 "parser/tbol.y"
+#line 699 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(2) - (3)].node); (yyvsp[(2) - (3)].node) = NULL;
     ;}
     break;
 
   case 114:
-#line 701 "parser/tbol.y"
+#line 705 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_EQ; ;}
     break;
 
   case 115:
-#line 702 "parser/tbol.y"
+#line 706 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_NE; ;}
     break;
 
   case 116:
-#line 703 "parser/tbol.y"
+#line 707 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_LT; ;}
     break;
 
   case 117:
-#line 704 "parser/tbol.y"
+#line 708 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_GT; ;}
     break;
 
   case 118:
-#line 705 "parser/tbol.y"
+#line 709 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_LE; ;}
     break;
 
   case 119:
-#line 706 "parser/tbol.y"
+#line 710 "compiler/parser/tbol.y"
     { (yyval.cmp_op) = CMP_GE; ;}
     break;
 
   case 120:
-#line 712 "parser/tbol.y"
+#line 716 "compiler/parser/tbol.y"
     { (yyval.node) = ast_verb("DISCONNECT", MAKE_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 121:
-#line 713 "parser/tbol.y"
+#line 717 "compiler/parser/tbol.y"
     { (yyval.node) = ast_verb("PURGE_CACHE", MAKE_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 122:
-#line 714 "parser/tbol.y"
+#line 718 "compiler/parser/tbol.y"
     { (yyval.node) = ast_verb("REFRESH", MAKE_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 123:
-#line 715 "parser/tbol.y"
+#line 719 "compiler/parser/tbol.y"
     { (yyval.node) = ast_verb("WAIT", MAKE_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 124:
-#line 718 "parser/tbol.y"
+#line 722 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("RETURN", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 125:
-#line 721 "parser/tbol.y"
+#line 725 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("RETURN", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3301,14 +3305,14 @@ yyreduce:
     break;
 
   case 126:
-#line 725 "parser/tbol.y"
+#line 729 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("EXIT", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 127:
-#line 728 "parser/tbol.y"
+#line 732 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("EXIT", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3316,14 +3320,14 @@ yyreduce:
     break;
 
   case 128:
-#line 732 "parser/tbol.y"
+#line 736 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CLOSE_WINDOW", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 129:
-#line 735 "parser/tbol.y"
+#line 739 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CLOSE_WINDOW", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3331,14 +3335,14 @@ yyreduce:
     break;
 
   case 130:
-#line 739 "parser/tbol.y"
+#line 743 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OPEN_ERROR_WINDOW", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 131:
-#line 742 "parser/tbol.y"
+#line 746 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OPEN_ERROR_WINDOW", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3346,7 +3350,7 @@ yyreduce:
     break;
 
   case 132:
-#line 746 "parser/tbol.y"
+#line 750 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OPEN_ERROR_WINDOW", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3355,14 +3359,14 @@ yyreduce:
     break;
 
   case 133:
-#line 751 "parser/tbol.y"
+#line 755 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("ERASE", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 134:
-#line 754 "parser/tbol.y"
+#line 758 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("ERASE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3370,14 +3374,14 @@ yyreduce:
     break;
 
   case 135:
-#line 758 "parser/tbol.y"
+#line 762 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_CURSOR", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 136:
-#line 761 "parser/tbol.y"
+#line 765 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_CURSOR", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3385,21 +3389,21 @@ yyreduce:
     break;
 
   case 137:
-#line 765 "parser/tbol.y"
+#line 769 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SOUND", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 138:
-#line 768 "parser/tbol.y"
+#line 772 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("KILL", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 139:
-#line 771 "parser/tbol.y"
+#line 775 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("KILL", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3407,14 +3411,14 @@ yyreduce:
     break;
 
   case 140:
-#line 775 "parser/tbol.y"
+#line 779 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CANCEL", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 141:
-#line 778 "parser/tbol.y"
+#line 782 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CANCEL", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3422,14 +3426,14 @@ yyreduce:
     break;
 
   case 142:
-#line 782 "parser/tbol.y"
+#line 786 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("START", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 143:
-#line 785 "parser/tbol.y"
+#line 789 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("START", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3437,14 +3441,14 @@ yyreduce:
     break;
 
   case 144:
-#line 789 "parser/tbol.y"
+#line 793 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("STOP", MAKE_LOC((yylsp[(1) - (1)])));
     ;}
     break;
 
   case 145:
-#line 792 "parser/tbol.y"
+#line 796 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("STOP", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3452,7 +3456,7 @@ yyreduce:
     break;
 
   case 146:
-#line 798 "parser/tbol.y"
+#line 802 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CLEAR", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3460,7 +3464,7 @@ yyreduce:
     break;
 
   case 147:
-#line 802 "parser/tbol.y"
+#line 806 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CLOSE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3468,7 +3472,7 @@ yyreduce:
     break;
 
   case 148:
-#line 806 "parser/tbol.y"
+#line 810 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CONNECT", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3476,7 +3480,7 @@ yyreduce:
     break;
 
   case 149:
-#line 810 "parser/tbol.y"
+#line 814 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3484,7 +3488,7 @@ yyreduce:
     break;
 
   case 150:
-#line 814 "parser/tbol.y"
+#line 818 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3493,35 +3497,35 @@ yyreduce:
     break;
 
   case 151:
-#line 819 "parser/tbol.y"
+#line 823 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE_FIRST", MAKE_LOC((yylsp[(1) - (2)])));
     ;}
     break;
 
   case 152:
-#line 822 "parser/tbol.y"
+#line 826 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE_NEXT", MAKE_LOC((yylsp[(1) - (2)])));
     ;}
     break;
 
   case 153:
-#line 825 "parser/tbol.y"
+#line 829 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE_BACK", MAKE_LOC((yylsp[(1) - (2)])));
     ;}
     break;
 
   case 154:
-#line 828 "parser/tbol.y"
+#line 832 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NAVIGATE_LAST", MAKE_LOC((yylsp[(1) - (2)])));
     ;}
     break;
 
   case 155:
-#line 831 "parser/tbol.y"
+#line 835 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OPEN_WINDOW", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3529,7 +3533,7 @@ yyreduce:
     break;
 
   case 156:
-#line 835 "parser/tbol.y"
+#line 839 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("POP", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3537,7 +3541,7 @@ yyreduce:
     break;
 
   case 157:
-#line 839 "parser/tbol.y"
+#line 843 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("PUSH", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3545,7 +3549,7 @@ yyreduce:
     break;
 
   case 158:
-#line 843 "parser/tbol.y"
+#line 847 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("RELEASE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3553,7 +3557,7 @@ yyreduce:
     break;
 
   case 159:
-#line 847 "parser/tbol.y"
+#line 851 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("UPPERCASE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3561,7 +3565,7 @@ yyreduce:
     break;
 
   case 160:
-#line 851 "parser/tbol.y"
+#line 855 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("ERROR", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3569,7 +3573,7 @@ yyreduce:
     break;
 
   case 161:
-#line 855 "parser/tbol.y"
+#line 859 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("TRIGGER_FUNCTION", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3577,7 +3581,7 @@ yyreduce:
     break;
 
   case 162:
-#line 859 "parser/tbol.y"
+#line 863 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("DELETE", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3585,7 +3589,7 @@ yyreduce:
     break;
 
   case 163:
-#line 865 "parser/tbol.y"
+#line 869 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("CLEAR", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3594,7 +3598,7 @@ yyreduce:
     break;
 
   case 164:
-#line 870 "parser/tbol.y"
+#line 874 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("FETCH", MAKE_LOC((yylsp[(1) - (2)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (2)].node)); (yyvsp[(2) - (2)].node) = NULL;
@@ -3602,7 +3606,7 @@ yyreduce:
     break;
 
   case 165:
-#line 874 "parser/tbol.y"
+#line 878 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("FETCH", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3611,7 +3615,7 @@ yyreduce:
     break;
 
   case 166:
-#line 881 "parser/tbol.y"
+#line 885 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("ADD", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3620,7 +3624,7 @@ yyreduce:
     break;
 
   case 167:
-#line 886 "parser/tbol.y"
+#line 890 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("AND", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3629,7 +3633,7 @@ yyreduce:
     break;
 
   case 168:
-#line 891 "parser/tbol.y"
+#line 895 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("LENGTH", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3638,7 +3642,7 @@ yyreduce:
     break;
 
   case 169:
-#line 896 "parser/tbol.y"
+#line 900 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("MOVE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3647,7 +3651,7 @@ yyreduce:
     break;
 
   case 170:
-#line 901 "parser/tbol.y"
+#line 905 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("MOVE_ABS", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3656,7 +3660,7 @@ yyreduce:
     break;
 
   case 171:
-#line 906 "parser/tbol.y"
+#line 910 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("MULTIPLY", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3665,7 +3669,7 @@ yyreduce:
     break;
 
   case 172:
-#line 911 "parser/tbol.y"
+#line 915 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("NOTE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3674,7 +3678,7 @@ yyreduce:
     break;
 
   case 173:
-#line 916 "parser/tbol.y"
+#line 920 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OPEN", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3683,7 +3687,7 @@ yyreduce:
     break;
 
   case 174:
-#line 921 "parser/tbol.y"
+#line 925 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("OR", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3692,7 +3696,7 @@ yyreduce:
     break;
 
   case 175:
-#line 926 "parser/tbol.y"
+#line 930 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("POINT", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3701,7 +3705,7 @@ yyreduce:
     break;
 
   case 176:
-#line 931 "parser/tbol.y"
+#line 935 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("READ", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3710,7 +3714,7 @@ yyreduce:
     break;
 
   case 177:
-#line 936 "parser/tbol.y"
+#line 940 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("READ", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3720,7 +3724,7 @@ yyreduce:
     break;
 
   case 178:
-#line 942 "parser/tbol.y"
+#line 946 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("RECEIVE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3729,7 +3733,7 @@ yyreduce:
     break;
 
   case 179:
-#line 947 "parser/tbol.y"
+#line 951 "compiler/parser/tbol.y"
     {
         /* SEND request; */
         (yyval.node) = ast_verb("SEND", MAKE_LOC((yylsp[(1) - (2)])));
@@ -3740,7 +3744,7 @@ yyreduce:
     break;
 
   case 180:
-#line 954 "parser/tbol.y"
+#line 958 "compiler/parser/tbol.y"
     {
         /* SEND request, msg_id; */
         (yyval.node) = ast_verb("SEND", MAKE_LOC((yylsp[(1) - (4)])));
@@ -3752,7 +3756,7 @@ yyreduce:
     break;
 
   case 181:
-#line 962 "parser/tbol.y"
+#line 966 "compiler/parser/tbol.y"
     {
         /* SEND request, modifiers; */
         (yyval.node) = ast_verb("SEND", MAKE_LOC((yylsp[(1) - (4)])));
@@ -3763,7 +3767,7 @@ yyreduce:
     break;
 
   case 182:
-#line 969 "parser/tbol.y"
+#line 973 "compiler/parser/tbol.y"
     {
         /* SEND request, msg_id, modifiers; */
         (yyval.node) = ast_verb("SEND", MAKE_LOC((yylsp[(1) - (6)])));
@@ -3775,7 +3779,7 @@ yyreduce:
     break;
 
   case 183:
-#line 977 "parser/tbol.y"
+#line 981 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_ATTRIBUTE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3784,7 +3788,7 @@ yyreduce:
     break;
 
   case 184:
-#line 982 "parser/tbol.y"
+#line 986 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SOUND", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3793,7 +3797,7 @@ yyreduce:
     break;
 
   case 185:
-#line 987 "parser/tbol.y"
+#line 991 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SUBTRACT", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3802,7 +3806,7 @@ yyreduce:
     break;
 
   case 186:
-#line 992 "parser/tbol.y"
+#line 996 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SWAP", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3811,7 +3815,7 @@ yyreduce:
     break;
 
   case 187:
-#line 997 "parser/tbol.y"
+#line 1001 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("TEST", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3820,7 +3824,7 @@ yyreduce:
     break;
 
   case 188:
-#line 1002 "parser/tbol.y"
+#line 1006 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("WRITE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3829,7 +3833,7 @@ yyreduce:
     break;
 
   case 189:
-#line 1007 "parser/tbol.y"
+#line 1011 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("WRITE", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3839,7 +3843,7 @@ yyreduce:
     break;
 
   case 190:
-#line 1013 "parser/tbol.y"
+#line 1017 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("XOR", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3848,7 +3852,7 @@ yyreduce:
     break;
 
   case 191:
-#line 1018 "parser/tbol.y"
+#line 1022 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("FILL", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3858,7 +3862,7 @@ yyreduce:
     break;
 
   case 192:
-#line 1026 "parser/tbol.y"
+#line 1030 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SAVE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3867,7 +3871,7 @@ yyreduce:
     break;
 
   case 193:
-#line 1031 "parser/tbol.y"
+#line 1035 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SAVE", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3877,7 +3881,7 @@ yyreduce:
     break;
 
   case 194:
-#line 1037 "parser/tbol.y"
+#line 1041 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("RESTORE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3886,7 +3890,7 @@ yyreduce:
     break;
 
   case 195:
-#line 1042 "parser/tbol.y"
+#line 1046 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("DIVIDE", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3895,7 +3899,7 @@ yyreduce:
     break;
 
   case 196:
-#line 1047 "parser/tbol.y"
+#line 1051 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("DIVIDE", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3905,7 +3909,7 @@ yyreduce:
     break;
 
   case 197:
-#line 1055 "parser/tbol.y"
+#line 1059 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("INSTR", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3915,7 +3919,7 @@ yyreduce:
     break;
 
   case 198:
-#line 1061 "parser/tbol.y"
+#line 1065 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("FORMAT", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3925,7 +3929,7 @@ yyreduce:
     break;
 
   case 199:
-#line 1067 "parser/tbol.y"
+#line 1071 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SORT", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3935,7 +3939,7 @@ yyreduce:
     break;
 
   case 200:
-#line 1073 "parser/tbol.y"
+#line 1077 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_KEY", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3945,7 +3949,7 @@ yyreduce:
     break;
 
   case 201:
-#line 1079 "parser/tbol.y"
+#line 1083 "compiler/parser/tbol.y"
     {
         /* EDIT dest, format, args... (3+ operands) */
         (yyval.node) = ast_verb("EDIT", MAKE_LOC((yylsp[(1) - (6)])));
@@ -3962,7 +3966,7 @@ yyreduce:
     break;
 
   case 202:
-#line 1094 "parser/tbol.y"
+#line 1098 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SUBSTR", MAKE_LOC((yylsp[(1) - (8)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (8)].node)); (yyvsp[(2) - (8)].node) = NULL;
@@ -3973,7 +3977,7 @@ yyreduce:
     break;
 
   case 203:
-#line 1101 "parser/tbol.y"
+#line 1105 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_FUNCTION", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -3982,7 +3986,7 @@ yyreduce:
     break;
 
   case 204:
-#line 1106 "parser/tbol.y"
+#line 1110 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_FUNCTION", MAKE_LOC((yylsp[(1) - (6)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (6)].node)); (yyvsp[(2) - (6)].node) = NULL;
@@ -3992,7 +3996,7 @@ yyreduce:
     break;
 
   case 205:
-#line 1112 "parser/tbol.y"
+#line 1116 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("SET_FUNCTION", MAKE_LOC((yylsp[(1) - (8)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (8)].node)); (yyvsp[(2) - (8)].node) = NULL;
@@ -4003,7 +4007,7 @@ yyreduce:
     break;
 
   case 206:
-#line 1121 "parser/tbol.y"
+#line 1125 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("LOOKUP", MAKE_LOC((yylsp[(1) - (10)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (10)].node)); (yyvsp[(2) - (10)].node) = NULL;
@@ -4015,7 +4019,7 @@ yyreduce:
     break;
 
   case 207:
-#line 1131 "parser/tbol.y"
+#line 1135 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("DEFINE_FIELD", MAKE_LOC((yylsp[(1) - (12)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (12)].node)); (yyvsp[(2) - (12)].node) = NULL;
@@ -4028,7 +4032,7 @@ yyreduce:
     break;
 
   case 208:
-#line 1140 "parser/tbol.y"
+#line 1144 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("DEFINE_FIELD", MAKE_LOC((yylsp[(1) - (14)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (14)].node)); (yyvsp[(2) - (14)].node) = NULL;
@@ -4042,7 +4046,7 @@ yyreduce:
     break;
 
   case 209:
-#line 1152 "parser/tbol.y"
+#line 1156 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_goto((yyvsp[(2) - (2)].sval), MAKE_LOC((yylsp[(1) - (2)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(2) - (2)])));
@@ -4051,7 +4055,7 @@ yyreduce:
     break;
 
   case 210:
-#line 1157 "parser/tbol.y"
+#line 1161 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_goto_depending_on(MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -4067,7 +4071,7 @@ yyreduce:
     break;
 
   case 211:
-#line 1171 "parser/tbol.y"
+#line 1175 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("STRING", MAKE_LOC((yylsp[(1) - (2)])));
         if ((yyvsp[(2) - (2)].node)) {
@@ -4081,7 +4085,7 @@ yyreduce:
     break;
 
   case 212:
-#line 1181 "parser/tbol.y"
+#line 1185 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("LINK", MAKE_LOC((yylsp[(1) - (2)])));
         if ((yyvsp[(2) - (2)].node)) {
@@ -4095,7 +4099,7 @@ yyreduce:
     break;
 
   case 213:
-#line 1191 "parser/tbol.y"
+#line 1195 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("TRANSFER", MAKE_LOC((yylsp[(1) - (2)])));
         if ((yyvsp[(2) - (2)].node)) {
@@ -4109,7 +4113,7 @@ yyreduce:
     break;
 
   case 214:
-#line 1203 "parser/tbol.y"
+#line 1207 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_verb("MAKE_FORMAT", MAKE_LOC((yylsp[(1) - (4)])));
         ast_add_child((yyval.node), (yyvsp[(2) - (4)].node)); (yyvsp[(2) - (4)].node) = NULL;
@@ -4124,7 +4128,7 @@ yyreduce:
     break;
 
   case 215:
-#line 1218 "parser/tbol.y"
+#line 1222 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_new(AST_DO_BLOCK, MAKE_LOC((yylsp[(1) - (1)])));  /* Container */
         ast_add_child((yyval.node), ast_ident((yyvsp[(1) - (1)].sval), MAKE_LOC((yylsp[(1) - (1)]))));
@@ -4133,7 +4137,7 @@ yyreduce:
     break;
 
   case 216:
-#line 1223 "parser/tbol.y"
+#line 1227 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (3)].node); (yyvsp[(1) - (3)].node) = NULL;
         ast_add_child((yyval.node), ast_ident((yyvsp[(3) - (3)].sval), MAKE_LOC((yylsp[(3) - (3)]))));
@@ -4142,7 +4146,7 @@ yyreduce:
     break;
 
   case 217:
-#line 1231 "parser/tbol.y"
+#line 1235 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_new(AST_DO_BLOCK, MAKE_LOC((yylsp[(1) - (1)])));  /* Container */
         ast_add_child((yyval.node), (yyvsp[(1) - (1)].node)); (yyvsp[(1) - (1)].node) = NULL;
@@ -4150,7 +4154,7 @@ yyreduce:
     break;
 
   case 218:
-#line 1235 "parser/tbol.y"
+#line 1239 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (3)].node); (yyvsp[(1) - (3)].node) = NULL;
         ast_add_child((yyval.node), (yyvsp[(3) - (3)].node)); (yyvsp[(3) - (3)].node) = NULL;
@@ -4158,7 +4162,7 @@ yyreduce:
     break;
 
   case 219:
-#line 1242 "parser/tbol.y"
+#line 1246 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_new(AST_DO_BLOCK, MAKE_LOC((yylsp[(1) - (1)])));  /* Container */
         ast_add_child((yyval.node), (yyvsp[(1) - (1)].node)); (yyvsp[(1) - (1)].node) = NULL;
@@ -4166,7 +4170,7 @@ yyreduce:
     break;
 
   case 220:
-#line 1246 "parser/tbol.y"
+#line 1250 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (3)].node); (yyvsp[(1) - (3)].node) = NULL;
         ast_add_child((yyval.node), (yyvsp[(3) - (3)].node)); (yyvsp[(3) - (3)].node) = NULL;
@@ -4174,7 +4178,7 @@ yyreduce:
     break;
 
   case 221:
-#line 1253 "parser/tbol.y"
+#line 1257 "compiler/parser/tbol.y"
     {
         /* target:fixed_length - fixed width field */
         (yyval.node) = ast_format_spec((yyvsp[(1) - (3)].node), atoi((yyvsp[(3) - (3)].sval)), -1, MAKE_LOC((yylsp[(1) - (3)])));
@@ -4184,7 +4188,7 @@ yyreduce:
     break;
 
   case 222:
-#line 1259 "parser/tbol.y"
+#line 1263 "compiler/parser/tbol.y"
     {
         /* target::embedded_length - length-prefixed field (1 or 2 byte prefix) */
         (yyval.node) = ast_format_spec((yyvsp[(1) - (4)].node), -1, atoi((yyvsp[(4) - (4)].sval)), MAKE_LOC((yylsp[(1) - (4)])));
@@ -4194,7 +4198,7 @@ yyreduce:
     break;
 
   case 223:
-#line 1265 "parser/tbol.y"
+#line 1269 "compiler/parser/tbol.y"
     {
         /* target:fixed_length:embedded_length - length-prefixed with padding/truncation */
         (yyval.node) = ast_format_spec((yyvsp[(1) - (5)].node), atoi((yyvsp[(3) - (5)].sval)), atoi((yyvsp[(5) - (5)].sval)), MAKE_LOC((yylsp[(1) - (5)])));
@@ -4205,7 +4209,7 @@ yyreduce:
     break;
 
   case 224:
-#line 1276 "parser/tbol.y"
+#line 1280 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_proc_call((yyvsp[(1) - (1)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (1)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)])));
@@ -4214,7 +4218,7 @@ yyreduce:
     break;
 
   case 225:
-#line 1281 "parser/tbol.y"
+#line 1285 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_proc_call((yyvsp[(1) - (2)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (2)])));
         free((yyvsp[(1) - (2)].ident_pair).canonical); free((yyvsp[(1) - (2)].ident_pair).original);
@@ -4230,7 +4234,7 @@ yyreduce:
     break;
 
   case 226:
-#line 1297 "parser/tbol.y"
+#line 1301 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_ident((yyvsp[(1) - (1)].ident_pair).canonical, MAKE_LOC((yylsp[(1) - (1)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)])));
@@ -4239,37 +4243,37 @@ yyreduce:
     break;
 
   case 227:
-#line 1302 "parser/tbol.y"
+#line 1306 "compiler/parser/tbol.y"
     { (yyval.node) = ast_reg_i((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 228:
-#line 1303 "parser/tbol.y"
+#line 1307 "compiler/parser/tbol.y"
     { (yyval.node) = ast_reg_d((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 229:
-#line 1304 "parser/tbol.y"
+#line 1308 "compiler/parser/tbol.y"
     { (yyval.node) = ast_reg_p((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 230:
-#line 1305 "parser/tbol.y"
+#line 1309 "compiler/parser/tbol.y"
     { (yyval.node) = ast_rda_slot((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 231:
-#line 1306 "parser/tbol.y"
+#line 1310 "compiler/parser/tbol.y"
     { (yyval.node) = ast_pev((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 232:
-#line 1307 "parser/tbol.y"
+#line 1311 "compiler/parser/tbol.y"
     { (yyval.node) = ast_gev((yyvsp[(1) - (1)].ival), MAKE_LOC((yylsp[(1) - (1)]))); ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)]))); ;}
     break;
 
   case 233:
-#line 1311 "parser/tbol.y"
+#line 1315 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_literal_str((yyvsp[(1) - (1)].sval), lexer_get_last_string_length(), MAKE_LOC((yylsp[(1) - (1)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)])));
@@ -4278,7 +4282,7 @@ yyreduce:
     break;
 
   case 234:
-#line 1316 "parser/tbol.y"
+#line 1320 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_literal_num(atoll((yyvsp[(1) - (1)].sval)), (yyvsp[(1) - (1)].sval), MAKE_LOC((yylsp[(1) - (1)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)])));
@@ -4287,7 +4291,7 @@ yyreduce:
     break;
 
   case 235:
-#line 1321 "parser/tbol.y"
+#line 1325 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_literal_hex(strtoll((yyvsp[(1) - (1)].sval) + 2, NULL, 16), (yyvsp[(1) - (1)].sval), MAKE_LOC((yylsp[(1) - (1)])));
         ast_set_end((yyval.node), MAKE_END_LOC((yylsp[(1) - (1)])));
@@ -4296,14 +4300,14 @@ yyreduce:
     break;
 
   case 236:
-#line 1326 "parser/tbol.y"
+#line 1330 "compiler/parser/tbol.y"
     {
         (yyval.node) = (yyvsp[(1) - (1)].node); (yyvsp[(1) - (1)].node) = NULL;
     ;}
     break;
 
   case 237:
-#line 1329 "parser/tbol.y"
+#line 1333 "compiler/parser/tbol.y"
     {
         (yyval.node) = ast_indexed((yyvsp[(1) - (4)].node), (yyvsp[(3) - (4)].node), MAKE_LOC((yylsp[(1) - (4)])));
         (yyvsp[(1) - (4)].node) = NULL; (yyvsp[(3) - (4)].node) = NULL;
@@ -4312,14 +4316,14 @@ yyreduce:
     break;
 
   case 238:
-#line 1338 "parser/tbol.y"
+#line 1342 "compiler/parser/tbol.y"
     {
         (yyval.send_mods) = (yyvsp[(1) - (1)].send_mods);
     ;}
     break;
 
   case 239:
-#line 1341 "parser/tbol.y"
+#line 1345 "compiler/parser/tbol.y"
     {
         (yyval.send_mods).timeout = ((yyvsp[(1) - (3)].send_mods).timeout != 0) ? (yyvsp[(1) - (3)].send_mods).timeout : (yyvsp[(3) - (3)].send_mods).timeout;
         (yyval.send_mods).flags = (yyvsp[(1) - (3)].send_mods).flags | (yyvsp[(3) - (3)].send_mods).flags;
@@ -4327,7 +4331,7 @@ yyreduce:
     break;
 
   case 240:
-#line 1348 "parser/tbol.y"
+#line 1352 "compiler/parser/tbol.y"
     {
         (yyval.send_mods).timeout = (int16_t)atoi((yyvsp[(3) - (4)].sval));
         (yyval.send_mods).flags = 0;
@@ -4336,7 +4340,7 @@ yyreduce:
     break;
 
   case 241:
-#line 1353 "parser/tbol.y"
+#line 1357 "compiler/parser/tbol.y"
     {
         (yyval.send_mods).timeout = 0;
         (yyval.send_mods).flags = 0x04;
@@ -4344,7 +4348,7 @@ yyreduce:
     break;
 
   case 242:
-#line 1357 "parser/tbol.y"
+#line 1361 "compiler/parser/tbol.y"
     {
         (yyval.send_mods).timeout = 0;
         (yyval.send_mods).flags = 0x02;
@@ -4353,7 +4357,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 4357 "parser/tbol.tab.c"
+#line 4361 "compiler/parser/tbol.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -4573,7 +4577,7 @@ yyreturn:
 }
 
 
-#line 1363 "parser/tbol.y"
+#line 1367 "compiler/parser/tbol.y"
 
 
 void yyerror(const char *s) {

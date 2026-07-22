@@ -539,6 +539,10 @@ label_name
 statement
     : simple_stmt ';' {
         $$ = $1; $1 = NULL;
+        /* Verb statements and proc calls set only their start location; give
+         * them a true end span (through the last operand) for .sdb column
+         * info. @1 spans the whole simple_stmt reduction. */
+        if ($$) ast_set_end($$, MAKE_END_LOC(@1));
     }
     | if_stmt {
         $$ = $1; $1 = NULL;
