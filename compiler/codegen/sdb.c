@@ -121,9 +121,15 @@ int sdb_write(const char *path, const char *program, const char *cod_name) {
     fprintf(f, "program %s TBOL\n", program ? program : "?");
     fprintf(f, "cod %s 0\n", cod_name ? cod_name : "?");
 
+    /* Record each source as an absolute path so a debugger can open it directly
+     * (DAP source paths must be absolute), independent of build/output layout.
+     * Falls back to the recorded name if realpath fails. */
     fprintf(f, "\n[files]\n");
-    for (int i = 0; i < file_count; i++)
-        fprintf(f, "%d %s\n", i, files[i]);
+    for (int i = 0; i < file_count; i++) {
+        char *abs = realpath(files[i], NULL);
+        fprintf(f, "%d %s\n", i, abs ? abs : files[i]);
+        free(abs);
+    }
 
     fprintf(f, "\n[lines]\n");
     for (int i = 0; i < line_count; i++) {
