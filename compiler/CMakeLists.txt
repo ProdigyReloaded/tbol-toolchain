@@ -37,6 +37,7 @@ set(COMPILER_SRCS
     sema/symtab.c
     sema/sema.c
     codegen/emit.c
+    codegen/sdb.c
     codegen/codegen.c
     codegen/codegen_operand.c
     codegen/codegen_control.c

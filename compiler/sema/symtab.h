@@ -90,6 +90,9 @@ bool symtab_label_exists(Symbol *proc, const char *name);
 void symtab_define_structure(const char *name, int start_slot, int count);
 StructureGroup *symtab_lookup_structure(const char *name);
 
+/* Iterate every defined variable (in unspecified order). */
+void symtab_foreach_var(void (*fn)(const Symbol *sym, void *ctx), void *ctx);
+
 /* Debug */
 void symtab_dump(void);
 
