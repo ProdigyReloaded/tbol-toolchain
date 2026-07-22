@@ -131,6 +131,25 @@
                 "default": false
               }
             }
+          },
+          "attach": {
+            "properties": {
+              "host": {
+                "type": "string",
+                "description": "Host of the running rs debug server.",
+                "default": "127.0.0.1"
+              },
+              "port": {
+                "type": "number",
+                "description": "TCP port rs is listening on (start rs with --debug-port N --wait-debugger).",
+                "default": 4711
+              },
+              "srcRoot": {
+                "type": "string",
+                "description": "Root directory the .sdb file paths are resolved against.",
+                "default": "${workspaceFolder}"
+              }
+            }
           }
         },
         "initialConfigurations": [
@@ -141,6 +160,14 @@
             "program": "${workspaceFolder}/${fileBasenameNoExtension}.cod",
             "srcRoot": "${workspaceFolder}",
             "stopOnEntry": false
+          },
+          {
+            "type": "tbol",
+            "request": "attach",
+            "name": "TBOL: Attach to running rs",
+            "host": "127.0.0.1",
+            "port": 4711,
+            "srcRoot": "${workspaceFolder}"
           }
         ],
         "configurationSnippets": [
@@ -154,6 +181,18 @@
               "program": "^\"\\${workspaceFolder}/\\${fileBasenameNoExtension}.cod\"",
               "srcRoot": "^\"\\${workspaceFolder}\"",
               "stopOnEntry": false
+            }
+          },
+          {
+            "label": "TBOL: Attach to running rs",
+            "description": "Attach to a running rs (started with --debug-port N --wait-debugger)",
+            "body": {
+              "type": "tbol",
+              "request": "attach",
+              "name": "TBOL: Attach to running rs",
+              "host": "127.0.0.1",
+              "port": 4711,
+              "srcRoot": "^\"\\${workspaceFolder}\""
             }
           }
         ]

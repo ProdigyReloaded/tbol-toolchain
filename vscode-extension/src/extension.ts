@@ -39,6 +39,7 @@ import {
     DebugAdapterDescriptor,
     DebugAdapterDescriptorFactory,
     DebugAdapterExecutable,
+    DebugAdapterServer,
     DebugConfiguration,
     DebugConfigurationProvider,
     DebugSession,
@@ -422,14 +423,23 @@ class TbolDebugConfigurationProvider implements DebugConfigurationProvider {
     }
 
     /**
-     * Runs after variable substitution, when `program` is a concrete path.
-     * Default `sdb` to the program path with a .sdb extension, and `srcRoot`
-     * to the workspace folder.
+     * Runs after variable substitution. For `attach`, connect to a running rs
+     * on a TCP port (rs supplies the program/.sdb), so only host/port/srcRoot
+     * matter. For `launch`, resolve the standalone .cod / .sdb paths.
      */
     resolveDebugConfigurationWithSubstitutedVariables(
         folder: WorkspaceFolder | undefined,
         config: DebugConfiguration
     ): ProviderResult<DebugConfiguration> {
+        const workspaceRoot = folder?.uri.fsPath ?? workspace.workspaceFolders?.[0]?.uri.fsPath;
+
+        if (config.request === 'attach') {
+            config.host = config.host || '127.0.0.1';
+            config.port = config.port || 4711;
+            if (!config.srcRoot) { config.srcRoot = workspaceRoot; }
+            return config;
+        }
+
         if (!config.program) {
             window.showErrorMessage('TBOL debug: no "program" (compiled .cod) specified.');
             return undefined;
@@ -439,25 +449,33 @@ class TbolDebugConfigurationProvider implements DebugConfigurationProvider {
             config.sdb = (ext ? config.program.slice(0, -ext.length) : config.program) + '.sdb';
         }
         if (!config.srcRoot) {
-            config.srcRoot = folder?.uri.fsPath
-                ?? workspace.workspaceFolders?.[0]?.uri.fsPath
-                ?? path.dirname(config.program);
+            config.srcRoot = workspaceRoot ?? path.dirname(config.program);
         }
         return config;
     }
 }
 
 /**
- * Launches tbol-dap as the debug adapter, communicating over stdio.
- * tbol-dap is built in the reception-system repo; users point at it via
- * tbol.debuggerPath when it is not on PATH.
+ * Chooses the debug adapter:
+ *  - attach: connect to a running rs hosting the DAP server on a TCP port
+ *    (DebugAdapterServer). rs is started separately with
+ *    `--debug-port N --wait-debugger`.
+ *  - launch: run the standalone tbol-dap over stdio against a .cod
+ *    (DebugAdapterExecutable). tbol-dap is built in the reception-system repo;
+ *    users point at it via tbol.debuggerPath when it is not on PATH.
  */
 class TbolDebugAdapterFactory implements DebugAdapterDescriptorFactory {
     constructor(private context: ExtensionContext) {}
 
     createDebugAdapterDescriptor(
-        _session: DebugSession
+        session: DebugSession
     ): ProviderResult<DebugAdapterDescriptor> {
+        if (session.configuration.request === 'attach') {
+            const port = session.configuration.port || 4711;
+            const host = session.configuration.host || '127.0.0.1';
+            return new DebugAdapterServer(port, host);
+        }
+
         const dapPath = findExecutable(this.context, 'tbol-dap', 'debuggerPath', 'debugger');
         if (!dapPath) {
             window.showErrorMessage(
