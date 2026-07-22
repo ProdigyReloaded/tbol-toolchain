@@ -30,7 +30,9 @@
   ],
   "activationEvents": [
     "onLanguage:tbol",
-    "onUri"
+    "onUri",
+    "onDebugResolve:tbol",
+    "onDebugDynamicConfigurations:tbol"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -94,6 +96,69 @@
         }
       }
     ],
+    "breakpoints": [
+      {
+        "language": "tbol"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "tbol",
+        "label": "TBOL Debug",
+        "languages": ["tbol"],
+        "configurationAttributes": {
+          "launch": {
+            "required": ["program"],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to the compiled .cod/.pgm bytecode to debug.",
+                "default": "${workspaceFolder}/${fileBasenameNoExtension}.cod"
+              },
+              "sdb": {
+                "type": "string",
+                "description": "Path to the .sdb source-debug file. Defaults to the program path with a .sdb extension.",
+                "default": ""
+              },
+              "srcRoot": {
+                "type": "string",
+                "description": "Root directory the .sdb file paths are resolved against.",
+                "default": "${workspaceFolder}"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "Break at the first instruction.",
+                "default": false
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "tbol",
+            "request": "launch",
+            "name": "TBOL: Debug bytecode",
+            "program": "${workspaceFolder}/${fileBasenameNoExtension}.cod",
+            "srcRoot": "${workspaceFolder}",
+            "stopOnEntry": false
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "TBOL: Debug bytecode",
+            "description": "Debug a compiled TBOL .cod with its .sdb source-debug info",
+            "body": {
+              "type": "tbol",
+              "request": "launch",
+              "name": "TBOL: Debug bytecode",
+              "program": "^\"\\${workspaceFolder}/\\${fileBasenameNoExtension}.cod\"",
+              "srcRoot": "^\"\\${workspaceFolder}\"",
+              "stopOnEntry": false
+            }
+          }
+        ]
+      }
+    ],
     "problemMatchers": [
       {
         "name": "tbolc",
@@ -139,6 +204,11 @@
           "type": "string",
           "default": "",
           "description": "Path to the tboldc decompiler executable. If empty, searches bundled, sibling, and PATH."
+        },
+        "tbol.debuggerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the tbol-dap debug adapter executable (built in the reception-system repo). If empty, searches bundled, sibling, and PATH."
         },
         "tbol.unreferencedStyle": {
           "type": "string",

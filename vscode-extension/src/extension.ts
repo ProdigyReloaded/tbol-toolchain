@@ -34,7 +34,16 @@ import {
     languages,
     Color,
     ColorInformation,
-    ColorPresentation
+    ColorPresentation,
+    debug,
+    DebugAdapterDescriptor,
+    DebugAdapterDescriptorFactory,
+    DebugAdapterExecutable,
+    DebugConfiguration,
+    DebugConfigurationProvider,
+    DebugSession,
+    ProviderResult,
+    WorkspaceFolder
 } from 'vscode';
 import {
     LanguageClient,
@@ -176,6 +185,15 @@ export function activate(context: ExtensionContext): TbolExtensionApi {
     );
     context.subscriptions.push(
         commands.registerCommand('tbol.disassemble', () => runDisassembler(context))
+    );
+
+    // Register the TBOL debug adapter (tbol-dap over stdio) and a configuration
+    // provider that fills in .sdb / srcRoot defaults.
+    context.subscriptions.push(
+        debug.registerDebugConfigurationProvider('tbol', new TbolDebugConfigurationProvider())
+    );
+    context.subscriptions.push(
+        debug.registerDebugAdapterDescriptorFactory('tbol', new TbolDebugAdapterFactory(context))
     );
 
     // Register URI handler for cross-extension navigation.
@@ -366,5 +384,88 @@ class TbolTaskProvider implements TaskProvider {
             return task;
         }
         return undefined;
+    }
+}
+
+/* ── Debug adapter ──────────────────────────────────────────────────── */
+
+/**
+ * Supplies a default launch configuration when the user presses F5 with no
+ * launch.json, and fills in the `sdb`/`srcRoot` defaults for an explicit
+ * configuration.  The `program`/`sdb`/`srcRoot`/`stopOnEntry` attributes are
+ * consumed by tbol-dap's launch request.
+ */
+class TbolDebugConfigurationProvider implements DebugConfigurationProvider {
+    /**
+     * If launched with no configuration (empty object), synthesize one that
+     * debugs the .cod next to the active TBOL source.  Variable substitution
+     * (${workspaceFolder}, ${fileBasenameNoExtension}) is applied by VS Code
+     * after this returns.
+     */
+    resolveDebugConfiguration(
+        _folder: WorkspaceFolder | undefined,
+        config: DebugConfiguration
+    ): ProviderResult<DebugConfiguration> {
+        if (!config.type && !config.request && !config.name) {
+            const editor = window.activeTextEditor;
+            if (!editor || editor.document.languageId !== 'tbol') {
+                return undefined;   // nothing to debug; let VS Code report it
+            }
+            config.type = 'tbol';
+            config.request = 'launch';
+            config.name = 'TBOL: Debug bytecode';
+            config.program = '${workspaceFolder}/${fileBasenameNoExtension}.cod';
+            config.srcRoot = '${workspaceFolder}';
+            config.stopOnEntry = false;
+        }
+        return config;
+    }
+
+    /**
+     * Runs after variable substitution, when `program` is a concrete path.
+     * Default `sdb` to the program path with a .sdb extension, and `srcRoot`
+     * to the workspace folder.
+     */
+    resolveDebugConfigurationWithSubstitutedVariables(
+        folder: WorkspaceFolder | undefined,
+        config: DebugConfiguration
+    ): ProviderResult<DebugConfiguration> {
+        if (!config.program) {
+            window.showErrorMessage('TBOL debug: no "program" (compiled .cod) specified.');
+            return undefined;
+        }
+        if (!config.sdb) {
+            const ext = path.extname(config.program);
+            config.sdb = (ext ? config.program.slice(0, -ext.length) : config.program) + '.sdb';
+        }
+        if (!config.srcRoot) {
+            config.srcRoot = folder?.uri.fsPath
+                ?? workspace.workspaceFolders?.[0]?.uri.fsPath
+                ?? path.dirname(config.program);
+        }
+        return config;
+    }
+}
+
+/**
+ * Launches tbol-dap as the debug adapter, communicating over stdio.
+ * tbol-dap is built in the reception-system repo; users point at it via
+ * tbol.debuggerPath when it is not on PATH.
+ */
+class TbolDebugAdapterFactory implements DebugAdapterDescriptorFactory {
+    constructor(private context: ExtensionContext) {}
+
+    createDebugAdapterDescriptor(
+        _session: DebugSession
+    ): ProviderResult<DebugAdapterDescriptor> {
+        const dapPath = findExecutable(this.context, 'tbol-dap', 'debuggerPath', 'debugger');
+        if (!dapPath) {
+            window.showErrorMessage(
+                'tbol-dap not found. Set tbol.debuggerPath in settings to the tbol-dap ' +
+                'executable built in the reception-system repo.'
+            );
+            return undefined;
+        }
+        return new DebugAdapterExecutable(dapPath, []);
     }
 }
