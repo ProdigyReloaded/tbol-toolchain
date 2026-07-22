@@ -22,6 +22,7 @@
 #include "codegen_internal.h"
 #include "sdb.h"
 #include "../sema/symtab.h"
+#include "../lexer/preproc.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -496,6 +497,16 @@ static void sdb_collect_var(const Symbol *sym, void *ctx) {
     sdb_add_symbol(sym->name, "RDA", VAR_SLOT(sym), len);
 }
 
+/* Export DEFINEs that name a global/partition variable (value #N -> GEV N,
+ * &N -> PEV N) so the debugger can show e.g. SYS_TTX_PHONE as GEV 19. */
+static void sdb_collect_define(const char *name, const char *value, void *ctx) {
+    (void)ctx;
+    while (*value == ' ' || *value == '\t') value++;
+    if ((value[0] == '#' || value[0] == '&') && isdigit((unsigned char)value[1]))
+        sdb_add_symbol(name, value[0] == '#' ? "GEV" : "PEV",
+                       atoi(value + 1), -1);
+}
+
 /* Write "<program>.sdb" beside the .cod, deriving its path from the .cod path. */
 static void write_sdb(const char *cod_path, const char *program_name) {
     char sdb_path[4096];
@@ -508,6 +519,7 @@ static void write_sdb(const char *cod_path, const char *program_name) {
     cod_name = cod_name ? cod_name + 1 : cod_path;
 
     symtab_foreach_var(sdb_collect_var, NULL);
+    preproc_foreach_define(sdb_collect_define, NULL);
 
     if (sdb_write(sdb_path, program_name, cod_name) != 0) {
         diag_error((SourceLoc){NULL, 0, 0}, "error writing .sdb file '%s'", sdb_path);

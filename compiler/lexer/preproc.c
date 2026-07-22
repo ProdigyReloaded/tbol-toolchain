@@ -311,6 +311,13 @@ const char *preproc_get_current_file(void) {
     return lexer_get_filename();
 }
 
+void preproc_foreach_define(void (*fn)(const char *name, const char *value, void *ctx),
+                            void *ctx) {
+    for (int i = 0; i < DEFINE_HASH_SIZE; i++)
+        for (DefineEntry *e = define_table[i]; e; e = e->next)
+            fn(e->name, e->value, ctx);
+}
+
 void preproc_add_define(const char *name, const char *value, int line, int col) {
     unsigned int h = hash_name(name);
     const char *cur_file = preproc_get_current_file();

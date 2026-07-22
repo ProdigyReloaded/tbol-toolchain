@@ -69,6 +69,11 @@ const char *preproc_get_last_resolved_path(void);
 void preproc_add_define(const char *name, const char *value, int line, int col);
 const char *preproc_lookup_define(const char *name);
 
+/* Iterate every registered DEFINE (name + expansion value). Used to export
+ * GEV/PEV symbol names (DEFINEs whose value is #N / &N) to .sdb debug info. */
+void preproc_foreach_define(void (*fn)(const char *name, const char *value, void *ctx),
+                            void *ctx);
+
 /* Check if a name is defined */
 bool preproc_is_defined(const char *name);
 
