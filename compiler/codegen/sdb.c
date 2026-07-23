@@ -113,6 +113,14 @@ void sdb_add_symbol(const char *name, const char *cls, int slot, int len) {
     sym_count++;
 }
 
+/* Order symbols by class, then by slot ascending (stable-ish for equal keys). */
+static int sym_cmp(const void *a, const void *b) {
+    const SymEntry *x = a, *y = b;
+    int c = strcmp(x->cls, y->cls);
+    if (c) return c;
+    return x->slot < y->slot ? -1 : x->slot > y->slot ? 1 : 0;
+}
+
 int sdb_write(const char *path, const char *program, const char *cod_name) {
     FILE *f = fopen(path, "w");
     if (!f) return -1;
@@ -138,6 +146,10 @@ int sdb_write(const char *path, const char *program, const char *cod_name) {
                 (unsigned)(e->addr & 0xFFFF),
                 e->file, e->line, e->col, e->end_line, e->end_col);
     }
+
+    /* Emit symbols grouped by class, ascending by slot -- source order is the
+     * preprocessor's hash-iteration order, which is meaningless to a reader. */
+    qsort(syms, sym_count, sizeof(SymEntry), sym_cmp);
 
     fprintf(f, "\n[symbols]\n");
     for (int i = 0; i < sym_count; i++) {
