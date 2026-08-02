@@ -108,7 +108,7 @@ static const OpcodeInfo opcode_table[] = {
     {OP_XOR,        MNEM_UNKNOWN,    "XOR",        2, false},
     {OP_TEST,       MNEM_UNKNOWN,    "TEST",       2, false},
     {OP_EDIT,       MNEM_UNKNOWN,    "EDIT",      -1, false},
-    /* Patent-only opcodes — commented out (see defines above) */
+    /* Patent-only opcodes - commented out (see defines above) */
     /* {0x3C,          MNEM_UNKNOWN,    "SYNC_SAVE",  0, false}, */
     /* {0x3D,          MNEM_UNKNOWN,    "SYNC_RELEASE", 0, false}, */
     /* {0x3E,          MNEM_UNKNOWN,    "TIMER_ON",   1, false}, */

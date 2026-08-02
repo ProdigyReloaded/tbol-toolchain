@@ -1,5 +1,5 @@
 /*
- * tbol_fmt.c — TBOL source code formatter
+ * tbol_fmt.c - TBOL source code formatter
  *
  * Pipeline of text-based passes that transform TBOL source for readability.
  * Each pass takes a malloc'd string and returns a new malloc'd string.
@@ -20,7 +20,7 @@ TbolFmtOptions tbol_fmt_defaults(void) {
     };
 }
 
-/* ── Helper: growable string buffer ─────────────────────────────────── */
+/* -- Helper: growable string buffer ----------------------------------- */
 
 typedef struct {
     char *data;
@@ -54,7 +54,7 @@ static char *buf_detach(Buf *b) {
     return r;
 }
 
-/* ── Pass 1: Strip unreferenced labels ──────────────────────────────── */
+/* -- Pass 1: Strip unreferenced labels -------------------------------- */
 
 char *pass_strip_labels(const char *src) {
     /* Collect referenced labels */
@@ -102,7 +102,7 @@ char *pass_strip_labels(const char *src) {
     return buf_detach(&out);
 }
 
-/* ── Pass 2: Cuddle ELSE ────────────────────────────────────────────── */
+/* -- Pass 2: Cuddle ELSE ---------------------------------------------- */
 
 /*
  * Transform:
@@ -152,7 +152,7 @@ char *pass_cuddle_else(const char *src) {
     return buf_detach(&out);
 }
 
-/* ── Pass 3: Normalize indentation ──────────────────────────────────── */
+/* -- Pass 3: Normalize indentation ------------------------------------ */
 
 /* Case-insensitive prefix match */
 static bool starts_with(const char *s, const char *kw) {
@@ -364,7 +364,7 @@ char *pass_indent(const char *src, int width) {
     return buf_detach(&out);
 }
 
-/* ── Pass: Break THEN / ELSE bodies onto their own line ────────────── */
+/* -- Pass: Break THEN / ELSE bodies onto their own line -------------- */
 
 /*
  * Project style: when an IF or WHILE has a single-statement body (no
@@ -552,7 +552,7 @@ char *pass_then_newline(const char *src) {
     return buf_detach(&out);
 }
 
-/* ── Pass: Blank lines around IF/WHILE blocks ──────────────────────── */
+/* -- Pass: Blank lines around IF/WHILE blocks ------------------------ */
 
 /*
  * Project style: an IF/WHILE block is visually separated from sibling
@@ -579,7 +579,7 @@ typedef struct {
     bool        is_blank;
     bool        is_if_or_while;       /* starts with IF or WHILE */
     bool        is_end_semi;          /* starts with "END;" (exact or cuddled) */
-    bool        is_cuddled_else;      /* "END; ELSE …" */
+    bool        is_cuddled_else;      /* "END; ELSE ..." */
     bool        is_block_boundary;    /* PROC, END_PROC, DO, ELSE DO, THEN DO */
     bool        ends_then_do_or_else_do; /* line opens a DO body */
     bool        is_data_start;        /* DATA at depth 0 */
@@ -677,7 +677,7 @@ char *pass_blank_lines(const char *src, int width) {
             if (sp > 0) {
                 popped_kind = stack[--sp];
             }
-            /* For cuddled "END; ELSE …" the line both closes the THEN
+            /* For cuddled "END; ELSE ..." the line both closes the THEN
              * frame and opens an ELSE continuation. */
             if (lines[i].is_cuddled_else) {
                 if (lines[i].ends_then_do_or_else_do) {
@@ -748,7 +748,7 @@ char *pass_blank_lines(const char *src, int width) {
             /* Look back for previous non-blank line. */
             for (int j = i - 1; j >= 0; j--) {
                 if (lines[j].is_blank) {
-                    /* Already a blank — no need to add. */
+                    /* Already a blank - no need to add. */
                     break;
                 }
                 if (lines[j].depth == lines[i].depth) {
@@ -800,7 +800,7 @@ char *pass_blank_lines(const char *src, int width) {
                 if (lines[j].depth == sibling_depth) {
                     /* Sibling at same depth.  Skip if it's an enclosing
                      * closer (END;/END_PROC at same depth as our END;
-                     * means same-level — treat as sibling) or the closer
+                     * means same-level - treat as sibling) or the closer
                      * of the enclosing block (which would be at depth-1,
                      * already excluded by the depth check). */
                     if (lines[j].is_end_semi ||
@@ -845,19 +845,19 @@ char *pass_blank_lines(const char *src, int width) {
     return buf_detach(&out);
 }
 
-/* ── Pass 4: Convert hex escape string literals to 0x notation ─────── */
+/* -- Pass 4: Convert hex escape string literals to 0x notation ------- */
 
 /*
  * Convert string literals containing \xNN escapes to 0x hex notation.
  *
  * Rules:
- * 1. Pure hex ('\xNN\xNN...') → 0xNNNN...
- * 2. Mixed strings with any \xNN escapes and <8 leading printables →
+ * 1. Pure hex ('\xNN\xNN...') -> 0xNNNN...
+ * 2. Mixed strings with any \xNN escapes and <8 leading printables ->
  *    convert entire string (printables + escapes) to hex.
- *    E.g., '\x00"\x00' → 0x002200
- *    E.g., '\x00 ' → 0x0020
+ *    E.g., '\x00"\x00' -> 0x002200
+ *    E.g., '\x00 ' -> 0x0020
  * 3. Strings with 8+ leading printables are object references handled
- *    by the decompiler's DEFINE extraction — not touched here.
+ *    by the decompiler's DEFINE extraction - not touched here.
  * 4. Strings with no \xNN escapes are left unchanged.
  */
 char *pass_hex_literals(const char *src) {
@@ -880,7 +880,7 @@ char *pass_hex_literals(const char *src) {
                     close++;
             }
             if (*close != '\'') {
-                /* Unterminated string — emit quote and move on */
+                /* Unterminated string - emit quote and move on */
                 buf_putc(&out, '\'');
                 continue;
             }
@@ -898,7 +898,7 @@ char *pass_hex_literals(const char *src) {
             }
 
             if (!has_hex) {
-                /* No hex escapes — emit unchanged */
+                /* No hex escapes - emit unchanged */
                 buf_putc(&out, '\'');
                 buf_append(&out, p, close - p);
                 buf_putc(&out, '\'');
@@ -915,7 +915,7 @@ char *pass_hex_literals(const char *src) {
             }
 
             if (leading_printable >= 8) {
-                /* Object reference — leave for DEFINE extraction (case 3 skipped) */
+                /* Object reference - leave for DEFINE extraction (case 3 skipped) */
                 buf_putc(&out, '\'');
                 buf_append(&out, p, close - p);
                 buf_putc(&out, '\'');
@@ -934,7 +934,7 @@ char *pass_hex_literals(const char *src) {
                     buf_putc(&out, s[3]);
                     s += 4;
                 } else {
-                    /* Printable char — emit as 2-digit hex */
+                    /* Printable char - emit as 2-digit hex */
                     char hex[3];
                     snprintf(hex, sizeof(hex), "%02x", (unsigned char)*s);
                     buf_append(&out, hex, 2);
@@ -951,7 +951,7 @@ char *pass_hex_literals(const char *src) {
     return buf_detach(&out);
 }
 
-/* ── Pipeline ───────────────────────────────────────────────────────── */
+/* -- Pipeline --------------------------------------------------------- */
 
 char *tbol_fmt(const char *source, const TbolFmtOptions *opts) {
     if (!source) return NULL;

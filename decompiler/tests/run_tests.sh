@@ -3,7 +3,7 @@
 # TBOL Decompiler Test Runner
 #
 # Decompiles reference .cod files from the compiler test suite and verifies
-# round-trip: decompile → recompile → identical bytecode.  The decompiler
+# round-trip: decompile -> recompile -> identical bytecode.  The decompiler
 # performs this verification internally, so a non-zero exit means the
 # round-trip failed.
 #

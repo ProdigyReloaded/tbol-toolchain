@@ -1,4 +1,4 @@
-# TBOL Disassembler — tboldasm
+# TBOL Disassembler - tboldasm
 
 add_executable(tboldasm
     tboldasm.c

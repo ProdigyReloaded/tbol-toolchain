@@ -51,7 +51,7 @@ extern int test_fail_count;
 /* Place at the end of each test function (after cleanup: label and resource freeing) */
 #define TEST_FINI do { if (!_test_failed) test_pass_count++; } while(0)
 
-/* Assertion macros — goto cleanup on failure */
+/* Assertion macros - goto cleanup on failure */
 #define ASSERT(cond) do { \
     if (!(cond)) { \
         printf("FAIL\n    Assertion failed: %s\n    At %s:%d\n", \

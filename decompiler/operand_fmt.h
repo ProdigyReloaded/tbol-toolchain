@@ -1,5 +1,5 @@
 /*
- * operand_fmt.h — Operand formatting for source emission
+ * operand_fmt.h - Operand formatting for source emission
  */
 #ifndef OPERAND_FMT_H
 #define OPERAND_FMT_H
@@ -8,11 +8,11 @@
 #include "bytecode/gev.h"
 #include <stdio.h>
 
-/* ── Define table for non-printable string constants ────────────────── */
+/* -- Define table for non-printable string constants ------------------ */
 
 typedef struct {
-    char *hex_value;     /* "0x474254..." — the hex literal */
-    char *ident;         /* "gbtsnext_pgm" — the generated identifier */
+    char *hex_value;     /* "0x474254..." - the hex literal */
+    char *ident;         /* "gbtsnext_pgm" - the generated identifier */
     int raw_len;         /* length of raw bytes */
     char *raw_bytes;     /* raw byte content for matching */
 } DefineEntry;
@@ -34,7 +34,7 @@ void define_table_scan(DefineTable *dt, Program *prog);
  * or NULL if not in the table. */
 const char *define_table_lookup(DefineTable *dt, Operand *op);
 
-/* ── Struct map for CLEAR/SAVE range names ──────────────────────────── */
+/* -- Struct map for CLEAR/SAVE range names ---------------------------- */
 
 typedef struct {
     int start_slot;
@@ -55,7 +55,7 @@ void struct_map_add(StructMap *sm, int start_slot, int count, const char *name);
 /* Look up the struct name for a CLEAR/SAVE target slot. Returns NULL if not a struct. */
 const char *struct_map_lookup(StructMap *sm, int slot);
 
-/* ── Operand formatting ─────────────────────────────────────────────── */
+/* -- Operand formatting ----------------------------------------------- */
 
 /* Format a single operand as TBOL source text. Writes to buf.
  * If dt is non-NULL, non-printable strings are resolved to DEFINE identifiers.

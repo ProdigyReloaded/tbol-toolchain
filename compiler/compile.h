@@ -1,5 +1,5 @@
 /*
- * compile.h — TBOL compiler library interface
+ * compile.h - TBOL compiler library interface
  *
  * Provides a callable compilation function for use by tools
  * like the decompiler's round-trip verification.

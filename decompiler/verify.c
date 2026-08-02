@@ -1,5 +1,5 @@
 /*
- * verify.c — Speculative round-trip verification
+ * verify.c - Speculative round-trip verification
  *
  * Iteratively refines decompiler output by compiling it with the
  * statically-linked tbolc compiler, comparing bytecodes, and ratcheting
@@ -21,7 +21,7 @@
 #include <direct.h>
 #endif
 
-/* ── Bytecode comparison ────────────────────────────────────────────── */
+/* -- Bytecode comparison ---------------------------------------------- */
 
 static uint8_t *load_code_section(const char *path, int *code_len) {
     Program *prog = cod_file_load(path);
@@ -45,7 +45,7 @@ static int compare_code(const uint8_t *a, int alen, const uint8_t *b, int blen) 
     return -1;
 }
 
-/* ── Try a mode table: emit, compile, compare ───────────────────────── */
+/* -- Try a mode table: emit, compile, compare ------------------------- */
 
 /*
  * Returns:
@@ -93,7 +93,7 @@ static int try_mode(Program *prog, ProcList *procs, GEVTable *gev,
     return diff;
 }
 
-/* ── Collect CJ addresses in a proc ─────────────────────────────────── */
+/* -- Collect CJ addresses in a proc ----------------------------------- */
 
 static int collect_cjs(Program *prog, ProcBoundary *pb,
                         uint16_t *addrs, int max) {
@@ -107,7 +107,7 @@ static int collect_cjs(Program *prog, ProcBoundary *pb,
     return n;
 }
 
-/* ── Public API ─────────────────────────────────────────────────────── */
+/* -- Public API ------------------------------------------------------- */
 
 int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                   const char **include_paths, int include_path_count,
@@ -134,7 +134,7 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
         emit_baseline(out, prog, procs, gev, mt, input_path);
         success = true;
     } else if (diff >= 0 && iter < max_iter) {
-        /* Mismatch — find the proc containing the diff and try per-CJ ratcheting */
+        /* Mismatch - find the proc containing the diff and try per-CJ ratcheting */
         for (int p = 0; p < procs->count && !success; p++) {
             ProcBoundary *pb = &procs->procs[p];
             if (diff < pb->start_addr || (uint16_t)diff >= pb->end_addr)
@@ -159,10 +159,10 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                     success = true;
                     break;
                 } else if (result == -2) {
-                    /* Compilation failed — this CJ can't be NO_ELSE, revert it */
+                    /* Compilation failed - this CJ can't be NO_ELSE, revert it */
                     mode_table_set(mt, cj_addrs[c], PMODE_FULL);
                 } else {
-                    /* Still mismatches but compiles — keep if closer, revert if not */
+                    /* Still mismatches but compiles - keep if closer, revert if not */
                     /* For now, keep it (it may help in combination with others) */
                 }
             }
@@ -214,7 +214,7 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
     return success ? 0 : 1;
 }
 
-/* ── Final verification ─────────────────────────────────────────────── */
+/* -- Final verification ----------------------------------------------- */
 
 int verify_roundtrip(const char *src_path, const char *original_cod,
                      const char **include_paths, int include_path_count) {

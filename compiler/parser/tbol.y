@@ -216,7 +216,7 @@ program
         ast_root = $$;
     }
     | error {
-        /* Complete parse failure — no PROGRAM statement found.
+        /* Complete parse failure - no PROGRAM statement found.
          * YYABORT immediately to avoid infinite error recovery loop. */
         $$ = NULL;
         ast_root = NULL;
@@ -619,7 +619,7 @@ simple_stmt
     ;
 
 /* then_body: a statement or a DO/END block.
- * DO/END blocks are only valid after THEN or ELSE — not as standalone
+ * DO/END blocks are only valid after THEN or ELSE - not as standalone
  * statements (matches original compiler behavior). */
 then_body
     : statement { $$ = $1; $1 = NULL; }

@@ -1,5 +1,5 @@
 /*
- * structure.c — Control flow pattern matching for decompilation
+ * structure.c - Control flow pattern matching for decompilation
  *
  * Walks the bytecode instruction stream and recognizes compiler patterns
  * to reconstruct structured TBOL source.
@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/* ── Mode table ─────────────────────────────────────────────────────── */
+/* -- Mode table ------------------------------------------------------- */
 
 ModeTable *mode_table_new(void) { return calloc(1, sizeof(ModeTable)); }
 
@@ -45,7 +45,7 @@ PatternMode mode_table_get(ModeTable *mt, uint16_t addr) {
     return PMODE_FULL;
 }
 
-/* ── Instruction lookup helpers ──────────────────────────────────────── */
+/* -- Instruction lookup helpers ---------------------------------------- */
 
 static Instruction *instr_at(Program *prog, uint16_t addr) {
     for (Instruction *i = prog->instructions; i; i = i->next) {
@@ -66,7 +66,7 @@ static bool is_conditional(Mnemonic m) {
     return m >= MNEM_CJEQ && m <= MNEM_CJGE;
 }
 
-/* ── Label tracking ──────────────────────────────────────────────────── */
+/* -- Label tracking ---------------------------------------------------- */
 
 typedef struct {
     uint16_t *addrs;
@@ -106,7 +106,7 @@ static bool ls_needs_emit(LabelSet *ls, uint16_t addr) {
     return false;
 }
 
-/* ── Proc/label name resolution ──────────────────────────────────────── */
+/* -- Proc/label name resolution ---------------------------------------- */
 
 static const char *resolve_name(uint16_t addr, ProcList *procs, char *buf, int bufsize) {
     for (int i = 0; i < procs->count; i++) {
@@ -120,7 +120,7 @@ static const char *resolve_name(uint16_t addr, ProcList *procs, char *buf, int b
     return buf;
 }
 
-/* ── XXCGTSYS symbol resolution ─────────────────────────────────────── */
+/* -- XXCGTSYS symbol resolution --------------------------------------- */
 
 /* SET_FUNCTION action codes */
 static const char *resolve_action(int val) {
@@ -205,13 +205,13 @@ static int operand_int_val(Operand *op) {
     return -1;
 }
 
-/* ── Indentation helper ──────────────────────────────────────────────── */
+/* -- Indentation helper ------------------------------------------------ */
 
 static void emit_indent(FILE *out, int level) {
     for (int i = 0; i < level; i++) fprintf(out, "  ");
 }
 
-/* ── Condition formatting ────────────────────────────────────────────── */
+/* -- Condition formatting ---------------------------------------------- */
 
 static const char *inverted_op(Mnemonic m) {
     switch (m) {
@@ -272,7 +272,7 @@ static Instruction *emit_condition(FILE *out, Instruction *instr, Program *prog,
 
     Instruction *next = next_instr(instr);
 
-    /* Check for OR: CJxx → check2; JUMP → body; check2: ... */
+    /* Check for OR: CJxx -> check2; JUMP -> body; check2: ... */
     if (next && next->mnemonic == MNEM_JUMP &&
         !ls_contains(labels, next->address)) {
         uint16_t or_body = next->jump_target;
@@ -281,7 +281,7 @@ static Instruction *emit_condition(FILE *out, Instruction *instr, Program *prog,
         Instruction *first_or = instr_at(prog, next_check);
         if (!first_or || !is_conditional(first_or->mnemonic) ||
             ls_contains(labels, first_or->address)) {
-            /* Can't form OR — the target is a label */
+            /* Can't form OR - the target is a label */
             goto simple;
         }
 
@@ -299,7 +299,7 @@ static Instruction *emit_condition(FILE *out, Instruction *instr, Program *prog,
                 fmt_atom(out, cur, gev, dt, true);
                 Instruction *nxt = instr_at(prog, cur->jump_target);
                 if (nxt && ls_contains(labels, nxt->address)) {
-                    /* Next OR term is a label target — stop here */
+                    /* Next OR term is a label target - stop here */
                     *fail_addr = cur->jump_target;
                     *body_addr = or_body;
                     fprintf(out, ")");
@@ -377,7 +377,7 @@ simple:
     return next_instr(instr);
 }
 
-/* ── Statement emission ──────────────────────────────────────────────── */
+/* -- Statement emission ------------------------------------------------ */
 
 static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
                        GEVTable *gev, DefineTable *dt, StructMap *sm,
@@ -386,7 +386,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
 
     if (instr->mnemonic == MNEM_BREAK) return;
 
-    /* CLEAR/SAVE with struct name — emit struct name instead of slot */
+    /* CLEAR/SAVE with struct name - emit struct name instead of slot */
     if ((instr->mnemonic == MNEM_CLEAR || instr->mnemonic == MNEM_SAVE) &&
         instr->var_count > 1 && instr->operand_count >= 1 &&
         instr->operands[0].kind == OP_RDA && !instr->operands[0].indexed) {
@@ -403,7 +403,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         }
     }
 
-    /* JUMP → GOTO */
+    /* JUMP -> GOTO */
     if (instr->mnemonic == MNEM_JUMP) {
         emit_indent(out, ind);
         fprintf(out, "GOTO %s;\n",
@@ -411,7 +411,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         return;
     }
 
-    /* CALL → proc_name [args]; */
+    /* CALL -> proc_name [args]; */
     if (instr->mnemonic == MNEM_CALL && instr->has_jump) {
         emit_indent(out, ind);
         /* CALL with jump offset 0 = unresolved (undefined proc) */
@@ -467,7 +467,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         return;
     }
 
-    /* TRIGGER_FUNCTION — resolve function key ID to symbolic name */
+    /* TRIGGER_FUNCTION - resolve function key ID to symbolic name */
     if (instr->opcode == OP_TRIG_FUNC && uses_xxcgtsys && instr->operand_count >= 1) {
         int func_val = operand_int_val(&instr->operands[0]);
         const char *func_name = resolve_function_key(func_val);
@@ -478,7 +478,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         }
     }
 
-    /* SET_ATTRIBUTE — reconstruct attribute string from 4 raw bytes.
+    /* SET_ATTRIBUTE - reconstruct attribute string from 4 raw bytes.
      * Attribute keywords are separated by SPACE, not comma: TBOL.EXE's
      * parser treats comma as a terminator and silently drops everything
      * after the first keyword (leaving 80 80 padding in the encoded
@@ -535,12 +535,12 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         return;
     }
 
-    /* SET_FUNCTION — resolve action code, use DEFINE identifiers for blobs */
+    /* SET_FUNCTION - resolve action code, use DEFINE identifiers for blobs */
     if (instr->mnemonic == MNEM_SET_FUNCTION && instr->operand_count >= 2) {
         emit_indent(out, ind);
         fprintf(out, "SET_FUNCTION ");
 
-        /* Operand 0: function key ID — resolve to symbolic name */
+        /* Operand 0: function key ID - resolve to symbolic name */
         Operand *key_op = &instr->operands[0];
         int key_val = operand_int_val(key_op);
         const char *key_name = (uses_xxcgtsys) ? resolve_function_key(key_val) : NULL;
@@ -551,7 +551,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
             fprintf(out, "%s, ", buf);
         }
 
-        /* Operand 1: action — resolve to XXCGTSYS name if available.
+        /* Operand 1: action - resolve to XXCGTSYS name if available.
          * Only resolve if the operand is truly numeric (not a string like 'display'). */
         Operand *action_op = &instr->operands[1];
         bool is_numeric_action = (action_op->kind == OP_LITERAL_NUM) ||
@@ -577,7 +577,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
     }
 
     /* GOTO_DEPENDING_ON */
-    /* MAKE_FORMAT — colon syntax for format specs */
+    /* MAKE_FORMAT - colon syntax for format specs */
     if (instr->mnemonic == MNEM_MAKE_FORMAT && instr->operand_count >= 4) {
         emit_indent(out, ind);
         fmt_operand(buf, sizeof(buf), &instr->operands[0], gev, dt);
@@ -619,7 +619,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         return;
     }
 
-    /* MOVE_BLOCK → MOVE (array-to-array) */
+    /* MOVE_BLOCK -> MOVE (array-to-array) */
     if (instr->opcode == OP_MOVE_BLOCK && instr->operand_count >= 2) {
         emit_indent(out, ind);
         fmt_operand(buf, sizeof(buf), &instr->operands[0], gev, dt);
@@ -629,7 +629,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
         return;
     }
 
-    /* DEFINE_FIELD — bytecode omits row, insert '0' as placeholder.
+    /* DEFINE_FIELD - bytecode omits row, insert '0' as placeholder.
      * Bytecode operands: name, col, width, height, object_id [, state]
      * Source operands:   name, row, col, width, height, object_id [, state] */
     if (instr->mnemonic == MNEM_DEFINE_FIELD && instr->operand_count >= 5) {
@@ -658,7 +658,7 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
     fprintf(out, ";\n");
 }
 
-/* ── Structured emission ─────────────────────────────────────────────── */
+/* -- Structured emission ----------------------------------------------- */
 
 static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                                 uint16_t proc_end_addr,
@@ -681,7 +681,7 @@ static void emit_body(FILE *out, uint16_t body_addr, uint16_t body_end,
         return;
     }
 
-    /* Check if any body instruction has a label — forces DO block */
+    /* Check if any body instruction has a label - forces DO block */
     bool needs_block = (body_count > 1);
     if (!needs_block) {
         for (Instruction *t = instr_at(prog, body_addr);
@@ -716,7 +716,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
             fprintf(out, "%s:\n", resolve_name(ip->address, procs, target_buf, sizeof(target_buf)));
         }
 
-        /* Conditional branch — try to match structured pattern */
+        /* Conditional branch - try to match structured pattern */
         if (is_conditional(ip->mnemonic)) {
             uint16_t fail_addr, body_addr;
             PatternMode mode = mode_table_get(mt, ip->address);
@@ -732,7 +732,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                 continue;
             }
 
-            /* IF cond THEN GOTO: CJ(!cond) → skip; JUMP → target; skip:
+            /* IF cond THEN GOTO: CJ(!cond) -> skip; JUMP -> target; skip:
              * Only use this shortcut if the JUMP isn't itself a label target,
              * otherwise the label would be lost. */
             Instruction *next = next_instr(ip);
@@ -778,7 +778,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                 continue;
             }
 
-            /* IF/THEN/ELSE: body ends with JUMP → end
+            /* IF/THEN/ELSE: body ends with JUMP -> end
              * Only valid if there's at least one then-body instruction
              * before the JUMP separator.
              * Skip this pattern if mode is NO_ELSE. */
@@ -861,7 +861,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
             }
         }
 
-        /* Unconditional JUMP → GOTO */
+        /* Unconditional JUMP -> GOTO */
         if (ip->mnemonic == MNEM_JUMP) {
             emit_indent(out, ind);
             fprintf(out, "GOTO %s;\n",
@@ -870,7 +870,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
             continue;
         }
 
-        /* Bare RETURN at proc end — skip unless the next address is a label target.
+        /* Bare RETURN at proc end - skip unless the next address is a label target.
          * Only suppress at the true proc end (next instruction is at or past
          * proc_end_addr), not at DO block boundaries. */
         if (ip->mnemonic == MNEM_RETURN && ip->operand_count == 0) {
@@ -890,7 +890,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
     return ip;
 }
 
-/* ── Public API ──────────────────────────────────────────────────────── */
+/* -- Public API -------------------------------------------------------- */
 
 void emit_structured_proc(FILE *out, Program *prog, ProcBoundary *pb,
                            ProcList *procs, GEVTable *gev, DefineTable *dt,

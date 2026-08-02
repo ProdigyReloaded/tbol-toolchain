@@ -1,5 +1,5 @@
 /*
- * baseline.h — Flat baseline source emission
+ * baseline.h - Flat baseline source emission
  */
 #ifndef BASELINE_H
 #define BASELINE_H

@@ -1,4 +1,4 @@
-# TBOL Formatter — tbol_fmt object library + tbolfmt standalone binary
+# TBOL Formatter - tbol_fmt object library + tbolfmt standalone binary
 
 add_library(tbol_fmt OBJECT tbol_fmt.c)
 target_include_directories(tbol_fmt PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,9 +1,9 @@
 #!/bin/bash
-# roundtrip.sh — Test decompiler round-trip on verified corpus
+# roundtrip.sh - Test decompiler round-trip on verified corpus
 #
 # Only tests programs whose source compiles to bytecode identical to the
 # original (i.e., programs that pass "make check"). For each: decompile
-# the original bytecode → recompile → compare bytecodes.
+# the original bytecode -> recompile -> compare bytecodes.
 
 TBOLDC=$(dirname "$0")/../tboldc
 TBOLC=$(dirname "$0")/../../compiler/tbolc
@@ -50,7 +50,7 @@ for cod in $verified; do
         continue
     fi
 
-    # Compare bytecodes (skip header — code_offset is at bytes 2-3, big-endian)
+    # Compare bytecodes (skip header - code_offset is at bytes 2-3, big-endian)
     code_off=$(od -An -j2 -N2 -tu2 --endian=big "$cod" 2>/dev/null | tr -d ' ')
     [ -z "$code_off" ] && code_off=34
     diffs=$(cmp -l "$cod" "$WORKDIR/test.cod" 2>/dev/null | awk -v off="$code_off" '$1 > off {print}' | wc -l)

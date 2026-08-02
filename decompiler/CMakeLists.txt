@@ -1,4 +1,4 @@
-# TBOL Decompiler — tboldc
+# TBOL Decompiler - tboldc
 # Links: bytecode + formatter + libtbolc (for recompilation/verification)
 
 add_executable(tboldc

@@ -571,7 +571,7 @@ static void validate_proc_call(AstNode *node) {
             "undefined procedure '%s' (will emit CALL with offset 0)", name);
     } else if (current_proc) {
         /* Check that called proc is defined after the calling proc.
-         * CALL uses relative forward offsets — backward calls are not valid. */
+         * CALL uses relative forward offsets - backward calls are not valid. */
         Symbol *target = symtab_lookup_proc(name);
         if (target && target->data.proc.order <= current_proc->data.proc.order) {
             diag_error(node->range.start,

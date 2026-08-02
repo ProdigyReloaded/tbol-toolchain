@@ -3,9 +3,9 @@
 # Toolchain fidelity test
 #
 # For each .cod file in the input glob:
-#   1. Decompile t1 with tboldc → s1
-#   2. Compile s1 with tbolc → t2
-#   3. Compile s1 with TBOL.EXE → t3
+#   1. Decompile t1 with tboldc -> s1
+#   2. Compile s1 with tbolc -> t2
+#   3. Compile s1 with TBOL.EXE -> t3
 #   4. Compare bytecode: t1 vs t2, t1 vs t3, t2 vs t3
 #
 # Usage: toolchain-test <glob>
@@ -67,7 +67,7 @@ run_test() {
     local t2="$workdir/${lower}.cod"
     local t3="$workdir/${upper}.COD"
 
-    # Step 1: Decompile t1 → s1
+    # Step 1: Decompile t1 -> s1
     # Use --compat to emit hex literals instead of \xNN escapes (TBOL.EXE compat)
     if ! timeout 10 "$TBOLDC" --compat "$t1" > "$s1" 2>/dev/null; then
         echo "FAIL: $basename (decompile failed)"
@@ -83,7 +83,7 @@ run_test() {
         return 1
     fi
 
-    # Step 2: Compile s1 with tbolc → t2
+    # Step 2: Compile s1 with tbolc -> t2
     if ! timeout 10 "$TBOLC" -I "$INCLUDES" -o "$workdir" "$s1" 2>/dev/null; then
         echo "FAIL: $basename (tbolc compile failed)"
         FAILED_TESTS+=("$basename: tbolc failed")
@@ -91,7 +91,7 @@ run_test() {
         return 1
     fi
 
-    # Step 3: Compile s1 with TBOL.EXE → t3
+    # Step 3: Compile s1 with TBOL.EXE -> t3
     if ! timeout 10 "$TBOL_WRAPPER" -o "$workdir" --no-listing -q "$s1" >/dev/null 2>&1; then
         echo "FAIL: $basename (TBOL.EXE compile failed)"
         FAILED_TESTS+=("$basename: TBOL.EXE failed")

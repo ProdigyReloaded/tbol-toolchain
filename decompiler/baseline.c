@@ -1,5 +1,5 @@
 /*
- * baseline.c — Top-level source emission
+ * baseline.c - Top-level source emission
  *
  * Emits the PROGRAM header, COPY directives, DATA section, and
  * procedure structure. Delegates instruction-level emission to
@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/* ── DATA section emission ───────────────────────────────────────────── */
+/* -- DATA section emission --------------------------------------------- */
 
 static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
     SymbolTable *st = symbol_table_new();
@@ -75,7 +75,7 @@ static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
             continue;
         }
 
-        /* Regular slot — goes into vars */
+        /* Regular slot - goes into vars */
         if (!in_vars) {
             fprintf(out, "  vars =\n");
             in_vars = true;
@@ -113,7 +113,7 @@ static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
     symbol_table_free(st);
 }
 
-/* ── DEFINE emission for non-printable string constants ──────────────── */
+/* -- DEFINE emission for non-printable string constants ---------------- */
 
 static void emit_defines(FILE *out, DefineTable *dt) {
     if (!dt || dt->count == 0) return;
@@ -123,7 +123,7 @@ static void emit_defines(FILE *out, DefineTable *dt) {
     fprintf(out, "\n");
 }
 
-/* ── Main emission ───────────────────────────────────────────────────── */
+/* -- Main emission ----------------------------------------------------- */
 
 void emit_baseline(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                    ModeTable *mt, const char *input_path) {
@@ -158,7 +158,7 @@ void emit_baseline(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
     StructMap *sm = struct_map_new();
     emit_data_section(mem, prog, sm);
 
-    /* Scan for non-printable string constants → DEFINE table */
+    /* Scan for non-printable string constants -> DEFINE table */
     DefineTable *dt = define_table_new();
     define_table_scan(dt, prog);
     emit_defines(mem, dt);

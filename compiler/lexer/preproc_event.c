@@ -97,7 +97,7 @@ PreprocEvent *preproc_event_find_at(PreprocEvent *events, int count,
     for (int i = 0; i < count; i++) {
         PreprocEvent *evt = &events[i];
         if (evt->line == line && col >= evt->column && col <= evt->end_column) {
-            /* Filter by filename — events from COPY files have transparent
+            /* Filter by filename - events from COPY files have transparent
              * line numbers that would falsely match the main file. */
             if (filename && evt->filename && strcmp(evt->filename, filename) != 0)
                 continue;

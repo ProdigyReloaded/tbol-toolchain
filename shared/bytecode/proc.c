@@ -77,7 +77,7 @@ void find_procedures(Program *prog, ProcList *pl) {
                     break;
                 }
             }
-            /* Jump offset 0 means unresolved (call to undefined proc) — skip it */
+            /* Jump offset 0 means unresolved (call to undefined proc) - skip it */
             if (!found && entry_count < 256 && instr->jump_offset != 0) {
                 entries[entry_count++] = instr->jump_target;
             }
@@ -88,7 +88,7 @@ void find_procedures(Program *prog, ProcList *pl) {
     qsort(entries, entry_count, sizeof(uint16_t), cmp_uint16);
 
     /* Remove CALL entries that are also GOTO_DEPENDING_ON targets in main.
-     * GDO targets define case labels within main's dispatch table — they are
+     * GDO targets define case labels within main's dispatch table - they are
      * inline branch targets, not procedure boundaries. Only filter entries
      * that are *exactly* GDO operand targets; CALL targets that happen to
      * fall within the dispatch address range but are NOT GDO targets are

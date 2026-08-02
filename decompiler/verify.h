@@ -1,5 +1,5 @@
 /*
- * verify.h — Speculative round-trip verification
+ * verify.h - Speculative round-trip verification
  *
  * Iteratively refines decompiler output by compiling it with the
  * statically-linked tbolc compiler, comparing bytecodes, and ratcheting

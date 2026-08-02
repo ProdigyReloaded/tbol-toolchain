@@ -169,7 +169,7 @@ void symbol_table_scan(SymbolTable *st, Program *prog) {
                     st->ranges[st->range_count].start_slot = start;
                     st->ranges[st->range_count].count = count;
                     st->range_count++;
-                    /* Don't extend max_slot here — a bulk CLEAR/SAVE of the
+                    /* Don't extend max_slot here - a bulk CLEAR/SAVE of the
                      * entire RDA space (e.g., CLEAR RDA_FIRST, RDA_LAST) is
                      * an initialization idiom, not a variable declaration.
                      * max_slot is extended later only for ranges that have

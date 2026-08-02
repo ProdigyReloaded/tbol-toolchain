@@ -1,8 +1,8 @@
 /*
- * tboldc — TBOL Decompiler
+ * tboldc - TBOL Decompiler
  *
  * Produces human-readable TBOL source from compiled bytecode.
- * Output round-trips: tboldc → tbolc → identical bytecode.
+ * Output round-trips: tboldc -> tbolc -> identical bytecode.
  *
  * Usage: tboldc [options] <input.cod|input.pgm>
  */

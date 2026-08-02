@@ -2417,7 +2417,7 @@ yyreduce:
   case 4:
 #line 218 "parser/tbol.y"
     {
-        /* Complete parse failure — no PROGRAM statement found.
+        /* Complete parse failure - no PROGRAM statement found.
          * YYABORT immediately to avoid infinite error recovery loop. */
         (yyval.node) = NULL;
         ast_root = NULL;

@@ -1,5 +1,5 @@
 /*
- * structure.h — Control flow pattern matching for decompilation
+ * structure.h - Control flow pattern matching for decompilation
  *
  * Recognizes bytecode patterns produced by the compiler and reconstructs
  * the source-level control flow: IF/THEN, IF/THEN/ELSE, ELSE IF chains,
@@ -7,16 +7,16 @@
  *
  * Compiler bytecode patterns:
  *
- * IF cond THEN stmt:       CJ(!cond) → after; stmt;
- * IF cond THEN DO...END:   CJ(!cond) → after; block;
- * IF/ELSE:                 CJ(!cond) → else; then; JUMP → end; else; end:
- * ELSE IF chain:           CJ → else1; body; JUMP → end; else1: CJ → else2; ...
- * IF THEN GOTO:            CJ(!cond) → skip; JUMP → target; skip:
- * WHILE:                   CJ(!cond) → exit; body; JUMP → top;
+ * IF cond THEN stmt:       CJ(!cond) -> after; stmt;
+ * IF cond THEN DO...END:   CJ(!cond) -> after; block;
+ * IF/ELSE:                 CJ(!cond) -> else; then; JUMP -> end; else; end:
+ * ELSE IF chain:           CJ -> else1; body; JUMP -> end; else1: CJ -> else2; ...
+ * IF THEN GOTO:            CJ(!cond) -> skip; JUMP -> target; skip:
+ * WHILE:                   CJ(!cond) -> exit; body; JUMP -> top;
  * AND:                     consecutive CJxx to same fail target
- * OR:                      CJ → next; JUMP → body; next: CJ → next2; ...
+ * OR:                      CJ -> next; JUMP -> body; next: CJ -> next2; ...
  * (A OR B) AND C:          OR JUMPs target AND check
- * GOTO:                    JUMP → target
+ * GOTO:                    JUMP -> target
  */
 #ifndef STRUCTURE_H
 #define STRUCTURE_H

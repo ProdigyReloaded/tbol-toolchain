@@ -12,6 +12,6 @@ PROC main =
     MOVE 0x002200, A;
     { Long printable prefix (8+ chars) should NOT convert }
     MOVE 'LONGNAME\x00\x0c', A;
-    { No hex escapes — unchanged }
+    { No hex escapes - unchanged }
     MOVE 'hello', A;
 END_PROC
