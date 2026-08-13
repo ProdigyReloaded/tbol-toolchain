@@ -34,6 +34,11 @@ void preproc_cleanup(void);
 void preproc_add_include_path(const char *path);
 void preproc_set_current_dir(const char *dir);
 
+/* Canonicalize a path to absolute form: realpath() on POSIX, _fullpath() on
+ * Windows (with backslashes normalized to forward slashes). Never returns NULL
+ * -- falls back to a copy of the input on failure. Caller frees. */
+char *preproc_canonicalize_path(const char *path);
+
 /*
  * COPY file handling
  *

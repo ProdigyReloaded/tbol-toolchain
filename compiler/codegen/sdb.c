@@ -19,6 +19,7 @@
  */
 
 #include "sdb.h"
+#include "../lexer/preproc.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -195,15 +196,15 @@ int sdb_write(const char *path, const char *program, const char *cod_name) {
 
     /* Record each source as an absolute path so a debugger can open it directly
      * (DAP source paths must be absolute), independent of build/output layout.
-     * Falls back to the recorded name if realpath fails. The trailing hash of
+     * Falls back to the recorded name if canonicalization fails. The trailing hash of
      * the file's contents lets the adapter warn when source drifted from the
      * compiled line table (edited since compile). */
     fprintf(f, "\n[files]\n");
     for (int i = 0; i < file_count; i++) {
-        char *abs = realpath(files[i], NULL);
+        char *abs = preproc_canonicalize_path(files[i]);
         char h[17];
-        fnv1a_file(abs ? abs : files[i], h);
-        fprintf(f, "%d %s %s\n", i, abs ? abs : files[i], h);
+        fnv1a_file(abs, h);
+        fprintf(f, "%d %s %s\n", i, abs, h);
         free(abs);
     }
 
