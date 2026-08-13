@@ -23,6 +23,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
+
+/* --- content hashes (staleness detection) ---
+ * FNV-1a 64-bit rendered as 16 lowercase hex digits. Non-cryptographic - the
+ * adapter only needs to notice that a .cod or .src changed since compile, not
+ * defend against tampering. See reception-system docs/SDB-FORMAT.md. */
+static void fnv1a_hex(const uint8_t *data, size_t len, char out[17]) {
+    uint64_t h = 0xcbf29ce484222325ULL;
+    for (size_t i = 0; i < len; i++) {
+        h ^= data[i];
+        h *= 0x100000001b3ULL;
+    }
+    snprintf(out, 17, "%016llx", (unsigned long long)h);
+}
+
+/* FNV-1a of a file's contents, or "-" if it cannot be read. */
+static void fnv1a_file(const char *path, char out[17]) {
+    FILE *f = fopen(path, "rb");
+    if (!f) { snprintf(out, 17, "-"); return; }
+    uint64_t h = 0xcbf29ce484222325ULL;
+    int c;
+    while ((c = fgetc(f)) != EOF) {
+        h ^= (uint8_t)c;
+        h *= 0x100000001b3ULL;
+    }
+    fclose(f);
+    snprintf(out, 17, "%016llx", (unsigned long long)h);
+}
 
 /* --- line table --- */
 typedef struct {
@@ -61,9 +89,19 @@ static int         sym_count = 0, sym_cap = 0;
 static ProcEntry  *procs = NULL;
 static int         proc_count = 0, proc_cap = 0;
 
+static char        cod_hash[17] = "0";  /* FNV-1a of the code section, or "0" */
+
 void sdb_reset(void) {
     sdb_cleanup();
     code_base = 0;
+    strcpy(cod_hash, "0");
+}
+
+void sdb_set_cod_bytes(const uint8_t *buf, int size) {
+    /* Hash the code section only (from code_base to end) so the .sdb binds to
+     * the code identity, tolerant of the volatile compile-date header. */
+    if (!buf || size <= code_base) { strcpy(cod_hash, "0"); return; }
+    fnv1a_hex(buf + code_base, (size_t)(size - code_base), cod_hash);
 }
 
 void sdb_set_code_base(int base) {
@@ -153,15 +191,19 @@ int sdb_write(const char *path, const char *program, const char *cod_name) {
 
     fprintf(f, "SDB 1\n");
     fprintf(f, "program %s TBOL\n", program ? program : "?");
-    fprintf(f, "cod %s 0\n", cod_name ? cod_name : "?");
+    fprintf(f, "cod %s %s\n", cod_name ? cod_name : "?", cod_hash);
 
     /* Record each source as an absolute path so a debugger can open it directly
      * (DAP source paths must be absolute), independent of build/output layout.
-     * Falls back to the recorded name if realpath fails. */
+     * Falls back to the recorded name if realpath fails. The trailing hash of
+     * the file's contents lets the adapter warn when source drifted from the
+     * compiled line table (edited since compile). */
     fprintf(f, "\n[files]\n");
     for (int i = 0; i < file_count; i++) {
         char *abs = realpath(files[i], NULL);
-        fprintf(f, "%d %s\n", i, abs ? abs : files[i]);
+        char h[17];
+        fnv1a_file(abs ? abs : files[i], h);
+        fprintf(f, "%d %s %s\n", i, abs ? abs : files[i], h);
         free(abs);
     }
 

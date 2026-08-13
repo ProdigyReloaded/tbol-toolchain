@@ -26,6 +26,7 @@
 #ifndef TBOLC_SDB_H
 #define TBOLC_SDB_H
 
+#include <stdint.h>
 #include "../../shared/ast.h"
 
 /* Reset all collected state (call once per program, before codegen). */
@@ -34,6 +35,11 @@ void sdb_reset(void);
 /* Record the byte offset where the code section begins. Line-table addresses
  * are computed relative to this base. */
 void sdb_set_code_base(int base);
+
+/* Record the emitted .cod buffer (whole file). The code section (from the
+ * code base to `size`) is hashed for the `cod` staleness field. Call after the
+ * code base is set and the buffer is final. */
+void sdb_set_cod_bytes(const uint8_t *buf, int size);
 
 /* Record a line-table entry: the instruction at `file_offset` maps to `range`.
  * Ignored when the range carries no source position. If an entry already exists

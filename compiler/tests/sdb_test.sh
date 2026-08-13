@@ -31,6 +31,18 @@ for sec in '\[files\]' '\[lines\]' '\[procs\]' '\[symbols\]'; do
 done
 [ "$fail" = 0 ] && pass "all sections present (files, lines, procs, symbols)"
 
+# --- staleness hashes: cod + per-file, 16 lowercase hex, not "0" ---
+if grep -qE '^cod[[:space:]]+\S+[[:space:]]+[0-9a-f]{16}$' "$sdb"; then
+    pass "cod staleness hash present ($(awk '/^cod /{print $3}' "$sdb"))"
+else
+    bad "cod hash missing or not 16-hex (got: $(grep '^cod ' "$sdb"))"
+fi
+if awk '/^0 /{exit !($NF ~ /^[0-9a-f]{16}$/)}' "$sdb"; then
+    pass "primary [files] row carries a content hash"
+else
+    bad "primary [files] row missing a 16-hex content hash: $(grep '^0 ' "$sdb")"
+fi
+
 # --- [procs]: MAIN + HELPER, contiguous half-open ranges ---
 procs="$(sed -n '/^\[procs\]/,/^\[/p' "$sdb" | grep -iE '^(MAIN|HELPER)')"
 main_start=$(echo "$procs" | awk 'toupper($1)=="MAIN"{print $2}')

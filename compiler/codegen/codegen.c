@@ -529,6 +529,11 @@ static void write_sdb(const char *cod_path, const char *program_name) {
         sdb_add_proc(proc_defs[i].name, proc_defs[i].offset, end);
     }
 
+    /* Hash the emitted code section for the .cod staleness field. */
+    int cod_size = 0;
+    const uint8_t *cod_buf = emit_get_buffer(&cod_size);
+    sdb_set_cod_bytes(cod_buf, cod_size);
+
     if (sdb_write(sdb_path, program_name, cod_name) != 0) {
         diag_error((SourceLoc){NULL, 0, 0}, "error writing .sdb file '%s'", sdb_path);
     } else if (g_options.verbose) {
