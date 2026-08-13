@@ -268,9 +268,20 @@ static const char *resolve_return_code(int val) {
     return NULL;
 }
 
+/* Integer value of a comparison operand, for return-code (RET_*) name
+ * resolution. RET_* codes are canonical decimal strings ('0', '1', '10', '22'
+ * ...), so only a string that round-trips through atoi back to itself may be
+ * treated as one. This rejects the empty string '' (atoi("")==0, which would
+ * otherwise collide with '0'/RET_OK) and non-canonical forms like '00'. */
 static int operand_int_val(Operand *op) {
     if (op->kind == OP_LITERAL_NUM) return op->value;
-    if (op->kind == OP_LITERAL_STR && op->str_value) return atoi(op->str_value);
+    if (op->kind == OP_LITERAL_STR && op->str_value) {
+        char rt[16];
+        int v = atoi(op->str_value);
+        snprintf(rt, sizeof(rt), "%d", v);
+        if (strcmp(rt, op->str_value) != 0) return -1;
+        return v;
+    }
     return -1;
 }
 

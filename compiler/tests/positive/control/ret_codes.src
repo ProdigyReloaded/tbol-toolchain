@@ -1,0 +1,6 @@
+PROGRAM RETCODES;
+PROC main =
+    IF #1 = '' THEN RETURN;
+    IF #1 = '0' THEN RETURN;
+    IF #1 = '10' THEN RETURN;
+END_PROC
