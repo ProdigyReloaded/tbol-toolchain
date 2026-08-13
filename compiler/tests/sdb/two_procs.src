@@ -1,0 +1,11 @@
+PROGRAM SDBTWO;
+DATA vars = COUNTER, BUF(10), NAME;
+PROC main =
+    MOVE '0', COUNTER;
+    MOVE 'x', NAME;
+    helper;
+END_PROC
+PROC helper =
+    ADD '1', COUNTER;
+    RETURN;
+END_PROC

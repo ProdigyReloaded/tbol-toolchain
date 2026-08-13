@@ -40,6 +40,7 @@ typedef struct {
     bool emit_sym;              /* --sym: emit .SYM file */
     bool emit_sym_json;         /* --sym-json: emit .SYM.json file */
     bool emit_lst;              /* --lst: emit .LST file */
+    bool emit_sdb;              /* --sdb / -g: emit .sdb source-debug file */
     bool check_only;            /* --check: syntax check, no output */
     bool preprocess_only;       /* -E: preprocess only, output to stdout */
 

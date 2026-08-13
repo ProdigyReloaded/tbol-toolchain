@@ -20,6 +20,9 @@
 
 #include "codegen.h"
 #include "codegen_internal.h"
+#include "sdb.h"
+#include "../sema/symtab.h"
+#include "../lexer/preproc.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -292,6 +295,14 @@ void emit_var_instruction(uint8_t opcode, AstNode **operands, int count) {
  */
 void emit_cond_jump(uint8_t opcode, AstNode *left, AstNode *right, const char *target) {
     AstNode *operands[2] = {left, right};
+
+    /* Column-level span for this comparison: from the left operand's start to
+     * the right operand's end. Lets a composite condition (A > B OR C = D) map
+     * each comparison instruction to its own source columns. */
+    if (g_options.emit_sdb && left && right)
+        sdb_mark(emit_get_offset(),
+                 (SourceRange){ left->range.start, right->range.end });
+
     bool complex = check_complex_mode(operands, 2);
 
     if (complex) {
@@ -343,6 +354,12 @@ void emit_jump(const char *target) {
  */
 void gen_statement(AstNode *node) {
     if (!node) return;
+
+    /* Line-table entry: the next instruction emitted for this statement begins
+     * at the current offset. Labels and DEFINEs emit no code, so a following
+     * statement overwrites the entry at the same address (sdb_mark handles it). */
+    if (g_options.emit_sdb)
+        sdb_mark(emit_get_offset(), node->range);
 
     switch (node->kind) {
         case AST_LABEL:
@@ -472,6 +489,60 @@ static void fixup_header_file_size(int file_size) {
 }
 
 /*
+ * Symbol-table export for .sdb: every DATA variable becomes an RDA slot symbol.
+ */
+static void sdb_collect_var(const Symbol *sym, void *ctx) {
+    (void)ctx;
+    int len = sym->data.var.array_size > 0 ? sym->data.var.array_size : -1;
+    sdb_add_symbol(sym->name, "RDA", VAR_SLOT(sym), len);
+}
+
+/* Export DEFINEs that name a global/partition variable (value #N -> GEV N,
+ * &N -> PEV N) so the debugger can show e.g. SYS_TTX_PHONE as GEV 19. */
+static void sdb_collect_define(const char *name, const char *value, void *ctx) {
+    (void)ctx;
+    while (*value == ' ' || *value == '\t') value++;
+    if ((value[0] == '#' || value[0] == '&') && isdigit((unsigned char)value[1]))
+        sdb_add_symbol(name, value[0] == '#' ? "GEV" : "PEV",
+                       atoi(value + 1), -1);
+}
+
+/* Write "<program>.sdb" beside the .cod, deriving its path from the .cod path. */
+static void write_sdb(const char *cod_path, const char *program_name) {
+    char sdb_path[4096];
+    snprintf(sdb_path, sizeof(sdb_path), "%s", cod_path);
+    char *dot = strrchr(sdb_path, '.');
+    if (dot) strcpy(dot, ".sdb");
+    else     strncat(sdb_path, ".sdb", sizeof(sdb_path) - strlen(sdb_path) - 1);
+
+    const char *cod_name = strrchr(cod_path, '/');
+    cod_name = cod_name ? cod_name + 1 : cod_path;
+
+    symtab_foreach_var(sdb_collect_var, NULL);
+    preproc_foreach_define(sdb_collect_define, NULL);
+
+    /* Procedures: each proc runs from its own entry offset to the next proc's
+     * entry (the last to the end of the emitted buffer). proc_defs[] is filled
+     * in definition order, so offsets are ascending. */
+    for (int i = 0; i < proc_count; i++) {
+        int end = (i + 1 < proc_count) ? proc_defs[i + 1].offset : emit_get_offset();
+        sdb_add_proc(proc_defs[i].name, proc_defs[i].offset, end);
+    }
+
+    /* Hash the emitted code section for the .cod staleness field. */
+    int cod_size = 0;
+    const uint8_t *cod_buf = emit_get_buffer(&cod_size);
+    sdb_set_cod_bytes(cod_buf, cod_size);
+
+    if (sdb_write(sdb_path, program_name, cod_name) != 0) {
+        diag_error((SourceLoc){NULL, 0, 0}, "error writing .sdb file '%s'", sdb_path);
+    } else if (g_options.verbose) {
+        fprintf(stderr, "Wrote %s\n", sdb_path);
+    }
+    sdb_cleanup();
+}
+
+/*
  * Main code generation entry point
  */
 int codegen_generate(AstNode *ast, const char *output_dir, const char *base_name) {
@@ -484,8 +555,18 @@ int codegen_generate(AstNode *ast, const char *output_dir, const char *base_name
     proc_count = 0;
     control_reset_counters();
 
+    if (g_options.emit_sdb) {
+        sdb_reset();
+    }
+
     /* Emit header */
     emit_header(ast->data.program.name);
+
+    /* Code section starts immediately after the header; line-table addresses
+     * are relative to it (matching how a loader addresses the code section). */
+    if (g_options.emit_sdb) {
+        sdb_set_code_base(emit_get_offset());
+    }
 
     /* Generate code for each procedure */
     for (int i = 0; i < ast->child_count; i++) {
@@ -551,6 +632,12 @@ int codegen_generate(AstNode *ast, const char *output_dir, const char *base_name
         int size;
         emit_get_buffer(&size);
         fprintf(stderr, "Wrote %s (%d bytes)\n", output_path, size);
+    }
+
+    /* Emit source-debug info (.sdb) alongside the .cod. Symbols are read from
+     * the still-live symbol table (the caller cleans it up after we return). */
+    if (result == 0 && g_options.emit_sdb) {
+        write_sdb(output_path, ast->data.program.name);
     }
 
     /* Free remaining strdup'd label names */

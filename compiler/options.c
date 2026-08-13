@@ -41,6 +41,7 @@ void options_print_usage(const char *program_name) {
     printf("  --sym                 Emit symbol table (.SYM file)\n");
     printf("  --sym-json            Emit symbol table as JSON (.SYM.json)\n");
     printf("  --lst                 Emit listing file (.LST file)\n");
+    printf("  --sdb, -g             Emit source-debug info (.sdb file)\n");
     printf("  --check               Check only, don't emit code\n");
     printf("  -E                    Preprocess only (shows tokens with DEFINE expanded;\n");
     printf("                        COPY expansion requires full parsing)\n");
@@ -127,6 +128,9 @@ int options_parse(int argc, char **argv) {
         }
         else if (strcmp(arg, "--lst") == 0) {
             g_options.emit_lst = true;
+        }
+        else if (strcmp(arg, "--sdb") == 0 || strcmp(arg, "-g") == 0) {
+            g_options.emit_sdb = true;
         }
         else if (strcmp(arg, "--check") == 0) {
             g_options.check_only = true;

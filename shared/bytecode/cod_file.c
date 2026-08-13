@@ -130,43 +130,22 @@ static bool detect_short_header(const uint8_t *data, long size) {
  *
  * PGM files are Prodigy objects with an 18-byte header + segment structure
  */
-Program *cod_file_load(const char *path) {
-    FILE *f = fopen(path, "rb");
-    if (!f) {
-        fprintf(stderr, "Error: cannot open '%s'\n", path);
-        return NULL;
-    }
-
-    /* Get file size */
-    fseek(f, 0, SEEK_END);
-    long actual_size = ftell(f);
-    fseek(f, 0, SEEK_SET);
-
-    /* Read entire file */
-    uint8_t *data = malloc(actual_size);
-    if (!data) {
-        fprintf(stderr, "Error: out of memory\n");
-        fclose(f);
-        return NULL;
-    }
-    if (fread(data, 1, actual_size, f) != (size_t)actual_size) {
-        fprintf(stderr, "Error: failed to read file\n");
-        free(data);
-        fclose(f);
-        return NULL;
-    }
-    fclose(f);
-
+/*
+ * Parse an in-memory .cod/.pgm image into a Program. Does not take ownership of
+ * `data` (the caller frees it). `name_hint` supplies the program name for
+ * short-header files (a path or object name; its basename sans extension).
+ */
+Program *cod_file_load_buf(const uint8_t *data, long actual_size,
+                           const char *name_hint) {
     /* Detect Prodigy object encapsulation and find COD data */
     long pgm_cod_size = 0;
     int pgm_offset = detect_pgm_offset(data, actual_size, &pgm_cod_size);
-    uint8_t *cod_data = data + pgm_offset;
+    const uint8_t *cod_data = data + pgm_offset;
     long cod_size = pgm_offset ? pgm_cod_size : actual_size;
 
     /* Parse header - detect short vs long format */
     if (cod_size < 5) {
         fprintf(stderr, "Error: file too small for header\n");
-        free(data);
         return NULL;
     }
 
@@ -175,10 +154,7 @@ Program *cod_file_load(const char *path) {
 
     /* Create program structure */
     Program *prog = program_new();
-    if (!prog) {
-        free(data);
-        return NULL;
-    }
+    if (!prog) return NULL;
 
     if (detect_short_header(cod_data, cod_size)) {
         /* Short header format - no name/date/version */
@@ -186,13 +162,13 @@ Program *cod_file_load(const char *path) {
             fprintf(stderr, "Error: invalid short header (code_start=%d, cod_size=%ld)\n",
                     code_start, cod_size);
             program_free(prog);
-            free(data);
             return NULL;
         }
 
-        /* Extract filename from path for program name */
-        const char *basename = strrchr(path, '/');
-        basename = basename ? basename + 1 : path;
+        /* Derive program name from the hint (basename sans extension) */
+        const char *hint = name_hint ? name_hint : "program";
+        const char *basename = strrchr(hint, '/');
+        basename = basename ? basename + 1 : hint;
         const char *dot = strrchr(basename, '.');
         size_t name_len = dot ? (size_t)(dot - basename) : strlen(basename);
         prog->program_name = malloc(name_len + 1);
@@ -213,7 +189,6 @@ Program *cod_file_load(const char *path) {
         if (cod_size < 6) {
             fprintf(stderr, "Error: file too small for long header\n");
             program_free(prog);
-            free(data);
             return NULL;
         }
 
@@ -224,7 +199,6 @@ Program *cod_file_load(const char *path) {
             fprintf(stderr, "Error: invalid header (code_start=%d, name_len=%d, cod_size=%ld)\n",
                     code_start, name_len, cod_size);
             program_free(prog);
-            free(data);
             return NULL;
         }
 
@@ -251,6 +225,35 @@ Program *cod_file_load(const char *path) {
         memcpy(prog->code, cod_data + code_start, prog->code_size);
     }
 
+    return prog;
+}
+
+Program *cod_file_load(const char *path) {
+    FILE *f = fopen(path, "rb");
+    if (!f) {
+        fprintf(stderr, "Error: cannot open '%s'\n", path);
+        return NULL;
+    }
+
+    fseek(f, 0, SEEK_END);
+    long actual_size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+
+    uint8_t *data = malloc(actual_size);
+    if (!data) {
+        fprintf(stderr, "Error: out of memory\n");
+        fclose(f);
+        return NULL;
+    }
+    if (fread(data, 1, actual_size, f) != (size_t)actual_size) {
+        fprintf(stderr, "Error: failed to read file\n");
+        free(data);
+        fclose(f);
+        return NULL;
+    }
+    fclose(f);
+
+    Program *prog = cod_file_load_buf(data, actual_size, path);
     free(data);
     return prog;
 }

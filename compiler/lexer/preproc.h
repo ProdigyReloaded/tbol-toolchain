@@ -34,6 +34,11 @@ void preproc_cleanup(void);
 void preproc_add_include_path(const char *path);
 void preproc_set_current_dir(const char *dir);
 
+/* Canonicalize a path to absolute form: realpath() on POSIX, _fullpath() on
+ * Windows (with backslashes normalized to forward slashes). Never returns NULL
+ * -- falls back to a copy of the input on failure. Caller frees. */
+char *preproc_canonicalize_path(const char *path);
+
 /*
  * COPY file handling
  *
@@ -68,6 +73,11 @@ const char *preproc_get_last_resolved_path(void);
  */
 void preproc_add_define(const char *name, const char *value, int line, int col);
 const char *preproc_lookup_define(const char *name);
+
+/* Iterate every registered DEFINE (name + expansion value). Used to export
+ * GEV/PEV symbol names (DEFINEs whose value is #N / &N) to .sdb debug info. */
+void preproc_foreach_define(void (*fn)(const char *name, const char *value, void *ctx),
+                            void *ctx);
 
 /* Check if a name is defined */
 bool preproc_is_defined(const char *name);

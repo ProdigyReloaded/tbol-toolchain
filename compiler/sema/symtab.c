@@ -235,6 +235,14 @@ StructureGroup *symtab_lookup_structure(const char *name) {
     return NULL;
 }
 
+void symtab_foreach_var(void (*fn)(const Symbol *sym, void *ctx), void *ctx) {
+    for (int i = 0; i < VAR_HASH_SIZE; i++) {
+        for (Symbol *sym = var_table[i]; sym; sym = sym->next) {
+            fn(sym, ctx);
+        }
+    }
+}
+
 void symtab_dump(void) {
     printf("=== Symbol Table ===\n\n");
 

@@ -248,7 +248,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 70 "parser/tbol.y"
+#line 70 "compiler/parser/tbol.y"
 {
     int ival;
     char *sval;
@@ -261,7 +261,7 @@ typedef union YYSTYPE
     } send_mods;
 }
 /* Line 1529 of yacc.c.  */
-#line 265 "parser/tbol.tab.h"
+#line 265 "compiler/parser/tbol.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -141,7 +141,7 @@ void preproc_add_include_path(const char *path) {
  * falling back to the original on failure.  On Windows, also normalize
  * backslashes to forward slashes so paths compare equal against URI-derived
  * paths everywhere in the toolchain. */
-static char *canonicalize_path(const char *path) {
+char *preproc_canonicalize_path(const char *path) {
     char resolved[PATH_MAX];
 #ifdef _WIN32
     if (_fullpath(resolved, path, sizeof(resolved))) {
@@ -169,7 +169,7 @@ static char *find_copy_file(const char *name) {
         fp = fopen(path, "r");
         if (fp) {
             fclose(fp);
-            return canonicalize_path(path);
+            return preproc_canonicalize_path(path);
         }
     }
 
@@ -177,7 +177,7 @@ static char *find_copy_file(const char *name) {
     fp = fopen(name, "r");
     if (fp) {
         fclose(fp);
-        return canonicalize_path(name);
+        return preproc_canonicalize_path(name);
     }
 
     /* Try -I paths */
@@ -186,7 +186,7 @@ static char *find_copy_file(const char *name) {
         fp = fopen(path, "r");
         if (fp) {
             fclose(fp);
-            return canonicalize_path(path);
+            return preproc_canonicalize_path(path);
         }
     }
 
@@ -311,6 +311,13 @@ const char *preproc_get_current_file(void) {
     return lexer_get_filename();
 }
 
+void preproc_foreach_define(void (*fn)(const char *name, const char *value, void *ctx),
+                            void *ctx) {
+    for (int i = 0; i < DEFINE_HASH_SIZE; i++)
+        for (DefineEntry *e = define_table[i]; e; e = e->next)
+            fn(e->name, e->value, ctx);
+}
+
 void preproc_add_define(const char *name, const char *value, int line, int col) {
     unsigned int h = hash_name(name);
     const char *cur_file = preproc_get_current_file();
@@ -428,7 +435,7 @@ void preproc_set_content_override(const char *filepath, const char *content) {
     if (!filepath || !content) return;
 
     /* Canonicalize path to match find_copy_file() output */
-    char *canon = canonicalize_path(filepath);
+    char *canon = preproc_canonicalize_path(filepath);
 
     /* Check if already exists - update it */
     for (int i = 0; i < content_override_count; i++) {

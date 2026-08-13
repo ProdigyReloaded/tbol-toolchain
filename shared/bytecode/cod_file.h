@@ -26,4 +26,8 @@
  */
 Program *cod_file_load(const char *path);
 
+/* Parse an in-memory .cod/.pgm image (does not take ownership of `data`).
+ * `name_hint` supplies the program name for short-header files. */
+Program *cod_file_load_buf(const uint8_t *data, long size, const char *name_hint);
+
 #endif /* TBOLDC_COD_FILE_H */
