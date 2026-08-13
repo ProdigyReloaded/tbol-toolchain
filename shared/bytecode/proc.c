@@ -56,6 +56,16 @@ static int cmp_uint16(const void *a, const void *b) {
     return (ua > ub) - (ua < ub);
 }
 
+/* True if `addr` is the start of some decoded instruction. A CALL whose target
+ * lands mid-instruction is a known compiler defect (e.g. QALCALLF's second CALL
+ * points inside a CJGT); such a target must NOT be treated as a procedure entry
+ * or it splits the real procedure at a bogus mid-instruction boundary. */
+static bool addr_is_instruction(Program *prog, uint16_t addr) {
+    for (Instruction *i = prog->instructions; i; i = i->next)
+        if (i->address == addr) return true;
+    return false;
+}
+
 /*
  * Find all procedure boundaries in a program
  * Procedures are delimited by CALL targets and RETURN instructions
@@ -77,8 +87,12 @@ void find_procedures(Program *prog, ProcList *pl) {
                     break;
                 }
             }
-            /* Jump offset 0 means unresolved (call to undefined proc) - skip it */
-            if (!found && entry_count < 256 && instr->jump_offset != 0) {
+            /* Skip: offset 0 = unresolved (call to undefined proc); a target
+             * that isn't an instruction boundary is a compiler defect and not
+             * a real procedure entry (recovered as _invalid_target by the
+             * emitter) - registering it would split the enclosing procedure. */
+            if (!found && entry_count < 256 && instr->jump_offset != 0 &&
+                addr_is_instruction(prog, instr->jump_target)) {
                 entries[entry_count++] = instr->jump_target;
             }
         }
