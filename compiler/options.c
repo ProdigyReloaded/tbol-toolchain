@@ -145,7 +145,7 @@ int options_parse(int argc, char **argv) {
             g_options.if_goto_opt = true;
         }
         else if (strcmp(arg, "--no-if-goto-opt") == 0) {
-            /* Legacy flag — optimization is now off by default */
+            /* Legacy flag - optimization is now off by default */
         }
         else if (strcmp(arg, "--diagnostics-format=text") == 0) {
             g_options.diag_format = DIAG_FMT_TEXT;

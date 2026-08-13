@@ -34,14 +34,14 @@
 
 /* File I/O
  * READ/WRITE have two forms distinguished by operand count:
- *   OP_READ  (0x0E): READ file, dest;        2 operands — reads a line (PAL read_line)
- *   OP_READ3 (0x0F): READ file, dest, len;   3 operands — reads len bytes (PAL read_rec)
- *   OP_WRITE  (0x10): WRITE file, data;       2 operands — writes data + line terminator (PAL write_line)
- *   OP_WRITE3 (0x11): WRITE file, data, len;  3 operands — writes len bytes (PAL write_rec)
+ *   OP_READ  (0x0E): READ file, dest;        2 operands - reads a line (PAL read_line)
+ *   OP_READ3 (0x0F): READ file, dest, len;   3 operands - reads len bytes (PAL read_rec)
+ *   OP_WRITE  (0x10): WRITE file, data;       2 operands - writes data + line terminator (PAL write_line)
+ *   OP_WRITE3 (0x11): WRITE file, data, len;  3 operands - writes len bytes (PAL write_rec)
  * In TBOL source, both forms use the READ/WRITE verb; the opcode is selected by
  * the compiler based on operand count (2 or 3).
  * Note: the TBOL patent interpreter source called 0x0F "OP_READ_LINE" and 0x11
- * "OP_WRITE_LINE", but those names are misleading — 0x0F reads a fixed record,
+ * "OP_WRITE_LINE", but those names are misleading - 0x0F reads a fixed record,
  * not a line. Renamed to OP_READ3/OP_WRITE3 to avoid confusion.
  */
 #define OP_OPEN         0x0B

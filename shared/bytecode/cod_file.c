@@ -202,7 +202,7 @@ Program *cod_file_load(const char *path) {
         prog->date_time = strdup("unknown");
         prog->version = strdup("unknown");
 
-        /* Store code section — use file_size from header to exclude padding */
+        /* Store code section - use file_size from header to exclude padding */
         prog->code_start = code_start;
         prog->code_size = (file_size > code_start) ? file_size - code_start
                                                     : cod_size - code_start;
@@ -233,17 +233,17 @@ Program *cod_file_load(const char *path) {
         memcpy(prog->program_name, cod_data + 6, name_len);
         prog->program_name[name_len] = '\0';
 
-        /* Extract date/time (15 chars after name) */
-        prog->date_time = malloc(16);
-        memcpy(prog->date_time, cod_data + 6 + name_len, 15);
-        prog->date_time[15] = '\0';
+        /* Extract date/time "MM/DD/YY HH:MM" (14 chars after name) */
+        prog->date_time = malloc(15);
+        memcpy(prog->date_time, cod_data + 6 + name_len, 14);
+        prog->date_time[14] = '\0';
 
-        /* Extract version (5 chars after date) */
+        /* Extract version "04.21" (5 chars after date); a 0x30 marker follows */
         prog->version = malloc(6);
-        memcpy(prog->version, cod_data + 6 + name_len + 15, 5);
+        memcpy(prog->version, cod_data + 6 + name_len + 14, 5);
         prog->version[5] = '\0';
 
-        /* Store code section — use file_size from header to exclude padding */
+        /* Store code section - use file_size from header to exclude padding */
         prog->code_start = code_start;
         prog->code_size = (file_size > code_start) ? file_size - code_start
                                                     : cod_size - code_start;

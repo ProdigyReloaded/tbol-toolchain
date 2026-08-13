@@ -38,7 +38,7 @@
 #include "bytecode/decode.h"
 #include "source_header.h"
 
-/* ── Command-line usage ─────────────────────────────────────────────── */
+/* -- Command-line usage ----------------------------------------------- */
 
 static void print_usage(const char *prog) {
     fprintf(stderr, "Usage: %s [options] <input.cod|input.pgm>\n", prog);
@@ -50,7 +50,7 @@ static void print_usage(const char *prog) {
     fprintf(stderr, "  -h, --help       Show this help\n");
 }
 
-/* ── String buffer ──────────────────────────────────────────────────── */
+/* -- String buffer ---------------------------------------------------- */
 
 typedef struct {
     char *data;
@@ -92,7 +92,7 @@ static void sbuf_printf(StringBuf *sb, const char *fmt, ...) {
     sb->len += needed;
 }
 
-/* ── Target collection (jump/call targets for labels and procs) ───── */
+/* -- Target collection (jump/call targets for labels and procs) ----- */
 
 typedef struct {
     uint16_t addr;
@@ -164,7 +164,7 @@ static void collect_targets(Program *prog, TargetList *targets) {
 
     for (Instruction *instr = prog->instructions; instr; instr = instr->next) {
         if (instr->mnemonic == MNEM_CALL) {
-            /* Jump offset 0 = unresolved (undefined proc) — don't register */
+            /* Jump offset 0 = unresolved (undefined proc) - don't register */
             if (instr->has_jump && instr->jump_offset != 0) {
                 snprintf(buf, sizeof(buf), "proc_%d", proc_num);
                 if (target_add(targets, instr->jump_target, true, buf))
@@ -190,7 +190,7 @@ static void collect_targets(Program *prog, TargetList *targets) {
     assign_names(targets);
 }
 
-/* ── Function key and action name tables ────────────────────────────── */
+/* -- Function key and action name tables ------------------------------ */
 
 static const char *function_names[] = {
     [0] = "NO_EVENT", [1] = "ADD_TEXT", [2] = "ADD_TEXT_AND_FIELD_END",
@@ -228,7 +228,7 @@ static const char *resolve_action(int val) {
     }
 }
 
-/* ── Context-aware operand formatting ───────────────────────────────── */
+/* -- Context-aware operand formatting --------------------------------- */
 
 /*
  * Determine if operand at position `idx` in instruction `instr` should
@@ -242,7 +242,7 @@ static bool should_show_numeric(Instruction *instr, int idx) {
         return true;
     }
 
-    /* TBOL bytecode order is (src, dest) — idx 0 is source, idx 1 is dest */
+    /* TBOL bytecode order is (src, dest) - idx 0 is source, idx 1 is dest */
     if ((m == MNEM_MOVE || m == MNEM_MOVE_ABS || m == MNEM_SWAP) && idx == 0) {
         if (instr->operand_count >= 2) {
             OperandKind dest = instr->operands[1].kind;
@@ -287,7 +287,7 @@ static const char *resolve_target(TargetList *targets, uint16_t addr) {
     return (t && t->name) ? t->name : "???";
 }
 
-/* ── Instruction formatters ─────────────────────────────────────────── */
+/* -- Instruction formatters ------------------------------------------- */
 
 /* Each formatter returns true if it handled the instruction. */
 
@@ -517,11 +517,11 @@ static bool fmt_goto_depending_on(FormatCtx *ctx, Instruction *instr) {
     return true;
 }
 
-/* Generic instruction — handles everything not caught by special formatters */
+/* Generic instruction - handles everything not caught by special formatters */
 static void fmt_generic(FormatCtx *ctx, Instruction *instr) {
     sbuf_printf(ctx->sb, "%s", instr->mnem_str);
 
-    /* MOVE_BLOCK (0x62) has a leading count byte — show it.
+    /* MOVE_BLOCK (0x62) has a leading count byte - show it.
      * SAVE and CLEAR counts are implicit in the operands. */
     if (instr->var_count > 0 && instr->opcode == 0x62) {
         sbuf_printf(ctx->sb, " %d,", instr->var_count);
@@ -554,7 +554,7 @@ static void format_instruction(FormatCtx *ctx, Instruction *instr) {
     fmt_generic(ctx, instr);
 }
 
-/* ── Tabular hex + text interleaving ────────────────────────────────── */
+/* -- Tabular hex + text interleaving ---------------------------------- */
 
 /*
  * Column layout for tabular mode:
@@ -617,7 +617,7 @@ static void print_tabular_instruction(Program *prog, Instruction *instr, const c
     }
 }
 
-/* ── Structured mode output ─────────────────────────────────────────── */
+/* -- Structured mode output ------------------------------------------- */
 
 static void print_structured_instruction(const char *text) {
     const char *p = text;
@@ -634,12 +634,12 @@ static void print_structured_instruction(const char *text) {
     }
 }
 
-/* ── Preamble prefix for tabular mode ───────────────────────────────── */
+/* -- Preamble prefix for tabular mode --------------------------------- */
 
 /* Aligns preamble text to the PROC column (col 40) */
 #define TAB_PREFIX "                                       "
 
-/* ── DATA section inference ─────────────────────────────────────────── */
+/* -- DATA section inference ------------------------------------------- */
 
 static void print_data_section(Program *prog, const char *prefix) {
     SymbolTable *st = symbol_table_new();
@@ -687,7 +687,7 @@ static void print_data_section(Program *prog, const char *prefix) {
     symbol_table_free(st);
 }
 
-/* ── Preamble output ────────────────────────────────────────────────── */
+/* -- Preamble output -------------------------------------------------- */
 
 static bool program_uses_gev(Program *prog) {
     for (Instruction *i = prog->instructions; i; i = i->next)
@@ -713,7 +713,7 @@ static void print_preamble(Program *prog, bool raw, bool emit_data, const char *
     }
 }
 
-/* ── Main disassembly loop ──────────────────────────────────────────── */
+/* -- Main disassembly loop -------------------------------------------- */
 
 static void print_disasm(Program *prog, bool raw, bool tabular, bool emit_data,
                          GEVTable *gev, const char *input_file) {
@@ -785,7 +785,7 @@ static void print_disasm(Program *prog, bool raw, bool tabular, bool emit_data,
     targets_free(&targets);
 }
 
-/* ── Entry point ────────────────────────────────────────────────────── */
+/* -- Entry point ------------------------------------------------------ */
 
 int main(int argc, char **argv) {
 #ifdef _WIN32

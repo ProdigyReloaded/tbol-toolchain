@@ -536,7 +536,7 @@ void gen_goto_depending_on(AstNode *node) {
             int rel = target_offset - base;
             emit_patch_word_be(patch_positions[i], (int16_t)rel);
         } else {
-            /* Forward reference — always relative to pos_after */
+            /* Forward reference - always relative to pos_after */
             emit_add_forward_ref(patch_positions[i], label_names[i], current_proc_name);
         }
     }
@@ -872,8 +872,8 @@ static void handle_goto_depending_on(AstNode *node, AstNode **operands, int coun
 
 /*
  * READ/WRITE handler: selects opcode based on operand count.
- *   2 operands -> OP_READ  (0x0E) / OP_WRITE  (0x10) — line-oriented
- *   3 operands -> OP_READ3 (0x0F) / OP_WRITE3 (0x11) — fixed-width record
+ *   2 operands -> OP_READ  (0x0E) / OP_WRITE  (0x10) - line-oriented
+ *   3 operands -> OP_READ3 (0x0F) / OP_WRITE3 (0x11) - fixed-width record
  */
 static void handle_read(AstNode *node, AstNode **operands, int count) {
     (void)node;

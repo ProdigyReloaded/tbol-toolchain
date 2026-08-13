@@ -1,5 +1,5 @@
 /*
- * verify.h — Speculative round-trip verification
+ * verify.h - Speculative round-trip verification
  *
  * Iteratively refines decompiler output by compiling it with the
  * statically-linked tbolc compiler, comparing bytecodes, and ratcheting
@@ -37,5 +37,12 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
  */
 int verify_roundtrip(const char *src_path, const char *original_cod,
                      const char **include_paths, int include_path_count);
+
+/*
+ * Directory for scratch temp files, without a trailing separator. On
+ * Windows this is the OS temp path (GetTempPath); elsewhere $TMPDIR if
+ * set, otherwise /tmp. The returned pointer is owned by the callee.
+ */
+const char *tbol_tmp_dir(void);
 
 #endif

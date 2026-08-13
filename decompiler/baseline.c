@@ -1,5 +1,5 @@
 /*
- * baseline.c — Top-level source emission
+ * baseline.c - Top-level source emission
  *
  * Emits the PROGRAM header, COPY directives, DATA section, and
  * procedure structure. Delegates instruction-level emission to
@@ -18,7 +18,21 @@
 #include <string.h>
 #include <stdio.h>
 
-/* ── DATA section emission ───────────────────────────────────────────── */
+/* -- DATA section emission --------------------------------------------- */
+
+/* True if any slot strictly inside the span [start, start+dim) is directly
+ * (non-indexed) referenced and so needs its own RDA name. Emitting `start`
+ * as a dimensioned array RDA_start(dim) would absorb those interior slots,
+ * leaving names like RDA40 undefined and breaking the round-trip. TBOL
+ * array indexing is slot-arithmetic off a scalar declaration, so declaring
+ * the slots individually instead is bytecode-neutral. */
+static bool array_span_has_interior_names(SymbolTable *st, int start, int dim) {
+    int end = start + dim;
+    if (end > st->max_slot + 1) end = st->max_slot + 1;
+    for (int k = start + 1; k < end; k++)
+        if (st->slots[k].direct_access) return true;
+    return false;
+}
 
 static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
     SymbolTable *st = symbol_table_new();
@@ -75,7 +89,7 @@ static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
             continue;
         }
 
-        /* Regular slot — goes into vars */
+        /* Regular slot - goes into vars */
         if (!in_vars) {
             fprintf(out, "  vars =\n");
             in_vars = true;
@@ -95,14 +109,18 @@ static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
             }
         }
 
-        if (range_dim > 0) {
+        if (range_dim > 0 && !array_span_has_interior_names(st, i, range_dim)) {
             fprintf(out, "    RDA%d(%d)", i, range_dim);
             i += range_dim;
-        } else if (st->slots[i].is_array && st->slots[i].max_index > 0) {
+        } else if (st->slots[i].is_array && st->slots[i].max_index > 0 &&
+                   !array_span_has_interior_names(st, i, st->slots[i].max_index)) {
             int dim = st->slots[i].max_index;
             fprintf(out, "    RDA%d(%d)", i, dim);
             i += dim;
         } else {
+            /* Scalar, or a dimension suppressed because an interior slot is
+             * directly named: emit this one slot and let the loop declare
+             * the rest of the span individually. */
             fprintf(out, "    RDA%d", i);
             i++;
         }
@@ -113,7 +131,7 @@ static void emit_data_section(FILE *out, Program *prog, StructMap *sm) {
     symbol_table_free(st);
 }
 
-/* ── DEFINE emission for non-printable string constants ──────────────── */
+/* -- DEFINE emission for non-printable string constants ---------------- */
 
 static void emit_defines(FILE *out, DefineTable *dt) {
     if (!dt || dt->count == 0) return;
@@ -123,7 +141,7 @@ static void emit_defines(FILE *out, DefineTable *dt) {
     fprintf(out, "\n");
 }
 
-/* ── Main emission ───────────────────────────────────────────────────── */
+/* -- Main emission ----------------------------------------------------- */
 
 void emit_baseline(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                    ModeTable *mt, const char *input_path) {
@@ -158,7 +176,7 @@ void emit_baseline(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
     StructMap *sm = struct_map_new();
     emit_data_section(mem, prog, sm);
 
-    /* Scan for non-printable string constants → DEFINE table */
+    /* Scan for non-printable string constants -> DEFINE table */
     DefineTable *dt = define_table_new();
     define_table_scan(dt, prog);
     emit_defines(mem, dt);

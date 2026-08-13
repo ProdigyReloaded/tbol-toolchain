@@ -107,7 +107,7 @@ run_negative_test() {
     local base="$(basename "$src" .src)"
     local expected="$dir/${base}.expected"
 
-    # Compile — should fail
+    # Compile - should fail
     local workdir
     workdir="$(mktemp -d)"
     local stderr_file="$workdir/stderr"
@@ -133,7 +133,7 @@ run_negative_test() {
             ((fail++))
         fi
     else
-        # No expected file — just verify it failed
+        # No expected file - just verify it failed
         echo -e "  ${GREEN}PASS${NC}: $src (correctly rejected)"
         ((pass++))
     fi

@@ -1,5 +1,5 @@
 /*
- * operand_fmt.c — Operand formatting for source emission
+ * operand_fmt.c - Operand formatting for source emission
  *
  * Converts decoded IR operands to TBOL source text.
  * Must produce text that the compiler will parse back to identical bytecode.
@@ -12,7 +12,7 @@
 #include <string.h>
 #include <ctype.h>
 
-/* ── Define table ───────────────────────────────────────────────────── */
+/* -- Define table ----------------------------------------------------- */
 
 DefineTable *define_table_new(void) {
     DefineTable *dt = calloc(1, sizeof(DefineTable));
@@ -70,7 +70,7 @@ static char *make_ident_from_bytes(const char *raw, int len) {
     }
 
     if (best_len == 0) {
-        /* No printable chars — use hex prefix */
+        /* No printable chars - use hex prefix */
         char *ident = malloc(16);
         snprintf(ident, 16, "hex_%02x%02x",
                  (unsigned char)raw[0], len > 1 ? (unsigned char)raw[1] : 0);
@@ -97,7 +97,7 @@ static char *make_ident_from_bytes(const char *raw, int len) {
 
     /* TBOL identifiers can't start with a digit. Rewrite the leading
      * digit to a visually-similar letter, mirroring the manual convention
-     * used in encyclopedia (6100 → G100). Interior digits are unaffected. */
+     * used in encyclopedia (6100 -> G100). Interior digits are unaffected. */
     if (ident[0] >= '0' && ident[0] <= '9') {
         static const char digit_letter[10] = {
             'o', 'i', 'z', 'e', 'a', 's', 'g', 't', 'b', 'p'
@@ -220,7 +220,7 @@ const char *define_table_lookup(DefineTable *dt, Operand *op) {
     return NULL;
 }
 
-/* ── Struct map ─────────────────────────────────────────────────────── */
+/* -- Struct map ------------------------------------------------------- */
 
 StructMap *struct_map_new(void) {
     return calloc(1, sizeof(StructMap));
@@ -251,7 +251,7 @@ const char *struct_map_lookup(StructMap *sm, int slot) {
     return NULL;
 }
 
-/* ── Operand formatting ─────────────────────────────────────────────── */
+/* -- Operand formatting ----------------------------------------------- */
 
 int fmt_operand(char *buf, int bufsize, Operand *op, GEVTable *gev, DefineTable *dt) {
     if (!op || !buf) return 0;
@@ -308,7 +308,7 @@ int fmt_operand(char *buf, int bufsize, Operand *op, GEVTable *gev, DefineTable 
             }
             return snprintf(buf, bufsize, "#%d", op->value);
         case OP_LITERAL_NUM: {
-            /* Numeric literal — emit as quoted string (compiler expects this) */
+            /* Numeric literal - emit as quoted string (compiler expects this) */
             char num_buf[32];
             snprintf(num_buf, sizeof(num_buf), "%d", op->value);
             return snprintf(buf, bufsize, "'%s'", num_buf);

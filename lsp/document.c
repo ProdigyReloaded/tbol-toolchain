@@ -508,7 +508,7 @@ static bool has_reference(AstNode *node, const char *name, AstNodeKind ref_kind)
  * style: 0=none, 1=dim (Unnecessary), 2=strikethrough (Deprecated), 3=both.
  * `root` is always the program root (for reference searches).
  * `subtree` is the current node whose children we scan for declarations.
- * `main_file` is the main document's filename — skip declarations from COPY files.
+ * `main_file` is the main document's filename - skip declarations from COPY files.
  */
 /* Check if a DEFINE name was referenced via preprocessor expansion */
 static bool define_was_expanded(const char *name, PreprocEvent *events, int event_count) {
@@ -567,14 +567,14 @@ static void append_unused_diagnostics(cJSON *diags, AstNode *root, AstNode *subt
 
         if (!name) continue;
 
-        /* Skip declarations from COPY files — their symbols are used by includers */
+        /* Skip declarations from COPY files - their symbols are used by includers */
         if (main_file && node->range.start.filename &&
             strcmp(node->range.start.filename, main_file) != 0)
             continue;
 
         if (has_reference(root, name, ref_kind)) continue;
 
-        /* DEFINEs are expanded by the preprocessor — no AST_IDENT remains.
+        /* DEFINEs are expanded by the preprocessor - no AST_IDENT remains.
          * Check preprocessor events for expansion references. */
         if (node->kind == AST_DEFINE &&
             define_was_expanded(name, preproc_events, preproc_event_count))
@@ -719,7 +719,7 @@ void document_parse(Document *doc, const char **include_paths, int include_count
     }
     doc->diagnostics = diags;
 
-    /* Store AST — only replace if the new parse produced one.
+    /* Store AST - only replace if the new parse produced one.
      * On parse failure (result->ast is NULL), keep the stale AST from the
      * last successful parse so the LSP can still provide completions,
      * hover, and go-to-definition from known symbols while the user is

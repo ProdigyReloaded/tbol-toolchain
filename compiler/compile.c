@@ -1,7 +1,7 @@
 /*
- * compile.c — TBOL compiler library interface
+ * compile.c - TBOL compiler library interface
  *
- * Encapsulates the full compilation pipeline (lex → parse → sema → codegen)
+ * Encapsulates the full compilation pipeline (lex -> parse -> sema -> codegen)
  * into a single callable function. Used by the decompiler for round-trip
  * verification without forking a separate process.
  */
@@ -96,7 +96,7 @@ cleanup:
     }
     symtab_cleanup();
     preproc_cleanup();
-    /* Don't call yylex_destroy — it breaks subsequent yyrestart calls.
+    /* Don't call yylex_destroy - it breaks subsequent yyrestart calls.
      * The scanner state is reset by yyrestart at the start of each compile. */
     diag_cleanup();
 

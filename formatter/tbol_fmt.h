@@ -1,5 +1,5 @@
 /*
- * tbol_fmt.h — TBOL source code formatter
+ * tbol_fmt.h - TBOL source code formatter
  *
  * Text-based formatting passes. Safe for user-written source with comments.
  * Used by tboldc, tbol-lsp, and standalone tbolfmt.

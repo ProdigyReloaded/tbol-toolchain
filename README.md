@@ -201,10 +201,12 @@ The ctest suite drives five per-component test runners:
 | `formatter_tests` | `formatter/tests/run_tests.sh` (idempotent format check) |
 | `lsp_tests` | `lsp/test-lsp` (document-store and parser regression suite) |
 
-The shared round-trip corpus at `tests/roundtrip/` (~470 `.src` programs) and
-the focused fixtures at `tests/COMPLEX*.SRC`, `tests/GEVTEST.SRC`,
-`tests/MSZX010X.src`, `tests/clear_array_bug.SRC` are exercised by the
-component suites above.
+The compiler's positive corpus at `compiler/tests/positive/` (451 `.src`
+programs, each with a golden `.cod`) is the primary corpus; the disassembler
+and decompiler suites re-read those same golden `.cod` files. The per-verb
+round-trip corpus at `tests/roundtrip/` (68 `.src` programs) and the focused
+fixtures at `tests/COMPLEX*.SRC`, `tests/GEVTEST.SRC`, `tests/MSZX010X.src`,
+`tests/clear_array_bug.SRC` are exercised by the component suites above.
 
 To build with AddressSanitizer and UndefinedBehaviorSanitizer:
 

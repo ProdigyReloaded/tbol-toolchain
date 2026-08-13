@@ -1,4 +1,4 @@
-# TBOL Language Server — tbol-lsp
+# TBOL Language Server - tbol-lsp
 # Links libtbolc for parsing + tbol_parse for document management
 
 # Third-party cJSON intentionally uses sprintf; macOS SDK 26.x flags it

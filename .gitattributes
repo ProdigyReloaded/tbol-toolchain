@@ -27,7 +27,7 @@ CMakeLists.txt text eol=lf
 Dockerfile* text eol=lf
 Makefile text eol=lf
 
-# Binary reference files used by the test suite — never translate.
+# Binary reference files used by the test suite - never translate.
 *.cod binary
 *.COD binary
 *.pgm binary

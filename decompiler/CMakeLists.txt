@@ -1,4 +1,4 @@
-# TBOL Decompiler — tboldc
+# TBOL Decompiler - tboldc
 # Links: bytecode + formatter + libtbolc (for recompilation/verification)
 
 add_executable(tboldc
@@ -27,5 +27,32 @@ add_test(NAME decompiler_tests
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
 )
 set_tests_properties(decompiler_tests PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)
+
+# CALL-target recovery: mid-instruction CALL targets recover as _invalid_target
+add_test(NAME decompiler_call_recovery
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/call_recovery.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_call_recovery PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)
+
+# Fold transforms: OR guards and else-if ladders fold to source shape
+add_test(NAME decompiler_fold_transforms
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/fold_transforms.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_fold_transforms PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)
+
+# DATA emission: array span with a directly-named interior slot round-trips
+add_test(NAME decompiler_data_interior_names
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/data_interior_names.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_data_interior_names PROPERTIES
     ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
 )

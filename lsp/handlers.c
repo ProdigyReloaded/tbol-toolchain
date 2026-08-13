@@ -1288,7 +1288,7 @@ cJSON *handle_completion(LSPServer *server, cJSON *params) {
 
     /* Check if the cursor is in a name-definition context (after PROC, PROGRAM,
      * DEFINE, or DATA group name position). In these positions the user is typing
-     * a NEW name, not referencing an existing symbol — return empty completions. */
+     * a NEW name, not referencing an existing symbol - return empty completions. */
     cJSON *textDocument = cJSON_GetObjectItem(params, "textDocument");
     cJSON *position = cJSON_GetObjectItem(params, "position");
     if (textDocument && position) {
@@ -1349,7 +1349,7 @@ cJSON *handle_completion(LSPServer *server, cJSON *params) {
                 /* Check if we're in the DATA region of the program.
                  * Uses the last valid AST, which handles COPY files correctly.
                  * During mid-edit with a broken parse, the AST may be stale and
-                 * completions may briefly appear — this resolves when the LSP
+                 * completions may briefly appear - this resolves when the LSP
                  * reparses. See TODO.md for the proper fix (error-tolerant
                  * parsing or grammar-based cursor context). */
                 if (doc->ast) {
@@ -1398,7 +1398,7 @@ cJSON *handle_completion(LSPServer *server, cJSON *params) {
         cJSON_AddItemToArray(items, item);
     }
 
-    /* Snippet completions — these expand into structured templates.
+    /* Snippet completions - these expand into structured templates.
      * insertTextFormat: 2 = Snippet (uses $1, $0 tab stops) */
     typedef struct { const char *label; const char *detail; const char *body; } SnippetDef;
     static const SnippetDef snippets[] = {
@@ -1883,7 +1883,7 @@ static void search_src_for_references(LSPServer *server, const char *src_path,
     free(src_uri);
 
     if (d && d->ast) {
-        /* Use existing AST — collect .src-local references only */
+        /* Use existing AST - collect .src-local references only */
         collect_references_ex((AstNode *)d->ast, name, locations,
                                d->preproc_events, d->preproc_event_count, src_path);
         return;
@@ -2001,7 +2001,7 @@ cJSON *handle_references(LSPServer *server, cJSON *params) {
     } else {
         /*
          * .src file: collect all references from this doc's AST. Then check
-         * if the symbol is defined in a COPY file — if so, scan the workspace
+         * if the symbol is defined in a COPY file - if so, scan the workspace
          * for all other .src files that include it.
          */
         collect_references_ex(ast, name, locations,
@@ -2010,7 +2010,7 @@ cJSON *handle_references(LSPServer *server, cJSON *params) {
         /* Check if symbol is defined in a COPY file */
         const char *def_file = find_definition_file(ast, name);
         if (def_file && strcmp(def_file, doc_path) != 0) {
-            /* Defined in a COPY file — find all .src files that include it */
+            /* Defined in a COPY file - find all .src files that include it */
             const char *copy_base = strrchr(def_file, '/');
             copy_base = copy_base ? copy_base + 1 : def_file;
 
@@ -2077,7 +2077,7 @@ static cJSON *make_symbol(const char *name, int kind, int start_line, int start_
     cJSON_AddItemToObject(sym, "range", make_range(start_line, start_col, end_line, end_col));
 
     /* selectionRange must be contained within range.
-     * Clamp the name highlight to not exceed the full range — this can happen
+     * Clamp the name highlight to not exceed the full range - this can happen
      * during incomplete edits (e.g., snippet expansion with no END_PROC yet). */
     int sel_end_line = start_line;
     int sel_end_col = start_col + (name ? (int)strlen(name) : 1);
@@ -3150,7 +3150,7 @@ static int st_compare(const void *a, const void *b) {
  * - AST_PROC_CALL: procedure calls (TextMate can't distinguish from variables)
  * - AST_LABEL: label declarations
  *
- * AST_IDENT (variable references) is intentionally excluded — TextMate already
+ * AST_IDENT (variable references) is intentionally excluded - TextMate already
  * colors identifiers, and emitting semantic tokens for all references overrides
  * the TextMate coloring with potentially different colors, causing "weird" styling.
  */
@@ -3392,7 +3392,7 @@ static void collect_selection_ancestors(AstNode *node, int line, int col,
         }
     }
 
-    /* Always recurse — child ranges may extend beyond imprecise parent ranges */
+    /* Always recurse - child ranges may extend beyond imprecise parent ranges */
     for (int i = 0; i < node->child_count; i++) {
         collect_selection_ancestors(node->children[i], line, col,
                                     filter_path, copy_start_line, ancestors, depth);
@@ -3465,7 +3465,7 @@ cJSON *handle_selection_range(LSPServer *server, cJSON *params) {
     return result;
 }
 
-/* ── textDocument/formatting ──────────────────────────────────────────── */
+/* -- textDocument/formatting -------------------------------------------- */
 
 cJSON *handle_formatting(LSPServer *server, cJSON *params) {
     cJSON *textDocument = cJSON_GetObjectItem(params, "textDocument");
@@ -3486,7 +3486,7 @@ cJSON *handle_formatting(LSPServer *server, cJSON *params) {
             opts.indent_width = (int)tabSize->valuedouble;
     }
 
-    /* Don't strip labels in user-authored source — that's a decompiler pass */
+    /* Don't strip labels in user-authored source - that's a decompiler pass */
     opts.strip_labels = false;
 
     char *formatted = tbol_fmt(doc->content, &opts);

@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.1.0 — Initial Release
+## 0.1.0 - Initial Release
 
 - Syntax highlighting for TBOL source files (.src) and COPY files
 - Language server integration (tbol-lsp) providing:

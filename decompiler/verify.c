@@ -1,5 +1,5 @@
 /*
- * verify.c — Speculative round-trip verification
+ * verify.c - Speculative round-trip verification
  *
  * Iteratively refines decompiler output by compiling it with the
  * statically-linked tbolc compiler, comparing bytecodes, and ratcheting
@@ -17,11 +17,55 @@
 #include <ctype.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <dirent.h>
 #ifdef _WIN32
 #include <direct.h>
+#include <windows.h>
 #endif
 
-/* ── Bytecode comparison ────────────────────────────────────────────── */
+/* Scratch temp directory (no trailing separator). The decompiler writes
+ * its emitted source, recompiled .cod, and GEV scratch here. `/tmp` is a
+ * native-Windows path to a usually-nonexistent <drive>:\tmp, so on Windows
+ * use the real OS temp path; elsewhere honor $TMPDIR, falling back to /tmp. */
+const char *tbol_tmp_dir(void) {
+#ifdef _WIN32
+    static char buf[MAX_PATH];
+    DWORD n = GetTempPathA((DWORD)sizeof(buf), buf);
+    if (n == 0 || n >= sizeof(buf)) return ".";
+    while (n > 0 && (buf[n - 1] == '\\' || buf[n - 1] == '/'))
+        buf[--n] = '\0';
+    return buf;
+#else
+    const char *d = getenv("TMPDIR");
+    return (d && *d) ? d : "/tmp";
+#endif
+}
+
+/* Locate the single .cod the compiler wrote into `dir`. tbolc derives the
+ * output name from a LOWERCASED input basename, so the exact case is not
+ * predictable from src_path - and on a case-sensitive filesystem (Linux)
+ * predicting the mixed-case mkstemp name fails to open the lowercase file
+ * that was actually written (this passed on case-insensitive macOS by
+ * accident). The verify temp dir is freshly created for one compile, so
+ * scanning it for the lone .cod is robust. Fills `out`, returns true. */
+static bool find_cod_in_dir(const char *dir, char *out, size_t outsz) {
+    DIR *d = opendir(dir);
+    if (!d) return false;
+    bool found = false;
+    struct dirent *e;
+    while ((e = readdir(d)) != NULL) {
+        size_t l = strlen(e->d_name);
+        if (l > 4 && strcmp(e->d_name + l - 4, ".cod") == 0) {
+            snprintf(out, outsz, "%s/%s", dir, e->d_name);
+            found = true;
+            break;
+        }
+    }
+    closedir(d);
+    return found;
+}
+
+/* -- Bytecode comparison ---------------------------------------------- */
 
 static uint8_t *load_code_section(const char *path, int *code_len) {
     Program *prog = cod_file_load(path);
@@ -45,7 +89,7 @@ static int compare_code(const uint8_t *a, int alen, const uint8_t *b, int blen) 
     return -1;
 }
 
-/* ── Try a mode table: emit, compile, compare ───────────────────────── */
+/* -- Try a mode table: emit, compile, compare ------------------------- */
 
 /*
  * Returns:
@@ -57,8 +101,8 @@ static int try_mode(Program *prog, ProcList *procs, GEVTable *gev,
                      ModeTable *mt, const char **include_paths, int include_count,
                      const uint8_t *orig_code, int orig_len, int iter) {
     char *tmp_src = NULL, *tmp_dir = NULL, *tmp_cod = NULL;
-    asprintf(&tmp_src, "/tmp/tboldc_v%d.src", iter);
-    asprintf(&tmp_dir, "/tmp/tboldc_v%d/", iter);
+    asprintf(&tmp_src, "%s/tboldc_v%d.src", tbol_tmp_dir(), iter);
+    asprintf(&tmp_dir, "%s/tboldc_v%d/", tbol_tmp_dir(), iter);
 #ifdef _WIN32
     _mkdir(tmp_dir);
 #else
@@ -93,7 +137,7 @@ static int try_mode(Program *prog, ProcList *procs, GEVTable *gev,
     return diff;
 }
 
-/* ── Collect CJ addresses in a proc ─────────────────────────────────── */
+/* -- Collect CJ addresses in a proc ----------------------------------- */
 
 static int collect_cjs(Program *prog, ProcBoundary *pb,
                         uint16_t *addrs, int max) {
@@ -107,7 +151,7 @@ static int collect_cjs(Program *prog, ProcBoundary *pb,
     return n;
 }
 
-/* ── Public API ─────────────────────────────────────────────────────── */
+/* -- Public API ------------------------------------------------------- */
 
 int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                   const char **include_paths, int include_path_count,
@@ -134,7 +178,7 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
         emit_baseline(out, prog, procs, gev, mt, input_path);
         success = true;
     } else if (diff >= 0 && iter < max_iter) {
-        /* Mismatch — find the proc containing the diff and try per-CJ ratcheting */
+        /* Mismatch - find the proc containing the diff and try per-CJ ratcheting */
         for (int p = 0; p < procs->count && !success; p++) {
             ProcBoundary *pb = &procs->procs[p];
             if (diff < pb->start_addr || (uint16_t)diff >= pb->end_addr)
@@ -159,10 +203,10 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
                     success = true;
                     break;
                 } else if (result == -2) {
-                    /* Compilation failed — this CJ can't be NO_ELSE, revert it */
+                    /* Compilation failed - this CJ can't be NO_ELSE, revert it */
                     mode_table_set(mt, cj_addrs[c], PMODE_FULL);
                 } else {
-                    /* Still mismatches but compiles — keep if closer, revert if not */
+                    /* Still mismatches but compiles - keep if closer, revert if not */
                     /* For now, keep it (it may help in combination with others) */
                 }
             }
@@ -214,7 +258,7 @@ int emit_verified(FILE *out, Program *prog, ProcList *procs, GEVTable *gev,
     return success ? 0 : 1;
 }
 
-/* ── Final verification ─────────────────────────────────────────────── */
+/* -- Final verification ----------------------------------------------- */
 
 int verify_roundtrip(const char *src_path, const char *original_cod,
                      const char **include_paths, int include_path_count) {
@@ -222,7 +266,8 @@ int verify_roundtrip(const char *src_path, const char *original_cod,
     uint8_t *orig_code = load_code_section(original_cod, &orig_len);
     if (!orig_code) return 1;
 
-    char tmp_dir[] = "/tmp/tboldc_final_XXXXXX";
+    char tmp_dir[512];
+    snprintf(tmp_dir, sizeof(tmp_dir), "%s/tboldc_final_XXXXXX", tbol_tmp_dir());
     if (!mkdtemp(tmp_dir)) { free(orig_code); return 1; }
 
     int rc = tbolc_compile_file(src_path, tmp_dir,
@@ -234,15 +279,13 @@ int verify_roundtrip(const char *src_path, const char *original_cod,
         return 1;
     }
 
-    char *src_copy = strdup(src_path);
-    char *base = strrchr(src_copy, '/');
-    base = base ? base + 1 : src_copy;
-    char *dot = strrchr(base, '.');
-    if (dot) *dot = '\0';
-
     char cod_path[512];
-    snprintf(cod_path, sizeof(cod_path), "%s/%s.cod", tmp_dir, base);
-    free(src_copy);
+    if (!find_cod_in_dir(tmp_dir, cod_path, sizeof(cod_path))) {
+        fprintf(stderr, "verify: cannot find recompiled output\n");
+        rmdir(tmp_dir);
+        free(orig_code);
+        return 1;
+    }
 
     int recomp_len;
     uint8_t *recomp_code = load_code_section(cod_path, &recomp_len);

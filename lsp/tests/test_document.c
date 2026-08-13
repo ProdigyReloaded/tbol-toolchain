@@ -1349,7 +1349,7 @@ TEST(rename_across_files) {
     cJSON *changes = cJSON_GetObjectItem(result, "changes");
     ASSERT_NOT_NULL(changes);
 
-    /* Should have edits only for the current file — separate TBOL programs
+    /* Should have edits only for the current file - separate TBOL programs
      * with the same variable name are independent and not cross-renamed.
      * Cross-file rename only applies to COPY file symbols. */
     cJSON *edits1 = cJSON_GetObjectItem(changes, uri1);
@@ -1384,7 +1384,7 @@ TEST(rename_label) {
     Document *doc = docstore_open(server->documents, uri, src, 1);
     document_parse(doc, NULL, 0, 0);
 
-    /* Rename "loop" — cursor on the label name in GOTO statement */
+    /* Rename "loop" - cursor on the label name in GOTO statement */
     cJSON *params = cJSON_CreateObject();
     cJSON *textDoc = cJSON_CreateObject();
     cJSON_AddStringToObject(textDoc, "uri", uri);
@@ -1725,8 +1725,8 @@ cleanup:
  * Returns a malloc'd tmpdir path. Caller must clean up files + dir.
  *
  * Layout:
- *   <tmpdir>/BIGCOPY      — 20-line COPY file with DEFINEs + DATA vars
- *   <tmpdir>/MAIN.SRC     — main file that COPYs BIGCOPY, then has code
+ *   <tmpdir>/BIGCOPY      - 20-line COPY file with DEFINEs + DATA vars
+ *   <tmpdir>/MAIN.SRC     - main file that COPYs BIGCOPY, then has code
  *
  * The COPY file has enough lines that its transparent line numbers
  * overlap with the main file's actual code lines.
@@ -1749,7 +1749,7 @@ static char *create_copy_test_files(char *tmpdir_template,
     fprintf(f, "DEFINE MY_EIGHTH, '600';\n");      /* line 8 */
     fprintf(f, "DEFINE MY_NINTH, '700';\n");       /* line 9 */
     fprintf(f, "DEFINE MY_TENTH, '800';\n");       /* line 10 */
-    fprintf(f, "copy_sec =\n");                     /* line 11 — DATA group */
+    fprintf(f, "copy_sec =\n");                     /* line 11 - DATA group */
     fprintf(f, "    copy_var1,\n");                 /* line 12 */
     fprintf(f, "    copy_var2,\n");                 /* line 13 */
     fprintf(f, "    copy_var3,\n");                 /* line 14 */
@@ -1854,7 +1854,7 @@ TEST(hover_copy_no_false_match) {
     TEST_INIT;
 
     /* Result should either be NULL (no hover for SET_CURSOR verb) or
-     * contain info about SET_CURSOR — but must NOT contain DEFINE or
+     * contain info about SET_CURSOR - but must NOT contain DEFINE or
      * COPY variable info from BIGCOPY. */
     if (result) {
         cJSON *contents = cJSON_GetObjectItem(result, "contents");
@@ -2309,7 +2309,7 @@ cleanup:
 TEST(rename_copy_cascade_no_leak) {
     /* Create temp workspace with a COPY file and many .src files.
      * The COPY file has enough lines that its transparent line numbers
-     * overlap with actual source lines — this tests that edits from
+     * overlap with actual source lines - this tests that edits from
      * COPY file nodes don't corrupt the main file. */
     char tmpdir_raw[] = "/tmp/lsp_rleak_XXXXXX";
     mkdtemp(tmpdir_raw);
@@ -2338,8 +2338,8 @@ TEST(rename_copy_cascade_no_leak) {
     fprintf(f, "shared=\n");          /* line 1 of COPY */
     fprintf(f, "    shared_var,\n");  /* line 2 */
     fprintf(f, "    shared_count,\n");/* line 3 */
-    fprintf(f, "    filler1,\n");     /* line 4 — transparent line = COPY stmt + 4 = line 7 */
-    fprintf(f, "    filler2;\n");     /* line 5 — transparent line = line 8 = END_PROC line! */
+    fprintf(f, "    filler1,\n");     /* line 4 - transparent line = COPY stmt + 4 = line 7 */
+    fprintf(f, "    filler2;\n");     /* line 5 - transparent line = line 8 = END_PROC line! */
     fclose(f);
 
     /* Create 20 .src files that all COPY SHAREDCP */
@@ -2349,7 +2349,7 @@ TEST(rename_copy_cascade_no_leak) {
         f = fopen(srcfiles[i], "wb");
         fprintf(f, "PROGRAM FILE%02d;\n", i);           /* line 1 */
         fprintf(f, "DATA D%d = local_%d;\n", i, i);     /* line 2 */
-        fprintf(f, "COPY SHAREDCP;\n");                   /* line 3 — COPY, transparent lines 3..7 */
+        fprintf(f, "COPY SHAREDCP;\n");                   /* line 3 - COPY, transparent lines 3..7 */
         fprintf(f, "PROC main =\n");                      /* line 4 */
         fprintf(f, "    MOVE '0', shared_var;\n");        /* line 5 */
         fprintf(f, "    ADD '1', shared_count;\n");       /* line 6 */
@@ -2414,7 +2414,7 @@ TEST(rename_copy_cascade_no_leak) {
     cJSON *changes = cJSON_GetObjectItem(result, "changes");
     ASSERT_NOT_NULL(changes);
 
-    /* Should have edits for the open file — but ONLY for actual source lines,
+    /* Should have edits for the open file - but ONLY for actual source lines,
      * not for COPY file content at transparent line numbers */
     cJSON *file_edits = cJSON_GetObjectItem(changes, uri);
     ASSERT_NOT_NULL(file_edits);
@@ -2500,7 +2500,7 @@ cleanup:
 
 /*
  * Test that rename does not corrupt text at DEFINE expansion sites.
- * E.g., DEFINE ACTION_DELETE, one; — renaming "one" must not touch
+ * E.g., DEFINE ACTION_DELETE, one; - renaming "one" must not touch
  * the source position of "ACTION_DELETE".
  */
 TEST(rename_skips_define_expansion) {
@@ -2527,7 +2527,7 @@ TEST(rename_skips_define_expansion) {
     ASSERT_NOT_NULL(doc->ast);
 
     /* Rename "one" to "ZZZZZ" at line 5 (0-based 4), character 9
-     * "    MOVE one, P1;" — 'one' starts at column 10 (1-based) = char 9 (0-based) */
+     * "    MOVE one, P1;" - 'one' starts at column 10 (1-based) = char 9 (0-based) */
     params = cJSON_CreateObject();
     cJSON *textDoc = cJSON_CreateObject();
     cJSON_AddStringToObject(textDoc, "uri", uri);
@@ -2555,7 +2555,7 @@ TEST(rename_skips_define_expansion) {
         cJSON *range = cJSON_GetObjectItem(edit, "range");
         cJSON *start = cJSON_GetObjectItem(range, "start");
         int edit_line = (int)cJSON_GetObjectItem(start, "line")->valuedouble;
-        /* Line 6 (0-based 5) has ACTION_DELETE — no edit should be there */
+        /* Line 6 (0-based 5) has ACTION_DELETE - no edit should be there */
         if (edit_line == 5) {
             printf("FAIL\n    Edit at line 6 (ACTION_DELETE expansion site)\n");
             test_fail_count++;
@@ -2638,7 +2638,7 @@ TEST(semantic_tokens_variable_decl_and_ref) {
         "DATA D = counter;\n"             /* line 1 */
         "PROC main =\n"                   /* line 2 */
         "    MOVE '1', counter;\n"        /* line 3 */
-        "    helper;\n"                   /* line 4 — proc call */
+        "    helper;\n"                   /* line 4 - proc call */
         "END_PROC\n"                      /* line 5 */
         "PROC helper =\n"                /* line 6 */
         "    RETURN;\n"                   /* line 7 */
@@ -2671,7 +2671,7 @@ TEST(semantic_tokens_variable_decl_and_ref) {
     int t0_deltaLine = (int)cJSON_GetArrayItem(data, 0)->valuedouble;
     int t0_type = (int)cJSON_GetArrayItem(data, 3)->valuedouble;
     int t0_mod = (int)cJSON_GetArrayItem(data, 4)->valuedouble;
-    ASSERT(t0_deltaLine == 1);  /* line 1 (1-based=2, delta from 1-based-1=1 → delta=1) */
+    ASSERT(t0_deltaLine == 1);  /* line 1 (1-based=2, delta from 1-based-1=1 -> delta=1) */
     ASSERT(t0_type == 0);  /* variable */
     ASSERT(t0_mod == 1);  /* declaration */
 
@@ -2735,7 +2735,7 @@ TEST(selection_range_nested_hierarchy) {
     cJSON *parent = cJSON_GetObjectItem(sr, "parent");
     ASSERT_NOT_NULL(parent);
 
-    /* Walk up the parent chain — outermost should be PROGRAM-level */
+    /* Walk up the parent chain - outermost should be PROGRAM-level */
     cJSON *outermost = sr;
     int levels = 1;
     while (cJSON_GetObjectItem(outermost, "parent")) {

@@ -1,4 +1,4 @@
-# TBOL Compiler — tbolc binary + libtbolc static library
+# TBOL Compiler - tbolc binary + libtbolc static library
 
 # --- Flex/Bison generation (with fallback to committed files) ---
 if(FLEX_FOUND AND BISON_FOUND)

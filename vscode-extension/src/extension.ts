@@ -45,7 +45,7 @@ import {
 
 let client: LanguageClient;
 
-/* ── Public API for sibling extensions ──────────────────────────────── */
+/* -- Public API for sibling extensions -------------------------------- */
 
 /**
  * API surface exported via getExtensionApi() for sibling Prodigy extensions
@@ -56,7 +56,7 @@ export interface TbolExtensionApi {
     readonly languageClient: LanguageClient | undefined;
 }
 
-/* ── Path utilities ─────────────────────────────────────────────────── */
+/* -- Path utilities --------------------------------------------------- */
 
 /**
  * Expand VS Code variables like ${workspaceFolder} in a path
@@ -115,7 +115,7 @@ function findExecutable(
     return null;
 }
 
-/* ── Extension lifecycle ────────────────────────────────────────────── */
+/* -- Extension lifecycle ---------------------------------------------- */
 
 export function activate(context: ExtensionContext): TbolExtensionApi {
     const serverPath = findExecutable(context, 'tbol-lsp', 'serverPath', 'lsp');
@@ -130,7 +130,7 @@ export function activate(context: ExtensionContext): TbolExtensionApi {
     console.log('TBOL: Using language server at', serverPath);
     console.log('TBOL: Include paths:', getIncludePaths());
 
-    // Server options — run the language server as a stdio process
+    // Server options - run the language server as a stdio process
     const serverOptions: ServerOptions = {
         run:   { command: serverPath, transport: TransportKind.stdio },
         debug: { command: serverPath, transport: TransportKind.stdio }
@@ -222,7 +222,7 @@ export function deactivate(): Thenable<void> | undefined {
     return client.stop();
 }
 
-/* ── Bytecode browsing commands ─────────────────────────────────────── */
+/* -- Bytecode browsing commands --------------------------------------- */
 
 /**
  * Run tboldc on a .COD or .PGM file and open the recovered TBOL source in
@@ -318,7 +318,7 @@ async function runDisassembler(context: ExtensionContext): Promise<void> {
     }
 }
 
-/* ── Build task provider ────────────────────────────────────────────── */
+/* -- Build task provider ---------------------------------------------- */
 
 interface TbolTaskDefinition extends TaskDefinition {
     file: string;

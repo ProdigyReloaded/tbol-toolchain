@@ -1,5 +1,5 @@
 /*
- * tbolfmt — TBOL source code formatter
+ * tbolfmt - TBOL source code formatter
  *
  * Usage: tbolfmt [options] [file]
  *   Reads from file or stdin, writes formatted source to stdout.

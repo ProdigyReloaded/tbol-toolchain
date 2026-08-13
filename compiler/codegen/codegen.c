@@ -176,7 +176,7 @@ void emit_instruction(uint8_t opcode, AstNode **operands, int count) {
 void emit_range_instruction(uint8_t opcode, AstNode **operands, int count) {
     /* For range instructions (SAVE_RANGE, CLEAR_RANGE), the last operand
      * may be an indexed expression like &1(P5).  Use the same extended
-     * encoding logic as regular operands — don't special-case it.
+     * encoding logic as regular operands - don't special-case it.
      *
      * For non-indexed last operands, compute_range_end_value resolves
      * array/structure names to their end slot value. */
@@ -218,7 +218,7 @@ void emit_range_instruction(uint8_t opcode, AstNode **operands, int count) {
 
     /* Emit the last operand */
     if (last_is_indexed) {
-        /* Indexed operand — use standard emit_operand */
+        /* Indexed operand - use standard emit_operand */
         emit_operand(last, needs_extended_encoding(last));
     } else if (end_extended) {
         emit_byte((uint8_t)(end_val >> 8));
