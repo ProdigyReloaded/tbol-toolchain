@@ -47,3 +47,12 @@ add_test(NAME decompiler_fold_transforms
 set_tests_properties(decompiler_fold_transforms PROPERTIES
     ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
 )
+
+# DATA emission: array span with a directly-named interior slot round-trips
+add_test(NAME decompiler_data_interior_names
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/data_interior_names.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_data_interior_names PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)
