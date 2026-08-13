@@ -109,7 +109,9 @@ int main(int argc, char **argv) {
             gev_table_load_builtin(gev);
 
             /* Write temp XXCGTSYS for recompiler verification */
-            char tmp_template[] = "/tmp/tboldc_gev_XXXXXX";
+            char tmp_template[512];
+            snprintf(tmp_template, sizeof(tmp_template),
+                     "%s/tboldc_gev_XXXXXX", tbol_tmp_dir());
             builtin_tmp_dir = mkdtemp(tmp_template);
             if (builtin_tmp_dir) {
                 builtin_tmp_dir = strdup(builtin_tmp_dir);
@@ -139,7 +141,8 @@ int main(int argc, char **argv) {
     }
 
     /* Emit source to a temp file so we can always verify, then copy to output */
-    char tmp_out[] = "/tmp/tboldc_out_XXXXXX";
+    char tmp_out[512];
+    snprintf(tmp_out, sizeof(tmp_out), "%s/tboldc_out_XXXXXX", tbol_tmp_dir());
     int tmp_fd = mkstemp(tmp_out);
     FILE *tmp = fdopen(tmp_fd, "w");
 

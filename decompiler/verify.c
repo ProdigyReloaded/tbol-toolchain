@@ -20,7 +20,26 @@
 #include <dirent.h>
 #ifdef _WIN32
 #include <direct.h>
+#include <windows.h>
 #endif
+
+/* Scratch temp directory (no trailing separator). The decompiler writes
+ * its emitted source, recompiled .cod, and GEV scratch here. `/tmp` is a
+ * native-Windows path to a usually-nonexistent <drive>:\tmp, so on Windows
+ * use the real OS temp path; elsewhere honor $TMPDIR, falling back to /tmp. */
+const char *tbol_tmp_dir(void) {
+#ifdef _WIN32
+    static char buf[MAX_PATH];
+    DWORD n = GetTempPathA((DWORD)sizeof(buf), buf);
+    if (n == 0 || n >= sizeof(buf)) return ".";
+    while (n > 0 && (buf[n - 1] == '\\' || buf[n - 1] == '/'))
+        buf[--n] = '\0';
+    return buf;
+#else
+    const char *d = getenv("TMPDIR");
+    return (d && *d) ? d : "/tmp";
+#endif
+}
 
 /* Locate the single .cod the compiler wrote into `dir`. tbolc derives the
  * output name from a LOWERCASED input basename, so the exact case is not
@@ -82,8 +101,8 @@ static int try_mode(Program *prog, ProcList *procs, GEVTable *gev,
                      ModeTable *mt, const char **include_paths, int include_count,
                      const uint8_t *orig_code, int orig_len, int iter) {
     char *tmp_src = NULL, *tmp_dir = NULL, *tmp_cod = NULL;
-    asprintf(&tmp_src, "/tmp/tboldc_v%d.src", iter);
-    asprintf(&tmp_dir, "/tmp/tboldc_v%d/", iter);
+    asprintf(&tmp_src, "%s/tboldc_v%d.src", tbol_tmp_dir(), iter);
+    asprintf(&tmp_dir, "%s/tboldc_v%d/", tbol_tmp_dir(), iter);
 #ifdef _WIN32
     _mkdir(tmp_dir);
 #else
@@ -247,7 +266,8 @@ int verify_roundtrip(const char *src_path, const char *original_cod,
     uint8_t *orig_code = load_code_section(original_cod, &orig_len);
     if (!orig_code) return 1;
 
-    char tmp_dir[] = "/tmp/tboldc_final_XXXXXX";
+    char tmp_dir[512];
+    snprintf(tmp_dir, sizeof(tmp_dir), "%s/tboldc_final_XXXXXX", tbol_tmp_dir());
     if (!mkdtemp(tmp_dir)) { free(orig_code); return 1; }
 
     int rc = tbolc_compile_file(src_path, tmp_dir,
