@@ -364,7 +364,11 @@ static void gen_make_format(AstNode *node) {
      * Only field operands (every 3rd starting from operand 1) can need extended encoding.
      */
     if (extra_mode_bytes > 0) {
-        uint8_t extra_modes[8] = {0};
+        /* One bit per operand beyond the first 8; the count byte is a
+         * uint8_t, so field_count <= 255 -> total_operands <= 766 -> at
+         * most 95 extra mode bytes. (Was [8], which overflowed at >= 24
+         * fields when the destination forced complex encoding.) */
+        uint8_t extra_modes[96] = {0};
         /* Build list of which operands need extended encoding.
          * Operand layout: 0=fmt, then triplets (field, fix_len, imbed_len).
          * Only the field operand in each triplet can be extended. */

@@ -343,8 +343,11 @@ static void decode_make_format(Instruction *instr, const uint8_t *code, int *pos
     instr->var_count = spec_count;
     int total_operands = spec_count * 3 + 1;
 
-    /* Read additional mode bytes if needed (>8 operands) */
-    uint8_t mode_bytes[32] = {0};
+    /* Read additional mode bytes if needed (>8 operands). Sized for the
+     * max: spec_count is a uint8_t, so total_operands <= 766 -> up to 95
+     * extra mode bytes plus mode_bytes[0]. (Was [32], too small past ~85
+     * specs.) */
+    uint8_t mode_bytes[96] = {0};
     mode_bytes[0] = mode_byte;
     if (instr->is_complex && total_operands > 8) {
         int extra_mode_bytes = (total_operands - 8 + 7) / 8;
