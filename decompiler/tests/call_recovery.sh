@@ -8,6 +8,11 @@
 # gracefully: emit `_invalid_target` with an explanatory comment rather than a
 # dangling `label_N` that later fails to parse. Such objects cannot round-trip,
 # so this is a best-effort (-f) content check, not a round-trip test.
+#
+# The bad target must ALSO not split its procedure: a mid-instruction CALL
+# target is not a real procedure entry, so find_procedures must not register it
+# as one. Otherwise the enclosing proc truncates right after the CALL, dropping
+# the rest of its body and emitting bogus empty procs.
 
 set -uo pipefail
 
@@ -30,8 +35,19 @@ elif ! grep -q '_invalid_target' "$out"; then
 elif grep -qE 'label_[0-9]+ P4, P5;' "$out"; then
     echo -e "  ${RED}FAIL${NC}: emitted a dangling label instead of recovering the CALL"
     fail=1
+elif awk '/^PROC /{p=NR} /^END_PROC/{if(NR==p+1)empty=1} END{exit !empty}' "$out"; then
+    echo -e "  ${RED}FAIL${NC}: emitted a bogus empty procedure (proc split by the bad CALL)"
+    fail=1
+elif awk '
+        /_invalid_target/ {seen=1; body=0}
+        seen && (/SUBSTR/ || /LINK/) {body=1}
+        seen && /^END_PROC/ {if(!body)trunc=1; seen=0}
+        END {exit !trunc}
+    ' "$out"; then
+    echo -e "  ${RED}FAIL${NC}: the procedure was truncated after the bad CALL (post-CALL body dropped)"
+    fail=1
 else
-    echo -e "  ${GREEN}PASS${NC}: mid-instruction CALL recovered as _invalid_target"
+    echo -e "  ${GREEN}PASS${NC}: mid-instruction CALL recovered as _invalid_target, procedure intact"
 fi
 
 rm -f "$out"
