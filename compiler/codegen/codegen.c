@@ -521,6 +521,14 @@ static void write_sdb(const char *cod_path, const char *program_name) {
     symtab_foreach_var(sdb_collect_var, NULL);
     preproc_foreach_define(sdb_collect_define, NULL);
 
+    /* Procedures: each proc runs from its own entry offset to the next proc's
+     * entry (the last to the end of the emitted buffer). proc_defs[] is filled
+     * in definition order, so offsets are ascending. */
+    for (int i = 0; i < proc_count; i++) {
+        int end = (i + 1 < proc_count) ? proc_defs[i + 1].offset : emit_get_offset();
+        sdb_add_proc(proc_defs[i].name, proc_defs[i].offset, end);
+    }
+
     if (sdb_write(sdb_path, program_name, cod_name) != 0) {
         diag_error((SourceLoc){NULL, 0, 0}, "error writing .sdb file '%s'", sdb_path);
     } else if (g_options.verbose) {

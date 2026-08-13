@@ -90,3 +90,12 @@ add_test(NAME compiler_tests
 set_tests_properties(compiler_tests PROPERTIES
     ENVIRONMENT "TBOLC=$<TARGET_FILE:tbolc>"
 )
+
+# Source-debug-info (.sdb) emission: lines/procs/symbols tables under -g
+add_test(NAME sdb_tests
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/sdb_test.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(sdb_tests PROPERTIES
+    ENVIRONMENT "TBOLC=$<TARGET_FILE:tbolc>"
+)

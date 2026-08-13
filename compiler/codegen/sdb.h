@@ -44,6 +44,12 @@ void sdb_mark(int file_offset, SourceRange range);
  * `len` is written as "-" (unspecified). */
 void sdb_add_symbol(const char *name, const char *cls, int slot, int len);
 
+/* Record a procedure and its half-open code-address range [start_off, end_off),
+ * given as absolute file offsets (converted to code-section-relative addresses
+ * like sdb_mark). Lets a debugger map a PC / return address to a function name
+ * and build a call stack. */
+void sdb_add_proc(const char *name, int start_off, int end_off);
+
 /* Write the collected info to `path`. `program` is the program name, `cod_name`
  * the emitted `.cod` filename. Returns 0 on success, non-zero on I/O error. */
 int sdb_write(const char *path, const char *program, const char *cod_name);

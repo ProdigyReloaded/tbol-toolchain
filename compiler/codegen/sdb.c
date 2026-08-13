@@ -40,6 +40,13 @@ typedef struct {
     int   len;              /* < 0 => unspecified ("-") */
 } SymEntry;
 
+/* --- procedure table --- */
+typedef struct {
+    char *name;
+    int   start;            /* code-relative address, inclusive */
+    int   end;              /* code-relative address, exclusive */
+} ProcEntry;
+
 static int         code_base = 0;
 
 static char      **files = NULL;
@@ -50,6 +57,9 @@ static int         line_count = 0, line_cap = 0;
 
 static SymEntry   *syms = NULL;
 static int         sym_count = 0, sym_cap = 0;
+
+static ProcEntry  *procs = NULL;
+static int         proc_count = 0, proc_cap = 0;
 
 void sdb_reset(void) {
     sdb_cleanup();
@@ -113,6 +123,22 @@ void sdb_add_symbol(const char *name, const char *cls, int slot, int len) {
     sym_count++;
 }
 
+void sdb_add_proc(const char *name, int start_off, int end_off) {
+    int start = start_off - code_base;
+    int end   = end_off - code_base;
+    if (start < 0) start = 0;
+    if (end < start) end = start;
+
+    if (proc_count >= proc_cap) {
+        proc_cap = proc_cap ? proc_cap * 2 : 16;
+        procs = realloc(procs, proc_cap * sizeof(ProcEntry));
+    }
+    procs[proc_count].name  = strdup(name);
+    procs[proc_count].start = start;
+    procs[proc_count].end   = end;
+    proc_count++;
+}
+
 /* Order symbols by class, then by slot ascending (stable-ish for equal keys). */
 static int sym_cmp(const void *a, const void *b) {
     const SymEntry *x = a, *y = b;
@@ -147,6 +173,19 @@ int sdb_write(const char *path, const char *program, const char *cod_name) {
                 e->file, e->line, e->col, e->end_line, e->end_col);
     }
 
+    /* Procedures, half-open [addr, endAddr) code ranges, ascending by address
+     * (emitted in definition order, which is already ascending). Lets the
+     * adapter map a PC / return address to a function and build frames. */
+    if (proc_count > 0) {
+        fprintf(f, "\n[procs]\n");
+        for (int i = 0; i < proc_count; i++) {
+            fprintf(f, "%s  0x%04X  0x%04X\n",
+                    procs[i].name,
+                    (unsigned)(procs[i].start & 0xFFFF),
+                    (unsigned)(procs[i].end & 0xFFFF));
+        }
+    }
+
     /* Emit symbols grouped by class, ascending by slot -- source order is the
      * preprocessor's hash-iteration order, which is meaningless to a reader. */
     qsort(syms, sym_count, sizeof(SymEntry), sym_cmp);
@@ -175,4 +214,8 @@ void sdb_cleanup(void) {
     for (int i = 0; i < sym_count; i++) { free(syms[i].name); free(syms[i].cls); }
     free(syms);
     syms = NULL; sym_count = sym_cap = 0;
+
+    for (int i = 0; i < proc_count; i++) free(procs[i].name);
+    free(procs);
+    procs = NULL; proc_count = proc_cap = 0;
 }
