@@ -27,6 +27,13 @@ CMakeLists.txt text eol=lf
 Dockerfile* text eol=lf
 Makefile text eol=lf
 
+# Generated lexer/parser output - checked in, but authored by flex/bison.
+# linguist-generated collapses them in PR diffs and excludes them from the
+# repo language stats; they keep the LF/text handling above.
+compiler/parser/tbol.tab.c linguist-generated=true
+compiler/parser/tbol.tab.h linguist-generated=true
+compiler/lexer/lex.yy.c linguist-generated=true
+
 # Binary reference files used by the test suite - never translate.
 *.cod binary
 *.COD binary
