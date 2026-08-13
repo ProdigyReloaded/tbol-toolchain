@@ -17,9 +17,34 @@
 #include <ctype.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <dirent.h>
 #ifdef _WIN32
 #include <direct.h>
 #endif
+
+/* Locate the single .cod the compiler wrote into `dir`. tbolc derives the
+ * output name from a LOWERCASED input basename, so the exact case is not
+ * predictable from src_path - and on a case-sensitive filesystem (Linux)
+ * predicting the mixed-case mkstemp name fails to open the lowercase file
+ * that was actually written (this passed on case-insensitive macOS by
+ * accident). The verify temp dir is freshly created for one compile, so
+ * scanning it for the lone .cod is robust. Fills `out`, returns true. */
+static bool find_cod_in_dir(const char *dir, char *out, size_t outsz) {
+    DIR *d = opendir(dir);
+    if (!d) return false;
+    bool found = false;
+    struct dirent *e;
+    while ((e = readdir(d)) != NULL) {
+        size_t l = strlen(e->d_name);
+        if (l > 4 && strcmp(e->d_name + l - 4, ".cod") == 0) {
+            snprintf(out, outsz, "%s/%s", dir, e->d_name);
+            found = true;
+            break;
+        }
+    }
+    closedir(d);
+    return found;
+}
 
 /* -- Bytecode comparison ---------------------------------------------- */
 
@@ -234,15 +259,13 @@ int verify_roundtrip(const char *src_path, const char *original_cod,
         return 1;
     }
 
-    char *src_copy = strdup(src_path);
-    char *base = strrchr(src_copy, '/');
-    base = base ? base + 1 : src_copy;
-    char *dot = strrchr(base, '.');
-    if (dot) *dot = '\0';
-
     char cod_path[512];
-    snprintf(cod_path, sizeof(cod_path), "%s/%s.cod", tmp_dir, base);
-    free(src_copy);
+    if (!find_cod_in_dir(tmp_dir, cod_path, sizeof(cod_path))) {
+        fprintf(stderr, "verify: cannot find recompiled output\n");
+        rmdir(tmp_dir);
+        free(orig_code);
+        return 1;
+    }
 
     int recomp_len;
     uint8_t *recomp_code = load_code_section(cod_path, &recomp_len);
