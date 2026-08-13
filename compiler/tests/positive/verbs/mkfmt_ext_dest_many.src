@@ -1,0 +1,16 @@
+PROGRAM MFEXTDST;
+{ Regression: MAKE_FORMAT with an extended-index destination (>= 128, so a
+  2-byte var-ref) AND enough operands to need a 9th mode byte. This is the
+  boundary that used to overflow the encoder's extra-mode-byte buffer
+  (extra_modes[8]) and desync the operand stream. 26 fields -> 79 operands.
+  PAD pushes DEST to register 200 (extended); F01..F26 stay low. }
+DATA d =
+    F01,F02,F03,F04,F05,F06,F07,F08,F09,F10,F11,F12,F13,
+    F14,F15,F16,F17,F18,F19,F20,F21,F22,F23,F24,F25,F26,
+    PAD(174), DEST;
+PROC main =
+    MAKE_FORMAT DEST,
+        F01:7, F02:7, F03:7, F04:7, F05:7, F06:7, F07:7, F08:7, F09:7,
+        F10:7, F11:7, F12:7, F13:7, F14:7, F15:7, F16:7, F17:7, F18:7,
+        F19:7, F20:7, F21:7, F22:7, F23:7, F24:7, F25:7, F26:7;
+END_PROC
