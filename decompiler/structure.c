@@ -379,7 +379,7 @@ simple:
 
 /* -- Statement emission ------------------------------------------------ */
 
-static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
+static void emit_verb(FILE *out, Program *prog, Instruction *instr, ProcList *procs,
                        GEVTable *gev, DefineTable *dt, StructMap *sm,
                        bool uses_xxcgtsys, int ind) {
     char buf[256], target_buf[32];
@@ -413,17 +413,29 @@ static void emit_verb(FILE *out, Instruction *instr, ProcList *procs,
 
     /* CALL -> proc_name [args]; */
     if (instr->mnemonic == MNEM_CALL && instr->has_jump) {
+        /* A CALL with offset 0 is an unresolved (undefined) proc. A CALL whose
+         * target does not land on an instruction boundary is a known compiler
+         * defect (e.g. QALCALLF, whose second CALL points mid-instruction);
+         * recover it as _invalid_target so the output stays readable instead
+         * of emitting a dangling label_N. Neither form round-trips. */
+        bool bad_target = (instr->jump_offset != 0 &&
+                           instr_at(prog, instr->jump_target) == NULL);
         emit_indent(out, ind);
-        /* CALL with jump offset 0 = unresolved (undefined proc) */
         if (instr->jump_offset == 0)
             fprintf(out, "_undefined");
+        else if (bad_target)
+            fprintf(out, "_invalid_target");
         else
             fprintf(out, "%s", resolve_name(instr->jump_target, procs, target_buf, sizeof(target_buf)));
         for (int i = 0; i < instr->operand_count; i++) {
             fmt_operand(buf, sizeof(buf), &instr->operands[i], gev, dt);
             fprintf(out, "%s%s", i > 0 ? ", " : " ", buf);
         }
-        fprintf(out, ";\n");
+        if (bad_target)
+            fprintf(out, ";   { CALL @0x%04X: target not on an instruction boundary }\n",
+                    instr->jump_target);
+        else
+            fprintf(out, ";\n");
         return;
     }
 
@@ -698,7 +710,7 @@ static void emit_body(FILE *out, uint16_t body_addr, uint16_t body_end,
         fprintf(out, "END;\n");
     } else {
         Instruction *body_instr = instr_at(prog, body_addr);
-        emit_verb(out, body_instr, procs, gev, dt, sm, uses_xxcgtsys, 0);
+        emit_verb(out, prog, body_instr, procs, gev, dt, sm, uses_xxcgtsys, 0);
     }
 }
 
@@ -811,7 +823,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                         else_count++;
 
                     if (else_count == 1 && !is_conditional(else_start->mnemonic)) {
-                        emit_verb(out, else_start, procs, gev, dt, sm, uses_xxcgtsys, 0);
+                        emit_verb(out, prog, else_start, procs, gev, dt, sm, uses_xxcgtsys, 0);
                     } else {
                         fprintf(out, "DO\n");
                         emit_block(out, else_start, end_addr_local, proc_end_addr,
@@ -829,7 +841,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                         emit_indent(out, ind);
                         if (else_count == 1) {
                             fprintf(out, "ELSE ");
-                            emit_verb(out, instr_at(prog, fail_addr), procs, gev, dt, sm, uses_xxcgtsys, 0);
+                            emit_verb(out, prog, instr_at(prog, fail_addr), procs, gev, dt, sm, uses_xxcgtsys, 0);
                         } else {
                             fprintf(out, "ELSE DO\n");
                             emit_block(out, instr_at(prog, fail_addr), end_addr_local, proc_end_addr,
@@ -883,7 +895,7 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
         }
 
         /* Regular instruction */
-        emit_verb(out, ip, procs, gev, dt, sm, uses_xxcgtsys, ind);
+        emit_verb(out, prog, ip, procs, gev, dt, sm, uses_xxcgtsys, ind);
         ip = next_instr(ip);
     }
 
