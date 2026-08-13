@@ -38,3 +38,12 @@ add_test(NAME decompiler_call_recovery
 set_tests_properties(decompiler_call_recovery PROPERTIES
     ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
 )
+
+# Fold transforms: OR guards and else-if ladders fold to source shape
+add_test(NAME decompiler_fold_transforms
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/fold_transforms.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_fold_transforms PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)

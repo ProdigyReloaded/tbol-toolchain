@@ -466,6 +466,14 @@ static bool find_split_point(const char *line, size_t len,
         if (!kw) continue;
         const char *b = body_start_after_kw(kw, 4, line + len);
         if (!b) continue;
+        /* Keep `ELSE IF ...` cuddled on one line: an ELSE whose body is
+         * itself an IF is an else-if ladder rung, not a split point. Skip
+         * it so the inner IF's THEN becomes the split instead. */
+        bool kw_is_else = (strncasecmp(kw, "ELSE", 4) == 0);
+        if (kw_is_else && (b + 2 <= line + len) &&
+            strncasecmp(b, "IF", 2) == 0 &&
+            (b + 2 == line + len || b[2] == ' ' || b[2] == '\t'))
+            continue;
         if (!first_kw || kw < first_kw) {
             first_kw = kw;
             first_body = b;

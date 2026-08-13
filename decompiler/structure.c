@@ -58,6 +58,62 @@ static Instruction *next_instr(Instruction *i) {
     return i ? i->next : NULL;
 }
 
+/* Count instructions (other than `exclude`) that branch to `addr`.
+ * Used to decide whether folding a control-flow pattern would orphan a
+ * label: a pattern that absorbs the only reference to `addr` is safe to
+ * fold; if anything else references it, the label must be preserved. */
+static int count_addr_refs(Program *prog, uint16_t addr, Instruction *exclude) {
+    int n = 0;
+    for (Instruction *i = prog->instructions; i; i = i->next) {
+        if (i == exclude) continue;
+        if (i->has_jump && i->mnemonic != MNEM_CALL && i->jump_target == addr)
+            n++;
+        if (i->mnemonic == MNEM_GOTO_DEPENDING_ON) {
+            for (int j = 1; j < i->operand_count; j++) {
+                Operand *op = &i->operands[j];
+                uint16_t t = (op->kind == OP_LITERAL_STR && op->str_value)
+                    ? (uint16_t)atoi(op->str_value) : (uint16_t)op->value;
+                if (t == addr) n++;
+            }
+        }
+    }
+    return n;
+}
+
+/* Count branches to `addr` from instructions OUTSIDE the address range
+ * [lo, hi). Used after folding an OR chain to decide whether a label
+ * inside the absorbed region [lo, hi) still has any live referrer. */
+static int refs_outside_region(Program *prog, uint16_t addr,
+                               uint16_t lo, uint16_t hi) {
+    int n = 0;
+    for (Instruction *i = prog->instructions; i; i = i->next) {
+        if (i->address >= lo && i->address < hi) continue;
+        if (i->has_jump && i->mnemonic != MNEM_CALL && i->jump_target == addr)
+            n++;
+        if (i->mnemonic == MNEM_GOTO_DEPENDING_ON) {
+            for (int j = 1; j < i->operand_count; j++) {
+                Operand *op = &i->operands[j];
+                uint16_t t = (op->kind == OP_LITERAL_STR && op->str_value)
+                    ? (uint16_t)atoi(op->str_value) : (uint16_t)op->value;
+                if (t == addr) n++;
+            }
+        }
+    }
+    return n;
+}
+
+/* Follow a chain of unconditional JUMPs starting at `addr` and return the
+ * address of the first non-JUMP instruction reached. Bounded to guard
+ * against cyclic jumps. */
+static uint16_t resolve_jump_chain(Program *prog, uint16_t addr) {
+    for (int guard = 0; guard < 256; guard++) {
+        Instruction *i = instr_at(prog, addr);
+        if (!i || i->mnemonic != MNEM_JUMP || !i->has_jump) return addr;
+        addr = i->jump_target;
+    }
+    return addr;
+}
+
 static uint16_t after_addr(Instruction *i) {
     return i ? (uint16_t)(i->address + i->length) : 0;
 }
@@ -92,6 +148,19 @@ static bool ls_contains(LabelSet *ls, uint16_t addr) {
     for (int i = 0; i < ls->count; i++)
         if (ls->addrs[i] == addr) return true;
     return false;
+}
+
+static void ls_remove(LabelSet *ls, uint16_t addr) {
+    for (int i = 0; i < ls->count; i++) {
+        if (ls->addrs[i] == addr) {
+            for (int j = i + 1; j < ls->count; j++) {
+                ls->addrs[j - 1] = ls->addrs[j];
+                ls->emitted[j - 1] = ls->emitted[j];
+            }
+            ls->count--;
+            return;
+        }
+    }
 }
 
 /* Check if label needs emission (exists and not yet emitted). Marks as emitted. */
@@ -207,7 +276,15 @@ static int operand_int_val(Operand *op) {
 
 /* -- Indentation helper ------------------------------------------------ */
 
+/* One-shot: when set, the next emit_indent emits nothing and clears the
+ * flag. Used to cuddle a flattened `ELSE IF ...` - the inner IF's leading
+ * indent is suppressed so it sits on the same line as the ELSE. (Final
+ * layout is redone by the formatter's pass_indent regardless; this only
+ * keeps ELSE and IF on one physical line without interior padding.) */
+static bool g_suppress_indent = false;
+
 static void emit_indent(FILE *out, int level) {
+    if (g_suppress_indent) { g_suppress_indent = false; return; }
     for (int i = 0; i < level; i++) fprintf(out, "  ");
 }
 
@@ -264,6 +341,67 @@ static void fmt_atom(FILE *out, Instruction *cj, GEVTable *gev, DefineTable *dt,
     fprintf(out, "%s %s %s", left, invert ? inverted_op(cj->mnemonic) : direct_op(cj->mnemonic), right);
 }
 
+/* Detect whether `instr` begins a foldable OR guard chain:
+ *   IF t1 OR t2 OR ... OR tn THEN body
+ *
+ * tbolc compiles an OR guard as a chain of inverted CJs. Each term ti
+ * jumps to the NEXT term t(i+1) when its (inverted) condition holds -
+ * i.e. when the source condition is FALSE - and routes to a shared BODY
+ * when the source condition is TRUE (via fall-through and/or chained
+ * unconditional JUMPs). The final term tn jumps to AFTER on false and
+ * falls into BODY on true. Example (orguard):
+ *     CJNE P1,'1' -> t2 ; JUMP -> BODY ; t2: CJNE P2,'2' -> AFTER ;
+ *     BODY: ... ; AFTER:
+ *
+ * We walk the chain of CJs linked by jump_target, requiring each
+ * intermediate term to be referenced ONLY by its predecessor (so the
+ * fold orphans no label), then require every term's true-exit to
+ * converge on the same BODY. This handles 2-operand guards and
+ * N-operand cascades (earlier true-exits reach BODY through chained
+ * JUMPs). On success fills the caller's out-params. */
+static bool detect_or_chain(Program *prog, Instruction *instr, LabelSet *labels,
+                            Instruction **terms_out, int *nterms_out,
+                            uint16_t *after_out, uint16_t *body_out) {
+    if (!instr || !is_conditional(instr->mnemonic)) return false;
+
+    Instruction *next = next_instr(instr);
+    if (!(next && next->mnemonic == MNEM_JUMP &&
+          !ls_contains(labels, next->address)))
+        return false;
+
+    Instruction *terms[64];
+    int nterms = 0;
+    terms[nterms++] = instr;
+
+    Instruction *cur = instr;
+    uint16_t after = 0, body = 0;
+    while (nterms < 64) {
+        Instruction *nt = instr_at(prog, cur->jump_target);
+        if (nt && nt != instr && is_conditional(nt->mnemonic) &&
+            count_addr_refs(prog, nt->address, cur) == 0) {
+            terms[nterms++] = nt;
+            cur = nt;
+            continue;
+        }
+        after = cur->jump_target;
+        body = after_addr(cur);
+        break;
+    }
+
+    bool ok = (nterms >= 2) && (body < after) && (instr_at(prog, body) != NULL);
+    for (int i = 0; i < nterms && ok; i++) {
+        if (resolve_jump_chain(prog, after_addr(terms[i])) != body)
+            ok = false;
+    }
+    if (!ok) return false;
+
+    if (terms_out) memcpy(terms_out, terms, (size_t)nterms * sizeof(terms[0]));
+    if (nterms_out) *nterms_out = nterms;
+    if (after_out) *after_out = after;
+    if (body_out) *body_out = body;
+    return true;
+}
+
 static Instruction *emit_condition(FILE *out, Instruction *instr, Program *prog,
                                     GEVTable *gev, DefineTable *dt,
                                     LabelSet *labels,
@@ -272,76 +410,24 @@ static Instruction *emit_condition(FILE *out, Instruction *instr, Program *prog,
 
     Instruction *next = next_instr(instr);
 
-    /* Check for OR: CJxx -> check2; JUMP -> body; check2: ... */
+    /* OR guard: IF t1 OR t2 OR ... OR tn THEN body (see detect_or_chain). */
     if (next && next->mnemonic == MNEM_JUMP &&
         !ls_contains(labels, next->address)) {
-        uint16_t or_body = next->jump_target;
-        uint16_t next_check = instr->jump_target;
-
-        Instruction *first_or = instr_at(prog, next_check);
-        if (!first_or || !is_conditional(first_or->mnemonic) ||
-            ls_contains(labels, first_or->address)) {
-            /* Can't form OR - the target is a label */
-            goto simple;
-        }
-
-        fprintf(out, "(");
-        fmt_atom(out, instr, gev, dt, true);
-
-        Instruction *cur = first_or;
-
-        while (cur && is_conditional(cur->mnemonic)) {
-            Instruction *cur_next = next_instr(cur);
-            if (cur_next && cur_next->mnemonic == MNEM_JUMP &&
-                cur_next->jump_target == or_body &&
-                !ls_contains(labels, cur_next->address)) {
-                fprintf(out, " OR ");
-                fmt_atom(out, cur, gev, dt, true);
-                Instruction *nxt = instr_at(prog, cur->jump_target);
-                if (nxt && ls_contains(labels, nxt->address)) {
-                    /* Next OR term is a label target - stop here */
-                    *fail_addr = cur->jump_target;
-                    *body_addr = or_body;
-                    fprintf(out, ")");
-                    return next_instr(cur);
-                }
-                cur = nxt;
-            } else {
-                fprintf(out, " OR ");
-                fmt_atom(out, cur, gev, dt, true);
-                *fail_addr = cur->jump_target;
-                *body_addr = or_body;
-                fprintf(out, ")");
-
-                Instruction *after_or = instr_at(prog, or_body);
-                if (after_or && is_conditional(after_or->mnemonic) &&
-                    after_or->jump_target == *fail_addr &&
-                    !ls_contains(labels, after_or->address)) {
-                    fprintf(out, " AND ");
-                    Instruction *and_cur = after_or;
-                    while (and_cur && is_conditional(and_cur->mnemonic) &&
-                           and_cur->jump_target == *fail_addr) {
-                        Instruction *and_next = next_instr(and_cur);
-                        if (and_next && is_conditional(and_next->mnemonic) &&
-                            and_next->jump_target == *fail_addr &&
-                            !ls_contains(labels, and_next->address)) {
-                            fmt_atom(out, and_cur, gev, dt, true);
-                            fprintf(out, " AND ");
-                            and_cur = and_next;
-                        } else {
-                            fmt_atom(out, and_cur, gev, dt, true);
-                            *body_addr = after_addr(and_cur);
-                            return next_instr(and_cur);
-                        }
-                    }
-                }
-                return next_instr(cur);
+        Instruction *terms[64];
+        int nterms = 0;
+        uint16_t after = 0, body = 0;
+        if (detect_or_chain(prog, instr, labels, terms, &nterms, &after, &body)) {
+            fprintf(out, "(");
+            for (int i = 0; i < nterms; i++) {
+                if (i) fprintf(out, " OR ");
+                fmt_atom(out, terms[i], gev, dt, true);
             }
+            fprintf(out, ")");
+            *fail_addr = after;
+            *body_addr = body;
+            return instr_at(prog, after);
         }
-        fprintf(out, ")");
-        *fail_addr = instr->jump_target;
-        *body_addr = after_addr(next);
-        return instr_at(prog, next_check);
+        goto simple;
     }
 
     /* Check for AND: consecutive CJxx to same target */
@@ -375,6 +461,39 @@ simple:
     *fail_addr = instr->jump_target;
     *body_addr = after_addr(instr);
     return next_instr(instr);
+}
+
+/* True if the range [else_start.address, end_range) is exactly one IF
+ * statement (a simple IF, or an IF/ELSE that may itself carry an else-if
+ * chain). Mirrors emit_block's IF-extent computation. Used to decide
+ * whether `ELSE DO { IF ... } END` can be flattened to `ELSE IF ...`. */
+static bool else_range_is_single_if(Program *prog, Instruction *else_start,
+                                    uint16_t end_range, LabelSet *labels,
+                                    GEVTable *gev, DefineTable *dt) {
+    if (!else_start || !is_conditional(else_start->mnemonic)) return false;
+
+    uint16_t fa = 0, ba = 0;
+    char scratch[1024];
+    FILE *f = mem_fopen_fixed(scratch, sizeof(scratch));
+    (void)emit_condition(f, else_start, prog, gev, dt, labels, &fa, &ba);
+    mem_fclose_fixed(f, scratch, sizeof(scratch));
+
+    Instruction *body_last = NULL;
+    for (Instruction *t = instr_at(prog, ba); t && t->address < fa; t = t->next)
+        body_last = t;
+
+    /* WHILE (body jumps back to the condition) is not an IF statement. */
+    if (body_last && body_last->mnemonic == MNEM_JUMP &&
+        body_last->jump_target == else_start->address)
+        return false;
+
+    /* IF/ELSE: the whole construct ends at the then-body's trailing JUMP. */
+    if (body_last && body_last->mnemonic == MNEM_JUMP &&
+        body_last->jump_target > fa && body_last->address > ba)
+        return body_last->jump_target == end_range;
+
+    /* Simple IF: ends at the condition's fail target. */
+    return fa == end_range;
 }
 
 /* -- Statement emission ------------------------------------------------ */
@@ -746,11 +865,14 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
 
             /* IF cond THEN GOTO: CJ(!cond) -> skip; JUMP -> target; skip:
              * Only use this shortcut if the JUMP isn't itself a label target,
-             * otherwise the label would be lost. */
+             * otherwise the label would be lost. Yield to an OR chain: the
+             * first term of an OR guard looks identical to this shortcut
+             * (CJ -> t2 ; JUMP -> body), so let emit_condition fold it. */
             Instruction *next = next_instr(ip);
             if (next && next->mnemonic == MNEM_JUMP &&
                 after_addr(next) == ip->jump_target &&
-                !ls_contains(labels, next->address)) {
+                !ls_contains(labels, next->address) &&
+                !detect_or_chain(prog, ip, labels, NULL, NULL, NULL, NULL)) {
                 emit_indent(out, ind);
                 fprintf(out, "IF ");
                 fmt_atom(out, ip, gev, dt, true);
@@ -766,6 +888,20 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
             FILE *cond_f = mem_fopen_fixed(cond_buf, sizeof(cond_buf));
             (void)emit_condition(cond_f, ip, prog, gev, dt, labels, &fail_addr, &body_addr);
             mem_fclose_fixed(cond_f, cond_buf, sizeof(cond_buf));
+
+            /* If this condition folded an OR chain, the chain's internal
+             * CJ/JUMP instructions (the region [cj_addr, body_addr)) are
+             * absorbed and never emitted. Drop any label they were the
+             * sole referrer of, so the shared body doesn't get wrapped in
+             * a spurious DO block and orphaned labels don't linger. */
+            if (detect_or_chain(prog, ip, labels, NULL, NULL, NULL, NULL)) {
+                for (Instruction *t = ip; t && t->address < body_addr; t = t->next) {
+                    if (t->has_jump && t->mnemonic != MNEM_CALL &&
+                        ls_contains(labels, t->jump_target) &&
+                        refs_outside_region(prog, t->jump_target, cj_addr, body_addr) == 0)
+                        ls_remove(labels, t->jump_target);
+                }
+            }
 
             Instruction *body_last = NULL;
             for (Instruction *t = instr_at(prog, body_addr); t && t->address < fail_addr; t = t->next)
@@ -814,18 +950,25 @@ static Instruction *emit_block(FILE *out, Instruction *start, uint16_t end_addr,
                 /* ELSE IF or ELSE */
                 Instruction *else_start = instr_at(prog, fail_addr);
                 if (else_start && is_conditional(else_start->mnemonic)) {
-                    emit_indent(out, ind);
-                    fprintf(out, "ELSE ");
-
-                    int else_count = 0;
-                    for (Instruction *t = else_start;
-                         t && t->address < end_addr_local; t = t->next)
-                        else_count++;
-
-                    if (else_count == 1 && !is_conditional(else_start->mnemonic)) {
-                        emit_verb(out, prog, else_start, procs, gev, dt, sm, uses_xxcgtsys, 0);
+                    /* Flatten `ELSE DO { IF ... } END` to `ELSE IF ...` when
+                     * the else block is exactly one IF statement and the
+                     * else-start label is referenced only by the outer CJ
+                     * (so flattening orphans no label). The inner IF is
+                     * emitted cuddled onto the ELSE line via a one-shot
+                     * indent suppression; a nested else-if chain flattens
+                     * recursively. Otherwise wrap the block in DO ... END. */
+                    if (else_range_is_single_if(prog, else_start, end_addr_local,
+                                                labels, gev, dt) &&
+                        count_addr_refs(prog, else_start->address, ip) == 0) {
+                        emit_indent(out, ind);
+                        fprintf(out, "ELSE ");
+                        ls_remove(labels, else_start->address);
+                        g_suppress_indent = true;
+                        emit_block(out, else_start, end_addr_local, proc_end_addr,
+                                   prog, procs, labels, gev, dt, sm, mt, uses_xxcgtsys, ind);
                     } else {
-                        fprintf(out, "DO\n");
+                        emit_indent(out, ind);
+                        fprintf(out, "ELSE DO\n");
                         emit_block(out, else_start, end_addr_local, proc_end_addr,
                                    prog, procs, labels, gev, dt, sm, mt, uses_xxcgtsys, ind + 1);
                         emit_indent(out, ind);
@@ -909,6 +1052,10 @@ void emit_structured_proc(FILE *out, Program *prog, ProcBoundary *pb,
                            StructMap *sm, ModeTable *mt, int ind) {
     /* Determine if XXCGTSYS symbols are available (for SET_FUNCTION action resolution) */
     bool uses_xxcgtsys = (gev != NULL);
+
+    /* Defensive: the else-if cuddle flag is a one-shot consumed within a
+     * single emit; never let it leak across procedures. */
+    g_suppress_indent = false;
 
     /* Collect labels needed within this procedure */
     LabelSet labels = {0};
