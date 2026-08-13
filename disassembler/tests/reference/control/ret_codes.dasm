@@ -1,0 +1,18 @@
+{ Program 'RETCODES' compiled with TBOL COMPILER version 04.21 }
+{ Date Program compiled 08/13/26 13:27 }
+{ Original file ret_codes.cod }
+{ md5sum f87ab8135aa13916c7f61342e731b542 }
+
+PROGRAM RETCODES;
+
+PROC main =
+    CJNE #1, '', label_9;
+    RETURN;
+  label_9:
+    CJNE #1, '0', label_19;
+    RETURN;
+  label_19:
+    CJNE #1, '10', label_30;
+    RETURN;
+  label_30:
+END_PROC

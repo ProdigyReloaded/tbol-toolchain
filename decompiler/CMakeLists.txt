@@ -56,3 +56,13 @@ add_test(NAME decompiler_data_interior_names
 set_tests_properties(decompiler_data_interior_names PROPERTIES
     ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
 )
+
+# Return-code names: SYS_RETURN_CODE vs canonical decimals resolve to RET_*,
+# but an empty-string operand must not collide with '0'/RET_OK
+add_test(NAME decompiler_return_code_names
+    COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/tests/return_code_names.sh
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
+)
+set_tests_properties(decompiler_return_code_names PROPERTIES
+    ENVIRONMENT "TBOLDC=$<TARGET_FILE:tboldc>"
+)
