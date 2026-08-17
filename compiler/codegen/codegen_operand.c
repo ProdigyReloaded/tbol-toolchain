@@ -187,6 +187,23 @@ bool needs_extended_encoding(AstNode *node) {
 }
 
 /*
+ * Emit a resolved RDA slot number as an operand.
+ *
+ * Slots 0-157 use the simple one-byte form (34 + slot); 158 and above use
+ * the two-byte extended form, matching emit_struct_clear_save() and what
+ * needs_extended_encoding() promises the caller for these operands. Getting
+ * this wrong is not a mis-addressed slot but a desynchronised instruction
+ * stream, since the operand is also a byte short.
+ */
+static void emit_rda_slot_operand(int slot) {
+    if (slot > 157) {
+        emit_word_be(256 + (slot - 158));
+    } else {
+        emit_byte(34 + slot);
+    }
+}
+
+/*
  * Emit an operand
  */
 void emit_operand(AstNode *node, bool use_extended) {
@@ -280,23 +297,13 @@ void emit_operand(AstNode *node, bool use_extended) {
                 case AST_IDENT: {
                     Symbol *sym = symtab_lookup_var(base->data.ident.name);
                     if (sym) {
-                        int slot = 34 + VAR_SLOT(sym) + idx - 1;
-                        if (slot <= 255) {
-                            emit_byte(slot);
-                        } else {
-                            emit_word_be(slot);
-                        }
+                        emit_rda_slot_operand(VAR_SLOT(sym) + idx - 1);
                     }
                     return;
                 }
                 case AST_RDA_SLOT: {
-                    /* RDA_FIRST(n) -> slot 34+0+(n-1), RDA_LAST(n) -> slot 34+221+(n-1) */
-                    int slot = 34 + base->data.ext_var.number + idx - 1;
-                    if (slot <= 255) {
-                        emit_byte(slot);
-                    } else {
-                        emit_word_be(slot);
-                    }
+                    /* RDA_FIRST(n) -> slot 0+(n-1), RDA_LAST(n) -> slot 221+(n-1) */
+                    emit_rda_slot_operand(base->data.ext_var.number + idx - 1);
                     return;
                 }
                 default:
