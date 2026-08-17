@@ -791,7 +791,24 @@ static void handle_save(AstNode *node, AstNode **operands, int count) {
      * SAVE_RANGE 0x4E = 3 operands (name, start_slot, end_slot)
      * Special: if single operand is a structure name, expand to (start_slot, count) */
     if (count == 2) {
-        /* SAVE name, slot - emit SAVE (0x4D) with var_count = 1 */
+        /* SAVE name, slot - emit SAVE (0x4D).  The var_count byte is the
+         * number of slots saved starting at that slot: 1 for a plain
+         * variable, but the full extent when the target names a DATA group
+         * or a dimensioned variable (same resolution the 1-operand form
+         * below performs).  Era reference: TAOPDIR1.PGM saves the 5-slot
+         * group `taopdir` as 0x4D 0x05 <key> RDA40. */
+        int var_count = 1;
+        if (operands[1] && operands[1]->kind == AST_IDENT) {
+            StructureGroup *sg = symtab_lookup_structure(operands[1]->data.ident.name);
+            if (sg) {
+                var_count = sg->count;
+            } else {
+                Symbol *sym = symtab_lookup_var(operands[1]->data.ident.name);
+                if (sym && sym->data.var.array_size > 0) {
+                    var_count = sym->data.var.array_size;
+                }
+            }
+        }
         bool complex = check_complex_mode(operands, 2);
         if (complex) {
             emit_byte(OP_SAVE | OP_COMPLEX);
@@ -799,7 +816,7 @@ static void handle_save(AstNode *node, AstNode **operands, int count) {
         } else {
             emit_byte(OP_SAVE);
         }
-        emit_byte(1);  /* var_count = 1 (save 1 slot) */
+        emit_byte((uint8_t)var_count);
         emit_operand(operands[0], needs_extended_encoding(operands[0]));
         emit_operand(operands[1], needs_extended_encoding(operands[1]));
     } else if (count == 3) {
