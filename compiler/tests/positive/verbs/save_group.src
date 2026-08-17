@@ -1,0 +1,11 @@
+PROGRAM SVGRP;
+
+{ 2-operand SAVE whose target names a DATA group: the var_count byte must
+  be the group's extent (5 here), not 1.  Era reference is TAOPDIR1.PGM,
+  which saves the 5-slot group `taopdir` as 4D 05 <key> <RDA40>. }
+
+DATA grp = V0, V1, V2, V3, V4;
+
+PROC main =
+    SAVE 'DIRC', grp;
+END_PROC
