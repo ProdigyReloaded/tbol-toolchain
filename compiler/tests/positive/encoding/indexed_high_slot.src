@@ -1,0 +1,20 @@
+PROGRAM IXHIGH;
+
+{ Constant-indexed operands that resolve to RDA slot 158 or above must use
+  the two-byte extended encoding, not the one-byte linear form.  Getting it
+  wrong is not merely a mis-addressed slot: the operand is also a byte short,
+  so every following instruction is misread.  Era case is MSZX00LZ.PGM,
+  CLEAR mailbox_pages(2), msg_object_id(4) -> CLEAR RDA106, RDA208. }
+
+DATA vars = a(300);
+
+PROC main =
+    CLEAR a(158);               { slot 157 - simple form, the boundary }
+    CLEAR a(159);               { slot 158 - first extended slot       }
+    CLEAR a(209);               { slot 208                             }
+    CLEAR RDA_FIRST(209);       { same slot through the builtin        }
+    CLEAR a(107), a(209);       { range with an extended second operand }
+    MOVE a(209), a(107);
+    SAVE 'K', a(107), a(209);
+    RESTORE 'K', a(209);
+END_PROC
